@@ -1,0 +1,803 @@
+---
+interact_link: content/numerical-methods/stability.ipynb
+kernel_name: matlab
+kernel_path: content/numerical-methods
+has_widgets: false
+title: |-
+  Stability and Stiffness
+pagenum: 6
+prev_page:
+  url: /numerical-methods/initial-value-methods.html
+next_page:
+  url: /second-order/second-order.html
+suffix: .ipynb
+search: y delta t x begin end euler method frac yi mathbf b equation align stability leq backward stable order solution step bmatrix system forward quad ode recursion f where solve lets e formula dy dt methods left right prime gather well sigma equations behaved numerical problem size odes vmatrix d not example st general unconditionally text into analysis rule nd unknowns want unstable also scheme blows stiff error larger dx need cramers systems exact explicit schemes sizes value compare remains any choice conditionally saw does our get therefore using those solutions focus such behavior words consider initial condition obtain smaller
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Stability and Stiffness</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the past when you've talked about <strong>stability</strong>, it has likely been regarding the stability of a <em>system</em>. Stable systems are those will well-behaved exact solutions, meaning they do not grow unbounded.
+In engineering we mostly focus (or want!) stable systems, although there are some interesting unstable systems such as those involving resonance, nonlinear dynamics, or chaos—generally we want to know when that happens so we can prevent it.</p>
+<p>We can also define the stability of a <em>numerical scheme</em>, which is when the numerical solution exhibits unphysical behavior. In other words, it blows up.</p>
+<p>For example, let's consider the relatively simple 1st-order ODE
+\begin{equation}
+\frac{dy}{dt} = -3 y
+\end{equation}
+with the initial condition $y(0) = 1$. As we will see, this ODE can cause explicit numerical schemes to become unstable, and thus it is a <strong>stiff</strong> ODE. (Note that we can easily obtain the exact solution for this problem, which is $y(t) = e^{-3 t}$.)</p>
+<p>Let's try solving this with the Forward Euler method, integrating over $0 \leq t \leq 10$, for a range of time-step size values: $\Delta t = 0.1, 0.25, 0.5, 0.75$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+<span class="s">f = @(t,y) -3*y</span><span class="p">;</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,1)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,2)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,3)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,4)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_1_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At the smaller step sizes, $\Delta t = 0.1$ and $\Delta t = 0.25$, we see that the solution is well-behaved. But, when we increase $\Delta t$ to 0.5, we see some instability that goes away with time. Then, when we increase $\Delta t$ to 0.75, the solution eventually blows up, leading to error <strong>much</strong> larger than what we should expect based on the method's order of accuracy (first) and the step size value.</p>
+<p>Compare this behavior to that for the ODE
+\begin{equation}
+\frac{dy}{dt} = e^{-t}
+\end{equation}
+which is <strong>non-stiff</strong>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+<span class="s">f = @(t,y) exp(-t)</span><span class="p">;</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,1)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,2)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,3)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,4)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_3_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, we see that the solution remains well-behaved even for larger time-step sizes, and the error matches the expected order based on the method and step-size value.</p>
+<p>In general numerical schemes can be:</p>
+<ul>
+<li><strong>unstable</strong>: the scheme blows up for any choice of parameters</li>
+<li><strong>conditionally stable</strong>: the scheme is stable for a particular choice of parameters (for example, $\Delta t$ is less than some threshold</li>
+<li><strong>unconditionally stable</strong>: the scheme is always stable</li>
+</ul>
+<p>Schemes may be stable for some problem/system and not for another, and vice versa.</p>
+<p>Stability is related to robustness of a method, which is generally a tradeoff between complexity and computational cost. The choice of method and solution strategy depends on what you want, and how long you can wait for it. In general, we almost always want to use the largest $\Delta t$ allowable.</p>
+<p>Rather than reducing $\Delta t$ to avoid stability problems, we can also use a method that is unconditionally stable, such as the <strong>Backward Euler</strong> method.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Backward-Euler-method">Backward Euler method<a class="anchor-link" href="#Backward-Euler-method"> </a></h2><p>The Backward Euler method is very similar to the Forward Euler method, except in one way: it uses the slope at the <em>next</em> time step: 
+\begin{equation}
+    \left(\frac{dy}{dx}\right)_{i+1} \approx \frac{y_{i+1} - y_i}{\Delta x}
+\end{equation}
+Then, the resulting recursion formula is
+\begin{equation}
+y_{i+1} = y_i + \Delta x \left(\frac{dy}{dx}\right)_{i+1}, \text{ or} \\
+y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
+\end{equation}
+where $f(x,y) = dy/dx$.</p>
+<p>Notice that this recursion formula cannot be directly solved, because $y_{i+1}$ shows up on both sides. This is an <strong>implicit</strong> method, where all the other methods we have covered (Forward Euler, Heun's, Midpoint, and 4th-order Runge-Kutta) are <strong>explicit</strong>. Implicit methods require more work to actually implement.</p>
+<h3 id="Backward-Euler-example">Backward Euler example<a class="anchor-link" href="#Backward-Euler-example"> </a></h3><p>For example, consider the problem 
+\begin{equation} 
+\frac{dy}{dx} = f(x,y) = 8 e^{-x} (1+x) - 2y
+\end{equation}
+To actually solve this problem with the Backward Euler method, we need to incorporate the derivative function $f(x,y)$ into the recursion formula and solve for $y_{i+1}$:
+\begin{align}
+y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta x \left[ 8 e^{-x_{i+1}} (1 + x_{i+1}) - 2 y_{i+1} \right] \\
+y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x - 2 \Delta x \, y_{i+1} \\
+y_{i+1} + 2 \Delta x \, y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x \\
+y_{i+1} &amp;= \frac{ y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x }{ 1 + 2 \Delta x }
+\end{align}
+Now we have a useable recursion formula that we can use to solve this problem. Let's use the initial condition $y(0) = 1$, the domain $0 \leq x \leq 7$, and $\Delta x = 0.2$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+
+<span class="s">dx = 0.2</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c">% Backward Euler loop</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+
+<span class="s">x_exact = linspace(0, 7)</span><span class="p">;</span>
+<span class="n">y_exact</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&#39;Backward Euler solution&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_6_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This matches nearly what we saw with the Forward Euler method before—Backward Euler is also a <strong>first-order</strong> method, so the global error should be proportional to $\Delta x$.</p>
+<p>Let's now return to the stiff ODE $y^{\prime} = -3 y$, and see how the Backward Euler method does. First, we need to obtain our useable recursion formula:
+\begin{align}
+y_{i+1} &amp;= y_i + \Delta t \, f(t_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta t \, \left( -3 y_{i+1} \right) \\
+y_{i+1} + 3 y_{i+1} \Delta t &amp;= y_i \\
+y_{i+1} &amp;= \frac{y_i}{1 + 3 \Delta t}
+\end{align}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+
+<span class="s">dt = 0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,1)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,2)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,3)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">subplot(4,1,4)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;dt = %4.2f&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_8_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, we see that the solution remains well-behaved for all the step sizes, not showing any of the instability we saw with the Forward Euler method. This is because the Backward Euler method is <strong>unconditionally stable</strong>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Stability-analysis">Stability analysis<a class="anchor-link" href="#Stability-analysis"> </a></h2><h3 id="Stability-analysis-of-Forward-Euler">Stability analysis of Forward Euler<a class="anchor-link" href="#Stability-analysis-of-Forward-Euler"> </a></h3><p>We can perform a stability analysis of the stiff problem to identify when the Forward Euler method becomes unstable. Let's apply the method to the ODE at hand:
+\begin{align}
+\frac{dy}{dt} &amp;= -3 y \\
+y_{i+1} &amp;= y_i + \Delta t f(t_i, y_i) \\
+y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
+ &amp;= y_i (1 - 3 \Delta t) \\
+\frac{y_{i+1}}{y_i} &amp;= \sigma = 1 - 3 \Delta t 
+\end{align}
+where $\sigma$ is the <strong>amplification factor</strong>. This defines whether the solution grows or decays each step—for a stable physical system, we expect the solution to get smaller or remain contant with each step.</p>
+<p>Therefore, for the method to remain stable, we must have $\sigma | \leq 1$. We can use this stability criterion to find conditions on $\Delta t$ for stability:
+\begin{gather}
+| \sigma | = | 1 - 3 \Delta t | \leq 1 \\
+-1 \leq 1 - 3 \Delta t \leq 1 \\
+-1 \leq 1 - 3 \Delta t \quad \text{or} \quad 1 - 3 \Delta t \leq 1 \\
+\frac{-2}{3} \leq -\Delta t \quad \quad -\Delta t \leq 0 \\
+\rightarrow \Delta t \leq \frac{2}{3} \quad \text{and} \quad \Delta t \geq 0 \\
+\therefore 0 \leq \Delta t \leq \frac{2}{3}
+\end{gather}
+for stability. (For safety, we might use $\Delta t &lt; 1/2$ for safety, to stay away from the absolute stability limit.)</p>
+<p>The Forward Euler method is then <em>conditionally stable</em>.</p>
+<p>As a general rule of thumb, all <strong>explicit</strong> methods are conditionally stable; these are methods where the recursion formula for $y_{i+1}$ can be written and calculated explicitly in terms of known quantities.</p>
+<h3 id="Stability-analysis-of-Backward-Euler">Stability analysis of Backward Euler<a class="anchor-link" href="#Stability-analysis-of-Backward-Euler"> </a></h3><p>We can also perform a stability analysis on the Backward Euler method to show that its stability does not depend on the step size:
+\begin{align}
+\frac{dy}{dt} &amp;= -3 y \\
+y_{i+1} &amp;= y_i + \Delta t f(t_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta t (-3 y_{i+1}) \\
+y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
+\sigma &amp;= \frac{y_{i+1}}{y_i} = \frac{1}{1 + 3 \Delta t}
+\end{align}
+For stability, we need $| \sigma | \leq 1$:
+\begin{align}
+| \sigma | &amp;= \left| \frac{1}{1 + 3 \Delta t} \right| \leq 1 \\
+\rightarrow \Delta t &amp;&gt; 0
+\end{align}
+Therefore the Backward Euler method is <em>unconditionally stable</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Backward-Euler-for-2nd-order-ODEs">Backward Euler for 2nd-order ODEs<a class="anchor-link" href="#Backward-Euler-for-2nd-order-ODEs"> </a></h2><p>We saw how to implement the Backward Euler method for a 1st-order ODE, but what about a 2nd-order ODE? (Or in general a system of 1st-order ODEs?)</p>
+<p>The recursion formula is the same, except now our dependent variable is an array/vector:
+\begin{equation}
+\mathbf{y}_{i+1} = \mathbf{y}_i + \Delta t \, \mathbf{f} \left( t_{i+1} , \mathbf{y}_{i+1} \right)
+\end{equation}
+where the bolded $\mathbf{y}$ and $\mathbf{f}$ indicate array quantities (in other words, they hold more than one value).</p>
+<p>In general, we can use Backward Euler to solve 2nd-order ODEs in a similar fashion as our other numerical methods:</p>
+<ol>
+<li>Convert the 2nd-order ODE into a system of two 1st-order ODEs</li>
+<li>Insert the ODEs into the Backward Euler recursion formula and solve for $\mathbf{y}_{i+1}$</li>
+</ol>
+<p>The main difference is that we will now have a system of two equations and two unknowns: $y_{1, i+1}$ and $y_{2, i+1}$.</p>
+<p>Let's demonstrate with an example:
+\begin{equation}
+y^{\prime\prime} + 6 y^{\prime} + 5y = 10 \quad y(0) = 0 \quad y^{\prime}(0) = 5
+\end{equation}
+where the exact solution is
+\begin{equation}
+y(t) = -\frac{3}{4} e^{-5t} - \frac{5}{4} e^{-t} + 2
+\end{equation}</p>
+<p>To solve numerically,</p>
+<ol>
+<li><p>Convert the 2nd-order ODE into a system of two 1st-order ODEs:
+\begin{gather}
+y_1 = y \quad y_1(t=0) = 0 \\
+y_2 = y^{\prime} \quad y_2 (t=0) = 5
+\end{gather}
+Then, for the derivatives of these variables:
+\begin{align}
+y_1^{\prime} &amp;= y_2 \\
+y_2^{\prime} &amp;= 10 - 6 y_2 - 5 y_1
+\end{align}</p>
+</li>
+<li><p>Then plug these derivatives into the Backward Euler recursion formulas and solve for $y_{1,i+1}$ and $y_{2,i+1}$:
+\begin{align}
+y_{1, i+1} &amp;= y_{1, i} + \Delta t \, y_{2,i+1} \\
+y_{2, i+1} &amp;= y_{2, i} + \Delta t \left( 10 - 6 y_{2, i+1} - 5 y_{1,i+1} \right) \\
+\\
+y_{1, i+1} - \Delta t \, y_{2, i+1} &amp;= y_{1,i} \\
+5 \Delta t \, y_{1, i+1} + (1 + 6 \Delta t) y_{2, i+1} &amp;= y_{2,i} + 10 \Delta t \\
+\text{or} \quad 
+\begin{bmatrix} 1 &amp; -\Delta t \\ 5 \Delta t &amp; (1+6\Delta t)\end{bmatrix} 
+\begin{bmatrix} y_{1, i+1} \\ y_{2, i+1} \end{bmatrix} &amp;= 
+\begin{bmatrix} y_{1,i} \\ y_{2,i} + 10 \Delta t \\ \end{bmatrix} \\
+\mathbf{A} \mathbf{y}_{i+1} &amp;= \mathbf{b}
+\end{align}
+To isolate $\mathbf{y}_{i+1}$ and get a usable recursion formula, we need to solve this system of two equations. We could solve this by hand using the substitution method, or we can use Cramer's rule:
+\begin{align}
+y_{1, i+1} &amp;= \frac{ y_{1,i} (1 + 6 \Delta t) + \Delta t \left( y_{2,i} + 10 \Delta t \right)}{1 + 6 \Delta t + 5 \Delta t^2} \\
+y_{2, i+1} &amp;= \frac{ y_{2,i} + 10 \Delta t - 5 \Delta t y_{1,i}}{1 + 6 \Delta t + 5 \Delta t^2}
+\end{align}</p>
+</li>
+</ol>
+<p>Let's confirm that this gives us a good, well-behaved numerical solution and compare with the Forward Euler method:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+
+<span class="s">% Exact solution</span><span class="p"></span>
+<span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">y_exact</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="c">% Forward Euler</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">y1</span><span class="p">;</span>
+<span class="n">y1</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span> <span class="n">y2</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
+    <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, y1, &#39;+&#39;)</span><span class="p"></span>
+
+<span class="n">Y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">D</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span> <span class="o">/</span> <span class="n">D</span><span class="p">;</span>
+    <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span> <span class="o">-</span> <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">D</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, Y(:,1), &#39;o&#39;)</span><span class="p"></span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact&#39;</span><span class="p">,</span> <span class="s">&#39;Forward Euler&#39;</span><span class="p">,</span> <span class="s">&#39;Backward Euler&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;southeast&#39;</span><span class="p">)</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error of Forward Euler: %5.3f\n&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">(:)</span> <span class="o">-</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error of Backward Euler: %5.3f&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Maximum error of Forward Euler: 0.099
+Maximum error of Backward Euler: 0.068</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_12_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, for $\Delta t = 0.1$, we see that the Forward and Backward Euler methods give an error $\mathcal{O}(\Delta t)$, as expected since both methods are <em>first-order</em> accurate.</p>
+<p>Let's see how they compare for a larger step size:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+
+<span class="s">% Exact solution</span><span class="p"></span>
+<span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">y_exact</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="c">% Forward Euler</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">6</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">y1</span><span class="p">;</span>
+<span class="n">y1</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span> <span class="n">y2</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">y1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
+    <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y1</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y2</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, y1, &#39;o&#39;)</span><span class="p"></span>
+
+<span class="c">% Backward Euler</span>
+
+<span class="n">Y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">D</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">dt</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span> <span class="o">/</span> <span class="n">D</span><span class="p">;</span>
+    <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span> <span class="o">-</span> <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span> <span class="o">/</span> <span class="n">D</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, Y(:,1), &#39;o&#39;)</span><span class="p"></span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact&#39;</span><span class="p">,</span> <span class="s">&#39;Backward Euler&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;southeast&#39;</span><span class="p">)</span>
+
+<span class="c">%fprintf(&#39;Maximum error of Forward Euler: %5.3f\n&#39;, max(abs(y1(:) - y_exact(t)&#39;)));</span>
+<span class="c">%fprintf(&#39;Maximum error of Backward Euler: %5.3f&#39;, max(abs(Y(:,1) - y_exact(t)&#39;)));</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error of Forward Euler: %5.3f\n&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y1</span><span class="p">(:)</span> <span class="o">-</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error of Backward Euler: %5.3f&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&#39;</span><span class="p">)));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Maximum error of Forward Euler: 43.242
+Maximum error of Backward Euler: 0.228</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_14_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Backward Euler, since it is unconditionally stable, remains well-behaved at this larger step size, while the Forward Euler method blows up.</p>
+<p>One other thing: instead of using Cramer's rule to get expressions for $y_{1,i+1}$ and $y_{2,i+1}$, we could instead use Matlab to solve the linear system of equations at each time step. To do that, we could replace</p>
+<div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="o">-</span><span class="n">dt</span><span class="p">;</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span>  <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">dt</span><span class="p">)];</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="n">Y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">Y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">];</span>
+<span class="n">Y</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="p">(</span><span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+</pre></div>
+<p>where <code>A\b</code> is equivalent to <code>inv(A)*b</code>, but faster. Let's confirm that this gives the same answer:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
+
+<span class="s">% Exact solution</span><span class="p"></span>
+<span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">y_exact</span> <span class="p">=</span> <span class="p">@(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+
+<span class="n">dt</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="n">Y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">Y</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(t) - 1</span><span class="p"></span>
+    <span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="o">-</span><span class="n">dt</span><span class="p">;</span> <span class="mi">5</span><span class="o">*</span><span class="n">dt</span>  <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="n">dt</span><span class="p">)];</span>
+    <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">];</span>
+    <span class="n">Y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="p">(</span><span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, Y(:,1), &#39;o&#39;)</span><span class="p"></span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact&#39;</span><span class="p">,</span> <span class="s">&#39;Backward Euler&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;southeast&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/stability_16_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cramer's-Rule">Cramer's Rule<a class="anchor-link" href="#Cramer's-Rule"> </a></h2><p>Cramer's Rule provides a solution method for a system of linear equations, where the number of equations equals the number of unknowns. It works for any number of equations/unknowns, but isn't really practical for more than two or three. We'll focus on using it for a system of two equations, with two unknowns $x_1$ and $x_2$:
+\begin{gather}
+a_{11} + x_1 + a_{12} x_2 = b_1 \\
+a_{21} + x_1 + a_{22} x_2 = b_2 \\
+\text{or } \mathbf{A} \mathbf{x} = \mathbf{b}
+\end{gather}
+where
+\begin{gather}
+\mathbf{A} = \begin{bmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{bmatrix} \\
+\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \\
+\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}
+\end{gather}</p>
+<p>The solutions for the unknowns are then
+\begin{align}
+x_1 &amp;= \frac{ \begin{vmatrix} b_1 &amp; a_{12} \\ b_2 &amp; a_{22} \end{vmatrix} }{D} = \frac{b_1 a_{22} - a_{12} b_2}{D} \\
+x_2 &amp;= \frac{ \begin{vmatrix} a_{11} &amp; b_1 \\ a_{21} &amp; b_2 \end{vmatrix} }{D} = \frac{a_{11} b_2 - b_1 a_{21}}{D}
+\end{align}
+where $D$ is the determinant of $\mathbf{A}$:
+\begin{equation}
+D = \det(\mathbf{A}) = \begin{vmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{vmatrix} = a_{11} a_{22} - a_{12} a_{21}
+\end{equation}
+This works as long as the determinant does not equal zero.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

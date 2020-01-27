@@ -1,0 +1,380 @@
+---
+interact_link: content/second-order/initial-value-problems.ipynb
+kernel_name: matlab
+kernel_path: content/second-order
+has_widgets: false
+title: |-
+  Initial-Value Problems
+pagenum: 9
+prev_page:
+  url: /second-order/analytical.html
+next_page:
+  url: /second-order/numerical-methods.html
+suffix: .ipynb
+search: x y prime e c frac equation u begin end lambda solution align t dx int right k left text m ode coefficients solve homogeneous v p omega initial where order form ih ex rightarrow roots inhomogeneous f odes example conditions sin cos method undetermined w solutions nd equations into function ln general beta forcing constant lets parts linearly part variation parameters vmatrix q get characteristic b full h constants r cosh problems depending need g quad our xm continuous functions not using those euler cauchy independent only dependent obtain reduction dv exp step take given system repeated second pm
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Initial-Value Problems</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This section focuses on analytical solutions for initial-value problems, meaning problems where we know the values of $y(t)$ and $\frac{dy}{dt}$ at $t=0$ (or $y(x)$ and $\frac{dy}{dx}$ at $x=0$): $y(0)$ and $y^{\prime}(0)$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Homogeneous-2nd-order-ODEs">Homogeneous 2nd-order ODEs<a class="anchor-link" href="#Homogeneous-2nd-order-ODEs"> </a></h2><p>An important category of 2nd-order ODEs are those that look like
+\begin{equation}
+y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
+\end{equation}
+"Homogeneous" means that the ODE is unforced; that is, the right-hand side is zero.</p>
+<p>Depending on what $p(x)$ and $q(x)$ look like, we have a few different solution approaches:</p>
+<ul>
+<li>constant coefficients: $y^{\prime\prime} + a y^{\prime} + by = 0$</li>
+<li>Euler-Cauchy equations: $x^2 y^{\prime\prime} + axy^{\prime} + by = 0$</li>
+<li>Series solutions</li>
+</ul>
+<p>First, let's talk about the characteristics of linear, homogeneous 2nd-order ODEs:</p>
+<h4 id="Solutions-have-two-parts:">Solutions have two parts:<a class="anchor-link" href="#Solutions-have-two-parts:"> </a></h4><p>Solutions have two parts: $y(x) = c_1 y_1 + c_2 y_2$, where $y_1$ and $y_2$ are each a basis of the solution.</p>
+<h4 id="Linearly-independent:">Linearly independent:<a class="anchor-link" href="#Linearly-independent:"> </a></h4><p>The two parts of the solution $y_1$ and $y_2$ are linearly independent.</p>
+<p>One way of defining this is that $a_1 y_1 + a_2 y_2 = 0$ only has the trivial solution $a_1=0$ and $a_2=0$.</p>
+<p>Another way of thinking about this is that $y_1$ and $y_2$ are linearly <em>dependent</em> if one is a multiple of the other, like $y_1 = x$ and $y_2 = 5x$. This <em>cannot</em> be solutions to a linear, homogeneous ODE.</p>
+<h4 id="Both-parts-satisfy-the-ODE:">Both parts satisfy the ODE:<a class="anchor-link" href="#Both-parts-satisfy-the-ODE:"> </a></h4><p>$y_1$ and $y_2$ each satisfy the ODE. Meaning, you can plug each of them into the ODE for $y$ and obtain 0.</p>
+<p>However, we need both parts together to fully solve the ODE.</p>
+<h4 id="Reduction-of-order:">Reduction of order:<a class="anchor-link" href="#Reduction-of-order:"> </a></h4><p>If $y_1$ is known, we can get $y_2$ by <strong>reduction of order</strong>. Let $y_2 = u y_1$, where $u$ is some unknown function of $x$. Then, put $y_2$ into the ODE $y^{\prime}{\prime} + p(x) y^{\prime} + q(x) y = 0$:
+\begin{align}
+y_2 &amp;= u y_1 \\
+y_2^{\prime} &amp;= u y_1^{\prime} + u^{\prime} y_1 \\
+y_2^{\prime\prime} &amp;= 2 u^{\prime} y_1^{\prime} + u^{\prime\prime} y_1 + u y_1^{\prime\prime} \\
+\rightarrow u^{\prime\prime} &amp;= - \left[ p(x) + \left(\frac{2 y_1^{\prime}}{y_1}\right) \right] u^{\prime}
+\text{or, } u^{\prime\prime} &amp;= - \left( g(x) \right) u^{\prime}
+\end{align}
+Now, we have an ODE with only $u^{\prime\prime}$, $u^{\prime}$, and some function $g(x)$—so we can solve by substitution! Let $u^{\prime} = v$, and then we have $v^{\prime} = -g(x) v$:
+\begin{align}
+\frac{dv}{dx} &amp;= - \left( p(x) + \frac{2 y_1^{\prime}}{y_1} \right) v \\
+\int \frac{dv}{v} &amp;= - \int \left(p(x) + \frac{2 y_1^{\prime}}{y_1} \right) dx \\
+\text{Recall } 2 \frac{d}{dx} \left( \ln y_1 \right) &amp;= 2 \frac{y_1^{\prime}}{y_1} \\
+\therefore \int \frac{dv}{v} &amp;= - \int \left(p(x) + 2 \frac{d}{dx} \left( \ln y_1 \right) \right) dx \\
+\ln v &amp;= -\int p(x) dx - 2 \ln y_1 \\
+\rightarrow v &amp;= \frac{\exp\left( -\int p(x)dx \right)}{y_1^2}
+\end{align}</p>
+<p>So, the actual solution procedure is then:</p>
+<ol>
+<li>Solve for $v$: $v = \frac{\exp\left( -\int p(x)dx \right)}{y_1^2}$</li>
+<li>Solve for $u$: $u = \int v dx$</li>
+<li>Get $y_2$: $y_2 = u y_1$</li>
+</ol>
+<p>Here's an example, where we know one part of the solution $y_1 = e^{-x}$:
+\begin{align}
+y^{\prime\prime} + 2 y^{\prime} + y &amp;= 0 \\
+\text{Step 1:} \quad v = \frac{\exp \left( -\int 2dx \right)}{ \left(e^{-x}\right)^2} = \frac{e^{-2x}}{e^{-2x}} &amp;= 1 \\
+\text{Step 2:} \quad u = \int v dx = \int 1 dx &amp;= x \\
+\text{Step 3:} \quad y_2 &amp;= x e^{-x}
+\end{align}
+Then, the general solution to the ODE is $y(x) = c_1 e^{-x} + c_2 x e^{-x}$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Equations-with-constant-coefficents">Equations with constant coefficents<a class="anchor-link" href="#Equations-with-constant-coefficents"> </a></h3><p>A common category of 2nd-order homogeneous ODEs are equations with constant coefficients, of the form:
+\begin{equation}
+y^{\prime\prime} + a y^{\prime} + by = 0
+\end{equation}
+Note that these are unforced, and the right-hand side is zero.</p>
+<p>Solutions to these equations take the form $y(x) = e^{\lambda x}$, and inserting this into the ODE gives us the characteristic equation
+\begin{equation}
+\lambda^2 + a \lambda + b = 0
+\end{equation}
+which we can solve to find the solution for given coefficients $a$ and $b$ and initial conditions. Depending on those coefficients and the solution to the characteristic equation, our solution can fall into one of three cases:</p>
+<ul>
+<li><p>Real roots: $\lambda_1$ and $\lambda_2$. This is an <strong>overdamped</strong> system and the full solution takes the form
+\begin{equation}
+y(x) = c_1 e^{\lambda_1 x} + c_2 e^{\lambda_2 x}
+\end{equation}</p>
+</li>
+<li><p>Repeated roots: $\lambda_1 = \lambda_2 = \lambda$. This is a <strong>critically damped</strong> system and the full solution is
+\begin{equation}
+y(x) = c_1 e^{\lambda x} + c_2 x e^{\lambda x}
+\end{equation}
+(Where does that second part come from, you might ask? Well, we know that $y_1$ is $e^{\lambda x}$, but the second part cannot also be $e^{\lambda x}$ because those are linearly dependent. So, we use <em>reduction of order</em> to find $y_2$, which is $x e^{\lambda x}$.</p>
+</li>
+<li><p>Imaginary roots: $\lambda = \frac{-a}{2} \pm \beta i$, where $\beta = \frac{1}{2} \sqrt{4b - a^2}$. This is an <strong>underdamped</strong> system and the solution takes the form
+\begin{equation}
+y(x) = e^{-ax/2} \left( c_1 \sin \beta x + c_2 \cos \beta x \right)
+\end{equation}</p>
+</li>
+</ul>
+<p>Some examples:</p>
+<ol>
+<li><p>$y^{\prime\prime} + 3 y^{\prime} + 2y = 0$
+\begin{align}
+\rightarrow \lambda^2 + 3\lambda + 2 &amp;= 0 \\
+(\lambda + 2)(\lambda + 1) &amp;= 0 \\
+\lambda &amp;= -2, -1 \\
+y(x) &amp;= c_1 e^{-x} + c_2 e^{-2x}
+\end{align}
+Then, we would use the initial conditions given for $y(0)$ and $y^{\prime}(0)$ to find $c_1$ and $c_2$.</p>
+</li>
+<li><p>$y^{\prime\prime} + 6 y^{\prime} + 9y = 0$
+\begin{align}
+\rightarrow \lambda^2 + 6\lambda + 9 &amp;= 0 \\
+(\lambda + 3)(\lambda + 3) &amp;= 0 \\
+\lambda &amp;= -3 \\
+y(x) &amp;= c_1 e^{-3x} + c_2 x e^{-3x}
+\end{align}</p>
+</li>
+<li><p>$y^{\prime\prime} + 6 y^{\prime} + 25 y = 0$
+\begin{align}
+\rightarrow \lambda^2 + 6\lambda + 25 &amp;= 0 \\
+\lambda &amp;= -3 \pm 4i \\
+y(x) &amp;= e^{-3x} \left( c_1 \sin 4x + c_2 \cos 4x \right)
+\end{align}</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Euler-Cauchy-equations">Euler-Cauchy equations<a class="anchor-link" href="#Euler-Cauchy-equations"> </a></h3><p>Euler-Cauchy equations are of the form
+\begin{equation}
+x^2 y^{\prime\prime} + axy^{\prime} + by = 0
+\end{equation}</p>
+<p>Solutions take the form $y = x^m$, which when plugged into the ODE leads to a different characterisic equation to find $m$:
+\begin{align}
+y &amp;= x^m \\
+y^{\prime} &amp;= m x^{m-1} \\
+y^{\prime\prime} &amp;= m (m-1) x^{m-2} \\
+\rightarrow x^2 m (m-1) x^{m-2} + axmx^{m-1} + bx^m &amp;= 0 \\
+m^2 + (a-1)m + b &amp;= 0
+\end{align}
+This is our new characteristic formula for these problems, and solving for the roots of this equation gives us $m$ and thus our general solution.</p>
+<p>Like equations with constant coefficients, we have three solution forms depending on the roots of the characteristic equation:</p>
+<ul>
+<li>Real roots: $y(x) = c_1 x^{m_1} + c_2 x^{m_2}$</li>
+<li>Repeated roots: $y(x) = c_1 x^m + c_2 x^m \ln x$</li>
+<li>Imaginary roots: $m = \alpha \pm \beta i$, and $y(x) = x^{\alpha} \left[c_1 \cos (\beta \ln x) + c_2 \sin (\beta \ln x)\right]$</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Inhomogeneous-2nd-order-ODEs">Inhomogeneous 2nd-order ODEs<a class="anchor-link" href="#Inhomogeneous-2nd-order-ODEs"> </a></h2><p>Inhomogeneous, or forced, 2nd-order ODEs with constant coefficients take the form
+\begin{equation}
+y^{\prime\prime} + a y^{\prime} + by = F(t)
+\end{equation}
+with initial conditions $y(0) = y_0$ and $y^{\prime}(0) = y_0^{\prime}$. Depending on the form of the forcing function $F(t)$, we can solve with techniques such as</p>
+<ul>
+<li>the method of undetermined coefficients</li>
+<li>variation of parameters</li>
+<li>LaPlace transforms</li>
+</ul>
+<p>The solution in general to inhomogeneous ODEs includes two parts:
+\begin{equation}
+y(t) = y_{\text{H}} + y_{\text{IH}} = c_1 y_1 + c_2 y_2 + y_{\text{IH}} \;,
+\end{equation}
+where $y_{\text{H}}$ is the solution from the equivalent homogeneous ODE $y^{\prime\prime} + a y^{\prime} + b y = 0$.</p>
+<p>The forcing function $F(t)$ may be</p>
+<ul>
+<li>continuous</li>
+<li>periodic</li>
+<li>aperiodic/discontinuous</li>
+</ul>
+<h3 id="Continuous-$F(t)$:-method-of-undetermined-coefficients">Continuous $F(t)$: method of undetermined coefficients<a class="anchor-link" href="#Continuous-$F(t)$:-method-of-undetermined-coefficients"> </a></h3><p>For continuous forcing functions, we have two solution methods: the method of undetermined coefficients, and variation of parameters.</p>
+<p>Generally you'll want to use the method of undetermined coefficients when possible, which depends on if $F(t)$ matches one of a set of functions. In that case, the form of the inhomogeneous solution $y_{\text{IH}}(t)$ follows that of the forcing function $F(t)$, with one or more unknown constants:</p>
+<table>
+<thead><tr>
+<th>$F(t)$</th>
+<th style="text-align:center">$y_{\text{IH}}(t)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>constant</td>
+<td style="text-align:center">$K$</td>
+</tr>
+<tr>
+<td>$\cos \omega t$</td>
+<td style="text-align:center">$K_1 \cos \omega t + K_2 \sin \omega t$</td>
+</tr>
+<tr>
+<td>$\sin \omega t$</td>
+<td style="text-align:center">$K_1 \cos \omega t + K_2 \sin \omega t$</td>
+</tr>
+<tr>
+<td>$e^{-at}$</td>
+<td style="text-align:center">$K e^{-at}$</td>
+</tr>
+<tr>
+<td>$(A) t$</td>
+<td style="text-align:center">$K_0 + K_1 t$</td>
+</tr>
+<tr>
+<td>$t^n$</td>
+<td style="text-align:center">$K_0 + K_1 t + K_2 t^2 + \ldots + K_n t^n$</td>
+</tr>
+</tbody>
+</table>
+<p>For combinations of these functions, we can combine functions; for example, given
+\begin{align}
+F(t) &amp;= e^{-at} \cos \omega t \quad \text{or} e^{-at} \sin \omega t \\
+y_{\text{IH}} &amp;= K_1 e^{-at} \cos \omega t + K_2 e^{-at} \sin \omega t
+\end{align}
+(Note how in all the above cases how the inhomogeneous solution follows the functional form of the forcing function; for example, the exponential decay rate $a$ or the sinusoidal frequency $\omega$ match.</p>
+<p>The method of undetermined coefficients works by plugging the candidate inhomogeneous solutionn $y_{\text{IH}}$ into the full ODE, and solving for the constants (e.g., $K$)—but <strong>not</strong> from the initial conditions.</p>
+<p>For example, let's solve
+\begin{equation}
+y^{\prime\prime} + 2y^{\prime} + y = e^{-x}
+\end{equation}
+with initial conditions $y(0) = y^{\prime}(0) = 0$. First, we should find the solution to the homogeneous equation
+\begin{equation}
+y^{\prime\prime} + 2y^{\prime} + y = 0 \;.
+\end{equation}
+We can do this by using the associated characteristic formula
+\begin{align}
+\lambda^2 + 2 \lambda + 1 &amp;= 0 \\
+(\lambda + 1)(\lambda + 1) &amp;= 0 \\
+\rightarrow y_{\text{H}} &amp;= c_1 e^{-x} + c_2 x e^{-x}
+\end{align}</p>
+<p>To find the inhomogeneous solution, we would look at the table above to find what matches the forcing function $e^{-x}$. Normally, we'd grab $K e^{-x}$, but that would not be linearly independent from the first part of the homogeneous solution $y_{\text{H}}$. The same is true for $K x e^{-x}$, which is linearly dependent with the second part of $y_{\text{H}}$, but $K x^2 e^{-x}$ works! Then, we just need to find $K$ by plugging this into the ODE:
+\begin{align}
+y_{\text{IH}} &amp;= K x^2 e^{-x} \\
+y^{\prime} &amp;= K e^{-x} (2x - x^2) \\
+y^{\prime\prime} &amp;= K e^{-x} (x^2 - 4x + 2) \\
+2 K &amp;= 1 \\
+\rightarrow K &amp;= \frac{1}{2} \\
+y_{\text{IH}} &amp;= \frac{1}{2} x^2 e^{-x}
+\end{align}
+Thus, the overall general solution is 
+\begin{equation}
+y(x) = c_1 e^{-x} + c_2 x e^{-x} + \frac{1}{2} x^2 e^{-x}
+\end{equation}
+and we would solve for the integration constants $c_1$ and $c_2$ using the initial conditions.</p>
+<p>Important points to remember:</p>
+<ul>
+<li>The constants of the inhomogeneous solution $y_{\text{IH}}$ come from the ODE, <strong>not</strong> the initial conditions.</li>
+<li>Only solve for the integration constants $c_1$ and $c_2$ (part of the homogeneous solution) once you have the full general solution $y = c_1 y_1 + c_2 y_2 + y_{\text{IH}}$.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-$F(t)$:-variation-of-parameters">Continuous $F(t)$: variation of parameters<a class="anchor-link" href="#Continuous-$F(t)$:-variation-of-parameters"> </a></h3><p>We have the variation of parameters approach to solve for inhomogeneous 2nd-order ODEs that are more general:
+\begin{equation}
+y^{\prime\prime} + p(x) y^{\prime} + q(x) y = r(x)
+\end{equation}
+In this case, we can assume a solution $y(x) = y_1 u_1 + y_2 u_2$.</p>
+<p>The solution procedure is:</p>
+<ol>
+<li><p>Obtain $y_1$ and $y_2$ by solving the homogeneous equation: $y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0$</p>
+</li>
+<li><p>Solve for $u_1$ and $u_2$:
+\begin{align}
+u_1 &amp;= - \int \frac{y_2 r(x)}{W} dx + c_1 \\
+u_2 &amp;= \int \frac{y_1 r(x)}{W} dx + c_2 \\
+W &amp;= \begin{vmatrix}
+y_1 &amp; y_2\\ y_1^{\prime} &amp; y_2^{\prime}\\
+\end{vmatrix} = y_1 y_2^{\prime} - y_2 y_1^{\prime} \;,
+\end{align}
+where $W$ is the Wronksian.</p>
+</li>
+<li><p>Then, we have the general solution:
+\begin{align}
+y &amp;= u_1 y_1 + u_2 y_2 \\
+&amp;= \left( -\int \frac{y_2 r(x)}{W} dx + c_1 \right) y_1 + \left( \int \frac{y_1 r(x)}{W} dx + c_2 \right) y_2 \;,
+\end{align}
+where we solve for $c_1$ and $c_2$ using the two initial conditions.</p>
+</li>
+</ol>
+<h4 id="Example-1:-variation-of-parameters">Example 1: variation of parameters<a class="anchor-link" href="#Example-1:-variation-of-parameters"> </a></h4><p>First, let's try the same example we used for the method of undetermined coefficients above:
+\begin{equation}
+y^{\prime\prime} + 2 y^{\prime} + y = e^{-x}
+\end{equation}
+We already found the homogeneous solution, so we know that $y_1 = e^{-x}$ and $y_2 = x e^{-x}$.
+Next, let's get the Wronksian, and then $u_1$ and $u_2$.
+\begin{align}
+W &amp;= \begin{vmatrix} y_1 &amp; y_2 \\ y_1^{\prime} &amp; y_2^{\prime} \end{vmatrix} = e^{-x} e^{-x}(1-x) - x e^{-x} (-e^{-x}) = e^{-2x} \\
+%
+u_1 &amp;= -\int \frac{x e^{-x} e^{-x}}{e^{-2x}} dx + c_1 = -\int x dx + c_1 = -\frac{1}{2} x^2 + c_1 \\
+u_2 &amp;= \int \frac{e^{-x} e^{-x}}{e^{-2x}} dx + c_2 = \int dx + c_2 = x + c_2 \\
+y(x) &amp;= \left(-\frac{1}{2} x^2 + c_1\right) e^{-x} + (x + c_2) x e^{-x} \\
+\end{align}
+After simplifying, we obtain the same solution as via the method of undetermined coefficients (but with a bit more work):
+\begin{equation}
+y(x) = x_1 e^{-x} + c_2 x e^{-x} + \frac{1}{2} x^2 e^{-x}
+\end{equation}</p>
+<h4 id="Example-2:-variation-of-parameters">Example 2: variation of parameters<a class="anchor-link" href="#Example-2:-variation-of-parameters"> </a></h4><p>Now let's try an example that we could <em>not</em> solve using the method of undetermined coefficients, with a forcing term that involves hyperbolic cosine (cosh); recall that $\cosh(x) = \frac{e^x + e^{-x}}{2}$.
+\begin{equation}
+y^{\prime\prime} + 4 y^{\prime} + 4y = \cosh(x)
+\end{equation}
+First, we need to find the homogeneous solution:
+\begin{align}
+y^{\prime\prime} + 4 y^{\prime} + 4y &amp;= 0 \\
+\lambda^2 + 4 \lambda + 4 &amp;= 0 \\
+\rightarrow \lambda &amp;= -2
+\end{align}
+So our homogeneous solution involves repeated roots:
+\begin{equation}
+y_H = c_1 e^{-2x} + c_2 x e^{-2x}
+\end{equation}
+where $y_1 = e^{-2x}$ and $y_2 = x e^{-2x}$.</p>
+<p>Then, we need to find $u_1$ and $u_2$, so let's get the Wronksian and then solve
+\begin{align}
+W &amp;= \begin{vmatrix} y_1 &amp; y_2 \\ y_1^{\prime} &amp; y_2^{\prime} \end{vmatrix} = e^{-2x} (e^{-2x}) (1 - 2x) - x e^{-2x}(-2 e^{-2x}) = e^{-4x} \\
+%
+u_1 &amp;= - \int \frac{x e^{-2x} \cosh x}{e^{-4x}} dx + c_1 = -\int \frac{x \frac{1}{2}(e^x + e^{-x})}{e^{-2x}} dx + c_1 \\
+ &amp;= -\frac{1}{2} \int x (e^{3x} + e^x) dx + c_1 = -\frac{1}{2} \left[ \frac{1}{9} e^{3x}(3x-1) + e^x(x-1) \right] + c_1 \\
+u_1 &amp;= -\frac{1}{18} e^{3x}(3x-1) - \frac{1}{2} e^x (x-1) + c_1 \\
+%
+u_2 &amp;= \int \frac{e^{-2x} \cosh x}{e^{-4x}} dx + c_2 = \frac{1}{2} \int e^{2x}(e^x + e^{-x}) dx + c_2 = \frac{1}{2} \int (e^{3x} + e^x) dx + c_2 \\ 
+u_2 &amp;= \frac{1}{6} e^{3x} + \frac{1}{2} e^x + c_2
+\end{align}</p>
+<p>Then, when we put these all together, we get the full (complicated) solution:
+\begin{equation}
+y(x) = \left[ -\frac{1}{18} e^{3x} (3x-1) - \frac{1}{2} e^x (x-1) + c_1 \right] e^{-2x} + \left( \frac{1}{6} e^{3x} + \frac{1}{2} e^x + c_2 \right) x e^{-2x}
+\end{equation}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

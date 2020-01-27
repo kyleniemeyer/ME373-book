@@ -1,0 +1,418 @@
+---
+interact_link: content/numerical-methods/integrals.ipynb
+kernel_name: matlab
+kernel_path: content/numerical-methods
+has_widgets: false
+title: |-
+  Numerical integrals
+pagenum: 3
+prev_page:
+  url: /numerical-methods/numerical-methods.html
+next_page:
+  url: /numerical-methods/error.html
+suffix: .ipynb
+search: x rule using simpsons f numerical trapezoidal delta frac error integration equation function lets integral size accurate our polynomial b begin end text exact trapezoids left right segments segment factor integrate words solution cases problem align dx e c erf such area under curve above method does reducing step instead line point same integrals cannot analytically obvious closed form methods solve dy y int recognize leading sqrt pi range finds creating summing areas sum xi looks four trapezoid formula given internal leads approximation smaller value higher order polynomials rules simpler affect reduced increase accuracy approach sophisticated interpolation scheme straight also
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Numerical integrals</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What about when we cannot integrate a function analytically? In other words, when there is no (obvious) closed-form solution. In these cases, we can use <strong>numerical methods</strong> to solve the problem.</p>
+<p>Let's use this problem:
+\begin{align}
+\frac{dy}{dx} &amp;= e^{-x^2} \\
+y(x) &amp;= \int e^{-x^2} dx + C
+\end{align}</p>
+<p>(You may recognize this as leading to the error function, $\text{erf}$:
+$\frac{1}{2} \sqrt{\pi} \text{erf}(x) + C$,
+so the exact solution to the integral over the range $[0,1]$ is 0.7468.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/integrals_1_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Numerical-integration:-Trapezoidal-rule">Numerical integration: Trapezoidal rule<a class="anchor-link" href="#Numerical-integration:-Trapezoidal-rule"> </a></h2><p>In such cases, we can find the integral by using the <strong>trapezoidal rule</strong>, which finds the area under the curve by creating trapezoids and summing their areas:
+\begin{equation}
+\text{area under curve} = \sum \left( \frac{f(x_{i+1}) + f(x_i)}{2} \right) \Delta x
+\end{equation}</p>
+<p>Let's see what this looks like with four trapezoids ($\Delta x = 0.25$):</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">hold </span><span class="s">off</span><span class="p"></span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="mf">0.25</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c">% plot the trapezoids</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">xline</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)];</span>
+    <span class="n">yline</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">))];</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">xline</span><span class="p">,</span> <span class="n">yline</span><span class="p">,</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;LineStyle&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">xline</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)];</span>
+    <span class="n">yline</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))];</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">xline</span><span class="p">,</span> <span class="n">yline</span><span class="p">,</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;LineStyle&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">)</span>
+    <span class="n">xline</span> <span class="p">=</span> <span class="p">[</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)];</span>
+    <span class="n">yline</span> <span class="p">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)),</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))];</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">xline</span><span class="p">,</span> <span class="n">yline</span><span class="p">,</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;LineStyle&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">hold </span><span class="s">off</span><span class="p"></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/integrals_3_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, let's integrate using the trapezoid formula given above:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mf">0.0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">;</span>
+
+<span class="n">area</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(x)-1</span><span class="p"></span>
+    <span class="n">area</span> <span class="p">=</span> <span class="n">area</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)));</span><span class="n"></span>
+<span class="n">end</span>
+
+<span class="s">fprintf(&#39;Numerical integral: %f\n&#39;, area)</span><span class="p"></span>
+<span class="n">exact</span> <span class="p">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">pi</span><span class="p">)</span><span class="o">*</span><span class="nb">erf</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Exact integral: %f\n&#39;</span><span class="p">,</span> <span class="n">exact</span><span class="p">)</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Error: %f %%\n&#39;</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">area</span><span class="p">)</span><span class="o">/</span><span class="n">exact</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Numerical integral: 0.746211
+Exact integral: 0.746824
+Error: 0.082126 %
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that using the trapezoidal rule, a numerical integration method, with an internal size of $\Delta x = 0.1$ leads to an approximation of the exact integral with an error of 0.08%.</p>
+<p>You can make the trapezoidal rule more accurate by:</p>
+<ul>
+<li>using more segments (that is, a smaller value of $\Delta x$, or</li>
+<li>using higher-order polynomials (such as with Simpson's rules) over the simpler trapezoids.</li>
+</ul>
+<p>First, how does reducing the segment size (step size) by a factor of 10 affect the error?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">dx</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mf">0.0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">;</span>
+
+<span class="n">area</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(x)-1</span><span class="p"></span>
+    <span class="n">area</span> <span class="p">=</span> <span class="n">area</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)));</span><span class="n"></span>
+<span class="n">end</span>
+
+<span class="s">fprintf(&#39;Numerical integral: %f\n&#39;, area)</span><span class="p"></span>
+<span class="n">exact</span> <span class="p">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">pi</span><span class="p">)</span><span class="o">*</span><span class="nb">erf</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Exact integral: %f\n&#39;</span><span class="p">,</span> <span class="n">exact</span><span class="p">)</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Error: %f %%\n&#39;</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">area</span><span class="p">)</span><span class="o">/</span><span class="n">exact</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Numerical integral: 0.746818
+Exact integral: 0.746824
+Error: 0.000821 %
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, reducing our step size by a factor of 10 (using 100 segments instead of 10) reduced our error by a factor of 100!</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Numerical-integration:-Simpson's-rule">Numerical integration: Simpson's rule<a class="anchor-link" href="#Numerical-integration:-Simpson's-rule"> </a></h2><p>We can increase the accuracy of our numerical integration approach by using a more sophisticated interpolation scheme with each segment. In other words, instead of using a straight line, we can use a polynomial. <strong>Simpson's rule</strong>, also known as Simpson's 1/3 rule, refers to using a quadratic polynomial to approximate the line in each segment.</p>
+<p>Simpson's rule defines the definite integral for our function $f(x)$ from point $a$ to point $b$ as
+\begin{equation}
+\int_a^b f(x) \approx \frac{1}{6} \Delta x \left( f(a) + 4 f \left(\frac{a+b}{2}\right) + f(b) \right)
+\end{equation}
+where $\Delta x = b - a$.</p>
+<p>That equation comes from interpolating between points $a$ and $b$ with a third-degree polynomial, then integrating by parts.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">hold </span><span class="s">off</span><span class="p"></span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span> <span class="mf">1.1</span> <span class="mf">0.2</span> <span class="mf">1.1</span><span class="p">])</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span><span class="s">&#39;black&#39;</span><span class="p">,</span><span class="s">&#39;LineStyle&#39;</span><span class="p">,</span><span class="s">&#39;:&#39;</span><span class="p">);</span>
+
+<span class="c">% quadratic polynomial</span>
+<span class="n">a</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">m</span> <span class="p">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">p</span> <span class="p">=</span> <span class="p">@(</span><span class="n">z</span><span class="p">)</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">m</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">b</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">m</span><span class="p">)));</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;Color&#39;</span><span class="p">,</span><span class="s">&#39;red&#39;</span><span class="p">,</span><span class="s">&#39;LineStyle&#39;</span><span class="p">,</span><span class="s">&#39;--&#39;</span><span class="p">);</span>
+
+<span class="n">xp</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mf">0.5</span> <span class="mi">1</span><span class="p">];</span>
+<span class="n">yp</span> <span class="p">=</span> <span class="p">[</span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)];</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="s">&#39;ok&#39;</span><span class="p">)</span>
+<span class="n">hold </span><span class="s">off</span><span class="p"></span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;exact&#39;</span><span class="p">,</span> <span class="s">&#39;trapezoid fit&#39;</span><span class="p">,</span> <span class="s">&#39;polynomial fit&#39;</span><span class="p">,</span> <span class="s">&#39;points used&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/numerical-methods/integrals_10_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that the polynomial fit, used by Simpson's rule, does a better job of of approximating the exact function, and as a result Simpson's rule will be more accurate than the trapezoidal rule.</p>
+<p>Next let's apply Simpson's rule to perform the same integration as above:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mf">0.0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">;</span>
+
+<span class="n">area</span> <span class="p">=</span> <span class="mf">0.0</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(x)-1</span><span class="p"></span>
+    <span class="n">area</span> <span class="p">=</span> <span class="n">area</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mf">6.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">f</span><span class="p">((</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">+</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)));</span><span class="n"></span>
+<span class="n">end</span>
+
+<span class="s">fprintf(&#39;Simpson rule integral: %f\n&#39;, area)</span><span class="p"></span>
+<span class="n">exact</span> <span class="p">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">pi</span><span class="p">)</span><span class="o">*</span><span class="nb">erf</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Exact integral: %f\n&#39;</span><span class="p">,</span> <span class="n">exact</span><span class="p">)</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Error: %f %%\n&#39;</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">area</span><span class="p">)</span><span class="o">/</span><span class="n">exact</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Simpson rule integral: 0.746824
+Exact integral: 0.746824
+Error: 0.000007 %
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Simpson's rule is about three orders of magnitude (~1000x) more accurate than the trapezoidal rule.</p>
+<p>In this case, using a more-accurate method allows us to significantly reduce the error while still using the same number of segments/steps.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
