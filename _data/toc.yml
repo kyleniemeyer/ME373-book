@@ -38,6 +38,7 @@
   - url: /second-order/analytical
   - url: /second-order/initial-value-problems
   - url: /second-order/numerical-methods
+  - url: /secon-order/fourier-series
 
 - divider: true
 - url: https://github.com/kyleniemeyer/ME373-book
