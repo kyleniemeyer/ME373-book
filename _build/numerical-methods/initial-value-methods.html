@@ -51,15 +51,15 @@ This problem is fairly simple, and we can find the general and particular soluti
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">format </span><span class="s">compact</span><span class="p"></span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">format</span> <span class="n">compact</span>
 <span class="c">%plot inline</span>
 
 <span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s">&#39;--&#39;</span><span class="p">)</span>
 <span class="n">legend</span><span class="p">([</span><span class="s">&#39;Solution&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Slope at start&#39;</span><span class="p">])</span>
-<span class="n">hold </span><span class="s">off</span><span class="p"></span>
+<span class="n">hold</span> <span class="n">off</span>
 </pre></div>
 
     </div>
@@ -119,24 +119,24 @@ This is the <strong>Forward Euler method</strong>.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">x y</span><span class="p"></span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">x</span> <span class="n">y</span>
 <span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="n">x_exact</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 
 <span class="c">% our derivative function, dy/dx</span>
 <span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">;</span>
 
 <span class="n">dx</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">3</span><span class="p">;</span>
-<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
-<span class="n">for </span><span class="s">i = 1 : length(x)-1</span><span class="p"></span>
-    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">;</span><span class="n"></span>
-<span class="n">end</span>
-<span class="s">plot(x, y, &#39;o--&#39;, &#39;MarkerFaceColor&#39;, &#39;r&#39;)</span><span class="p"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">,</span> <span class="s">&#39;MarkerFaceColor&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
 
 <span class="n">legend</span><span class="p">([</span><span class="s">&#39;Exact solution&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Numerical solution&#39;</span><span class="p">],</span> <span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;northwest&#39;</span><span class="p">)</span>
-<span class="n">hold </span><span class="s">off</span><span class="p"></span>
+<span class="n">hold</span> <span class="n">off</span>
 </pre></div>
 
     </div>
@@ -227,7 +227,7 @@ y(x) = e^{-2x} (8 x e^x + 1)
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
 
-<span class="s">f = @(x,y) 8*exp(-x)*(1 + x) - 2*y</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
 
 <span class="n">dx</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
@@ -236,12 +236,12 @@ y(x) = e^{-2x} (8 x e^x + 1)
 
 <span class="c">% Forward Euler loop</span>
 <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="n"></span>
-<span class="n">end</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span>
+<span class="k">end</span>
 
-<span class="s">x_exact = linspace(0, 7)</span><span class="p">;</span>
+<span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
 <span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&#39;Forward Euler solution&#39;</span><span class="p">)</span>
 </pre></div>
@@ -303,7 +303,7 @@ y(x) = e^{-2x} (8 x e^x + 1)
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
 
-<span class="s">f = @(x,y) 8*exp(-x)*(1 + x) - 2*y</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
 
 <span class="n">dx</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
@@ -313,14 +313,14 @@ y(x) = e^{-2x} (8 x e^x + 1)
 <span class="c">% Heun&#39;s method loop</span>
 <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">y_p</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span>
-    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_p</span><span class="p">));</span><span class="n"></span>
-<span class="n">end</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">y_p</span><span class="p">));</span>
+<span class="k">end</span>
 
-<span class="s">x_exact = linspace(0, 7)</span><span class="p">;</span>
+<span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&quot;Heun&#39;s method solution&quot;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> &quot;<span class="n">Heun</span><span class="o">&#39;</span><span class="n">s</span> <span class="n">method</span> <span class="n">solution</span>&quot;<span class="p">)</span>
 <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %5.3f&#39;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">y_exact</span><span class="p">)</span> <span class="o">-</span> <span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
 </pre></div>
 
@@ -383,7 +383,7 @@ y_{i+1} &amp;= y_i + \Delta x f \left( x_{i+\frac{1}{2}} , y_{i + \frac{1}{2}} \
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
 
-<span class="s">f = @(x,y) 8*exp(-x)*(1 + x) - 2*y</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
 
 <span class="n">dx</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
@@ -393,14 +393,14 @@ y_{i+1} &amp;= y_i + \Delta x f \left( x_{i+\frac{1}{2}} , y_{i + \frac{1}{2}} \
 <span class="c">% midpoint method loop</span>
 <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="n">y_half</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span>
-    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_half</span><span class="p">);</span><span class="n"></span>
-<span class="n">end</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y_half</span><span class="p">);</span>
+<span class="k">end</span>
 
-<span class="s">x_exact = linspace(0, 7)</span><span class="p">;</span>
+<span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&quot;Midpoint method solution&quot;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> &quot;<span class="n">Midpoint</span> <span class="n">method</span> <span class="n">solution</span>&quot;<span class="p">)</span>
 
 <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %5.3f&#39;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">y_exact</span><span class="p">)</span> <span class="o">-</span> <span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
 </pre></div>
@@ -466,7 +466,7 @@ k_4 &amp;= f \left( x_i + \Delta x, y_i + \Delta x \, k_3 \right)
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
 
-<span class="s">f = @(x,y) 8*exp(-x)*(1 + x) - 2*y</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
 
 <span class="n">dx</span> <span class="p">=</span> <span class="mf">0.2</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
@@ -479,14 +479,14 @@ k_4 &amp;= f \left( x_i + \Delta x, y_i + \Delta x \, k_3 \right)
     <span class="n">k2</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
     <span class="n">k3</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
     <span class="n">k4</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">k3</span><span class="p">);</span>
-    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">);</span><span class="n"></span>
-<span class="n">end</span>
+    <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">k3</span> <span class="o">+</span> <span class="n">k4</span><span class="p">);</span>
+<span class="k">end</span>
 
-<span class="s">x_exact = linspace(0, 7)</span><span class="p">;</span>
+<span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&quot;RK4 solution&quot;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> &quot;<span class="n">RK4</span> <span class="n">solution</span>&quot;<span class="p">)</span>
 
 <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %6.4f&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_exact</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)))</span>
 </pre></div>
@@ -551,15 +551,15 @@ k_4 &amp;= f \left( x_i + \Delta x, y_i + \Delta x \, k_3 \right)
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span>
 
-<span class="s">f = @(x,y) 8*exp(-x)*(1 + x) - 2*y</span><span class="p">;</span>
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
 
 <span class="p">[</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 
 <span class="n">x_exact</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
 <span class="n">y_exact</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="s">&#39;o--&#39;</span><span class="p">)</span>
-<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> <span class="s">&quot;ode45 solution&quot;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span> &quot;<span class="n">ode45</span> <span class="n">solution</span>&quot;<span class="p">)</span>
 
 <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %6.4f&#39;</span><span class="p">,</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_exact</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">Y</span><span class="p">)))</span>
 </pre></div>
