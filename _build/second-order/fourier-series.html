@@ -9,7 +9,7 @@ pagenum: 11
 prev_page:
   url: /second-order/numerical-methods.html
 next_page:
-  url: /contributing.html
+  url: /second-order/power-series.html
 suffix: .ipynb
 search: t n omega cos pi equation dt frac sin begin end intt f fourier m sum infty align series function left right y bn int solution functions x c odd text periodic period inhomogeneous where forcing ldots lets our prime even ih cases quad calculate b yh k frequency coefficients given integrals dx e sine same trigonometric zero recall term big substack mass spring system homogeneous lambda nd order since properties cosine integral component above infinite take terms am work rectangular wave not times ode using overall method solve form r means actually represent generic while integer fundamental orthogonal values
 
@@ -292,18 +292,18 @@ f(t) = \frac{3}{2} + \sum_{\substack{n = 1 \\n = \text{odd}}}^{\infty} \frac{2}{
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 
 <span class="c">% maximum number of terms</span>
-<span class="n">n_max</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">];</span>
+<span class="n">n_max</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">];</span><span class="n"></span>
 
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">n_max</span><span class="p">)</span>
+<span class="n">for </span><span class="s">i = 1 : length(n_max)</span><span class="p"></span>
     <span class="n">N</span> <span class="p">=</span> <span class="n">n_max</span><span class="p">(</span><span class="nb">i</span><span class="p">);</span>
 
-    <span class="n">s</span> <span class="p">=</span> <span class="mf">3.</span><span class="o">/</span><span class="mf">2.</span><span class="p">;</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span> <span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span>
-        <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span> <span class="o">.*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">);</span>
-    <span class="k">end</span>
-    <span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span>
-    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span> <span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">4</span> <span class="mi">0</span> <span class="mi">3</span><span class="p">]);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;%d terms&#39;</span><span class="p">,</span> <span class="n">N</span><span class="p">));</span>
-<span class="k">end</span>
+    <span class="n">s</span> <span class="p">=</span> <span class="mf">3.</span><span class="o">/</span><span class="mf">2.</span><span class="p">;</span><span class="n"></span>
+<span class="n">    for </span><span class="s">n = 1 : 2 : 2*N</span><span class="p"></span>
+        <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span> <span class="o">.*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">);</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="n">    </span><span class="s">subplot(3, 3, i)</span><span class="p"></span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span> <span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">4</span> <span class="mi">0</span> <span class="mi">3</span><span class="p">]);</span> <span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;%d terms&#39;</span><span class="p">,</span> <span class="n">N</span><span class="p">));</span><span class="n"></span>
+<span class="n">end</span>
 </pre></div>
 
     </div>
@@ -497,11 +497,11 @@ f(t) = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n\pi} \sin(n \pi t)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
-<span class="n">s</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">for</span> <span class="n">n</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span> <span class="p">:</span> <span class="mi">1000</span>
-    <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
-<span class="k">end</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">s</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">n = 1 : 2 : 1000</span><span class="p"></span>
+    <span class="n">s</span> <span class="p">=</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">.*</span><span class="nb">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">t</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">plot(t, s)</span><span class="p"></span>
 </pre></div>
 
     </div>
