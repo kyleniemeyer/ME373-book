@@ -91,7 +91,7 @@ So, we can find a solution of the form $y(x) = \sum_{n=0}^{\infty} a_n x^n$.
 \end{equation}
 Let's use the index shift rule on the first part of that:
 \begin{equation}
-\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_m (m+2)(m+1) x^m
+\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
 \end{equation}
 Then, we can use the dummy index rule to change $m$ back to $n$:
 \begin{equation}
@@ -177,7 +177,7 @@ a_{n+2} = -a_n \frac{(n-3)(n-2)}{(n+1)(n+2)}
 \end{equation}
 Again, we can see that the even terms will be related and the odd terms will be related:
 \begin{align}
-n=0: \quad a_2 &= -a_0 \frac{6}{2} = -3 -a_0 \\
+n=0: \quad a_2 &= -a_0 \frac{6}{2} = -3 a_0 \\
 n=2: \quad a_4 &= 0 \\
 n=4: \quad a_6 &= -a_4 \frac{2}{30} = 0 \\
 &\ldots
