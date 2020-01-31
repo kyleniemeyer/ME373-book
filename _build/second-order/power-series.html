@@ -7,7 +7,7 @@ prev_page:
 next_page:
   url: /contributing.html
 suffix: .md
-search: n x equation sum infty y end begin prime frac m power series align xn solution quad ode index our coefficients terms lets where ordinary point xm into left right cdot solve form example continuous rule bounded dummy variable shift rightarrow related odd solutions need properties am term even dots another odes p q using check whether means should both case plugging well take replace used because just only derivatives change sums let apply try c sin cos yes back formula put being ldots technique nd order homogeneous useful general cases techniques fail none methods weve discussed far allow us
+search: n x equation sum infty y end begin prime frac m power series align xn solution quad ode index our coefficients terms lets where ordinary point xm into left right cdot solve form example continuous rule bounded dummy variable shift rightarrow related odd solutions need properties term even dots another odes p q using check whether means should both case plugging well take replace used am because just only derivatives change sums let apply try c sin cos yes back formula put being ldots technique nd order homogeneous useful general cases techniques fail none methods weve discussed far allow us
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -101,7 +101,7 @@ So, we can find a solution of the form $y(x) = \sum_{n=0}^{\infty} a_n x^n$.</p>
 \end{equation}
 Let's use the index shift rule on the first part of that:
 \begin{equation}
-\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_m (m+2)(m+1) x^m
+\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
 \end{equation}
 Then, we can use the dummy index rule to change $m$ back to $n$:
 \begin{equation}
@@ -180,7 +180,7 @@ a_{n+2} = -a_n \frac{(n-3)(n-2)}{(n+1)(n+2)}
 \end{equation}
 Again, we can see that the even terms will be related and the odd terms will be related:
 \begin{align}
-n=0: \quad a_2 &amp;= -a_0 \frac{6}{2} = -3 -a_0 \\
+n=0: \quad a_2 &amp;= -a_0 \frac{6}{2} = -3 a_0 \\
 n=2: \quad a_4 &amp;= 0 \\
 n=4: \quad a_6 &amp;= -a_4 \frac{2}{30} = 0 \\
 &amp;\ldots
