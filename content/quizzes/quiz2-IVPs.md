@@ -9,7 +9,17 @@ Given the first-order ODE
 
 a.) Perform a linear stability analysis to find the amplification factor ($\sigma$) for the **midpoint method** (also known as the modified Euler method) applied to this ODE.
 
-**Solution:**
+b.) Using your result from part (a), show whether the numerical solution would be stable or unstable for time-step sizes of $\Delta t = 0.2$ and $\Delta t = 0.4$. (Show for each value)
+
+c.) Based on your results for parts (a) and (b), is the midpoint method unstable, conditionally stable, or unconditionally stable for this ODE?
+
+d.) What is the order of accuracy for the midpoint method? Based on this, what (approximate) global errors would you expect in the solution when using time-step sizes of $\Delta t = 0.2$ and 0.4?
+
+e.) What are your two options for reducing error in the solution?
+
+### Solution
+
+a.)
 \begin{align}
 y_{i+1/2} &= y_i + \frac{\Delta t}{2} \, f(t_i, y_i) \\
 y_{i+1} &= y_i + \Delta t \, f(t_i + \frac{\Delta t}{2}, y_{i+1/2})
@@ -27,9 +37,7 @@ So,
 \sigma = \frac{y_{i+1}}{y_i} = 1 - 8 \Delta t + 32 \Delta t^2
 \end{equation}
 
-b.) Using your result from part (a), show whether the numerical solution would be stable or unstable for time-step sizes of $\Delta t = 0.2$ and $\Delta t = 0.4$. (Show for each value)
-
-**Solution:** For stability, $|\sigma| \leq 1$.
+b.) For stability, $|\sigma| \leq 1$.
 
 $\Delta t = 0.2$:
 \begin{equation}
@@ -43,20 +51,15 @@ $\Delta t = 0.4$:
 \end{equation}
 so **unstable**.
 
-c.) Based on your results for parts (a) and (b), is the midpoint method unstable, conditionally stable, or unconditionally stable for this ODE?
+c.) Conditionally stable; the method is stable for some values of $\Delta t$ and unstable for other values.
 
-**Solution:** Conditionally stable; the method is stable for some values of $\Delta t$ and unstable for other values.
+d.) The midpoint method is 2nd-order accurate. So, for $\Delta t = 0.2$, we should expect global errors on the order of 0.04, and for $\Delta t = 0.4$ we should expect errors on the order of 0.16.
 
-d.) What is the order of accuracy for the midpoint method? Based on this, what (approximate) global errors would you expect in the solution when using time-step sizes of $\Delta t = 0.2$ and 0.4?
-
-**Solution:** The midpoint method is 2nd-order accurate. So, for $\Delta t = 0.2$, we should expect global errors on the order of 0.04, and for $\Delta t = 0.4$ we should expect errors on the order of 0.16.
-
-e.) What are your two options for reducing error in the solution?
-
-**Solution:**
+e.)
 
   - reduce the step size
   - choose a higher order method, such as 4th-order Runge-Kutta
+
 
 ## Problem 2: Second-order Backward Euler
 
@@ -67,9 +70,14 @@ Given the second-order ODE
 
 a.) Find the recursion formulas (i.e., $y_{i+1} = \ldots$) for numerically solving this ODE using the backward Euler method. Clearly define/state any variable or function you use.
 
-**Solution:**
 
-System of Backward Euler recursion formulas, for $y(x)$ and $u(x) = y^{\prime}$, where $f(x,y,u) = dy/dx$ and $g(x,y,u) = du/dx = y^{\prime\prime}$:
+b.) What is the order of accuracy for the backward Euler method? Given a step size $\Delta x = 0.15$, approximately what local error and what global error would you expect in your solution? What is the difference between these two errors?
+
+c.) Why would you want to use this method to solve an ODE over a simpler method like forward Euler?
+
+### Solution
+
+a.) System of Backward Euler recursion formulas, for $y(x)$ and $u(x) = y^{\prime}$, where $f(x,y,u) = dy/dx$ and $g(x,y,u) = du/dx = y^{\prime\prime}$:
 \begin{align}
 y_{i+1} &= y_i + \Delta x \, f(x_{i+1}, y_{i+1}, u_{i+1}) = y_i + \Delta x \, u_{i+1} \\
 u_{i+1} &= u_i + \Delta x \, g(x_{i+1}, y_{i+1}, u_{i+1}) = u_i + \Delta x \, \left( \frac{3}{2}x_{i+1} - \frac{1}{2} u_{i+1} - 2 y_{i+1} \right)
@@ -103,18 +111,13 @@ y_{i+1} &= \frac{y_i \left(1 + \frac{\Delta x}{2} \right) + \Delta x \left( u_i 
 u_{i+1} &= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + \frac{\Delta x}{2} + 2 \Delta x^2}
 \end{align}
 
-
-b.) What is the order of accuracy for the backward Euler method? Given a step size $\Delta x = 0.15$, approximately what local error and what global error would you expect in your solution? What is the difference between these two errors?
-
-**Solution:**  Backward Euler is 1st-order accurate, so the global error is on the order of the step size ($\Delta x$).
+b.) Backward Euler is 1st-order accurate, so the global error is on the order of the step size ($\Delta x$).
 
 The global error should then be on the order of 0.15, and the local error on the order of $0.15^2 = 0.0225$.
 
-The differnce: the local (or truncation) error is the error at each step of the solution, while the global error is the overall error that accumulates over the whole solution.
+The difference: the local (or truncation) error is the error at each step of the solution, while the global error is the overall error that accumulates over the whole solution.
 
-c.) Why would you want to use this method to solve an ODE over a simpler method like forward Euler?
-
-**Solution:** Backward Euler is unconditionally stable, while Forward Euler is conditionally stable.
+c.) Backward Euler is unconditionally stable, while Forward Euler is conditionally stable.
 
 ## Problem 3: Fourier series
 
@@ -124,21 +127,25 @@ Given the input waveform $R(t)$ shown here,
 
 a.) What is the period and fundamental frequency of the input forcing function?
 
-**Solution:** 
-\begin{equation}
-T = 4\pi \quad \omega = \frac{2\pi}{T} = \frac{1}{2}
-\end{equation}
 
 b.) Is the periodic function $R(t)$ odd, even, or neither?
-
-**Solution:** Neither.
 
 c.) Find the coefficients $a_0$ and $a_n$ of the Fourier series representation of $R(t)$. (For purposes of time, you do not need to find $b_n$):
 \begin{equation}
 R(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos(n \omega t) + \sum_{n=1}^{\infty} b_n \sin(n \omega t) 
 \end{equation}
 
-**Solution:**
+
+### Solution
+
+a.)
+\begin{equation}
+T = 4\pi \quad \omega = \frac{2\pi}{T} = \frac{1}{2}
+\end{equation}
+
+b.) Neither.
+
+c.)
 \begin{align}
 a_0 &= \frac{1}{T} \int_0^T f(t) dt = \frac{1}{4\pi} \left[ \int_0^{\pi} 0 dt + \int_{\pi}^{2\pi} 3 dt + \int_{2\pi}^{3\pi} 2 dt + \int_{3\pi}^{4\pi} 1 dt  \right] \\
 &= \frac{1}{4\pi} \left[ 3 \pi + 2 \pi + 1 \pi \right] \\
@@ -162,9 +169,11 @@ y^{\prime\prime} + 8y^{\prime} + 16y = 6 e^{-4t}
 
 a.) For initial conditions $y(0)=0$ and $y^{\prime}(0) = 2$, find the response of the system $y(t)$.
 
-**Solution:**
+b.) Given a specified time increment $\Delta t$ and a domain, write the recursion formulas for solving this equation with the forward Euler method. Clearly define any variables or functions used. You do not need to write Matlab code.
 
-First, get the homogeneous solution:
+### Solution
+
+a.) First, get the homogeneous solution:
 \begin{align}
 y_H^{\prime\prime} + 8y_H^{\prime} + 16y_H &= 0 \\
 \rightarrow \lambda^2 + 8 \lambda + 16 &= 0 = (\lambda + 4)^2 \\
@@ -190,9 +199,7 @@ Applying the initial conditions:
 y(t) = 2 t e^{-4t} + 3 t^2 e^{-4t}
 \end{equation}
 
-b.) Given a specified time increment $\Delta t$ and a domain, write the recursion formulas for solving this equation with the forward Euler method. Clearly define any variables or functions used. You do not need to write Matlab code.
-
-**Solution:** If $z_1 = y$ and $z_2 = y^{\prime}$, then
+b.) If $z_1 = y$ and $z_2 = y^{\prime}$, then
 \begin{align}
 z_1^{\prime} &= z_2 \\
 z_2^{\prime} &= y^{\prime\prime} = 6e^{-4t} - 8z_2 - 16z_1 = f(t, z_1, z_2)
