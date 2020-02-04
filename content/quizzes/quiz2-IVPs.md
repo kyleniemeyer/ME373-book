@@ -126,7 +126,7 @@ a.) What is the period and fundamental frequency of the input forcing function?
 
 **Solution:** 
 \begin{equation}
-T = 4\pi$ \quad $\omega = \frac{2\pi}{T} = \frac{1}{2}
+T = 4\pi \quad \omega = \frac{2\pi}{T} = \frac{1}{2}
 \end{equation}
 
 b.) Is the periodic function $R(t)$ odd, even, or neither?
