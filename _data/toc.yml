@@ -42,6 +42,11 @@
   - url: /second-order/power-series
 
 - divider: true
+- header: Sample Quizzes
+- url: /quizzes/quiz2-IVPs
+
+
+- divider: true
 - url: https://github.com/kyleniemeyer/ME373-book
   title: GitHub repository
   external: true
