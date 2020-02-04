@@ -9,7 +9,7 @@ prev_page:
 next_page:
   url: /contributing.html
 suffix: .md
-search: t delta x frac y yi begin end align pi equation left right prime u z e order solution method n dt ui euler c error b stable int ode f given step global backward bmatrix cos sigma problem midpoint unstable errors expect recursion formulas system r omega yh lambda k stability using conditionally should size second function local solve forward need rightarrow sin ih analysis dy show sizes based unconditionally d accuracy ti values accurate solving clearly define any difference where dx g form used option while fourier series input waveform wave neither coefficients not bn sum infty intt
+search: t delta x frac y yi begin end align pi left right equation prime u z e order solution method n dt ui euler c error b stable int ode f given step global backward bmatrix cos sigma problem midpoint unstable errors expect recursion formulas system r omega yh lambda k stability using conditionally should size second function local solve forward need rightarrow sin ih analysis dy show sizes based unconditionally d accuracy ti values accurate solving clearly define any difference where dx g form used option while fourier series input waveform wave neither coefficients not bn sum infty intt
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -38,7 +38,7 @@ y_{i+1} &amp;= y_i + \Delta t \, f(t_i + \frac{\Delta t}{2}, y_{i+1/2})
 <p>For this ODE:
 \begin{align}
 y_{i+1/2} &amp;= y_i + \frac{\Delta t}{2} \, (-8 y_i) = y_i - 4 \Delta t \, y_i \\
-y_{i+1} &amp;= y_i + \Delta t \, \left( y_i - 4 \Delta t \, y_i \right) \\
+y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right) \right] \\
 &amp;= y_i - 8 \Delta t \, y_i + 32 \Delta t^2 \, y_i \\
 &amp;= y_i (1 - 8 \Delta t + 32 \Delta t^2)
 \end{align}

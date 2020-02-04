@@ -28,7 +28,7 @@ y_{i+1} &= y_i + \Delta t \, f(t_i + \frac{\Delta t}{2}, y_{i+1/2})
 For this ODE:
 \begin{align}
 y_{i+1/2} &= y_i + \frac{\Delta t}{2} \, (-8 y_i) = y_i - 4 \Delta t \, y_i \\
-y_{i+1} &= y_i + \Delta t \, \left( y_i - 4 \Delta t \, y_i \right) \\
+y_{i+1} &= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right) \right] \\
 &= y_i - 8 \Delta t \, y_i + 32 \Delta t^2 \, y_i \\
 &= y_i (1 - 8 \Delta t + 32 \Delta t^2)
 \end{align}
