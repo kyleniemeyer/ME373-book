@@ -80,8 +80,8 @@ This form is implicit and cannot be used directly, so we need to solve the syste
 <p><em>There are two ways to approach this, that give an equivalent solution</em></p>
 <p><strong>Option 1:</strong> Use substitution and elimination to solve:
 \begin{align}
-u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \left( y_i + \Delta x \, u_{i+1} \right) \\
-&amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 y_i - 2 \Delta x \, u_{i+1} \\
+u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \left( y_i + \Delta x \, u_{i+1} \right) \\
+&amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \, y_i - 2 \Delta x^2 \, u_{i+1} \\
 u_{i+1} \left( 1 + 2 \Delta x^2 + \frac{1}{2} \Delta x \right) &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i
 \end{align}
 Thus,

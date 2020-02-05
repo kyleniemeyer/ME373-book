@@ -88,8 +88,8 @@ This form is implicit and cannot be used directly, so we need to solve the syste
 
 **Option 1:** Use substitution and elimination to solve:
 \begin{align}
-u_{i+1} &= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \left( y_i + \Delta x \, u_{i+1} \right) \\
-&= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 y_i - 2 \Delta x \, u_{i+1} \\
+u_{i+1} &= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \left( y_i + \Delta x \, u_{i+1} \right) \\
+&= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \, y_i - 2 \Delta x^2 \, u_{i+1} \\
 u_{i+1} \left( 1 + 2 \Delta x^2 + \frac{1}{2} \Delta x \right) &= u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i
 \end{align}
 Thus,
