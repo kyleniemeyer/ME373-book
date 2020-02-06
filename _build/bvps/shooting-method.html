@@ -1,0 +1,44 @@
+---
+interact_link: content/bvps/shooting-method.ipynb
+kernel_name: matlab
+kernel_path: content/bvps
+has_widgets: false
+title: |-
+  Shooting Method
+pagenum: 14
+prev_page:
+  url: /bvps/boundary-value-problems.html
+next_page:
+  url: /quizzes/quiz2-IVPs.html
+suffix: .ipynb
+search: y prime boundary our shooting method value starting point equation xy x numerical methods missing guess condition problems also ordinary differential equationsthe difference constraints boundaries domain rather both being example consider ode begin end conditions already discussed e g forward euler runge kutta require values cant directly because initial integrate towards second using familiar adjust necessary repeat concept
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Shooting Method</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Boundary-value problems are also ordinary differential equations—the difference is that our two constraints are at boundaries of the domain, rather than both being at the starting point.</p>
+<p>For example, consider the ODE
+\begin{equation}
+y^{\prime\prime} + xy^{\prime} - xy = 2x
+\end{equation}
+with the boundary conditions $y(0)=1$ and $y(2)=8$.</p>
+<p>The numerical methods we have already discussed (e.g., Forward Euler, Runge-Kutta) require values of $y$ and $y^{\prime}$ at the starting point, $x=0$. So we can't use these directly because we are missing $y^{\prime}(0)$.</p>
+<p>But, what if we could <em>guess</em> a value for the missing initial condition, then integrate towards the second boundary condition using one of our familiar numerical methods, and then adjust our guess if necessary and repeat? This concept is the <strong>shooting method</strong>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
