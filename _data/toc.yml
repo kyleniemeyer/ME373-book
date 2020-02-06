@@ -20,6 +20,8 @@
 - url: /intro
   not_numbered: true
 
+- header: Ordinary Differential Equations  
+
 - url: /first-order
 #expand_sections: true
 #  sections:
@@ -40,6 +42,11 @@
   - url: /second-order/numerical-methods
   - url: /second-order/fourier-series
   - url: /second-order/power-series
+
+- url: /bvps/boundary-value-problems
+  expand_sections: true
+  sections:
+  - url: /bvps/shooting-method
 
 - divider: true
 - header: Sample Quizzes
