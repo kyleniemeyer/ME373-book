@@ -1,0 +1,85 @@
+---
+interact_link: content/bvps/finite-difference.ipynb
+kernel_name: matlab
+kernel_path: content/bvps
+has_widgets: false
+title: |-
+  Finite difference method
+pagenum: 15
+prev_page:
+  url: /bvps/shooting-method.html
+next_page:
+  url: /quizzes/quiz2-IVPs.html
+suffix: .ipynb
+search: x f delta prime frac derivative mathcal o align left right begin end equation order finite difference second differences approximations taylor series exact rightarrow accurate method also involves approximate using approx error obtain expansions cdots gives approximation another solving boundary value problems partial differential equations well later numerical derivatives recall function point defined df dx lim rather infinitesimal forward approximating backward understand involved taylors theorem where notation stands magnitude higher combining subtracting adding
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Finite difference method</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Finite-differences">Finite differences<a class="anchor-link" href="#Finite-differences"> </a></h2><p>Another method of solving boundary-value problems (and also partial differential equations, as we'll see later) involves <strong>finite differences</strong>, which are numerical approximations to exact derivatives.</p>
+<p>Recall that the exact derivative of a function $f(x)$ at some point $x$ is defined as:
+\begin{equation}
+f^{\prime}(x) = \frac{df}{dx}(x) = \lim_{\Delta x \rightarrow 0} \frac{f(x+\Delta x) - f(x)}{\Delta x}
+\end{equation}</p>
+<p>So, we can <em>approximate</em> this derivative using a finite difference (rather than an infinitesimal difference as in the exact derivative):
+\begin{equation}
+f^{\prime}(x) \approx \frac{f(x+\Delta x) - f(x)}{\Delta x}
+\end{equation}
+which involves some error. This is a <strong>forward difference</strong> for approximating the first derivative.
+We can also approximate the first derivative using a <strong>backward difference</strong>:
+\begin{equation}
+f^{\prime}(x) \approx \frac{f(x) - f(x - \Delta x)}{\Delta x}
+\end{equation}</p>
+<p>To understand the error involved in these differences, we can use Taylor's theorem to obtain Taylor series expansions:
+\begin{align}
+f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
+\rightarrow \frac{f(x + \Delta x) - f(x)}{\Delta x} &amp;= f^{\prime}(x) + \mathcal{O}\left( \Delta x \right) \\
+f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
+\rightarrow \frac{f(x) - f(x - \Delta x)}{\Delta x} &amp;= f^{\prime}(x) + \mathcal{O}\left( \Delta x \right) \\
+\end{align}
+where the $\mathcal{O}()$ notation stands for "order of magnitude of". So, we can see that each of these approximations is <em>first-order accurate</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Second-order-finite-differences">Second-order finite differences<a class="anchor-link" href="#Second-order-finite-differences"> </a></h2><p>We can obtain higher-order approximations for the first derivative, and an approximations for the second derivative, by combining these Taylor series expansions:
+\begin{align}
+f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
+f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right)
+\end{align}</p>
+<p>Subtracting the Taylor series for $f(x+\Delta x)$ by that for $f(x-\Delta x)$ gives:
+\begin{align}
+f(x + \Delta x) - f(x - \Delta x) &amp;= 2 \Delta x \, f^{\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
+f^{\prime}(x) &amp;= \frac{f(x + \Delta x) - f(x - \Delta x)}{2 \Delta x} + \mathcal{O}\left( \Delta x^2 \right)
+\end{align}
+which is a <em>second-order accurate</em> approximation for the first derivative.</p>
+<p>Adding the Taylor series for $f(x+\Delta x)$ to that for $f(x-\Delta x)$ gives:
+\begin{align}
+f(x + \Delta x) + f(x - \Delta x) &amp;= 2 f(x) + \Delta x^2 f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
+f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\Delta x^2} + \mathcal{O}\left( \Delta x^2 \right)
+\end{align}
+which is a <em>second-order accurate</em> approximation for the second derivative.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
