@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: x delta f y prime equation frac begin end right xi left equations finite align derivative mathcal o differences difference boundary order solve system points yi bmatrix exact second five approximations derivatives using taylor series accurate gives b solving well rightarrow approximate applying discrete locations domain example lets ode conditions our get linear mathbf matlab method also involves recall function point approx error obtain expansions cdots where approximation odes simultaneous consider into segments through unknowns particular just apply location recursion formula interior matrix step another value problems partial differential later numerical defined df dx lim rather infinitesimal forward approximating backward
+search: x delta f y prime equation frac begin end right left fin xi align equations finite heat transfer derivative mathcal o differences solve difference boundary order system points through yi bmatrix exact dx second lets five t approximations derivatives using taylor series accurate gives example our b figure center control volume solving well rightarrow approximate where applying discrete locations domain consider ode conditions particular get linear mathbf matlab width temperature k q text p ac method also differential involves recall function point approx error obtain expansions cdots approximation odes simultaneous into segments goal unknowns need just apply location recursion formula
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -319,7 +319,27 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-heat-transfer-through-a-fin">Example: heat transfer through a fin<a class="anchor-link" href="#Example:-heat-transfer-through-a-fin"> </a></h2>
+<h2 id="Example:-heat-transfer-through-a-fin">Example: heat transfer through a fin<a class="anchor-link" href="#Example:-heat-transfer-through-a-fin"> </a></h2><p>Let's now consider a more complicated example: heat transfer through an extended surface (a fin).</p>
+<figure>
+  <center>
+  <img src="../images/fin.png" alt="Heat transfer fin" style="width: 400px;"/>
+  <figcaption>Figure: Geometry of a heat transfer fin</figcaption>
+  </center>
+</figure><p>In this situation, we have the temperature of the body $T_b$, the temperature of the ambient fluid $T_{\infty}$; the length $L$, width $w$, and thickness $t$ of the fin; the thermal conductivity of the fin material $k$; and convection heat transfer coefficient $h$.</p>
+<p>Our goal is to solve for the temperature distribution $T(x)$. To do this, we need to set up a governing differential equation. Let's do a control volume analysis of heat transfer through the fin:</p>
+<figure>
+  <center>
+  <img src="../images/fin-control-volume.png" alt="Control volume for heat transfer fin" style="width: 300px;"/>
+  <figcaption>Figure: Control volume for heat transfer through the fin</figcaption>
+  </center>
+</figure><p>Given a particular volumetric slice of the fin, we can define the heat transfer rates of conduction through the fin and convection from the fin to the air:
+\begin{align}
+q_{\text{conv}} &amp;= h P \left( T - T_{\infty} \right) dx \\
+q_{\text{cond}, x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} \\
+q_{\text{cond}, x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} \;,
+\end{align}
+where $P$ is the perimeter (so that $P \, dx$ is the heat transfer area to the fluid) and $A_c$ is the cross-sectional area.</p>
+
 </div>
 </div>
 </div>
