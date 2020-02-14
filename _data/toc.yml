@@ -47,6 +47,7 @@
   expand_sections: true
   sections:
   - url: /bvps/shooting-method
+  - url: /bvps/finite-difference
 
 - divider: true
 - header: Sample Quizzes

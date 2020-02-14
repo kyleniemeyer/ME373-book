@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: x f delta prime frac derivative mathcal o align left right begin end equation order finite difference second differences approximations taylor series exact rightarrow accurate method also involves approximate using approx error obtain expansions cdots gives approximation another solving boundary value problems partial differential equations well later numerical derivatives recall function point defined df dx lim rather infinitesimal forward approximating backward understand involved taylors theorem where notation stands magnitude higher combining subtracting adding
+search: x delta f y prime equation frac begin end right xi left equations finite align derivative mathcal o differences difference boundary order solve system points yi bmatrix exact second five approximations derivatives using taylor series accurate gives b solving well rightarrow approximate applying discrete locations domain example lets ode conditions our get linear mathbf matlab method also involves recall function point approx error obtain expansions cdots where approximation odes simultaneous consider into segments through unknowns particular just apply location recursion formula interior matrix step another value problems partial differential later numerical defined df dx lim rather infinitesimal forward approximating backward
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -73,6 +73,261 @@ f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\De
 \end{align}
 which is a <em>second-order accurate</em> approximation for the second derivative.</p>
 
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Solving-ODEs-with-finite-differences">Solving ODEs with finite differences<a class="anchor-link" href="#Solving-ODEs-with-finite-differences"> </a></h2><p>We can use finite differences to solve ODEs by substituting them for exact derivatives, and then applying the equation at discrete locations in the domain. This gives us a system of simultaneous equations to solve.</p>
+<p>For example, let's consider the ODE
+\begin{equation}
+y^{\prime\prime} + x y^{\prime} - x y = 2 x \;,
+\end{equation}
+with the boundary conditions $y(0) = 1$ and $y(2) = 8$.</p>
+<p>First, we <em>discretize</em> the continuous domain: divide it into a number of discrete segments. For now, let's choose $\Delta x = 0.5$, which creates four segments and thus five points: $x_1 = 0, x_2 = 0.5, x_3 = 1.0, x_4 = 1.5, x_5 = 2.0$.</p>
+<p>Our goal is then to find approximate values of $y(x)$ at these points: $y_1$ through $y_5$. So, we have five unknowns, and need five equations to solve for them. We can use the ODE to provide these equations, by replacing the derivatives with finite differences, and applying the equation at particular discrete locations.</p>
+<p>Recall that $y(x)$ is a function just like $f(x)$, and so we can apply the above finite difference equations to $y(x)$ and $y(x+\Delta x)$. Now that we have points, or nodes, at locations separated by $\Delta x$, we can consider a point $x_i$ where $y(x_i) = y_i$, $y(x_i + \Delta x) = y(x_{i+1}) = y_{i+1}$, and $y(x_i - \Delta x) = y(x_{i-1}) = y_{i-1}$.</p>
+<p>To do this, we'll follow a few steps:</p>
+<ol>
+<li>Replace exact derivatives in the original ODE with finite differences, and apply the equation at a particular location $(x_i, y_i)$.</li>
+</ol>
+<p>For our example, this gives:
+\begin{equation}
+\frac{y_{i+1} - 2y_i + y_{i-1}}{\Delta x^2} + x_i \left( \frac{y_{i+1} - y_{i-1}}{2 \Delta x}\right) - x_i y_i = 2 x_i
+\end{equation}
+which applies at location $(x_i, y_i)$.</p>
+<ol>
+<li>Next, rearrange the equation into a <em>recursion formula</em>:
+\begin{equation}
+y_{i-1} \left(1 - x_i \frac{\Delta x}{2}\right) + y_i \left( -2 -\Delta x^2 x_i \right) + y_{i+1} \left(1 + x_i \frac{\Delta x}{2}\right) = 2 x_i \Delta x^2
+\end{equation}
+We can use this equation to get an equation for each of the interior points in the domain.</li>
+</ol>
+<p>For the first and last points—the boundary points—we already have equations, given by the boundary conditions.</p>
+<ol>
+<li>Set up system of linear equations</li>
+</ol>
+<p>Applying the recursion formula to the interior points, and the boundary conditions for the boundary points, we can get a system of simultaneous linear equations:
+\begin{align}
+y_1 &amp;= 1 \\
+y_1 (0.875) + y_2 (-2.125) + y_3 (1.125) &amp;= 0.25 \\
+y_2 (0.75) + y_3 (-2.25) + y_4 (1.25) &amp;= 0.5 \\
+y_3 (0.625) + y_4 (-2.375) + y_5 (1.375) &amp;= 0.75 \\
+y_5 &amp;= 8
+\end{align}</p>
+<p>This is a system of five equations and five unknowns, which we can solve! But, solving using substitution would be painful, so let's represent this system of equations using a matrix and vectors:
+\begin{equation}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0.875 &amp; -2.125 &amp; 1.125 &amp; 0 &amp; 0 \\
+0 &amp; 0.75 &amp; -2.25 &amp; 1.25 &amp; 0 \\
+0 &amp; 0 &amp; 0.625 &amp; -2.375 &amp; 1.375 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} 
+\begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \end{bmatrix} = 
+\begin{bmatrix} 1 \\ 0.25 \\ 0.5 \\ 0.75 \\ 8 \end{bmatrix}
+\end{equation}
+or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
+<ol>
+<li>Solve the linear system of equations</li>
+</ol>
+<p>The final step is just to solve. We can do this in Matlab with <code>y = A \ b</code>. (This is equivalent to <code>y = inv(A)*b</code>, but faster.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="mf">0.875</span> <span class="o">-</span><span class="mf">2.125</span> <span class="mf">1.125</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">         0 </span><span class="s">0.75 -2.25 1.25 0</span><span class="p">;</span>
+<span class="n">         0 </span><span class="s">0 0.625 -2.375 1.375</span><span class="p">;</span>
+<span class="n">         0 </span><span class="s">0 0 0 1]</span><span class="p">;</span>
+
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.25</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mf">0.75</span><span class="p">;</span> <span class="mf">8.0</span><span class="p">];</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="mf">0.5</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/finite-difference_3_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Matlab-implementation">Matlab implementation<a class="anchor-link" href="#Matlab-implementation"> </a></h3><p>Of course, all of this will be easier if we implement in Matlab in a general way. We'll use a <code>for</code> loop to populate the coefficient matrix $A$ and right-hand-side vector $\mathbf{b}$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">dx = 0.5</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+        <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/finite-difference_5_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This looks good, but we can get a more-accurate solution by reducing our step size $\Delta x$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">dx = 0.001</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+        <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/finite-difference_7_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-heat-transfer-through-a-fin">Example: heat transfer through a fin<a class="anchor-link" href="#Example:-heat-transfer-through-a-fin"> </a></h2>
 </div>
 </div>
 </div>
