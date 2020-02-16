@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: x delta f y prime equation frac begin end right left fin xi align equations finite heat transfer derivative mathcal o differences solve difference boundary order system points through yi bmatrix exact dx second lets five t approximations derivatives using taylor series accurate gives example our b figure center control volume solving well rightarrow approximate where applying discrete locations domain consider ode conditions particular get linear mathbf matlab width temperature k q text p ac method also differential involves recall function point approx error obtain expansions cdots approximation odes simultaneous into segments goal unknowns need just apply location recursion formula
+search: x y delta f prime equation b boundary align begin end frac derivative right left xi fin difference equations l finite point c heat transfer differences mathcal o conditions condition n where points matlab second solve domain system yi dx using approx order example our through bmatrix exact accurate lets consider five formula linear fixed octave t value well approximations derivatives function approximate forward taylor series gives ode need above recursion get implement type boundaries figure center control volume solving involves rightarrow backward applying discrete locations into goal values particular apply location interior represent mathbf specify g yn central node
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -312,6 +312,85 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 </div>
 </div>
 
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Boundary-conditions">Boundary conditions<a class="anchor-link" href="#Boundary-conditions"> </a></h2><p>We will encounter four main kinds of boundary conditions. Consider the ODE $y^{\prime\prime} + y = 0$, on the domain $0 \leq x \leq L$.</p>
+<ul>
+<li>First type, or Dirichlet, boundary conditions specify fixed values of $y$ at the boundaries: $y(0) = a$ and $y(L) = b$.</li>
+<li>Second type, or Neumann, boundary conditions specify values of the derivative at the boundaries: $y^{\prime}(0) = a$ and $y^{\prime}(L) = b$.</li>
+<li>Third type, or Robin, boundary conditions specify a linear combination of the function value and its derivative at the boundaries: $a \, y(0) + b \, y^{\prime}(0) = g(0)$ and $a \, y(L) + b \, y^{\prime}(L) = g(L)$, where $g(x)$ is some function.</li>
+<li>Mixed boundary conditions, which combine any of these three at the different boundaries. For example, we could have $y(0) = a$ and $y^{\prime}(L) = b$.</li>
+</ul>
+<p>Whichever type of boundary condition we are dealing with, the goal will be to construct an equation representing the boundary condition to incorporate in our system of equations.</p>
+<p>If we have a fixed value boundary condition, such as $y(0) = a$, then this equation is straightforward:
+\begin{equation}
+y_1 = a
+\end{equation}
+where $y_1$ is the first point in the grid of points, corresponding to $x_1 = 0$. (We saw this in the example above.) In Matlab, we can implement this equation with</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">a</span><span class="p">;</span>
+</pre></div>
+<p>If we have a fixed derivative boundary condition, such as $y^{\prime}(0) = 0$, then we need to use a finite difference to represent the derivative. When the boundary condition is at the starting location, $x=0$, the easiest way to do this is with a <strong>forward difference</strong>:
+\begin{align}
+y^{\prime}(0) \approx \frac{y_2 - y_1}{\Delta x} &amp;= 0 \\
+-y_1 + y_2 &amp;= 0
+\end{align}
+We can implement this in Matlab with</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+<p>When we have this sort of derivative boundary condition at the right side of the domain, at $x=L$, then we can use a <strong>backward difference</strong> to represent the derivative:
+\begin{align}
+y^{\prime}(L) \approx \frac{y_n - y_{n_1}}{\Delta x} &amp;= 0 \\
+-y_{n-1} + y_n &amp;= 0
+\end{align}
+where $y_n$ is the final point ($x_n = L$) and $y_{n-1}$ is the second-to-last point ($x_{n-1} = L - \Delta x$). We can implement this in Matlab with</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+<p>If we have a linear combination of a fixed value and fixed derivative, like $a \, y(0) + b \, y^{\prime}(0) = c$, then we can combine the above approaches using a forward difference:
+\begin{align}
+a y(0) + b y^{\prime}(0) \approx a y_1 + b \frac{y_2 - y_1}{\Delta x} &amp;= c \\
+(a \Delta x - b) y_1 + b y_2 &amp;= c \Delta x
+\end{align}
+and in Matlab:</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">a</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">dx</span><span class="p">;</span>
+</pre></div>
+<h3 id="Using-central-differences-for-derivative-BCs">Using central differences for derivative BCs<a class="anchor-link" href="#Using-central-differences-for-derivative-BCs"> </a></h3><p>When a boundary condition involves a derivative, we can use a <em>central difference</em> to approximate the first derivative; this is more accurate than a forward or backward difference.</p>
+<p>Consider the formula for a central difference at $x=0$, applied for the boundary condition $y^{\prime}(0) = 0$:
+\begin{align}
+y^{\prime}(0) \approx \frac{y_2 - y_0}{2 \Delta x} &amp;= 0 \\
+y_0 &amp;= y_2
+\end{align}
+where $y_0$ is an imaginary, or ghost, node <em>outside</em> the domain. We can't actually keep this point in our implementation, because it isn't a real point.</p>
+<p>We still need an equation <em>for</em> the point at the boundary, $y_1$. To get this, we'll apply the regular recursion formula, normally used at interior points:
+\begin{align}
+a y_{i-1} + b y_i + c y_{i+1} = f(x_i) \\
+a y_0 + b y_1 + c y_2 = f(x_1) \;,
+\end{align}
+where $a$, $b$, $c$, and $f(x)$ depend on the problem. Normally we wouldn't use this at the boundary node, $y_1$, because it references a point outside the domain to the left—but we have an equation for that! From above, based on the boundary condition, we have $y_0 = y_2$. If we incorporate that into the recursion formula, we can eliminate the ghost node $y_0$:
+\begin{align}
+a y_2 + b y_1 + c y_2 &amp;= f(x_1) \\
+b y_1 + (a + c) y_2 &amp;= f(x_1) \,
+\end{align}
+which is the equation we can actually use at the boundary point.
+In Matlab, this looks like</p>
+<div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+<span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</pre></div>
+
+</div>
+</div>
 </div>
 </div>
 
