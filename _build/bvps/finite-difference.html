@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: x y delta f prime equation b boundary align begin end frac derivative right left xi fin difference equations l finite point c heat transfer differences mathcal o conditions condition n where points matlab second solve domain system yi dx using approx order example our through bmatrix exact accurate lets consider five formula linear fixed octave t value well approximations derivatives function approximate forward taylor series gives ode need above recursion get implement type boundaries figure center control volume solving involves rightarrow backward applying discrete locations into goal values particular apply location interior represent mathbf specify g yn central node
+search: x y delta f prime t equation frac align begin end boundary b right left derivative dx fin difference l infty equations xi c finite heat transfer m where conditions n ac point condition k p differences mathcal o lets h exact solve system points matlab using order second gives domain ode our through yi q dt theta rightarrow approx example consider formula linear bmatrix temperature text d well accurate five above recursion get mathbf solution fixed octave control volume value also approximations derivatives function approximate forward backward taylor series us into need interior implement type boundaries figure center governing
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -142,10 +142,10 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
-     <span class="mf">0.875</span> <span class="o">-</span><span class="mf">2.125</span> <span class="mf">1.125</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
-<span class="n">         0 </span><span class="s">0.75 -2.25 1.25 0</span><span class="p">;</span>
-<span class="n">         0 </span><span class="s">0 0.625 -2.375 1.375</span><span class="p">;</span>
-<span class="n">         0 </span><span class="s">0 0 0 1]</span><span class="p">;</span>
+     <span class="mf">0.875</span> <span class="o">-</span><span class="mf">2.125</span> <span class="mf">1.125</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="mi">0</span> <span class="mf">0.75</span> <span class="o">-</span><span class="mf">2.25</span> <span class="mf">1.25</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.625</span> <span class="o">-</span><span class="mf">2.375</span> <span class="mf">1.375</span><span class="p">;</span>
+         <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span>
 
 <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.25</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mf">0.75</span><span class="p">;</span> <span class="mf">8.0</span><span class="p">];</span>
 
@@ -197,27 +197,27 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">dx = 0.5</span><span class="p">;</span>
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
-<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
-<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
-<span class="n">    else</span>
-<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
-<span class="n">    end</span>
-<span class="s">end</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">)</span>
 </pre></div>
@@ -265,27 +265,27 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">dx = 0.001</span><span class="p">;</span>
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.001</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
-<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
-<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
-<span class="n">    else</span>
-<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
-<span class="n">    end</span>
-<span class="s">end</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
@@ -405,6 +405,11 @@ In Matlab, this looks like</p>
   <figcaption>Figure: Geometry of a heat transfer fin</figcaption>
   </center>
 </figure><p>In this situation, we have the temperature of the body $T_b$, the temperature of the ambient fluid $T_{\infty}$; the length $L$, width $w$, and thickness $t$ of the fin; the thermal conductivity of the fin material $k$; and convection heat transfer coefficient $h$.</p>
+<p>The boundary conditions can be defined in different ways, but generally we can say that the temperature of the fin at the wall is the same as the body temperature, and that the fin is insulated at the tip. This gives us
+\begin{align}
+T(x=0) &amp;= T_b \\
+q(x=L) = 0 \rightarrow \frac{dT}{dx} (x=0) &amp;= 0
+\end{align}</p>
 <p>Our goal is to solve for the temperature distribution $T(x)$. To do this, we need to set up a governing differential equation. Let's do a control volume analysis of heat transfer through the fin:</p>
 <figure>
   <center>
@@ -418,6 +423,64 @@ q_{\text{cond}, x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} \\
 q_{\text{cond}, x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} \;,
 \end{align}
 where $P$ is the perimeter (so that $P \, dx$ is the heat transfer area to the fluid) and $A_c$ is the cross-sectional area.</p>
+<p>Performing a balance through the control volume:
+\begin{align}
+q_{\text{cond}, x+\Delta x} &amp;= q_{\text{cond}, x} - q_{\text{conv}} \\
+-k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} - h P \left( T - T_{\infty} \right) dx \\
+-k A_c \frac{\left.\frac{dT}{dx}\right|_{x+\Delta x} - \left.\frac{dT}{dx}\right|_{x}}{dx} &amp;= -h P ( T - T_{\infty} ) \\
+\lim_{\Delta x \rightarrow 0} : -k A_c \left. \frac{d^2 T}{dx^2} \right|_x &amp;= -h P (T - T_{\infty}) \\
+\frac{d^2 T}{dx^2} &amp;= \frac{h P}{k A_c} (T - T_{\infty}) \\
+\frac{d^2 T}{dx^2} &amp;= m^2 (T - T_{\infty})
+\end{align}
+then we have as a governing equation
+\begin{equation}
+\frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) = 0 \;,
+\end{equation}
+where $m^2 = (h P)/(k A_c)$.</p>
+<p>We can obtain an exact solution for this ODE. For convenience, let's define a new variable, $\theta$, which is a normalized temperature:
+\begin{equation}
+\theta \equiv T - T_{\infty}
+\end{equation}
+where $\theta^{\prime} = T^{\prime}$ and $\theta^{\prime\prime} = T^{\prime\prime}$.
+This gives us a new governing equation:
+\begin{equation}
+\theta^{\prime\prime} - m^2 \theta = 0 \;.
+\end{equation}
+This is a 2nd-order homogeneous ODE, which looks a lot like $y^{\prime\prime} + a y = 0$. The exact solution is then
+\begin{align}
+\theta(x) &amp;= c_1 e^{-m x} + c_2 e^{m x} \\
+T(x) &amp;= T_{\infty} + c_1 e^{-m x} + c_2 e^{m x}
+\end{align}
+We'll use this to look at the accuracy of a numerical solution, but we will not be able to find an exact solution for more complicated versions of this problem.</p>
+<p>We can also solve this numerically using the finite difference method. Let's replace the derivative with a finite difference:
+\begin{align}
+\frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) &amp;= 0 \\
+\frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta x^2} - m^2 \left( T_i - T_{\infty} \right) &amp;= 0
+\end{align}
+which we can rearrange into a recursion formula:
+\begin{equation}
+T_{i-1} + T_i \left( -2 - \Delta x^2 m^2 \right) + T_{i+1} = -m^2 \Delta x^2 \, T_{\infty}
+\end{equation}
+This gives us an equation for all the interior nodes; we can use the above boundary conditions to get equations for the boundary nodes. For the boundary condition at $x=L$, $T^{\prime}(x=L) = 0$, let's use a <em>backward difference</em>:
+\begin{align}
+T_1 &amp;= T_b \\
+\frac{T_n - T_{n-1}}{\Delta x} = 0 \rightarrow - T_{n-1} + T_n &amp;= 0
+\end{align}</p>
+<p>Combining all these equations, we can construct a linear system: $A \mathbf{T} = \mathbf{b}$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Heat-transfer-with-radiation">Heat transfer with radiation<a class="anchor-link" href="#Heat-transfer-with-radiation"> </a></h3><p>Let's now consider a more-complicated case, where we also have radiation heat transfer occuring along the length of the fin. Now, our governing ODE is
+\begin{equation}
+\frac{d^2 T}{dx^2} - \frac{h P}{k A_c} \left(T - T_{\infty}\right) - \frac{\sigma \epsilon P}{h A_c} \left(T^4 - T_{\infty}^4 \right) = 0
+\end{equation}</p>
 
 </div>
 </div>
