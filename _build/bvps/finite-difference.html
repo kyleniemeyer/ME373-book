@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: x y delta f prime t equation frac align begin end boundary b right left derivative dx fin difference l infty equations xi c finite heat transfer m where conditions n ac point condition k p differences mathcal o lets h exact solve system points matlab using order second gives domain ode our through yi q dt theta rightarrow approx example consider formula linear bmatrix temperature text d well accurate five above recursion get mathbf solution fixed octave control volume value also approximations derivatives function approximate forward backward taylor series us into need interior implement type boundaries figure center governing
+search: x y delta f prime equation t frac begin end align right boundary left b derivative dx difference xi fin equations solve yi l infty finite c conditions where n heat transfer m lets our solution ac point system condition text k p differences mathcal o example ode points linear matlab h exact using order second consider nonlinear gives domain through formula q dt theta well rightarrow approx into recursion get bmatrix term guess temperature d value also accurate five above set mathbf implement hand fixed octave e control volume approximations derivatives function approximate forward backward taylor series discrete us
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -388,6 +388,224 @@ In Matlab, this looks like</p>
 <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
 <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
 </pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-nonlinear-BVP">Example: nonlinear BVP<a class="anchor-link" href="#Example:-nonlinear-BVP"> </a></h2><p>So far we've seen how to handle a linear boundary value problem, but what if we have a <strong>nonlinear</strong> BVP? This is going to be trickier, because our work so far relies on using linear algebra to solve the system of (linear) equations.</p>
+<p>For example, consider the 2nd-order ODE
+\begin{equation}
+y^{\prime\prime} = 3y + x^2 + 100 y^2
+\end{equation}
+with the boundary conditions $y(0) = y(1) = 0$. This is nonlinear, due to the $y^3$ term on the right-hand side.</p>
+<p>To solve this, let's first convert it into a discrete form, by replacing the second derivative with a finite difference and any $x$/$y$ present with $x_i$ and $y_i$. We'll also move any constants (i.e., terms that don't contain $y_i$) and the nonlinear term to the right-hand side:
+\begin{equation}
+\frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} - 3y_i = x_i^2 + 100 y_i^2
+\end{equation}
+where the boundary conditions are now $y_1 = 0$ and $y_n = 0$, with $n$ as the number of grid points. We can rearrange and simplify into our recursion formula:
+\begin{equation}
+y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 100 \Delta x^2 y_i^2
+\end{equation}</p>
+<p>The question is: how do we solve this now? The nonlinear term involving $y_i^3$ on the right-hand side complicates things, but we know how to set up and solve this <em>without</em> the nonlinear term. We can use an approach known as <strong>successive iteration</strong>:</p>
+<ol>
+<li>Solve the ODE without the nonlinear term to get an initial "guess" to the solution for $y$.</li>
+<li>Then, incorporate that guess solution in the nonlinear term on the right-hand side, treating it as a constant. We can call this $y_{\text{old}}$. Then, solve the full system for a new $y$ solution.</li>
+<li>Check whether the new $y$ matches $y_{\text{old}}$ with some tolerance. For example, check whether $\max\left(\left| y - y_{\text{old}} \right| \right) &lt; $ some tolerance, such as $10^{-6}$. If this is true, then we can consider the solution <em>converged</em>. If it is not true, then set $y_{\text{old}} = y$, and repeat the process starting at step 2.</li>
+</ol>
+<p>Let's implement that process in Matlab:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="c">%% Initial setup</span>
+<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c">%% First, solve the problem without the nonlinear term:</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c">% x = 0 boundary condition</span>
+        <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span> <span class="c">% x = L boundary condition</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span>  <span class="c">% interior nodes, use recursion formula</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="c">% get solution without nonlinear term</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
+
+<span class="c">%% Now, set up iterative process to solve while incorporating nonlinear terms</span>
+<span class="n">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">y_old</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="k">while</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
+    <span class="n">y_old</span> <span class="p">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="c">% A matrix is not changed, but the b vector does</span>
+    <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span>
+    <span class="k">end</span>
+    
+    <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Number of iterations: %d\n&#39;</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">(</span><span class="s">&#39;Initial solution&#39;</span><span class="p">,</span> <span class="s">&#39;Final solution&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of iterations: 16
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/finite-difference_10_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another option is just to set our "guess" for the $y$ solution to be zero, rather than solve the problem in two steps:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="c">%% Initial setup</span>
+<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c">%% Set up the coefficient matrix, which does not change</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c">% x = 0 boundary condition</span>
+        <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span> <span class="c">% x = L boundary condition</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span>  <span class="c">% interior nodes, use recursion formula</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c">% just use zeros as our initial guess for the solution</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c">%% Successive iteration</span>
+<span class="n">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">y_old</span> <span class="p">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="nb">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c">% setting this to some random values, just to enter the while loop</span>
+<span class="k">while</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
+    <span class="n">y_old</span> <span class="p">=</span> <span class="n">y</span><span class="p">;</span>
+    <span class="c">% A matrix is not changed, but the b vector does</span>
+    <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span>
+    <span class="k">end</span>
+    
+    <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">end</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Number of iterations: %d\n&#39;</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of iterations: 17
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This made our process take slightly more iterations, because the initial guess was slightly further away from the final solution. For other problems, having a bad initial guess could make the process take much longer, so coming up with a good initial guess may be important.</p>
 
 </div>
 </div>
