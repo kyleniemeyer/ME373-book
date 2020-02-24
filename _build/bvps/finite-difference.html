@@ -142,10 +142,10 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">A</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
-     <span class="mf">0.875</span> <span class="o">-</span><span class="mf">2.125</span> <span class="mf">1.125</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
-         <span class="mi">0</span> <span class="mf">0.75</span> <span class="o">-</span><span class="mf">2.25</span> <span class="mf">1.25</span> <span class="mi">0</span><span class="p">;</span>
-         <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.625</span> <span class="o">-</span><span class="mf">2.375</span> <span class="mf">1.375</span><span class="p">;</span>
-         <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span>
+     <span class="mf">0.875</span> <span class="o">-</span><span class="mf">2.125</span> <span class="mf">1.125</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">         0 </span><span class="s">0.75 -2.25 1.25 0</span><span class="p">;</span>
+<span class="n">         0 </span><span class="s">0 0.625 -2.375 1.375</span><span class="p">;</span>
+<span class="n">         0 </span><span class="s">0 0 0 1]</span><span class="p">;</span>
 
 <span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">;</span> <span class="mf">0.25</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mf">0.75</span><span class="p">;</span> <span class="mf">8.0</span><span class="p">];</span>
 
@@ -197,27 +197,27 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="s">dx = 0.5</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
 
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
-    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;o-&#39;</span><span class="p">)</span>
 </pre></div>
@@ -265,27 +265,27 @@ or, more compactly, $A \mathbf{y} = \mathbf{b}$.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.001</span><span class="p">;</span>
+<span class="s">dx = 0.001</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">2</span><span class="p">];</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span> <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
 
-<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
-    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">A(i, i-1) = 1 - x(i)*dx/2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
@@ -433,9 +433,9 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%% Initial setup</span>
-<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="s">dx = 0.01</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 
@@ -444,39 +444,39 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 
 <span class="c">%% First, solve the problem without the nonlinear term:</span>
 <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
-    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c">% x = 0 boundary condition</span>
+<span class="n">    if </span><span class="s">i == 1  % x = 0 boundary condition</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span> <span class="c">% x = L boundary condition</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n % x = L boundary condition</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">else</span>  <span class="c">% interior nodes, use recursion formula</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else  </span><span class="s">% interior nodes, use recursion formula</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
 <span class="c">% get solution without nonlinear term</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 
-<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
 
 <span class="c">%% Now, set up iterative process to solve while incorporating nonlinear terms</span>
 <span class="n">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="n">y_old</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="k">while</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
+<span class="n">y_old</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="n"></span>
+<span class="n">while </span><span class="s">max(abs(y - y_old)) &gt; 1e-6</span><span class="p"></span>
     <span class="n">y_old</span> <span class="p">=</span> <span class="n">y</span><span class="p">;</span>
     <span class="c">% A matrix is not changed, but the b vector does</span>
-    <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span>
-    <span class="k">end</span>
-    
-    <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="k">end</span>
+<span class="n">    for </span><span class="s">i = 2 : n - 1</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="n">    </span>
+<span class="n">    </span><span class="s">y = A \ b</span><span class="p">;</span>
+    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
 
-<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Number of iterations: %d\n&#39;</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+<span class="s">fprintf(&#39;Number of iterations: %d\n&#39;, iter)</span><span class="p">;</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">legend</span><span class="p">(</span><span class="s">&#39;Initial solution&#39;</span><span class="p">,</span> <span class="s">&#39;Final solution&#39;</span><span class="p">)</span>
 </pre></div>
@@ -534,9 +534,9 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%% Initial setup</span>
-<span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="s">dx = 0.01</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 
@@ -545,19 +545,19 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 
 <span class="c">%% Set up the coefficient matrix, which does not change</span>
 <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
-    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c">% x = 0 boundary condition</span>
+<span class="n">    if </span><span class="s">i == 1  % x = 0 boundary condition</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span> <span class="c">% x = L boundary condition</span>
+        <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n % x = L boundary condition</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">else</span>  <span class="c">% interior nodes, use recursion formula</span>
+        <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else  </span><span class="s">% interior nodes, use recursion formula</span><span class="p"></span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
         <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span> <span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
-    <span class="k">end</span>
-<span class="k">end</span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
 
 <span class="c">% just use zeros as our initial guess for the solution</span>
 <span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
@@ -568,15 +568,15 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 <span class="k">while</span> <span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
     <span class="n">y_old</span> <span class="p">=</span> <span class="n">y</span><span class="p">;</span>
     <span class="c">% A matrix is not changed, but the b vector does</span>
-    <span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">2</span> <span class="p">:</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span>
-    <span class="k">end</span>
-    
-    <span class="n">y</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
-    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="k">end</span>
+<span class="n">    for </span><span class="s">i = 2 : n - 1</span><span class="p"></span>
+        <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y_old</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span>^<span class="mi">2</span><span class="p">);</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="n">    </span>
+<span class="n">    </span><span class="s">y = A \ b</span><span class="p">;</span>
+    <span class="n">iter</span> <span class="p">=</span> <span class="n">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
 
-<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Number of iterations: %d\n&#39;</span><span class="p">,</span> <span class="n">iter</span><span class="p">);</span>
+<span class="s">fprintf(&#39;Number of iterations: %d\n&#39;, iter)</span><span class="p">;</span>
 </pre></div>
 
     </div>
