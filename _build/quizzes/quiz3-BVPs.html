@@ -1,0 +1,95 @@
+---
+redirect_from:
+  - "/quizzes/quiz3-bvps"
+title: |-
+  Sample Quiz 3 problems: BVPs
+pagenum: 17
+prev_page:
+  url: /quizzes/quiz2-IVPs.html
+next_page:
+  url: /contributing.html
+suffix: .md
+search: t r delta equation ri frac infty n lambda begin end ti m b y x sin left right tn k h annular fin dr align eigenvalue pi finite difference temperature radius dt solution quad ldots problem outer described where heat transfer figure center ode location differences recursion c boundary condition replace given prime eigenfunction principal gather cos text therefore associated sample quiz problems bvps method distribution inner d rm radial distance centerline independent variable constant depends coefficient thermal conductivity thickness annulus assuming choose spatial step size img src images png alt style width px figcaptionfigure figcaption representation applies using
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Sample Quiz 3 problems: BVPs</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Problem-1:-Finite-difference-method">Problem 1: Finite difference method<a class="anchor-link" href="#Problem-1:-Finite-difference-method"> </a></h2><p>The temperature distribution $T(r)$ in an annular fin of inner radius $r_1$ and outer radius $r_2$ is described by the equation
+\begin{equation}
+r \frac{d^2 T}{dr^2} + \frac{dT}{dr} - rm^2 (T - T_{\infty}) = 0 \;,
+\end{equation}
+where $r$ is the radial distance from the centerline (the independent
+variable) and $m^2$ is a constant that depends on the heat transfer coefficient, thermal conductivity, and thickness of the annulus. Assuming we choose a spatial step size $\Delta r$,</p>
+<figure>
+  <center>
+  <img src="../images/annular-fin.png" alt="Annular fin" style="width: 400px;"/>
+  <figcaption>Figure: Annular fin</figcaption>
+  </center>
+</figure><p>a.) Write the finite-difference representation of the ODE (that applies at a location $r_i$), using central differences.</p>
+<p>b.) Based on the last part, write the recursion formula.</p>
+<p>c.) The boundary condition at the outer radius $r = r_2$ is described by convection heat transfer:
+\begin{equation}
+-k \left. \frac{dT}{dr} \right|_{r=r_2} = h \left[ T(r=r_2) - T_{\infty} \right] \;.
+\end{equation}
+Write the boundary condition at $r = r_2$ in recursion form (i.e., the equation you would implement into your system of equations to solve for temperature).</p>
+<h3 id="Solution">Solution<a class="anchor-link" href="#Solution"> </a></h3><p>a.) Replace the derivatives in the given ODE with finite differences, and replace any locations with the $i$ location:
+\begin{equation}
+r_i \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta r^2} + \frac{T_{i+1} - T_{i-1}}{\Delta r} - r_i m^2 (T_i - T_{\infty}) = 0
+\end{equation}
+or
+\begin{equation}
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) = 0
+\end{equation}</p>
+<p>b.) Rearrange and combine terms:
+\begin{align}
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) &amp;= 0 \\
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 T_i &amp;= -r_i m^2 \Delta r^2 T_{\infty} \\
+\left(r_i - \frac{\Delta r}{2}\right) T_{i-1} + \left( -2 r_i - r_i m^2 \Delta r^2 \right) T_i + \left( r_i + \frac{\Delta r}{2} \right) T_{i+1} &amp;= -r_i m^2 \Delta r^2 T_{\infty}
+\end{align}</p>
+<p>c.) We can use a backward difference to approximate the $dT/dr$ term. $T_n$ represents the temperature at node $n$ where $r_n = r_2$:
+\begin{align}
+-k \frac{T_n - T_{n-1}}{\Delta r} &amp;= h (T_n - T_{\infty}) \\
+-k (T_n - T_{n-1}) &amp;= h \Delta r (T_n - T_{\infty}) \\
+k T_{n-1} - (k + h\Delta r) T_n &amp;= -h \Delta r T_{\infty}
+\end{align}</p>
+<h2 id="Problem-2:-eigenvalue">Problem 2: eigenvalue<a class="anchor-link" href="#Problem-2:-eigenvalue"> </a></h2><p>Given the equation $y^{\prime\prime} + 9 \lambda^2 y = 0$ with $y(0) = 0$ and $y(2) = 0$,</p>
+<p>a.) Find the expression that gives all eigenvalues ($\lambda$). What is the eigenfunction?</p>
+<p>b.) Calculate the principal eigenvalue.</p>
+<h3 id="Solution">Solution<a class="anchor-link" href="#Solution"> </a></h3><p>a.)
+\begin{gather}
+y(x) = A \sin (3 \lambda x) + B \cos (3 \lambda x) \\
+\text{Apply BCs: } y(x=0) = 0 = A \sin(0) + B \cos(0) = B \\
+\therefore B = 0 \\
+y(x) = A \sin (3 \lambda x) \\
+y(x=2) = 0 = A \sin (3 \lambda 2) \\
+A \neq 0 \text{ so } \sin(3 \lambda 2) = \sin(6 \lambda) = 0 \therefore 6 \lambda = n \pi \quad n=1,2,3,\ldots \\
+\lambda = \frac{n \pi}{6} \quad n=1,2,3,\ldots,\infty
+\end{gather}</p>
+<p>The eigenfunction is then the solution function associated with an eigenvalue:
+\begin{equation}
+y_n = A_n \sin \left( \frac{n \pi x}{2} \right) \quad n = 1, 2, 3, \ldots, \infty
+\end{equation}</p>
+<p>b.) The principal eigenvalue is just that associated with $n = 1$:
+\begin{equation}
+\lambda_p = \lambda_1 = \frac{\pi}{6}
+\end{equation}</p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

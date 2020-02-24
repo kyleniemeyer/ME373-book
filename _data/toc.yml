@@ -53,6 +53,8 @@
 - header: Sample Quizzes
 - url: /quizzes/quiz2-IVPs
   not_numbered: true
+- url: /quizzes/quiz3-BVPs
+  not_numbered: true
 
 
 - divider: true
