@@ -1,0 +1,169 @@
+---
+interact_link: content/bvps/eigenvalue.ipynb
+kernel_name: matlab
+kernel_path: content/bvps
+has_widgets: false
+title: |-
+  Eigenvalue problems
+pagenum: 16
+prev_page:
+  url: /bvps/finite-difference.html
+next_page:
+  url: /quizzes/quiz2-IVPs.html
+suffix: .ipynb
+search: y lambda l frac x n align begin p end beam pi equation b cos sin quad boundary ei rightarrow ldots infty different solution lets conditions mz modes gather eigenvalue problems eigenvalues example buckling consider e neq load means characteristic value where obtain certain values us deflection supported get governing considering sum general because text eigenfunctions associated corresponding buckle properties cr case types show areas involving not able analytical identify tell important information system simply static vertical start moments around upper pin m also d dx governs stability small deflections simplify things define gives ode coefficients apply starting otherwise trivial
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Eigenvalue problems</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"Eigenvalue" means characteristic value. These types of problems show up in many areas involving boundary-value problems, where we may not be able to obtain an analytical solution, but we can identify certain characteristic values that tell us important information about the system: the eigenvalues.</p>
+<h2 id="Example:-beam-buckling">Example: beam buckling<a class="anchor-link" href="#Example:-beam-buckling"> </a></h2><p>Let's consider deflection in a simply supported (static) vertical beam: $y(x)$, with boundary conditions $y(0) = 0$ and $y(L) = 0$. To get the governing equation, start with considering the sum of moments around the upper pin:
+\begin{align}
+\sum M &amp;= M_z + P y = 0 \\
+M_z &amp;= -P y
+\end{align}</p>
+<p>We also know that $M_z = E I y''$, so we can obtain
+\begin{align}
+M_z = E I \frac{d^2 y}{dx^2} &amp;= -P y \\
+y'' + \frac{P}{EI} y &amp;= 0
+\end{align}
+This equation governs the stability of a beam, considering small deflections.
+To simplify things, let's define $\lambda^2 = \frac{P}{EI}$, which gives us the ODE
+\begin{equation}
+y'' + \lambda^2 y = 0
+\end{equation}
+We can get the general solution to this:
+\begin{equation}
+y(x) = A \cos (\lambda x) + B \sin (\lambda x)
+\end{equation}</p>
+<p>To find the coefficients, let's apply the boundary conditions, starting with $x=0$:
+\begin{align}
+y(x=0) &amp;= 0 = A \cos 0 + B \sin 0 \\
+\rightarrow A &amp;= 0 \\
+y(x=L) &amp;= 0 = B \sin (\lambda L)
+\end{align}
+Now what? $B \neq 0$, because otherwise we would have the trivial solution $y(x) = 0$. Instead, to satisfy the boundary condition, we need
+\begin{align}
+B \neq 0 \rightarrow \sin (\lambda L) &amp;= 0 \\
+\text{so} \quad \lambda L &amp;= n \pi \quad n = 1, 2, 3, \ldots, \infty \\
+\lambda &amp;= \frac{n \pi}{L} \quad n = 1, 2, 3, \ldots, \infty
+\end{align}
+$\lambda$ give the the <strong>eigenvalues</strong> for this problem; as you can see, there are an infinite number, that correspond to <strong>eigenfunctions</strong>:
+\begin{equation}
+y_n = B \sin \left( \frac{n \pi x}{L} \right) \quad n = 1, 2, 3, \ldots, \infty
+\end{equation}</p>
+<p>The eigenvalues and associated eigenfunctions physically represent different modes of deflection.
+For example, consider the first three modes (corresponding to $n = 1, 2, 3$):</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+
+<span class="n">L</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="nb">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;n = 1&#39;</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;n = 2&#39;</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span> <span class="n">title</span><span class="p">(</span><span class="s">&#39;n = 3&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/eigenvalue_1_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here we see different modes of how the beam will buckle. How do we know when this happens?</p>
+<p>Recall that the eigenvalue is connected to the physical properties of the beam:
+\begin{gather}
+\lambda^2 = \frac{P}{EI} \rightarrow \lambda = \sqrt{\frac{P}{EI} = \frac{n \pi}{L} \\
+P = \frac{EI}{L} n^2 \pi^2
+\end{gather}
+This means that when the combination of load force and beam properties match certain values, the beam will deflect—and buckle—in one of the modes corresponding to the associated eigenfunction.</p>
+<p>In particular, the first mode ($n=1$) is interesting, because this is the first one that will be encountered if a load starts at zero and increases. This is the <strong>Euler critical load</strong> of buckling, $P_{cr}$:
+\begin{gather}
+\lambda_1 = \frac{\pi}{L} \rightarrow \lambda_1^2 = \frac{P}{EI} = \frac{\pi^2}{L^2} \\
+P_{cr} = \frac{\pi^2 E I}{L^2}
+\end{gather}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-beam-buckling-with-different-boundary-conditions">Example: beam buckling with different boundary conditions<a class="anchor-link" href="#Example:-beam-buckling-with-different-boundary-conditions"> </a></h2><p>Let's consider a slightly different case, where at $x=0$ the beam is supported such that $y'(0) = 0$. How does the beam buckle in this case?</p>
+<p>The governing equation and general solution are the same:
+\begin{align}
+y'' + \lambda^2 y &amp;= 0 \\
+y(x) &amp;= A \cos (\lambda x) + B \sin (\lambda x)
+\end{align}
+but our boundary conditions are now different:
+\begin{align}
+y'(0) = 0 = -\lambda A \sin(0) + \lambda B\cos(0) \\
+\rightarrow B &amp;= 0 \\
+y &amp;= A \cos (\lambda x) \\
+y(L) &amp;= 0 = A \cos (\lambda L) \\
+A \neq 0 \rightarrow \cos(\lambda L) &amp;= 0 \\
+\text{so} \quad \lambda L &amp;= \frac{(2n-1) \pi}{2} \quad n = 1,2,3,\ldots, \infty \\
+\lambda &amp;= \frac{(2n-1) \pi}{2 L} \quad n = 1,2,3,\ldots, \infty
+\end{align}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    

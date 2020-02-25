@@ -48,6 +48,7 @@
   sections:
   - url: /bvps/shooting-method
   - url: /bvps/finite-difference
+  - url: /bvps/eigenvalue
 
 - divider: true
 - header: Sample Quizzes
