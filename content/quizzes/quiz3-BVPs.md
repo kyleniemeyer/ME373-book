@@ -86,6 +86,59 @@ b.) The principal eigenvalue is just that associated with $n = 1$:
 \end{equation}
 
 
+
+## Problem 3: shooting method
+
+Use the shooting method to solve the boundary value problem
+\begin{equation}
+y^{\prime\prime} - 4y = 0
+\end{equation}
+where $y(0) = 0$ and $y(1) = 3$. Find the initial value of $y'$ (meaning, $y'(0)$) that satisfies the given boundary conditions. Use the forward Euler method with a step size of $\Delta x = 0.5$.
+
+
+### Solution
+
+First decompose into two 1st-order ODEs:
+\begin{align}
+z_1' &= y' = z_2 \\
+z_2' &= y'' = 4 z_1
+\end{align}
+with BCs $z_1 (0) = 0$ and $z_2 (0) = 3$, we do not know $y'(0) = z_2(0) = ?$
+
+Try some guess \#1: $y' (0) = 0 = z_2 (0)$, with the forward Euler method:
+\begin{align}
+z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 0 \\
+z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
+z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 0 \\
+z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
+\end{align}
+so for solution 1: $y(1) = 0 \neq 3$.
+
+For guess \#2: $y' (0) = 2 = z_2 (0)$, with the forward Euler method:
+\begin{align}
+z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 1.0 \\
+z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 2.0 \\
+z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \\
+z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 4.0
+\end{align}
+so for solution 1: $y(1) = 2 \neq 3$.
+
+For guess \#3, we can interpolate:
+\begin{align}
+m &= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{solution 2}} = \frac{0 - 2}{0 - 2} = 1 \\
+\text{guess 3} &= \text{guess 2} + m (\text{target} - \text{solution 2}) = 2 + 1(3-2) = 3
+\end{align}
+then, use this guess:
+\begin{align}
+z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 1.5 \\
+z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 3.0 \\
+z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \\
+z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
+\end{align}
+so for solution 3: $y(1) = 3$ which is the target. 
+
+So our answer is $y'(0) = 3$.
+
 ```python
 
 ```

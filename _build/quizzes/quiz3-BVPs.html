@@ -9,7 +9,7 @@ prev_page:
 next_page:
   url: /contributing.html
 suffix: .md
-search: t r delta equation ri frac infty n lambda begin end ti m b y x sin left right tn k h annular fin dr align eigenvalue pi finite difference temperature radius dt solution quad ldots problem outer described where heat transfer figure center ode location differences recursion c boundary condition replace given prime eigenfunction principal gather cos text therefore associated sample quiz problems bvps method distribution inner d rm radial distance centerline independent variable constant depends coefficient thermal conductivity thickness annulus assuming choose spatial step size img src images png alt style width px figcaptionfigure figcaption representation applies using
+search: z t r y delta equation frac begin end ri align infty left right n lambda m solution text ti x b guess sin method tn k h problem annular fin dr boundary eigenvalue prime pi finite difference temperature radius dt where given neq quad ldots forward euler outer described heat transfer step size figure center ode location differences recursion c condition into solve replace eigenfunction principal gather cos bcs therefore associated shooting value target sample quiz problems bvps distribution inner d rm radial distance centerline independent variable constant depends coefficient thermal conductivity thickness annulus assuming choose spatial img src
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -80,6 +80,47 @@ y_n = A_n \sin \left( \frac{n \pi x}{2} \right) \quad n = 1, 2, 3, \ldots, \inft
 \begin{equation}
 \lambda_p = \lambda_1 = \frac{\pi}{6}
 \end{equation}</p>
+<h2 id="Problem-3:-shooting-method">Problem 3: shooting method<a class="anchor-link" href="#Problem-3:-shooting-method"> </a></h2><p>Use the shooting method to solve the boundary value problem
+\begin{equation}
+y^{\prime\prime} - 4y = 0
+\end{equation}
+where $y(0) = 0$ and $y(1) = 3$. Find the initial value of $y'$ (meaning, $y'(0)$) that satisfies the given boundary conditions. Use the forward Euler method with a step size of $\Delta x = 0.5$.</p>
+<h3 id="Solution">Solution<a class="anchor-link" href="#Solution"> </a></h3><p>First decompose into two 1st-order ODEs:
+\begin{align}
+z_1' &amp;= y' = z_2 \\
+z_2' &amp;= y'' = 4 z_1
+\end{align}
+with BCs $z_1 (0) = 0$ and $z_2 (0) = 3$, we do not know $y'(0) = z_2(0) = ?$</p>
+<p>Try some guess #1: $y' (0) = 0 = z_2 (0)$, with the forward Euler method:
+\begin{align}
+z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 0 \\
+z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
+z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 0 \\
+z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
+\end{align}
+so for solution 1: $y(1) = 0 \neq 3$.</p>
+<p>For guess #2: $y' (0) = 2 = z_2 (0)$, with the forward Euler method:
+\begin{align}
+z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.0 \\
+z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 2.0 \\
+z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \\
+z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 4.0
+\end{align}
+so for solution 1: $y(1) = 2 \neq 3$.</p>
+<p>For guess #3, we can interpolate:
+\begin{align}
+m &amp;= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{solution 2}} = \frac{0 - 2}{0 - 2} = 1 \\
+\text{guess 3} &amp;= \text{guess 2} + m (\text{target} - \text{solution 2}) = 2 + 1(3-2) = 3
+\end{align}
+then, use this guess:
+\begin{align}
+z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.5 \\
+z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 3.0 \\
+z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \\
+z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
+\end{align}
+so for solution 3: $y(1) = 3$ which is the target.</p>
+<p>So our answer is $y'(0) = 3$.</p>
 <div class="highlight"><pre><span></span>
 </pre></div>
 
