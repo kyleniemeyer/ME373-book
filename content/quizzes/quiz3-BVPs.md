@@ -31,7 +31,7 @@ Write the boundary condition at $r = r_2$ in recursion form (i.e., the equation 
 
 a.) Replace the derivatives in the given ODE with finite differences, and replace any locations with the $i$ location:
 \begin{equation}
-r_i \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta r^2} + \frac{T_{i+1} - T_{i-1}}{\Delta r} - r_i m^2 (T_i - T_{\infty}) = 0
+r_i \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta r^2} + \frac{T_{i+1} - T_{i-1}}{2\Delta r} - r_i m^2 (T_i - T_{\infty}) = 0
 \end{equation}
 or
 \begin{equation}
@@ -103,14 +103,14 @@ First decompose into two 1st-order ODEs:
 z_1' &= y' = z_2 \\
 z_2' &= y'' = 4 z_1
 \end{align}
-with BCs $z_1 (0) = 0$ and $z_2 (0) = 3$, we do not know $y'(0) = z_2(0) = ?$
+with BCs $z_1 (x=0) = z_{1,1} = 0$ and $z_1(x=1) = z_{1,3} = 3$, we do not know $y'(0) = z_2(x=0) = z_{2,1} = ?$
 
 Try some guess \#1: $y' (0) = 0 = z_2 (0)$, with the forward Euler method:
 \begin{align}
-z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 0 \\
-z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
-z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 0 \\
-z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
+z_{1,2} = z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 0 \\
+z_{2,2} = z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
+z_{1,3} = z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 0 \leftarrow \text{solution 1} \\
+z_{2,3} = z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
 \end{align}
 so for solution 1: $y(1) = 0 \neq 3$.
 
@@ -118,7 +118,7 @@ For guess \#2: $y' (0) = 2 = z_2 (0)$, with the forward Euler method:
 \begin{align}
 z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 1.0 \\
 z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 2.0 \\
-z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \\
+z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \leftarrow \text{solution 2} \\
 z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 4.0
 \end{align}
 so for solution 1: $y(1) = 2 \neq 3$.
@@ -132,7 +132,7 @@ then, use this guess:
 \begin{align}
 z_1 (0.5) &= z_1 (0) + z_2(0) 0.5 = 1.5 \\
 z_2 (0.5) &= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 3.0 \\
-z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \\
+z_1 (1.0) &= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \leftarrow \text{solution 3} \\
 z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
 \end{align}
 so for solution 3: $y(1) = 3$ which is the target. 
