@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: y lambda l frac x n align begin p end beam pi equation b cos sin quad boundary ei rightarrow ldots infty different solution lets conditions mz modes gather eigenvalue problems eigenvalues example buckling consider e neq load means characteristic value where obtain certain values us deflection supported get governing considering sum general because text eigenfunctions associated corresponding buckle properties cr case types show areas involving not able analytical identify tell important information system simply static vertical start moments around upper pin m also d dx governs stability small deflections simplify things define gives ode coefficients apply starting otherwise trivial
+search: y lambda begin align end x l k frac equation n pi eigenvalues p beam delta b boundary quad rightarrow bmatrix solution conditions ei cos sin lets case our values get ldots infty left right different equations mathbf det eigenvalue problems where buckling consider deflection mz modes gather load yi obtain us system example supported also e ode general neq because instead need associated represent corresponding cr finite above using matrix given means characteristic value not analytical certain simply governing considering sum simplify trivial text problem infinite eigenfunctions three buckle recall properties sqrt critical slightly same differences points into modify
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -156,9 +156,128 @@ A \neq 0 \rightarrow \cos(\lambda L) &amp;= 0 \\
 \text{so} \quad \lambda L &amp;= \frac{(2n-1) \pi}{2} \quad n = 1,2,3,\ldots, \infty \\
 \lambda &amp;= \frac{(2n-1) \pi}{2 L} \quad n = 1,2,3,\ldots, \infty
 \end{align}</p>
+<p>Then, the critical buckling load, again corresponding to $n=1$, is
+\begin{equation}
+P_{cr} = \frac{\pi^2 EI}{4 L^2}
+\end{equation}</p>
 
 </div>
 </div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Getting-eigenvalues-numerically">Getting eigenvalues numerically<a class="anchor-link" href="#Getting-eigenvalues-numerically"> </a></h2><p>We can only get the eigenvalues analytically if we can obtain an analytical solution of the ODE, but we might want to get eigenvalues for more complex problems too. In that case, we can use an approach based on <em>finite differences</em> to find the eigenvalues.</p>
+<p>Consider the same problem as above, for deflection of a simply supported beam:
+\begin{equation}
+y'' + \lambda^2 y = 0 
+\end{equation}
+with boundary conditions $y(0) = 0$ and $y(L) = 0$. Let's represent this using finite differences, for a case where $L=3$ and $\Delta x = 1$, so we have four points in our solution grid.</p>
+<p>The finite difference representation of the ODE is:
+\begin{align}
+\frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} + \lambda^2 y_i &amp;= 0 \\
+y_{i-1} + \left( \lambda^2 \Delta x^2 - 2 \right) y_i + y_{i+1} &amp;= 0
+\end{align}
+However, in this case, we are not solving for the values of deflection ($y_i$), but instead the <strong>eigenvalues</strong> $\lambda$.</p>
+<p>Then, we can write the system of equations using the above recursion formula and our two boundary conditions:
+\begin{align}
+y_1 &amp;= 0 \\
+y_1 + y_2 \left( \lambda^2 \Delta x^2 - 2 \right) + y_3 &amp;= 0 \\
+y_2 + y_3 \left( \lambda^2 \Delta x^2 - 2 \right) + y_4 &amp;= 0 \\
+y_4 &amp;= 0
+\end{align}
+which we can simplify down to two equations by incorporating the boundary conditions into the equations for the two middle points, and also letting $k = \lambda^2 \Delta x^2$:
+\begin{align}
+y_2 (k-2) + y_3 &amp;= 0 \\
+y_2 + y_3 (k-2) &amp;= 0
+\end{align}
+Let's modify this once more by multiplying both equations by $-1$:
+\begin{align}
+y_2 (2-k) - y_3 &amp;= 0 \\
+-y_2 + y_3 (2-k) &amp;= 0
+\end{align}</p>
+<p>Now we can represent this system of equations as a matrix equation $A \mathbf{y} = \mathbf{b} = \mathbf{0}$:
+\begin{equation}
+\begin{bmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{bmatrix}
+\begin{bmatrix} y_2 \\ y_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\end{equation}
+$\mathbf{y} = \mathbf{0}$ is a trivial solution to this, so instead $\det(A) = 0$ satisfies this equation.
+For our $2\times 2$ matrix, that looks like:
+\begin{align}
+\det(A) = \begin{vmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{vmatrix} = (2-k)^2 - 1 &amp;= 0 \\
+k^2 - 4k + 3 &amp;= 0 \\
+(k-3)(k-1) &amp;= 0
+\end{align}
+so the roots of this equation are $k_1 = 1$ and $k_2 = 3$. Recall that $k$ is directly related to the eigenvalue: $k = \lambda^2 \Delta x^2$, and $\Delta x = 1$ for this case, so we can calculate the two associated eigenvalues:
+\begin{align}
+k_1 &amp;= \lambda_1^2 \Delta x^2 = 1 \rightarrow \lambda_1 = 1 \\
+k_2 &amp;= \lambda_2^2 \Delta x^2 = 3 \rightarrow \lambda_2 = \sqrt{3} = 1.732
+\end{align}</p>
+<p>Our work has given us approximations for the first two eigenvalues. We can compare these against the exact values, given in general by $\lambda = n \pi / L$ (which we determined above):
+\begin{align}
+n=1: \quad \lambda_1 &amp;= \frac{\pi}{L} = \frac{\pi}{3} = 1.0472 \\
+n=2: \quad \lambda_2 &amp;= \frac{2\pi}{L} = \frac{2\pi}{3} = 2.0944
+\end{align}
+So, our approximations are close, but with some obvious error. This is because we used a fairly crude step size of $\Delta x = 1$, dividing the domain into just three segments. By using a finer resolution, we can get more-accurate eigenvalues and also more of them (remember, there are actually an infinite number!).</p>
+<p>To do that, we will need to use Matlab, which offers the <code>eig()</code> function for calculating eigenvalues---essentially it is finding the roots to the polynomial given by $\det(A) = 0$. We need to modify this slightly, though, to use the function:
+\begin{align}
+\det(A) &amp;= 0 \\
+\det \left( A^* - k I \right) = 0
+\end{align}
+where the new matrix is
+\begin{equation}
+A^* = \begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix}
+\end{equation}
+Then, <code>eig(A*)</code> will provide the values of $k$, which we can use to find the $\lambda$s:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="mf">3.0</span><span class="p">;</span>
+
+<span class="n">Astar</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">2</span><span class="p">];</span>
+<span class="n">k</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Astar</span><span class="p">);</span>
+
+<span class="n">lambda</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda 1: %6.3f\n&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda 2: %6.3f&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>lambda 1:  1.000
+lambda 2:  1.732</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 
