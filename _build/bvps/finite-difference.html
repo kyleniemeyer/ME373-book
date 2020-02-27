@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /bvps/eigenvalue.html
 suffix: .ipynb
-search: x y delta f t prime equation frac begin end right align boundary left b derivative dx infty m difference xi fin solve equations yi l finite c conditions where solution n heat transfer lets our ac point system condition nonlinear text k p ti differences mathcal o example ode points linear matlab h exact using order second consider gives domain through formula term q dt theta well rightarrow approx into above recursion get bmatrix hand guess temperature d value also accurate five set mathbf implement fixed octave because e control volume method approximations derivatives function approximate forward backward taylor
+search: x y delta f prime equation t frac begin end align right boundary left b derivative dx difference xi fin solve equations yi l infty finite c conditions where solution n heat transfer m lets our ac point system condition text k p differences mathcal o example ode points linear matlab nonlinear h exact using order second consider gives domain through formula term q dt theta well rightarrow approx into above recursion get bmatrix guess temperature d value also accurate five set mathbf implement hand fixed octave because e control volume method approximations derivatives function approximate forward backward taylor series
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -699,12 +699,7 @@ T_1 &amp;= T_b \\
 \begin{equation}
 \frac{d^2 T}{dx^2} - \frac{h P}{k A_c} \left(T - T_{\infty}\right) - \frac{\sigma \epsilon P}{h A_c} \left(T^4 - T_{\infty}^4 \right) = 0
 \end{equation}</p>
-<p>This is a bit trickier to solve because of the nonlinear term involving $T^4$. But, we can handle it via the iterative solution method discussed above, moving the nonlinear parts to the right-hand side:
-\begin{align}
-\frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta x^2} - m^2 \left( T_i - T_{\infty} \right) - M^2 \left( T_i^4 - T_{\infty}^4 \right) &amp;= 0 \\
-\frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta x^2} - m^2 T_i &amp;= M^2 \left( T_i^4 - T_{\infty}^4 \right) - m^2 T_{\infty} \\
-T_{i-1} + T_i (-2 - \Delta x^2 m^2
-\end{align}</p>
+<p>This is a bit trickier to solve because of the nonlinear term involving $T^4$. But, we can handle it via the iterative solution method discussed above.</p>
 
 </div>
 </div>

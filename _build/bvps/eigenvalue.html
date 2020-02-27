@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: y lambda begin align end x l k frac equation n pi eigenvalues p beam delta b boundary quad rightarrow bmatrix solution conditions ei cos sin lets case our values get ldots infty left right different equations mathbf det eigenvalue problems where buckling consider deflection mz modes gather load yi obtain us system example supported also e ode general neq because instead need associated represent corresponding cr finite above using matrix given means characteristic value not analytical certain simply governing considering sum simplify trivial text problem infinite eigenfunctions three buckle recall properties sqrt critical slightly same differences points into modify
+search: y x align begin end lambda k frac l equation n omega m pi eigenvalues left right bmatrix system p b delta beam sin quad lets conditions boundary equations rightarrow different modes det t solution values ei cos case our mathbf get prime example ldots infty mode above into eigenvalue problems where buckling consider deflection mz also need associated represent gather load using yi mass motion masses amplitude odes initial obtain us supported e d ode general neq because instead corresponding connected cr same based finite matrix calculate given spring amplitudes means characteristic value not analytical certain simply governing considering
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -74,9 +74,9 @@ For example, consider the first three modes (corresponding to $n = 1, 2, 3$):</p
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">L</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="s">L = 1.0</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="nb">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">);</span>
@@ -245,18 +245,18 @@ Then, <code>eig(A*)</code> will provide the values of $k$, which we can use to f
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="n">dx</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="s">dx = 1.0</span><span class="p">;</span>
 <span class="n">L</span> <span class="p">=</span> <span class="mf">3.0</span><span class="p">;</span>
 
 <span class="n">Astar</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">2</span><span class="p">];</span>
 <span class="n">k</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Astar</span><span class="p">);</span>
 
-<span class="n">lambda</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>^<span class="mi">2</span><span class="p">;</span>
+<span class="n">lambda</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="p">;</span>
 
-<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda 1: %6.3f\n&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
-<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda 2: %6.3f&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda_1: %6.3f\n&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda_2: %6.3f&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
 </pre></div>
 
     </div>
@@ -270,14 +270,451 @@ Then, <code>eig(A*)</code> will provide the values of $k$, which we can use to f
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>lambda 1:  1.000
-lambda 2:  1.732</pre>
+<pre>lambda_1:  1.000
+lambda_2:  1.732</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As expected, this matches with our manual calculation above. But, we might want to calculate these eigenvalues more accurately, so let's generalize this a bit and then try using $\Delta x= 0.1$:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">dx = 0.1</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="n">L</span><span class="p">;</span>
+<span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="n">Astar</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+        <span class="n">Astar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">Astar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span><span class="n"></span>
+<span class="n">    else</span>
+<span class="n">        </span><span class="s">Astar(i,i-1) = -1</span><span class="p">;</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
+<span class="n">k</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Astar</span><span class="p">);</span>
+
+<span class="n">lambda</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="p">;</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda_1: %6.3f\n&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;lambda_2: %6.3f\n\n&#39;</span><span class="p">,</span> <span class="n">lambda</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="n">err</span> <span class="p">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">pi</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="nb">pi</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;Error in lambda_1: %5.2f%%\n&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="o">*</span><span class="n">err</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>lambda_1:  1.047
+lambda_2:  2.091
+
+Error in lambda_1:  0.05%
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-mass-spring-system">Example: mass-spring system<a class="anchor-link" href="#Example:-mass-spring-system"> </a></h2><p>Let's analyze the motion of masses connected by springs in a system:</p>
+<p><figure>
+  <center>
+  <img src="../images/mass-spring-system.jpg" alt="mass-spring system" style="width: 400px;"/>
+  <figcaption>Figure: System with two masses connected by springs</figcaption>
+  </center>
+</figure>
+First, we need to write the equations of motion, based on doing a free-body diagram on each mass:
+\begin{align}
+m_1 \frac{d^2 x_1}{dt^2} &amp;= -k x_1 + k(x_2 - x_1) \\
+m_2 \frac{d^2 x_2}{dt^2} &amp;= -k (x_2 - x_1) - k x_2
+\end{align}
+We can condense these equations a bit:
+\begin{align}
+x_1^{\prime\prime} - \frac{k}{m_1} \left( -2 x_1 + x_2 \right) &amp;= 0 \\
+x_2^{\prime\prime} - \frac{k}{m_2} \left( x_1 - 2 x_2 \right) &amp;= 0
+\end{align}</p>
+<p>To proceed, we can assume that the masses will move in a sinusoidal fashion, with a shared frequency but separate amplitude:
+\begin{align}
+x_i &amp;= A_i \sin (\omega t) \\
+x_i^{\prime\prime} &amp;= -A_i \omega^2 \sin (\omega t)
+\end{align}
+We can plug these into the ODEs:
+\begin{align}
+\sin (\omega t) \left[ \left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 \right] &amp;= 0 \\
+\sin (\omega t) \left[ -\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 \right] &amp;= 0
+\end{align}
+or
+\begin{align}
+\left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 &amp;= 0 \\
+-\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 &amp;= 0
+\end{align}
+Let's put some numbers in, and try to solve for the eigenvalues: $\omega^2$.
+Let $m_1 = m_2 = 40 $ kg and $k = 200$ N/m.</p>
+<p>Now, the equations become
+\begin{align}
+\left( 10 - \omega^2 \right) A_1 - 5 A_2 &amp;= 0 \\
+-5 A_1 + \left( 10 - \omega^2 \right) A_2 &amp;= 0
+\end{align}
+or $A \mathbf{y} = \mathbf{0}$, which we can represent as
+\begin{equation}
+\begin{bmatrix} 10-\omega^2 &amp; -5 \\ -5 &amp; 10-\omega^2 \end{bmatrix}
+\begin{bmatrix} A_1 \\ A_2 \end{bmatrix} = 
+\begin{bmatrix} 0 \\ 0 \end{bmatrix}
+\end{equation}
+Here, $\omega^2$ are the eigenvalues, and we can find them with $\det(A) = 0$:
+\begin{align}
+\det(B) &amp;= 0 \\
+\det (B^* - \omega^2 I) &amp;= 0
+\end{align}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">Bstar = [10 -5</span><span class="p">;</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">10</span><span class="p">];</span>
+<span class="n">omega_squared</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Bstar</span><span class="p">);</span>
+<span class="n">omega</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">omega_squared</span><span class="p">);</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;omega_1 = %5.2f rad/s\n&#39;</span><span class="p">,</span> <span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;omega_2 = %5.2f rad/s\n&#39;</span><span class="p">,</span> <span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>omega_1 =  2.24 rad/s
+omega_2 =  3.87 rad/s
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We find there are two modes of oscillation, each associated with a different natural frequency. Unfortunately, we cannot calculate independent and unique values for the amplitudes, but if we insert the values of $\omega$ into the above equations, we can find relations connecting the amplitudes:
+\begin{align}
+\omega_1: \quad A_1 &amp;= A_2 \\
+\omega_2: \quad A_1 &amp;= -A_2
+\end{align}</p>
+<p>So, for the first mode, we have the two masses moving in sync with the same amplitude. In the second mode, they move with opposite (but equal) amplitude. With the two different frequencies, they also have two different periods:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;First mode&#39;</span><span class="p">)</span>
+<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;Second mode&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/eigenvalue_11_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can confirm that the system would actually behave in this way by setting up the system of ODEs and integrating based on initial conditions matching the amplitudes of the two modes.</p>
+<p>For example, let's use $x_1 (t=0) = x_2(t=0) = 1$ for the first mode, and $x_1(t=0) = 1$ and $x_2(t=0) = -1$ for the second mode. We'll use zero initial velocity for both cases.</p>
+<p>Then, we can solve by converting the system of two 2nd-order ODEs into a system of four 1st-order ODEs:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="c">%%file masses.m</span>
+<span class="k">function</span><span class="w"> </span>dxdt <span class="p">=</span><span class="w"> </span><span class="nf">masses</span><span class="p">(</span>t, x<span class="p">)</span><span class="w"></span>
+<span class="c">% this is a function file to calculate the derivatives associated with the system</span>
+
+<span class="n">m1</span> <span class="p">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="n">m2</span> <span class="p">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="n">k</span> <span class="p">=</span> <span class="mi">200</span><span class="p">;</span>
+
+<span class="n">dxdt</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">dxdt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">dxdt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">m1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+<span class="n">dxdt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">dxdt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">m2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Created file &#39;/Users/niemeyek/projects/ME373-book/content/bvps/masses.m&#39;.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">% this is the integration for the system in the first mode</span><span class="p"></span>
+<span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="s">&#39;masses&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">]);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> 
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;displacement (m)&#39;</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="c">%box off; set(gca,&#39;Visible&#39;,&#39;off&#39;)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;First mode&#39;</span><span class="p">)</span>
+
+<span class="c">% this is the integration for the system in the second mode</span>
+<span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="s">&#39;masses&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mf">0.0</span> <span class="o">-</span><span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">]);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;displacement (m)&#39;</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="c">%box off; set(gca,&#39;Visible&#39;,&#39;off&#39;)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;Second mode&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/eigenvalue_14_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows that we get either of the pure modes of motion with the appropriate initial conditions.</p>
+<p>What about if the initial conditions <em>don't</em> match either set of amplitude patterns?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="s">&#39;masses&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span> <span class="mf">0.0</span> <span class="mf">0.75</span> <span class="mf">0.0</span><span class="p">]);</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span>
+<span class="c">%plot(0,0, &#39;s&#39;);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+<span class="c">%box off; set(gca,&#39;Visible&#39;,&#39;off&#39;)</span>
+
+<span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span>
+<span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/bvps/eigenvalue_16_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, the resulting motion will be a complicated superposition of the two modes.</p>
+
+</div>
+</div>
 </div>
 </div>
 

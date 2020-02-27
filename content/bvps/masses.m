@@ -1,4 +1,5 @@
 function dxdt = masses(t, x)
+% this is a function file to calculate the derivatives associated with the system
 
 m1 = 40;
 m2 = 40;
