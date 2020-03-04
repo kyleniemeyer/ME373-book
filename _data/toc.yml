@@ -50,6 +50,11 @@
   - url: /bvps/finite-difference
   - url: /bvps/eigenvalue
 
+- url: /pdes/partial-differential-equations
+  expand_sections: true
+  sections:
+  - url: /pdes/elliptic
+
 - divider: true
 - header: Sample Quizzes
 - url: /quizzes/quiz2-IVPs

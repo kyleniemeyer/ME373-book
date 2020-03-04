@@ -1,0 +1,192 @@
+---
+interact_link: content/pdes/elliptic.ipynb
+kernel_name: matlab
+kernel_path: content/pdes
+has_widgets: false
+title: |-
+  Elliptic PDEs
+pagenum: 18
+prev_page:
+  url: /pdes/partial-differential-equations.html
+next_page:
+  url: /quizzes/quiz2-IVPs.html
+suffix: .ipynb
+search: u j equation partial x y frac begin end where points delta heat align laplaces transfer grid nabla boundary point square bmatrix example temperature figure text quad mathbf row elliptic pde us right equations finite differences five stencil center td four vector dimensions solve directions img src images png alt style width px figcaptionfigure figcaption gives using values fixed well b laplace shows physical problems t alpha left steady state any described domain approximate second derivatives both approx index used direction xi yj following known uniform h lets consider problem object recursion formula sides conditions top figurecenter unknown not system
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Elliptic PDEs</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The classic example of an elliptic PDE is <strong>Laplace's equation</strong> (yep, the same Laplace that gave us the Laplace transform), which in two dimensions for a variable $u(x,y)$ is
+\begin{equation}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
+\end{equation}
+where $\nabla$ is del, or nabla, and represents the gradient operator: $\nabla = \frac{\partial}{\partial x} + \frac{\partial}{\partial y}$.</p>
+<p>Laplace's equation shows up in a number of physical problems, including heat transfer, fluid dynamics, and electrostatics. For example, the heat equation for conduction in two dimensions is
+\begin{equation}
+\frac{\partial u}{\partial t} = \alpha \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) \;,
+\end{equation}
+where $u(x,y,t)$ is temperature and $\alpha$ is thermal diffusivity. Steady-state heat transfer (meaning after any initial transient period) is then described by Laplace's equation.</p>
+<p>A related elliptic PDE is <strong>Poisson's equation</strong>:
+\begin{equation}
+\nabla^2 u = f(x,y) \;,
+\end{equation}
+which also appears in multiple physical problems—most notably, when solving for pressure in the Navier–Stokes equations.</p>
+<p>To numerically solve these equations, and any elliptic PDE, we can use finite differences, where we replace the continuous $x,y$ domain with a discrete grid of points. This is similar to what we did with boundary-value problems in one dimension—but now we have two dimensions.</p>
+<p>To approximate the second derivatives in Laplace's equation, we can use central differences in both the $x$ and $y$ directions, applied around the $u_{i,j}$ point:
+\begin{align}
+\frac{\partial^2 u}{\partial x^2} &amp;\approx \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} \\
+\frac{\partial^2 u}{\partial y^2} &amp;\approx \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2}
+\end{align}
+where $i$ is the index used in the $x$ direction, $j$ is the index in the $y$ direction, and $\Delta x$ and $\Delta y$ are the step sizes in the $x$ and $y$ directions.
+In other words, $x_i = (i-1) \Delta x$ and $y_j = (j-1) \Delta y$.</p>
+<p>The following figure shows the points necessary to approximate the partial derivatives in the PDE at a location $(x_i, y_j)$, for a general 2D region. This is known as a <strong>five-point stencil</strong>:</p>
+<figure>
+  <center>
+  <img src="../images/five-point-stencil.png" alt="five-point stencil" style="width: 350px;"/>
+  <figcaption>Figure: Five-point finite difference stencil</figcaption>
+  </center>
+</figure><p>Applying these finite differences gives us an approximation for Laplace's equation:
+\begin{equation}
+\frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} + \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2} = 0 \;.
+\end{equation}
+If we use a uniform grid where $\Delta x = \Delta y = h$, then we can simplify to 
+\begin{equation}
+u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
+\end{equation}</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-heat-transfer-in-a-square-plate">Example: heat transfer in a square plate<a class="anchor-link" href="#Example:-heat-transfer-in-a-square-plate"> </a></h2><p>As an example, let's consider the problem of steady-state heat transfer in a square solid object. If $u(x,y)$ is temperature, then this is described by Laplace's equation:
+\begin{equation}
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
+\end{equation}
+and we can solve this using finite differences. Using a uniform grid where $\Delta x = \Delta y = h$, Laplace's equation gives us a recursion formula that relates the values at neighboring points:
+\begin{equation}
+u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
+\end{equation}</p>
+<p>Consider a case where the square has sides of length $L$, and the boundary conditions are that the temperature is fixed at 100 on the left, right, and bottom sides, and fixed at 0 on the top.
+For now, we'll use three segments to discretize the domain in both directions.
+The following figures show the example problem, and the grid of points we'll use.</p>
+<table><tr>
+<td> 
+    <figure><center>
+        <img src="../images/heat-transfer-square.png" alt="Heat transfer in a square" style="width: 250px;"/> 
+        <figcaption>Figure: Heat transfer in a square object</figcaption>
+    </center></figure>
+</td>
+<td> 
+    <figure><center>
+        <img src="../images/heat-equation-grid.png" alt="4x4 grid" style="width: 250px;"/> 
+        <figcaption>Figure: Simple 4x4 grid of points</figcaption>
+    </center></figure>
+</td>
+</tr></table><p>Using the above recursion formula, we can write an equation for each of the four unknown points (in the interior, not the boundary points):
+\begin{align}
+\text{for } u_{1,1}: \quad u_{2,1} + u_{1,2} + u_{0,1} + u_{1,0} - 4u_{1,1} &amp;= 0 \\
+\text{for } u_{2,1}: \quad u_{3,1} + u_{2,2} + u_{1,1} + u_{2,0} - 4u_{2,1} &amp;= 0 \\
+\text{for } u_{1,2}: \quad u_{2,2} + u_{1,3} + u_{0,2} + u_{1,1} - 4u_{1,2} &amp;= 0 \\
+\text{for } u_{2,2}: \quad u_{3,2} + u_{2,3} + u_{1,2} + u_{2,1} - 4u_{2,2} &amp;= 0
+\end{align}
+where $u_{1,1}$, $u_{2,1}$, $u_{1,2}$, and $u_{2,2}$ are the unknowns, and $u_{0,j}$, $u_{3,j}$, $u_{i,0}$, and $u_{i,3}$ are known boundary values.</p>
+<p>Let's rearrange this system of equations slightly, to move all the constant terms to the right-hand side. These constants come from our boundary conditions, where $u_{1,0} = u_{2,0} = 100$, $u_{0,1} = u_{0,2} = 100$, $u_{3,1} = u_{3,2} = 100$, and $u_{1,3} = u_{2,3} = 0$. (The points in the corners do not play a role here.)
+\begin{align}
+-4u_{1,1} + u_{2,1} + u_{1,2} &amp;= -200 \\
+u_{1,1} - 4u_{2,1} + u_{2,2} &amp;= -200 \\
+u_{1,1} - 4u_{1,2} + u_{2,2} &amp;= -100 \\
+u_{2,1} + u_{1,2} - 4u_{2,2} &amp;= -100
+\end{align}
+This is a system of linear equations, that we can represent as a matrix-vector product:
+\begin{align}
+\begin{bmatrix} -4 &amp; 1 &amp; 1 &amp; 0 \\
+1 &amp; -4 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; -4 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; -4 \end{bmatrix}
+\begin{bmatrix} u_{1,1} \\ u_{2,1} \\ u_{1,2} \\ u_{2,2} \end{bmatrix} &amp;= 
+\begin{bmatrix} -200 \\ -200 \\ -100 \\ -100 \end{bmatrix} \\
+\text{or} \quad A \mathbf{u} &amp;= \mathbf{b}
+\end{align}
+where $A$ is a $4\times 4$ coefficient matrix, $\mathbf{u}$ is a four-element vector of unknown variables, and $\mathbf{b}$ is a four-element right-hand side vector.
+For $\mathbf{u}$, we had to take variables that physically represent points in a two-dimensional space and combine them in some order to form a one-dimensional column vector. Here, we used a <strong>row-major</strong> mapping, where we started with the point in the first row and first column, then added the remaining points in that row, before moving to the next row and repeating. We'll discuss this a bit more later.</p>
+<p>If we set this up in Matlab, we can solve with <code>u = A \ b</code>:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+
+<span class="s">A = [-4  1  1  0</span><span class="p">;</span><span class="n"> </span>
+<span class="n">      1 </span><span class="s">-4  0  1</span><span class="p">;</span>
+<span class="n">      1  </span><span class="s">0 -4  1</span><span class="p">;</span>
+<span class="n">      0  </span><span class="s">1  1 -4]</span><span class="p">;</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">;</span> <span class="o">-</span><span class="mi">200</span><span class="p">;</span> <span class="o">-</span><span class="mi">100</span><span class="p">;</span> <span class="o">-</span><span class="mi">100</span><span class="p">];</span>
+
+<span class="n">u</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+
+<span class="nb">disp</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>   87.5000
+   87.5000
+   62.5000
+   62.5000
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This gives us the values for temperature at each of the four points. As a quick check, they all fall between 0 and 100, with the colder points on the second row, near the top boundary where the temperature was fixed at 0.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
