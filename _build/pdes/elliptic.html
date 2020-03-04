@@ -11,7 +11,7 @@ prev_page:
 next_page:
   url: /quizzes/quiz2-IVPs.html
 suffix: .ipynb
-search: u j equation partial x y frac begin end where points delta heat align laplaces transfer grid nabla boundary point square bmatrix example temperature figure text quad mathbf row elliptic pde us right equations finite differences five stencil center td four vector dimensions solve directions img src images png alt style width px figcaptionfigure figcaption gives using values fixed well b laplace shows physical problems t alpha left steady state any described domain approximate second derivatives both approx index used direction xi yj following known uniform h lets consider problem object recursion formula sides conditions top figurecenter unknown not system
+search: u j equation partial x points y boundary begin end frac where grid point delta heat align using example figure center laplaces index n k us transfer value d square formula bmatrix row right temperature style conditions dimensional column nabla img src images png alt width px figcaptionfigure figcaption lets recursion well nine elliptic pde problems difference values matrix vector mathbf mapping into columns m ghost shows also equations finite differences central used direction five stencil consider td above major need array accurate vdots derivative node dimensions left steady state solve approximate directions approx following location general gives h fixed
 
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
@@ -79,7 +79,7 @@ and we can solve this using finite differences. Using a uniform grid where $\Del
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}</p>
 <p>Consider a case where the square has sides of length $L$, and the boundary conditions are that the temperature is fixed at 100 on the left, right, and bottom sides, and fixed at 0 on the top.
-For now, we'll use three segments to discretize the domain in both directions.
+For now, we'll use two segments to discretize the domain in each directions, giving us nine total points in the grid.
 The following figures show the example problem, and the grid of points we'll use.</p>
 <table><tr>
 <td> 
@@ -90,36 +90,42 @@ The following figures show the example problem, and the grid of points we'll use
 </td>
 <td> 
     <figure><center>
-        <img src="../images/heat-equation-grid.png" alt="4x4 grid" style="width: 250px;"/> 
-        <figcaption>Figure: Simple 4x4 grid of points</figcaption>
+        <img src="../images/heat-equation-grid.png" alt="3x3 grid of points" style="width: 250px;"/> 
+        <figcaption>Figure: Simple 3x3 grid of points</figcaption>
     </center></figure>
 </td>
-</tr></table><p>Using the above recursion formula, we can write an equation for each of the four unknown points (in the interior, not the boundary points):
+</tr></table><p>Using the above recursion formula, we can write an equation for each of the nine unknown points (in the interior, not the boundary points):
 \begin{align}
-\text{for } u_{1,1}: \quad u_{2,1} + u_{1,2} + u_{0,1} + u_{1,0} - 4u_{1,1} &amp;= 0 \\
-\text{for } u_{2,1}: \quad u_{3,1} + u_{2,2} + u_{1,1} + u_{2,0} - 4u_{2,1} &amp;= 0 \\
-\text{for } u_{1,2}: \quad u_{2,2} + u_{1,3} + u_{0,2} + u_{1,1} - 4u_{1,2} &amp;= 0 \\
-\text{for } u_{2,2}: \quad u_{3,2} + u_{2,3} + u_{1,2} + u_{2,1} - 4u_{2,2} &amp;= 0
+u_{1,1} &amp;= 100 \\
+u_{2,1} &amp;= 100 \\
+u_{3,1} &amp;= 100 \\
+u_{1,2} &amp;= 100 \\
+\text{for } u_{2,2}: \quad u_{3,2} + u_{2,3} + u_{1,2} + u_{2,1} - 4u_{2,2} &amp;= 0 \\
+u_{3,2} &amp;= 100 \\
+u_{1,3} &amp;= 100 \\
+u_{2,3} &amp;= 0 \\
+u_{3,3} &amp;= 100
 \end{align}
-where $u_{1,1}$, $u_{2,1}$, $u_{1,2}$, and $u_{2,2}$ are the unknowns, and $u_{0,j}$, $u_{3,j}$, $u_{i,0}$, and $u_{i,3}$ are known boundary values.</p>
-<p>Let's rearrange this system of equations slightly, to move all the constant terms to the right-hand side. These constants come from our boundary conditions, where $u_{1,0} = u_{2,0} = 100$, $u_{0,1} = u_{0,2} = 100$, $u_{3,1} = u_{3,2} = 100$, and $u_{1,3} = u_{2,3} = 0$. (The points in the corners do not play a role here.)
+where $u_{i,j}$ are the unknowns. Note that in this we used the side boundary condition values for the corner points $u_{1,3}$ and $u_{3,3}$, rather than the top value. (In reality this would represent a discontinuity in temperature, so these aren't very realistic boundary conditions.)</p>
+<p>This is a system of linear equations, that we can represent as a matrix-vector product:
 \begin{align}
--4u_{1,1} + u_{2,1} + u_{1,2} &amp;= -200 \\
-u_{1,1} - 4u_{2,1} + u_{2,2} &amp;= -200 \\
-u_{1,1} - 4u_{1,2} + u_{2,2} &amp;= -100 \\
-u_{2,1} + u_{1,2} - 4u_{2,2} &amp;= -100
-\end{align}
-This is a system of linear equations, that we can represent as a matrix-vector product:
-\begin{align}
-\begin{bmatrix} -4 &amp; 1 &amp; 1 &amp; 0 \\
-1 &amp; -4 &amp; 0 &amp; 1 \\
-1 &amp; 0 &amp; -4 &amp; 1 \\
-0 &amp; 1 &amp; 1 &amp; -4 \end{bmatrix}
-\begin{bmatrix} u_{1,1} \\ u_{2,1} \\ u_{1,2} \\ u_{2,2} \end{bmatrix} &amp;= 
-\begin{bmatrix} -200 \\ -200 \\ -100 \\ -100 \end{bmatrix} \\
+\begin{bmatrix} 
+1 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; -4 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\\end{bmatrix}
+\begin{bmatrix} u_{1,1} \\ u_{2,1} \\ u_{3,1} \\ u_{1,2} \\ u_{2,2} \\ u_{3,2} \\ u_{1,3} \\ u_{2,3} \\ u_{3,3} \end{bmatrix} &amp;= 
+\begin{bmatrix} 100 \\ 100 \\ 100 \\ 
+100 \\ 0 \\ 100 \\
+100 \\ 0 \\ 100 \end{bmatrix} \\
 \text{or} \quad A \mathbf{u} &amp;= \mathbf{b}
 \end{align}
-where $A$ is a $4\times 4$ coefficient matrix, $\mathbf{u}$ is a four-element vector of unknown variables, and $\mathbf{b}$ is a four-element right-hand side vector.
+where $A$ is a $9\times 9$ coefficient matrix, $\mathbf{u}$ is a nine-element vector of unknown variables, and $\mathbf{b}$ is a nine-element right-hand side vector.
 For $\mathbf{u}$, we had to take variables that physically represent points in a two-dimensional space and combine them in some order to form a one-dimensional column vector. Here, we used a <strong>row-major</strong> mapping, where we started with the point in the first row and first column, then added the remaining points in that row, before moving to the next row and repeating. We'll discuss this a bit more later.</p>
 <p>If we set this up in Matlab, we can solve with <code>u = A \ b</code>:</p>
 
@@ -137,12 +143,19 @@ For $\mathbf{u}$, we had to take variables that physically represent points in a
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
 
-<span class="s">A = [-4  1  1  0</span><span class="p">;</span><span class="n"> </span>
-<span class="n">      1 </span><span class="s">-4  0  1</span><span class="p">;</span>
-<span class="n">      1  </span><span class="s">0 -4  1</span><span class="p">;</span>
-<span class="n">      0  </span><span class="s">1  1 -4]</span><span class="p">;</span>
-<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">200</span><span class="p">;</span> <span class="o">-</span><span class="mi">200</span><span class="p">;</span> <span class="o">-</span><span class="mi">100</span><span class="p">;</span> <span class="o">-</span><span class="mi">100</span><span class="p">];</span>
+<span class="s">A = [</span><span class="p"></span>
+<span class="n">1 </span><span class="s">0 0 0  0 0 0 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">1 0 0  0 0 0 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 1 0  0 0 0 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 0 1  0 0 0 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">1 0 1 -4 1 0 1 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 0 0  0 1 0 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 0 0  0 0 1 0 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 0 0  0 0 0 1 0</span><span class="p">;</span>
+<span class="n">0 </span><span class="s">0 0 0  0 0 0 0 1]</span><span class="p">;</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">;</span> <span class="mi">100</span><span class="p">;</span> <span class="mi">100</span><span class="p">;</span> <span class="mi">100</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">100</span><span class="p">;</span> <span class="mi">100</span><span class="p">;</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">100</span><span class="p">];</span>
 
+<span class="c">% solve system of linear equations</span>
 <span class="n">u</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
 
 <span class="nb">disp</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
@@ -159,10 +172,15 @@ For $\mathbf{u}$, we had to take variables that physically represent points in a
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>   87.5000
-   87.5000
-   62.5000
-   62.5000
+<pre>   100
+   100
+   100
+   100
+    75
+   100
+   100
+     0
+   100
 
 </pre>
 </div>
@@ -178,10 +196,687 @@ For $\mathbf{u}$, we had to take variables that physically represent points in a
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This gives us the values for temperature at each of the four points. As a quick check, they all fall between 0 and 100, with the colder points on the second row, near the top boundary where the temperature was fixed at 0.</p>
+<p>This gives us the values for temperature at each of the nine points. In this example, we really only have one unknown temperature: $u_{2,2}$, located in the middle. Does the value given make sense? We can check by rearranging the recursion formula for Laplace's equation:
+\begin{equation}
+u_{i,j} = \frac{u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1}}{4} \;,
+\end{equation}
+which shows that in such problems the value of the middle point should be the average of the four surrounding points. This matches the value of 75 found above.</p>
+<p>We can use a contour plot to visualize the results, though we'll need to convert the one-dimensional solution array into a two-dimensional matrix to plot. The Matlab <code>reshape()</code> function can help us here: it reshapes an array into a matrix, by specifying the target number of desired columns and rows:</p>
 
 </div>
 </div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="c">% Example of using the reshape function, with a simple array going from 1 to 10</span>
+
+<span class="c">% We want to convert it into a matrix with 5 columns and 2 rows.</span>
+<span class="c">% The expected output is:</span>
+<span class="c">% [1 2 3 4 5; </span>
+<span class="c">%  6 7 8 9 10]</span>
+
+<span class="n">b</span> <span class="p">=</span> <span class="p">(</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">10</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+<span class="nb">disp</span><span class="p">(</span><span class="s">&#39;b array:&#39;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="s">&#39;A matrix:&#39;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>b array:
+     1
+     2
+     3
+     4
+     5
+     6
+     7
+     8
+     9
+    10
+
+A matrix:
+     1     6
+     2     7
+     3     8
+     4     9
+     5    10
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This behavior may be a bit unexpected, because <code>reshape()</code> uses a column-major mapping. We can fix this by taking the transpose of the resulting matrix:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;transpose of output matrix:&#39;</span><span class="p">)</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">A</span><span class="o">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>transpose of output matrix:
+     1     2     3     4     5
+     6     7     8     9    10
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="c">% We can use the reshape function to convert the calculated temperatures</span>
+<span class="c">% into a 3x3 matrix:</span>
+
+<span class="n">n</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">m</span> <span class="p">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">u_square</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]);</span>
+
+<span class="n">contourf</span><span class="p">(</span><span class="n">u_square</span><span class="o">&#39;</span><span class="p">)</span>
+<span class="n">colorbar</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/pdes/elliptic_7_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Overall that looks correct: the boundary conditions are right, and we see that the center is the average of the boundaries.</p>
+<p>But, clearly only using nine points (with eight of those being boundary conditions) doesn't give us a very good solution. To make this more accurate, we'll need to use more points, which also means we need to automate the construction of the system of equations.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Row-major-mapping">Row-major mapping<a class="anchor-link" href="#Row-major-mapping"> </a></h2><p>For a two-dimensional elliptic PDE like Laplace's equation, we can generate a general recursion formula, but we need a way to take a grid of points where location is defined by row and column index and map these into a one-dimensional column vector, which has its own index.</p>
+<p>The following figure shows a general 2D grid of points, with $n$ number of columns in the $x$ direction (using index $i$) and $m$ number of rows in the $y$ direction (using index $j$):</p>
+<figure>
+  <center>
+  <img src="../images/row-major.png" alt="2D grid of points" style="width: 350px;"/>
+      <figcaption>Figure: 2D grid of points with <i>n</i> columns and <i>m</i> columns.</figcaption>
+  </center>
+</figure><p>We want to convert the rows and columns of $u_{i,j}$ points defined by column and row index into a single column array using a different index, $k$ (this choice is arbitrary):
+\begin{equation}
+\begin{bmatrix} u_{1,1} \\ u_{2,1} \\ u_{3,1} \\ \vdots \\ u_{n,1} \\
+u_{1,2} \\ u_{2,2} \\ u_{3,2} \\ \vdots \\ u_{n, 2} \\ u_{1,3} \\ \vdots \\
+u_{1,m} \\ u_{2,m} \\ \vdots \\ u_{n,m}
+\end{bmatrix}
+\end{equation}
+where $k$ refers to the index used in that array.</p>
+<p>To do this mapping, we can use this formula:
+\begin{equation}
+k_{i,j} = (j-1)n + i
+\end{equation}
+where $k_{i,j}$ refers to the 1D index $k$ mapped from the 2D indices $i$ and $j$.</p>
+<figure><center>
+    <img src="../images/heat-equation-grid.png" alt="3x3 grid of points" style="width: 250px;"/> 
+    <figcaption>Figure: Simple 3x3 grid of points</figcaption>
+</center></figure><p>For example, in this $3\times 3$ grid, where $n=3$ and $m=3$, consider the point where $i=2$ and $j=2$ (the point right in the center). Using our formula, 
+\begin{equation}
+k_{2,2} = (2-1)3 + 2 = 5
+\end{equation}
+which matches what we can visually confirm.</p>
+<p>Using that mapping, we can also identify the 1D indices associated with the points surrounding location $(i,j)$:
+\begin{align}
+k_{i-1,j} &amp;= (j-1)n + i - 1 \\
+k_{i+1,j} &amp;= (j-1)n + i + 1 \\
+k_{i,j-1} &amp;= (j-2)n + i \\
+k_{i,j+1} &amp;= j n + i
+\end{align}
+which we can use to determine the appropriate locations to place values in the coefficient and right-hand side matrices.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-heat-transfer-in-a-square-plate-(redux)">Example: heat transfer in a square plate (redux)<a class="anchor-link" href="#Example:-heat-transfer-in-a-square-plate-(redux)"> </a></h2><p>Let's return to the example of steady-state heat transfer in a square plate—but this time we'll set the solution up more generally so we can vary the step size $h = \Delta x = \Delta y$.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span><span class="p">;</span> <span class="n">clc</span><span class="p">;</span><span class="n"> close </span><span class="s">all</span><span class="p"></span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c">% The coefficient matrix A is now m*n by m*n, since that is the total number of points.</span>
+<span class="c">% The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">u_left</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_right</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_bottom</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_top</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">j = 1 : m</span><span class="p"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+        <span class="c">% for convenience we calculate all the indices once</span>
+        <span class="n">kij</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kim1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kip1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kijm1</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kijp1</span> <span class="p">=</span> <span class="nb">j</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span><span class="n"></span>
+<span class="n">        </span>
+<span class="n">        if </span><span class="s">i == 1 </span><span class="p"></span>
+            <span class="c">% this is the left boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_left</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n </span><span class="p"></span>
+            <span class="c">% right boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_right</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == 1 </span><span class="p"></span>
+            <span class="c">% bottom boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_bottom</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == m </span><span class="p"></span>
+            <span class="c">% top boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_top</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">% these are the coefficients for the interior points,</span><span class="p"></span>
+            <span class="c">% based on the recursion formula</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span><span class="n"></span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+<span class="k">end</span>
+<span class="n">u</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+
+<span class="n">u_square</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]);</span>
+<span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_square</span><span class="o">&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="p">=</span> <span class="n">colorbar</span><span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">Label</span><span class="p">.</span><span class="n">String</span> <span class="p">=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/pdes/elliptic_11_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Neumann-(derivative)-boundary-conditions">Neumann (derivative) boundary conditions<a class="anchor-link" href="#Neumann-(derivative)-boundary-conditions"> </a></h2><p>So far, we have only discussed cases where we have Dirichlet boundary conditions; in other words, when we have all fixed values at the boundary. Frequently we also encounter Neumann-style boundary conditions, where we have the <em>derivative</em> specified at the boundary.</p>
+<p>We can handle this in the same way we do for one-dimensional boundary value problems: either with a forward or backward difference (both of which are first-order accurate), or with a central difference using an imaginary point/ghost node (which is second-order accurate). Let's focus on using the central difference, since it is more accurate.</p>
+<figure>
+  <center>
+  <img src="../images/2d-ghost-node.png" alt="ghost node at boundary" style="width: 350px;"/>
+  <figcaption>Figure: Ghost/imaginary node beyond an upper boundary</figcaption>
+  </center>
+</figure><p>For example, let's say that at the upper boundary, the derivative of temperature is zero:
+\begin{equation}
+\left. \frac{\partial u}{\partial y} \right|_{\text{boundary}} = 0
+\end{equation}</p>
+<p>Let's consider this boundary condition applied at the point shown, $u_{2,3}$.
+We can approximate this derivative using a central difference:
+\begin{align}
+\frac{u_{2,3}}{\partial y} \approx \frac{u_{2,4} - u_{2,2}}{\Delta x} &amp;= 0 \\
+u_{2,4} &amp;= u_{2,2}
+\end{align}
+This tells us the value of the point above the boundary, $u_{2,4}$; however, this point is a "ghost" or imaginary point located outside the boundary, so we don't really care about its value. Instead, we can use this relationship to give us a usable equation for the boundary point, by incorporating it into the normal recursion formula for Laplace's equation:
+\begin{align}
+u_{1,3} + u_{3,3} + u_{2,4} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
+u_{1,3} + u_{3,3} + u_{2,2} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
+\rightarrow u_{1,3} + u_{3,3} + 2 u_{2,2} - 4u_{2,3} &amp;= 0
+\end{align}</p>
+<p>The recursion formula for points along the upper boundary would then become
+\begin{equation}
+u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
+\end{equation}</p>
+<p>Now let's try solving the above example, but with $\frac{\partial u}{\partial y} = 0$ at the top boundary and $u = 0$ at the bottom boundary:</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span><span class="p">;</span> <span class="n">clc</span><span class="p">;</span><span class="n"> close </span><span class="s">all</span><span class="p"></span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c">% The coefficient matrix A is now m*n by m*n, since that is the total number of points.</span>
+<span class="c">% The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">u_left</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_right</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_bottom</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">j = 1 : m</span><span class="p"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+        <span class="c">% for convenience we calculate all the indices once</span>
+        <span class="n">kij</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kim1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kip1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kijm1</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kijp1</span> <span class="p">=</span> <span class="nb">j</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span><span class="n"></span>
+<span class="n">        </span>
+<span class="n">        if </span><span class="s">i == 1 </span><span class="p"></span>
+            <span class="c">% this is the left boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_left</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n </span><span class="p"></span>
+            <span class="c">% right boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_right</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == 1 </span><span class="p"></span>
+            <span class="c">% bottom boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_bottom</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == m </span><span class="p"></span>
+            <span class="c">% top boundary, using the ghost node + recursion formula</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">% these are the coefficients for the interior points,</span><span class="p"></span>
+            <span class="c">% based on the recursion formula</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span><span class="n"></span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+<span class="k">end</span>
+<span class="n">u</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+
+<span class="n">u_square</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]);</span>
+<span class="c">% the &quot;20&quot; indicates the number of levels for the contour plot</span>
+<span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_square</span><span class="o">&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="n">c</span> <span class="p">=</span> <span class="n">colorbar</span><span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">Label</span><span class="p">.</span><span class="n">String</span> <span class="p">=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/pdes/elliptic_13_0.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Iterative-solutions-for-(very)-large-problems">Iterative solutions for (very) large problems<a class="anchor-link" href="#Iterative-solutions-for-(very)-large-problems"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span> <span class="n">clc</span><span class="p">;</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c">% The coefficient matrix A is now m*n by m*n, since that is the total number of points.</span>
+<span class="c">% The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">tic</span>
+
+<span class="s">u_left = 100</span><span class="p">;</span>
+<span class="n">u_right</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_bottom</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_top</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">j = 1 : m</span><span class="p"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+        <span class="c">% for convenience we calculate all the indices once</span>
+        <span class="n">kij</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kim1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kip1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">kijm1</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+        <span class="n">kijp1</span> <span class="p">=</span> <span class="nb">j</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span><span class="n"></span>
+<span class="n">        </span>
+<span class="n">        if </span><span class="s">i == 1 </span><span class="p"></span>
+            <span class="c">% this is the left boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_left</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n </span><span class="p"></span>
+            <span class="c">% right boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_right</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == 1 </span><span class="p"></span>
+            <span class="c">% bottom boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_bottom</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">j == m </span><span class="p"></span>
+            <span class="c">% top boundary</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_top</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">% these are the coefficients for the interior points,</span><span class="p"></span>
+            <span class="c">% based on the recursion formula</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span><span class="n"></span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+<span class="k">end</span>
+<span class="n">u</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span>
+
+<span class="n">u_square</span> <span class="p">=</span> <span class="nb">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]);</span>
+<span class="c">% the &quot;20&quot; indicates the number of levels for the contour plot</span>
+<span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_square</span><span class="o">&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="n">c</span> <span class="p">=</span> <span class="n">colorbar</span><span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">Label</span><span class="p">.</span><span class="n">String</span> <span class="p">=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">toc</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Elapsed time is 8.798152 seconds.
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/pdes/elliptic_15_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span> <span class="n">clc</span><span class="p">;</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">h</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="c">% The coefficient matrix A is now m*n by m*n, since that is the total number of points.</span>
+<span class="c">% The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
+<span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">tic</span>
+
+<span class="s">u_left = 100</span><span class="p">;</span>
+<span class="n">u_right</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_bottom</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">u_top</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c">% initial guess</span>
+<span class="n">u</span> <span class="p">=</span> <span class="mi">100</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c">% dummy value for residual variable</span>
+<span class="n">epsilon</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span> 
+
+<span class="n">num</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">while </span><span class="s">epsilon &gt; 1e-6</span><span class="p"></span>
+    <span class="n">u_old</span> <span class="p">=</span> <span class="n">u</span><span class="p">;</span>
+    
+    <span class="n">epsilon</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span><span class="n"></span>
+<span class="n">    for </span><span class="s">j = 1 : m</span><span class="p"></span>
+<span class="n">        for </span><span class="s">i = 1 : n</span><span class="p"></span>
+            <span class="n">kij</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+            <span class="n">kim1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">kip1j</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">kijm1</span> <span class="p">=</span> <span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span>
+            <span class="n">kijp1</span> <span class="p">=</span> <span class="nb">j</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="nb">i</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">            if </span><span class="s">i == 1 </span><span class="p"></span>
+                <span class="c">% this is the left boundary</span>
+                <span class="n">u</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_left</span><span class="p">;</span><span class="n"></span>
+<span class="n">            elseif </span><span class="s">i == n </span><span class="p"></span>
+                <span class="c">% right boundary</span>
+                <span class="n">u</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_right</span><span class="p">;</span><span class="n"></span>
+<span class="n">            elseif </span><span class="s">j == 1 </span><span class="p"></span>
+                <span class="c">% bottom boundary</span>
+                <span class="n">u</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_bottom</span><span class="p">;</span><span class="n"></span>
+<span class="n">            elseif </span><span class="s">j == m </span><span class="p"></span>
+                <span class="c">% top boundary</span>
+                <span class="n">u</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="n">u_top</span><span class="p">;</span><span class="n"></span>
+<span class="n">            else</span>
+<span class="n">                </span><span class="s">% interior points</span><span class="p"></span>
+                <span class="n">u</span><span class="p">(</span><span class="n">kij</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="n">kip1j</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="p">(</span><span class="n">kim1j</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="p">(</span><span class="n">kijm1</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="p">(</span><span class="n">kijp1</span><span class="p">))</span><span class="o">/</span><span class="mf">4.0</span><span class="p">;</span><span class="n"></span>
+<span class="n">            end</span>
+<span class="n">        </span><span class="s">end</span><span class="p"></span>
+<span class="n">    end</span>
+<span class="n">    </span>
+<span class="n">    </span><span class="s">epsilon = max(abs(u - u_old))</span><span class="p">;</span>
+    <span class="n">num</span> <span class="p">=</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
+
+<span class="s">u_square = reshape(u, [n, m])</span><span class="p">;</span>
+<span class="c">% the &quot;20&quot; indicates the number of levels for the contour plot</span>
+<span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_square</span><span class="o">&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="n">c</span> <span class="p">=</span> <span class="n">colorbar</span><span class="p">;</span>
+<span class="n">c</span><span class="p">.</span><span class="n">Label</span><span class="p">.</span><span class="n">String</span> <span class="p">=</span> <span class="s">&#39;Temperature&#39;</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">toc</span>
+<span class="s">fprintf(&#39;Number of iterations: %d\n&#39;, num)</span><span class="p"></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Elapsed time is 2.197245 seconds.
+Number of iterations: 10762
+</pre>
+</div>
+</div>
+</div>
+<div class="jb_output_wrapper }}">
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="../images/pdes/elliptic_16_1.png"
+>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 
