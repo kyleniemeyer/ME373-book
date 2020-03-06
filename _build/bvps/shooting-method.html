@@ -113,9 +113,9 @@ u' &amp;= 2x + xy - xu
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">% target boundary condition</span><span class="p"></span>
+<span class="c">% target boundary condition</span>
 <span class="n">target</span> <span class="p">=</span> <span class="mi">8</span><span class="p">;</span>
 
 <span class="c">% Pick a guess for y&#39;(0) of 1</span>
@@ -234,7 +234,7 @@ u = \frac{\partial \psi}{\partial y} \;, \quad v = -\frac{\partial \psi}{\partia
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%%python</span>
-<span class="n">import </span><span class="s">sympy as sym</span><span class="p"></span>
+<span class="n">import</span> <span class="n">sympy</span> <span class="n">as</span> <span class="n">sym</span>
 <span class="n">sym</span><span class="p">.</span><span class="n">init_printing</span><span class="p">()</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="p">=</span> <span class="n">sym</span><span class="p">.</span><span class="n">symbols</span><span class="p">(</span><span class="s">&#39;x y u v&#39;</span><span class="p">)</span>
 
@@ -364,9 +364,9 @@ and we can use the shooting method to solve by recognizing that we have two init
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">target = 1.0</span><span class="p">;</span>
+<span class="n">target</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
 
 <span class="n">guesses</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">solutions</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
@@ -443,9 +443,9 @@ Target:  1.00
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">target = 1.0</span><span class="p">;</span>
+<span class="n">target</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
 
 <span class="c">% get these arrays of stored values started.</span>
 <span class="c">% note: I&#39;m only doing this to make it easier to show a table of values</span>
@@ -474,9 +474,9 @@ Target:  1.00
     
     <span class="c">% we should probably set a maximum number of iterations, just to prevent</span>
     <span class="c">% an infinite while loop in case something goes wrong</span>
-<span class="n">    if </span><span class="s">num &gt;= 1e4</span><span class="p"></span>
-<span class="n">        break</span>
-<span class="n">    </span><span class="s">end</span><span class="p"></span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span><span class="p">=</span> <span class="mf">1e4</span>
+        <span class="k">break</span>
+    <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="n">table</span><span class="p">(</span><span class="n">tries</span><span class="p">,</span> <span class="n">guesses</span><span class="p">,</span> <span class="n">solutions</span><span class="p">)</span>
@@ -529,7 +529,7 @@ Number of iterations required: 7</pre>
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="c">%plot -r 200</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">F</span><span class="p">(:,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">eta</span><span class="p">);</span> <span class="n">ylim</span><span class="p">([</span><span class="mi">0</span> <span class="mi">5</span><span class="p">])</span>
-<span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;f^{\prime}(\eta) = u/U_{\infty}&quot;</span><span class="p">)</span>
+<span class="n">xlabel</span><span class="p">(</span>&quot;<span class="n">f</span>^<span class="p">{</span><span class="o">\</span><span class="n">prime</span><span class="p">}(</span><span class="o">\</span><span class="n">eta</span><span class="p">)</span> <span class="p">=</span> <span class="n">u</span><span class="o">/</span><span class="n">U_</span><span class="p">{</span><span class="o">\</span><span class="n">infty</span><span class="p">}</span>&quot;<span class="p">)</span>
 <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;\eta&#39;</span><span class="p">)</span>
 </pre></div>
 

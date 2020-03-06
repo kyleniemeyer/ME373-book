@@ -74,9 +74,9 @@ For example, consider the first three modes (corresponding to $n = 1, 2, 3$):</p
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">L = 1.0</span><span class="p">;</span>
+<span class="n">L</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">y</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="nb">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">);</span>
@@ -245,9 +245,9 @@ Then, <code>eig(A*)</code> will provide the values of $k$, which we can use to f
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">dx = 1.0</span><span class="p">;</span>
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">1.0</span><span class="p">;</span>
 <span class="n">L</span> <span class="p">=</span> <span class="mf">3.0</span><span class="p">;</span>
 
 <span class="n">Astar</span> <span class="p">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">2</span><span class="p">];</span>
@@ -299,27 +299,27 @@ lambda_2:  1.732</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">dx = 0.1</span><span class="p">;</span>
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
 <span class="n">L</span> <span class="p">=</span> <span class="mf">3.0</span><span class="p">;</span>
 <span class="n">x</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="n">L</span><span class="p">;</span>
 <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span>
 
-<span class="n">Astar</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span><span class="n"></span>
-<span class="n">for </span><span class="s">i = 1 : n</span><span class="p"></span>
-<span class="n">    if </span><span class="s">i == 1</span><span class="p"></span>
+<span class="n">Astar</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+<span class="k">for</span> <span class="nb">i</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">i</span> <span class="o">==</span> <span class="mi">1</span>
         <span class="n">Astar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="n">Astar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n"></span>
-<span class="n">    elseif </span><span class="s">i == n</span><span class="p"></span>
+        <span class="n">Astar</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">elseif</span> <span class="nb">i</span> <span class="o">==</span> <span class="n">n</span>
         <span class="n">Astar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="n">Astar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span><span class="n"></span>
-<span class="n">    else</span>
-<span class="n">        </span><span class="s">Astar(i,i-1) = -1</span><span class="p">;</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
         <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n"></span>
-<span class="n">    end</span>
-<span class="s">end</span><span class="p"></span>
+        <span class="n">Astar</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 <span class="n">k</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Astar</span><span class="p">);</span>
 
 <span class="n">lambda</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span><span class="p">;</span>
@@ -423,9 +423,9 @@ Here, $\omega^2$ are the eigenvalues, and we can find them with $\det(A) = 0$:
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">Bstar = [10 -5</span><span class="p">;</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">10</span><span class="p">];</span>
+<span class="n">Bstar</span> <span class="p">=</span> <span class="p">[</span><span class="mi">10</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span> <span class="o">-</span><span class="mi">5</span> <span class="mi">10</span><span class="p">];</span>
 <span class="n">omega_squared</span> <span class="p">=</span> <span class="n">eig</span><span class="p">(</span><span class="n">Bstar</span><span class="p">);</span>
 <span class="n">omega</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">omega_squared</span><span class="p">);</span>
 
@@ -481,29 +481,29 @@ omega_2 =  3.87 rad/s
     <div class="input_area">
 <div class=" highlight hl-matlab"><pre><span></span><span class="n">t</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
 <span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
-<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">box</span> <span class="n">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
 
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
 <span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
 <span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;First mode&#39;</span><span class="p">)</span>
-<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">box</span> <span class="n">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
 
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
 <span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
-<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">box</span> <span class="n">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
 
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span><span class="n"> hold </span><span class="s">on</span><span class="p"></span>
+<span class="n">plot</span><span class="p">(</span><span class="nb">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> <span class="n">hold</span> <span class="n">on</span>
 <span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">);</span>
 <span class="n">set</span> <span class="p">(</span><span class="n">gca</span><span class="p">,</span> <span class="s">&#39;ydir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span> <span class="p">)</span>
-<span class="n">box </span><span class="s">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">box</span> <span class="n">off</span><span class="p">;</span> <span class="n">set</span><span class="p">(</span><span class="n">gca</span><span class="p">,</span><span class="s">&#39;Visible&#39;</span><span class="p">,</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s">&#39;Second mode&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -597,9 +597,9 @@ omega_2 =  3.87 rad/s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p">;</span><span class="n"> clc</span>
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear</span> <span class="n">all</span><span class="p">;</span> <span class="n">clc</span>
 
-<span class="s">% this is the integration for the system in the first mode</span><span class="p"></span>
+<span class="c">% this is the integration for the system in the first mode</span>
 <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="s">&#39;masses&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">]);</span>
 <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">t</span><span class="p">);</span> 
