@@ -54,6 +54,7 @@
   expand_sections: true
   sections:
   - url: /pdes/elliptic
+  - url: /pdes/parabolic
 
 - divider: true
 - header: Sample Quizzes

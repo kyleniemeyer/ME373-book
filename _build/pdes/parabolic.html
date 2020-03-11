@@ -1,0 +1,336 @@
+---
+interact_link: content/pdes/parabolic.ipynb
+kernel_name: matlab
+kernel_path: content/pdes
+has_widgets: false
+title: |-
+  Parabolic PDEs
+pagenum: 19
+prev_page:
+  url: /pdes/elliptic.html
+next_page:
+  url: /quizzes/quiz2-IVPs.html
+suffix: .ipynb
+search: t x equation delta frac k alpha partial fo solution text pde begin end explicit step figure parabolic size center stability temperature spatial tik left right leq conditions heat where using scheme ti stencil l fourier unstable align thermal diffusivity lets tk points img src alt style width px figcaptionfigure figcaption initial our method also geq example differential dimensional solve derivatives rearrange difference derivative forward obtain location xi shows domain need boundary terms means n well times recursion formula must gives us choice criterion limit gif movie animated small implicit pdes classic unsteady varying space rho cp constant finite differences
+
+comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
+---
+
+    <main class="jupyter-page">
+    <div id="page-info"><div id="page-title">Parabolic PDEs</div>
+</div>
+    <div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A classic example of a parabolic partial differential equation (PDE) is the one-dimensional unsteady heat equation:
+\begin{equation}
+\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial t^2} 
+\end{equation}
+where $T(x,t)$ is the temperature varying in space and time, and $\alpha$ is the thermal diffusivity: $\alpha = k / (\rho c_p)$, which is a constant.</p>
+<p>We can solve this using finite differences to represent the spatial derivatives and time derivatives separately.
+First, let's rearrange the PDE slightly:
+\begin{equation}
+\frac{\partial^2 T}{\partial x^2} = \frac{1}{\alpha} \frac{\partial T}{\partial t}
+\end{equation}</p>
+<h2 id="Explicit-scheme">Explicit scheme<a class="anchor-link" href="#Explicit-scheme"> </a></h2><p>Let's use a <em>central difference</em> for the spatial derivative with a spacing of $\Delta x$, and a <em>forward difference</em> for the time derivative with a time-step size of $\Delta t$. With these choices, we can obtain an approximation to the PDE that applies at time $t^k$ and spatial location $x_i$:
+\begin{equation}
+\frac{T_{i-1}^k - 2 T_i^k + T_{i+1}^k}{\Delta x^2} = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
+\end{equation}
+where $T_i^k$ is the temperature at time $t^k$ and spatial location $x_i$. The following figure shows the stencil of points involved in the PDE, for a domain with five points in the $x$-direction.</p>
+<figure>
+  <center>
+  <img src="../images/parabolic-explicit-stencil.png" alt="stencil for explicit parabolic solution" style="width: 350px;"/>
+  <figcaption>Figure: Stencil for explicit solution to heat equation</figcaption>
+  </center>
+</figure><p>To solve the heat equation for a one-dimensional domain over $0 \leq x \leq L$, we will need both initial conditions at $t = 0$ and boundary conditions at $x=0$ and $x=L$ (for all time). In terms of our nodal values, this means we need $T_i^{k=1}$ for $i = 1 \ldots n$, where $n$ is the number of points, as well as information about $T_1^k$ and $T_n^k$ for all times $k$.</p>
+<p>We can rearrange the above equation to obtain our recursion formula:
+\begin{equation}
+T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \frac{\alpha \Delta t}{\Delta x^2} + T_i^k  \left( 1 - 2 \frac{\alpha \Delta t}{\Delta x^2} \right) \;.
+\end{equation}
+This is an <strong>explicit</strong> scheme in time, similar to the Forward Euler method we used for ordinary differential equations, and like that method it may have stability issues. The combination of terms we see repeated is also known as the Fourier number: $\text{Fo} = \frac{\alpha \Delta t}{\Delta x^2}$, and governs the stability.
+We can rewrite the recursion formula using this:
+\begin{equation}
+T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \text{Fo} + T_i^k  \left( 1 - 2 \text{Fo} \right) \;.
+\end{equation}</p>
+<p>The term in parentheses there must be greater than or equal to zero for stability ($1 - 2 \text{Fo} \geq 0$); if not, the solution may become unstable and blow up. This gives us some conditions on our choice of step sizes:
+\begin{align}
+1 - 2 \text{Fo} &amp;\geq 0 \\
+1 &amp; \geq 2 \text{Fo} \\
+\text{Fo} &amp;\leq \frac{1}{2} \\
+\frac{\alpha \Delta t}{\Delta x^2} &amp;\leq \frac{1}{2}
+\end{align}
+This is the stability criterion for the explicit method: the Fourier number must be smaller than 0.5.
+For a given thermal diffusivity and chosen spatial step size, this also gives us the limit on the time-step size: $\Delta t \leq \Delta x^2 / (2 \alpha)$.</p>
+<p>Let's look at an example where the initial temperature is 200, the temperature at the boundaries are 50, the thermal diffusivity is $\alpha = 2.3 \times 10^{-1}$ m$^2 /$ s, and $L = 1$. 
+In other words,
+\begin{align}
+T(x, t=0) &amp;= 200 \\
+T(x=0, t) &amp;= 50 \\
+T(x=L, t) &amp;= 50
+\end{align}
+We'll integrate out to $t = 1$, using a Fourier number of 0.25 to be comfortably below the stability limit (<code>Fo = 0.25</code>):</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p"></span>
+
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="mf">2.3e-1</span><span class="p">;</span>
+
+<span class="c">% for stability, set the Fourier number at 0.25 (half the stability limit of 0.5)</span>
+<span class="n">Fo</span> <span class="p">=</span> <span class="mf">0.25</span><span class="p">;</span>
+<span class="c">% then choose the time step based on the Fourier number</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="n">Fo</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">;</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">t</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+<span class="n">T</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c">% initial conditions</span>
+<span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">200</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,:))</span>
+<span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">50</span> <span class="mi">200</span><span class="p">]);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature&#39;</span><span class="p">);</span>
+<span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">getframe</span><span class="p">(</span><span class="n">gcf</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">k = 1 : m - 1</span><span class="p"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">        if </span><span class="s">i == 1</span><span class="p"></span>
+            <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n</span><span class="p"></span>
+            <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">T(k+1, i) = (T(k,i+1) + T(k,i-1))*Fo + T(k,i)*(1 - 2*Fo)</span><span class="p">;</span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,:))</span>
+    <span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">50</span> <span class="mi">200</span><span class="p">]);</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature&#39;</span><span class="p">);</span>
+    <span class="n">F</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">getframe</span><span class="p">(</span><span class="n">gcf</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">close</span><span class="p"></span>
+
+<span class="c">%% If you are working interactively, you can use this to make a movie in Matlab</span>
+<span class="c">%fig = figure;</span>
+<span class="c">%movie(fig, F, 2)</span>
+
+<span class="c">%% This generates a GIF of the results (for use in Jupyter Notebook)</span>
+<span class="n">filename</span> <span class="p">=</span> <span class="s">&#39;parabolic_animated.gif&#39;</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(F)</span><span class="p"></span>
+    <span class="n">im</span> <span class="p">=</span> <span class="n">frame2im</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span> 
+    <span class="p">[</span><span class="n">imind</span><span class="p">,</span><span class="n">cm</span><span class="p">]</span> <span class="p">=</span> <span class="n">rgb2ind</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span> 
+    <span class="c">% Write to GIF</span>
+<span class="n">    if </span><span class="s">i == 1 </span><span class="p"></span>
+        <span class="n">imwrite</span><span class="p">(</span><span class="n">imind</span><span class="p">,</span><span class="n">cm</span><span class="p">,</span><span class="n">filename</span><span class="p">,</span><span class="s">&#39;gif&#39;</span><span class="p">,</span> <span class="s">&#39;Loopcount&#39;</span><span class="p">,</span><span class="nb">inf</span><span class="p">,</span> <span class="s">&#39;DelayTime&#39;</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">);</span><span class="n"> </span>
+<span class="n">    else </span>
+<span class="n">        </span><span class="s">imwrite(imind,cm,filename,&#39;gif&#39;,&#39;WriteMode&#39;,&#39;append&#39;, &#39;DelayTime&#39;,1e-3)</span><span class="p">;</span><span class="n"> </span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+  <center>
+  <img src="parabolic_animated.gif" alt="movie of parabolic PDE solution" style="width: 500px;"/>
+  <figcaption>Figure: Animated solution to 1D transient heat transfer PDE</figcaption>
+  </center>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows the temperature decaying exponentially from the initial conditions, constrained by the boundary conditions.</p>
+<p>What happens if we tried to use a Fourier number larger than 0.5, or arbitrarily chose a time-step size that was too large (and resulted in $\text{Fo} &gt; 0.5$)?</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">clear </span><span class="s">all</span><span class="p"></span>
+
+<span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="mf">2.3e-1</span><span class="p">;</span>
+
+<span class="c">%% Purposely choose a Fourier number that is past the stability limit:</span>
+<span class="n">Fo</span> <span class="p">=</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="n">Fo</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">;</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">t</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+<span class="n">T</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c">% initial conditions</span>
+<span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">200</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,:))</span>
+<span class="n">axis</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">50</span> <span class="mi">200</span><span class="p">]);</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature&#39;</span><span class="p">);</span>
+<span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">getframe</span><span class="p">(</span><span class="n">gcf</span><span class="p">);</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">k = 1 : m - 1</span><span class="p"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">        if </span><span class="s">i == 1</span><span class="p"></span>
+            <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n</span><span class="p"></span>
+            <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">T(k+1, i) = (T(k,i+1) + T(k,i-1))*Fo + T(k,i)*(1 - 2*Fo)</span><span class="p">;</span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,:))</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Distance&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature&#39;</span><span class="p">);</span>
+    <span class="n">F</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">getframe</span><span class="p">(</span><span class="n">gcf</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+<span class="s">close</span><span class="p"></span>
+
+<span class="c">%% If you are working interactively, you can use this to make a movie in Matlab</span>
+<span class="c">%fig = figure;</span>
+<span class="c">%movie(fig, F, 2)</span>
+
+<span class="c">%% This generates a GIF of the results (for use in Jupyter Notebook)</span>
+<span class="n">filename</span> <span class="p">=</span> <span class="s">&#39;parabolic_unstable_animated.gif&#39;</span><span class="p">;</span><span class="n"></span>
+<span class="n">for </span><span class="s">i = 1 : length(F)</span><span class="p"></span>
+    <span class="n">im</span> <span class="p">=</span> <span class="n">frame2im</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span> 
+    <span class="p">[</span><span class="n">imind</span><span class="p">,</span><span class="n">cm</span><span class="p">]</span> <span class="p">=</span> <span class="n">rgb2ind</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span> 
+    <span class="c">% Write to GIF</span>
+<span class="n">    if </span><span class="s">i == 1 </span><span class="p"></span>
+        <span class="n">imwrite</span><span class="p">(</span><span class="n">imind</span><span class="p">,</span><span class="n">cm</span><span class="p">,</span><span class="n">filename</span><span class="p">,</span><span class="s">&#39;gif&#39;</span><span class="p">,</span> <span class="s">&#39;Loopcount&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;DelayTime&#39;</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">);</span><span class="n"> </span>
+<span class="n">    else </span>
+<span class="n">        </span><span class="s">imwrite(imind,cm,filename,&#39;gif&#39;,&#39;WriteMode&#39;,&#39;append&#39;, &#39;DelayTime&#39;,1e-3)</span><span class="p">;</span><span class="n"> </span>
+<span class="n">    end</span>
+<span class="s">end</span><span class="p"></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+  <center>
+  <img src="parabolic_unstable_animated.gif" alt="movie of unstable parabolic PDE solution" style="width: 500px;"/>
+  <figcaption>Figure: Animated unstable solution</figcaption>
+  </center>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, the solution becomes unstable and blows up, leading to unphysical results.</p>
+<p>For this explicit scheme, the choice of $\Delta t$ is limited by the stability criterion. This means that we may be stuck using a small time-step size.</p>
+<p>Rather than being forced to use a very small time-step size, we can also explore <em>implicit schemes</em> that are unconditionally stable.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Implicit-scheme">Implicit scheme<a class="anchor-link" href="#Implicit-scheme"> </a></h2>
+</div>
+</div>
+</div>
+</div>
+
+<div class="jb_cell">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-matlab"><pre><span></span><span class="n">dx</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">Fo</span> <span class="p">=</span> <span class="mf">0.75</span><span class="p">;</span>
+<span class="n">alpha</span> <span class="p">=</span> <span class="mf">2.3e-1</span><span class="p">;</span>
+<span class="n">dt</span> <span class="p">=</span> <span class="n">Fo</span> <span class="o">*</span> <span class="n">dx</span>^<span class="mi">2</span> <span class="o">/</span> <span class="n">alpha</span><span class="p">;</span>
+
+<span class="n">x</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dx</span> <span class="p">:</span> <span class="mi">1</span><span class="p">];</span> <span class="n">n</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="n">t</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">dt</span> <span class="p">:</span> <span class="mi">10</span><span class="p">];</span> <span class="n">m</span> <span class="p">=</span> <span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+<span class="n">T</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+<span class="n">T</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">200</span><span class="p">;</span><span class="n"></span>
+
+<span class="n">for </span><span class="s">k = 1 : m-1</span><span class="p"></span>
+    <span class="n">A</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">b</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="n"></span>
+<span class="n">    for </span><span class="s">i = 1 : n</span><span class="p"></span>
+<span class="n">        if </span><span class="s">i == 1</span><span class="p"></span>
+            <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        elseif </span><span class="s">i == n</span><span class="p"></span>
+            <span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">=</span> <span class="mi">50</span><span class="p">;</span><span class="n"></span>
+<span class="n">        else</span>
+<span class="n">            </span><span class="s">A(i,i-1) = Fo</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Fo</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">A</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">Fo</span><span class="p">;</span>
+            <span class="n">b</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span> <span class="p">=</span> <span class="o">-</span><span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="nb">i</span><span class="p">);</span><span class="n"></span>
+<span class="n">        end</span>
+<span class="n">    </span><span class="s">end</span><span class="p"></span>
+    <span class="n">T</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="p">:)</span> <span class="p">=</span> <span class="n">A</span> <span class="o">\</span> <span class="n">b</span><span class="p">;</span><span class="n"></span>
+<span class="n">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+
+ 
+
+
+    </main>
+    
