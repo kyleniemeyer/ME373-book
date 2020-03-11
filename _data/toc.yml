@@ -50,6 +50,8 @@
   - url: /bvps/finite-difference
   - url: /bvps/eigenvalue
 
+- header: Partial Differential Equations
+
 - url: /pdes/partial-differential-equations
   expand_sections: true
   sections:
