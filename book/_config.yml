@@ -44,6 +44,7 @@ repository:
   branch: master
 
 html:
+  baseurl: https://kyleniemeyer.github.io/ME373-book
   use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
