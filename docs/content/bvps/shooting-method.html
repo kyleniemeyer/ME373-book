@@ -392,8 +392,8 @@
 <h1><span class="section-number">4.1. </span>Shooting Method<a class="headerlink" href="#shooting-method" title="Permalink to this headline">¶</a></h1>
 <p>Boundary-value problems are also ordinary differential equations—the difference is that our two constraints are at boundaries of the domain, rather than both being at the starting point.</p>
 <p>For example, consider the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af79ed1a-6bdd-49f6-9541-3e7749e95f8d">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-af79ed1a-6bdd-49f6-9541-3e7749e95f8d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e8e6b108-d8b6-407a-969a-28214e660ac4">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-e8e6b108-d8b6-407a-969a-28214e660ac4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y^{\prime\prime} + xy^{\prime} - xy = 2x
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0)=1\)</span> and <span class="math notranslate nohighlight">\(y(2)=8\)</span>.</p>
@@ -406,8 +406,8 @@ y^{\prime\prime} + xy^{\prime} - xy = 2x
 <li><p>Assuming your trial solution for <span class="math notranslate nohighlight">\(y(L)\)</span> does not match the given boundary condition, adjust your guess for <span class="math notranslate nohighlight">\(y'(0)\)</span> and repeat.</p></li>
 </ol>
 <p>Now, this algorithm will not work particularly well if all your guesses are random/uninformed. Fortunately, we can use linear interpolation to inform a third guess based on two initial attempts:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3c35cf7-53ae-415b-a1ba-35424e37a4c4">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-c3c35cf7-53ae-415b-a1ba-35424e37a4c4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ecdb43a2-150b-4119-9257-864c33e1f4c4">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-ecdb43a2-150b-4119-9257-864c33e1f4c4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{guess 3} &amp;= \text{guess 2} + m \left( \text{target} - \text{solution 2} \right) \\
 m &amp;= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{solution 2}}
 \end{align}\]</div>
@@ -415,14 +415,14 @@ m &amp;= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{soluti
 <div class="section" id="example-linear-ode">
 <h2><span class="section-number">4.1.1. </span>Example: linear ODE<a class="headerlink" href="#example-linear-ode" title="Permalink to this headline">¶</a></h2>
 <p>Let’s try solving the given ODE using the shooting method:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-847fd494-f1df-4f66-b39d-caf60ab0371f">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-847fd494-f1df-4f66-b39d-caf60ab0371f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b4b7f300-fba0-44a5-8492-905b7c81b651">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-b4b7f300-fba0-44a5-8492-905b7c81b651" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y^{\prime\prime} + xy^{\prime} - xy = 2x
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0)=1\)</span> and <span class="math notranslate nohighlight">\(y(2)=8\)</span>.</p>
 <p>First, we need to convert this 2nd-order ODE into a system of two 1st-order ODEs, where we can define <span class="math notranslate nohighlight">\(u = y'\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ec72d6e-a15b-4c60-a541-d92d892f0096">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-0ec72d6e-a15b-4c60-a541-d92d892f0096" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e8a7988a-9302-4414-89d2-5f285de5fd3a">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-e8a7988a-9302-4414-89d2-5f285de5fd3a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y' &amp;= u \\
 u' &amp;= 2x + xy - xu
 \end{align}\]</div>
@@ -492,31 +492,29 @@ Target:      8.00
 <div class="section" id="example-nonlinear-ode">
 <h2><span class="section-number">4.1.2. </span>Example: nonlinear ODE<a class="headerlink" href="#example-nonlinear-ode" title="Permalink to this headline">¶</a></h2>
 <p>We can use the shooting method to solve a famous fluids problem: the <a class="reference external" href="https://en.wikipedia.org/wiki/Blasius_boundary_layer">Blasius boundary layer</a>.</p>
-<figure>
-  <center>
-  <img src="../images/boundary-layer.png" alt="Laminar boundary layer, from https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg" style="width: 400px;"/>
-  <figcaption>Figure: Laminar boundary layer, taken from <a href="https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg">https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg</a></figcaption>
-  </center>
-</figure>
+<div class="figure align-default" id="fig-boundary-layer">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/boundary-layer.png"><img alt="Laminar boundary layer, from https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg" class="bg-primary mb-1" src="../../_images/boundary-layer.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Laminar boundary layer, taken from <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg">https://commons.wikimedia.org/wiki/File:Laminar_boundary_layer_scheme.svg</a></span><a class="headerlink" href="#fig-boundary-layer" title="Permalink to this image">¶</a></p>
+</div>
 <p>To get to a solveable ODE, we start with the conservation of momentum equation (i.e., Navier–Stokes equation) in the <span class="math notranslate nohighlight">\(x\)</span>-direction:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-457f5bb2-743e-4422-95c3-ccbe3edd0943">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-457f5bb2-743e-4422-95c3-ccbe3edd0943" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-81e4de6e-6de0-4d27-8cf6-9038ade8e1ba">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-81e4de6e-6de0-4d27-8cf6-9038ade8e1ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} = \nu \frac{\partial^2 u}{\partial y^2}
 \end{equation}\]</div>
 <p>and the conservation of mass equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12051be0-35ee-44b8-a7ab-91d4bc71023c">
-<span class="eqno">(4.6)<a class="headerlink" href="#equation-12051be0-35ee-44b8-a7ab-91d4bc71023c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f8a1f86-f5a6-4e5a-b4e4-da4805710c6c">
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-9f8a1f86-f5a6-4e5a-b4e4-da4805710c6c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> is the velocity component in the <span class="math notranslate nohighlight">\(x\)</span>-direction, <span class="math notranslate nohighlight">\(v\)</span> is the velocity component in the <span class="math notranslate nohighlight">\(y\)</span>-direction, and <span class="math notranslate nohighlight">\(\nu\)</span> is the fluid’s kinematic viscosity. The boundary conditions are that <span class="math notranslate nohighlight">\(u = v = 0\)</span> at <span class="math notranslate nohighlight">\(y=0\)</span>, and that <span class="math notranslate nohighlight">\(u = U_{\infty}\)</span> as <span class="math notranslate nohighlight">\(y \rightarrow \infty\)</span>, where <span class="math notranslate nohighlight">\(U_{\infty}\)</span> is the free-stream velocity.</p>
 <p>Blasius solved this problem by converting the PDE into an ODE, by recognizing that the boundary layer thickness is given by <span class="math notranslate nohighlight">\(\delta(x) \sim \sqrt{\frac{x \nu}{U_{\infty}}}\)</span>, and then nondimensionalizing the position coordinates using a similarity variable</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da8c9dc8-5893-4d4e-b4e5-6222e0eef250">
-<span class="eqno">(4.7)<a class="headerlink" href="#equation-da8c9dc8-5893-4d4e-b4e5-6222e0eef250" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-594082a2-0fa3-4082-8751-d5d2b4f9e84a">
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-594082a2-0fa3-4082-8751-d5d2b4f9e84a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \eta = y \sqrt{\frac{U_{\infty}}{2 \nu x}}
 \end{equation}\]</div>
 <p>By introducing the stream function, <span class="math notranslate nohighlight">\(\psi (x,y)\)</span>, we can ensure the continuity equation is satisfied:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2dd21879-18e9-4ac6-aa4c-1a53c13fa701">
-<span class="eqno">(4.8)<a class="headerlink" href="#equation-2dd21879-18e9-4ac6-aa4c-1a53c13fa701" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6230d71b-2f17-4608-9796-ee33d299eeb8">
+<span class="eqno">(4.8)<a class="headerlink" href="#equation-6230d71b-2f17-4608-9796-ee33d299eeb8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 u = \frac{\partial \psi}{\partial y} \;, \quad v = -\frac{\partial \psi}{\partial x}
 \end{equation}\]</div>
 <p>Let’s check this, using SymPy:</p>
@@ -546,13 +544,13 @@ u = \frac{\partial \psi}{\partial y} \;, \quad v = -\frac{\partial \psi}{\partia
 </div>
 </div>
 <p>Using the boundary layer thickness and free-stream velocity, we can define the dimensionlesss stream function <span class="math notranslate nohighlight">\(f(\eta)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15d9712d-1e08-4694-8a83-20f92afe409d">
-<span class="eqno">(4.9)<a class="headerlink" href="#equation-15d9712d-1e08-4694-8a83-20f92afe409d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-51912922-8c2a-4a21-9a2a-decd165f7bce">
+<span class="eqno">(4.9)<a class="headerlink" href="#equation-51912922-8c2a-4a21-9a2a-decd165f7bce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f(\eta) = \frac{\psi}{U_{\infty}} \sqrt{\frac{U_{\infty}}{2 \nu x}}
 \end{equation}\]</div>
 <p>which relates directly to the velocity components:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3263975-04db-443a-909c-00d35ac972f5">
-<span class="eqno">(4.10)<a class="headerlink" href="#equation-a3263975-04db-443a-909c-00d35ac972f5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9071dd5b-650e-4a9e-a04e-873551eee547">
+<span class="eqno">(4.10)<a class="headerlink" href="#equation-9071dd5b-650e-4a9e-a04e-873551eee547" title="Permalink to this equation">¶</a></span>\[\begin{align}
 u &amp;= \frac{\partial \psi}{\partial y} = \frac{\partial \psi}{\partial f} \frac{\partial f}{\partial \eta} \frac{\partial \eta}{\partial y} \\
  &amp;= U_{\infty} \sqrt{\frac{2 \nu x}{U_{\infty}}} \cdot f^{\prime}(\eta) \cdot \sqrt{\frac{U_{\infty}}{2 \nu x}} \\
 u &amp;= U_{\infty} f^{\prime} (\eta) \\
@@ -560,14 +558,14 @@ v &amp;= -\frac{\partial \psi}{\partial x} = -\left( \frac{\partial \psi}{\parti
  &amp;= \sqrt{\frac{\nu U_{\infty}}{2x}} \left( \eta f^{\prime} - f \right)
 \end{align}\]</div>
 <p>We can insert these into the <span class="math notranslate nohighlight">\(x\)</span>-momentum equation, which leads to an ODE for the dimensionless stream function <span class="math notranslate nohighlight">\(f(\eta)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-737a20ee-6e28-4b09-b08b-fbbc28585e59">
-<span class="eqno">(4.11)<a class="headerlink" href="#equation-737a20ee-6e28-4b09-b08b-fbbc28585e59" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-26dc66a1-37c0-4f32-88bd-123061024ad8">
+<span class="eqno">(4.11)<a class="headerlink" href="#equation-26dc66a1-37c0-4f32-88bd-123061024ad8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f^{\prime\prime\prime} + f f^{\prime\prime} = 0 \;,
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(f = f^{\prime} = 0\)</span> at <span class="math notranslate nohighlight">\(\eta = 0\)</span>, and <span class="math notranslate nohighlight">\(f^{\prime} = 1\)</span> as <span class="math notranslate nohighlight">\(\eta \rightarrow \infty\)</span>.</p>
 <p>This is a 3rd-order ODE, which we can solve by converting it into three 1st-order ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d60c0d78-1dc0-42b2-b402-dc1960322879">
-<span class="eqno">(4.12)<a class="headerlink" href="#equation-d60c0d78-1dc0-42b2-b402-dc1960322879" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4db3ffe9-4a4d-4b8c-8a26-9e420e1ed894">
+<span class="eqno">(4.12)<a class="headerlink" href="#equation-4db3ffe9-4a4d-4b8c-8a26-9e420e1ed894" title="Permalink to this equation">¶</a></span>\[\begin{align}
 y_1 &amp;= f \quad y_1^{\prime} = y_2 \\
 y_2 &amp;= f^{\prime} \quad y_2^{\prime} = y_3 \\
 y_3 &amp;= f^{\prime\prime} \quad y_3^{\prime} = -y_1 y_3

@@ -402,48 +402,46 @@
 <div class="section" id="problem-1-finite-difference-method">
 <h2>Problem 1: Finite difference method<a class="headerlink" href="#problem-1-finite-difference-method" title="Permalink to this headline">¶</a></h2>
 <p>The temperature distribution <span class="math notranslate nohighlight">\(T(r)\)</span> in an annular fin of inner radius <span class="math notranslate nohighlight">\(r_1\)</span> and outer radius <span class="math notranslate nohighlight">\(r_2\)</span> is described by the equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c32043b-0a25-4756-a71f-98cbfb0d919d">
-<span class="eqno">(24)<a class="headerlink" href="#equation-9c32043b-0a25-4756-a71f-98cbfb0d919d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ce98a1b5-78ee-40a3-8665-dcd723fa6a3a">
+<span class="eqno">(24)<a class="headerlink" href="#equation-ce98a1b5-78ee-40a3-8665-dcd723fa6a3a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 r \frac{d^2 T}{dr^2} + \frac{dT}{dr} - rm^2 (T - T_{\infty}) = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(r\)</span> is the radial distance from the centerline (the independent
 variable) and <span class="math notranslate nohighlight">\(m^2\)</span> is a constant that depends on the heat transfer coefficient, thermal conductivity, and thickness of the annulus. Assuming we choose a spatial step size <span class="math notranslate nohighlight">\(\Delta r\)</span>,</p>
-<figure>
-  <center>
-  <img src="../images/annular-fin.png" alt="Annular fin" style="width: 400px;"/>
-  <figcaption>Figure: Annular fin</figcaption>
-  </center>
-</figure>
+<div class="figure align-default" id="markdown-fig">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/annular-fin.png"><img alt="Annular fin" class="bg-primary mb-1" src="../../_images/annular-fin.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Annular fin</span><a class="headerlink" href="#markdown-fig" title="Permalink to this image">¶</a></p>
+</div>
 <p>a.) Write the finite-difference representation of the ODE (that applies at a location <span class="math notranslate nohighlight">\(r_i\)</span>), using central differences.</p>
 <p>b.) Based on the last part, write the recursion formula.</p>
 <p>c.) The boundary condition at the outer radius <span class="math notranslate nohighlight">\(r = r_2\)</span> is described by convection heat transfer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-360e3a55-6da4-4645-bf0e-f559fbb8c622">
-<span class="eqno">(25)<a class="headerlink" href="#equation-360e3a55-6da4-4645-bf0e-f559fbb8c622" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f2bde3ad-6d3d-4ab3-9283-f355cb05af9e">
+<span class="eqno">(25)<a class="headerlink" href="#equation-f2bde3ad-6d3d-4ab3-9283-f355cb05af9e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 -k \left. \frac{dT}{dr} \right|_{r=r_2} = h \left[ T(r=r_2) - T_{\infty} \right] \;.
 \end{equation}\]</div>
 <p>Write the boundary condition at <span class="math notranslate nohighlight">\(r = r_2\)</span> in recursion form (i.e., the equation you would implement into your system of equations to solve for temperature).</p>
 <div class="section" id="solution">
 <h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
 <p>a.) Replace the derivatives in the given ODE with finite differences, and replace any locations with the <span class="math notranslate nohighlight">\(i\)</span> location:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-732fcbf7-beb5-4e02-a36e-777a2212240f">
-<span class="eqno">(26)<a class="headerlink" href="#equation-732fcbf7-beb5-4e02-a36e-777a2212240f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ccaa34d5-8cec-4522-bcde-02b5d96f3e05">
+<span class="eqno">(26)<a class="headerlink" href="#equation-ccaa34d5-8cec-4522-bcde-02b5d96f3e05" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 r_i \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta r^2} + \frac{T_{i+1} - T_{i-1}}{2\Delta r} - r_i m^2 (T_i - T_{\infty}) = 0
 \end{equation}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5894ac55-c651-427a-b866-26a9dfe2868b">
-<span class="eqno">(27)<a class="headerlink" href="#equation-5894ac55-c651-427a-b866-26a9dfe2868b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0522a5b3-00a6-4499-95b2-2478f689886a">
+<span class="eqno">(27)<a class="headerlink" href="#equation-0522a5b3-00a6-4499-95b2-2478f689886a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) = 0
 \end{equation}\]</div>
 <p>b.) Rearrange and combine terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ace5bfd6-1ca1-45a7-b268-3b6dfd791593">
-<span class="eqno">(28)<a class="headerlink" href="#equation-ace5bfd6-1ca1-45a7-b268-3b6dfd791593" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-678642b9-d632-492c-acfb-57f3e07ef9a1">
+<span class="eqno">(28)<a class="headerlink" href="#equation-678642b9-d632-492c-acfb-57f3e07ef9a1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) &amp;= 0 \\
 r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 T_i &amp;= -r_i m^2 \Delta r^2 T_{\infty} \\
 \left(r_i - \frac{\Delta r}{2}\right) T_{i-1} + \left( -2 r_i - r_i m^2 \Delta r^2 \right) T_i + \left( r_i + \frac{\Delta r}{2} \right) T_{i+1} &amp;= -r_i m^2 \Delta r^2 T_{\infty}
 \end{align}\]</div>
 <p>c.) We can use a backward difference to approximate the <span class="math notranslate nohighlight">\(dT/dr\)</span> term. <span class="math notranslate nohighlight">\(T_n\)</span> represents the temperature at node <span class="math notranslate nohighlight">\(n\)</span> where <span class="math notranslate nohighlight">\(r_n = r_2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98f4a748-d900-4cbe-8259-7bff0abe26c9">
-<span class="eqno">(29)<a class="headerlink" href="#equation-98f4a748-d900-4cbe-8259-7bff0abe26c9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5470caca-9013-4400-a4c2-1b3ddb279c23">
+<span class="eqno">(29)<a class="headerlink" href="#equation-5470caca-9013-4400-a4c2-1b3ddb279c23" title="Permalink to this equation">¶</a></span>\[\begin{align}
 -k \frac{T_n - T_{n-1}}{\Delta r} &amp;= h (T_n - T_{\infty}) \\
 -k (T_n - T_{n-1}) &amp;= h \Delta r (T_n - T_{\infty}) \\
 k T_{n-1} - (k + h\Delta r) T_n &amp;= -h \Delta r T_{\infty}
@@ -458,8 +456,8 @@ k T_{n-1} - (k + h\Delta r) T_n &amp;= -h \Delta r T_{\infty}
 <div class="section" id="id1">
 <h3>Solution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>a.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92985dd9-42b4-4b5c-990e-b8bb87e12020">
-<span class="eqno">(30)<a class="headerlink" href="#equation-92985dd9-42b4-4b5c-990e-b8bb87e12020" title="Permalink to this equation">¶</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-09048fe8-3372-466a-8e49-d4d624d5f511">
+<span class="eqno">(30)<a class="headerlink" href="#equation-09048fe8-3372-466a-8e49-d4d624d5f511" title="Permalink to this equation">¶</a></span>\[\begin{gather}
 y(x) = A \sin (3 \lambda x) + B \cos (3 \lambda x) \\
 \text{Apply BCs: } y(x=0) = 0 = A \sin(0) + B \cos(0) = B \\
 \therefore B = 0 \\
@@ -469,13 +467,13 @@ A \neq 0 \text{ so } \sin(3 \lambda 2) = \sin(6 \lambda) = 0 \therefore 6 \lambd
 \lambda = \frac{n \pi}{6} \quad n=1,2,3,\ldots,\infty
 \end{gather}\]</div>
 <p>The eigenfunction is then the solution function associated with an eigenvalue:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22884ede-b11e-4e64-9fa4-ef25f39d4d38">
-<span class="eqno">(31)<a class="headerlink" href="#equation-22884ede-b11e-4e64-9fa4-ef25f39d4d38" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7b79d602-4ad0-4aa6-840a-925a29f72540">
+<span class="eqno">(31)<a class="headerlink" href="#equation-7b79d602-4ad0-4aa6-840a-925a29f72540" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y_n = A_n \sin \left( \frac{n \pi x}{2} \right) \quad n = 1, 2, 3, \ldots, \infty
 \end{equation}\]</div>
 <p>b.) The principal eigenvalue is just that associated with <span class="math notranslate nohighlight">\(n = 1\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a050fed1-299e-4edf-aad8-3ef6dd2b45b7">
-<span class="eqno">(32)<a class="headerlink" href="#equation-a050fed1-299e-4edf-aad8-3ef6dd2b45b7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d5c5f88e-9c2b-4627-91f7-ff7062e90442">
+<span class="eqno">(32)<a class="headerlink" href="#equation-d5c5f88e-9c2b-4627-91f7-ff7062e90442" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \lambda_p = \lambda_1 = \frac{\pi}{6}
 \end{equation}\]</div>
 </div>
@@ -483,23 +481,23 @@ y_n = A_n \sin \left( \frac{n \pi x}{2} \right) \quad n = 1, 2, 3, \ldots, \inft
 <div class="section" id="problem-3-shooting-method">
 <h2>Problem 3: shooting method<a class="headerlink" href="#problem-3-shooting-method" title="Permalink to this headline">¶</a></h2>
 <p>Use the shooting method to solve the boundary value problem</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b232ba90-8bb7-41e0-9123-bef80c837bd2">
-<span class="eqno">(33)<a class="headerlink" href="#equation-b232ba90-8bb7-41e0-9123-bef80c837bd2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f21a0f9d-2f30-4ee9-a890-ca9ac1e705f9">
+<span class="eqno">(33)<a class="headerlink" href="#equation-f21a0f9d-2f30-4ee9-a890-ca9ac1e705f9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 y^{\prime\prime} - 4y = 0
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(1) = 3\)</span>. Find the initial value of <span class="math notranslate nohighlight">\(y'\)</span> (meaning, <span class="math notranslate nohighlight">\(y'(0)\)</span>) that satisfies the given boundary conditions. Use the forward Euler method with a step size of <span class="math notranslate nohighlight">\(\Delta x = 0.5\)</span>.</p>
 <div class="section" id="id2">
 <h3>Solution<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>First decompose into two 1st-order ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fadaf2b2-10ac-483b-8fd7-1c8a0385ffc0">
-<span class="eqno">(34)<a class="headerlink" href="#equation-fadaf2b2-10ac-483b-8fd7-1c8a0385ffc0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d1367dc6-0f9b-40f4-a8be-3196ac1750de">
+<span class="eqno">(34)<a class="headerlink" href="#equation-d1367dc6-0f9b-40f4-a8be-3196ac1750de" title="Permalink to this equation">¶</a></span>\[\begin{align}
 z_1' &amp;= y' = z_2 \\
 z_2' &amp;= y'' = 4 z_1
 \end{align}\]</div>
 <p>with BCs <span class="math notranslate nohighlight">\(z_1 (x=0) = z_{1,1} = 0\)</span> and <span class="math notranslate nohighlight">\(z_1(x=1) = z_{1,3} = 3\)</span>, we do not know <span class="math notranslate nohighlight">\(y'(0) = z_2(x=0) = z_{2,1} = ?\)</span></p>
 <p>Try some guess #1: <span class="math notranslate nohighlight">\(y' (0) = 0 = z_2 (0)\)</span>, with the forward Euler method:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f776ca1b-8c3d-421b-9ab3-896ad1fad338">
-<span class="eqno">(35)<a class="headerlink" href="#equation-f776ca1b-8c3d-421b-9ab3-896ad1fad338" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a28b53f0-1184-4be0-a797-9f0e35aa2adb">
+<span class="eqno">(35)<a class="headerlink" href="#equation-a28b53f0-1184-4be0-a797-9f0e35aa2adb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 z_{1,2} = z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 0 \\
 z_{2,2} = z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
 z_{1,3} = z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 0 \leftarrow \text{solution 1} \\
@@ -507,8 +505,8 @@ z_{2,3} = z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
 \end{align}\]</div>
 <p>so for solution 1: <span class="math notranslate nohighlight">\(y(1) = 0 \neq 3\)</span>.</p>
 <p>For guess #2: <span class="math notranslate nohighlight">\(y' (0) = 2 = z_2 (0)\)</span>, with the forward Euler method:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65e8daf2-f160-47c7-99a7-df182356325c">
-<span class="eqno">(36)<a class="headerlink" href="#equation-65e8daf2-f160-47c7-99a7-df182356325c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9df91d04-3c4d-40d1-8ab8-abff17400cba">
+<span class="eqno">(36)<a class="headerlink" href="#equation-9df91d04-3c4d-40d1-8ab8-abff17400cba" title="Permalink to this equation">¶</a></span>\[\begin{align}
 z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.0 \\
 z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 2.0 \\
 z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \leftarrow \text{solution 2} \\
@@ -516,14 +514,14 @@ z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 4.0
 \end{align}\]</div>
 <p>so for solution 1: <span class="math notranslate nohighlight">\(y(1) = 2 \neq 3\)</span>.</p>
 <p>For guess #3, we can interpolate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35f87f90-28be-40f2-b34c-b413a7b73c82">
-<span class="eqno">(37)<a class="headerlink" href="#equation-35f87f90-28be-40f2-b34c-b413a7b73c82" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b671e384-3034-470b-85d7-ee4fe5d76d2b">
+<span class="eqno">(37)<a class="headerlink" href="#equation-b671e384-3034-470b-85d7-ee4fe5d76d2b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 m &amp;= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{solution 2}} = \frac{0 - 2}{0 - 2} = 1 \\
 \text{guess 3} &amp;= \text{guess 2} + m (\text{target} - \text{solution 2}) = 2 + 1(3-2) = 3
 \end{align}\]</div>
 <p>then, use this guess:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28a44a59-c0d4-4700-b7b9-0d4f14f65849">
-<span class="eqno">(38)<a class="headerlink" href="#equation-28a44a59-c0d4-4700-b7b9-0d4f14f65849" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b271708-b941-4ba0-95f2-ab12735d15a8">
+<span class="eqno">(38)<a class="headerlink" href="#equation-0b271708-b941-4ba0-95f2-ab12735d15a8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.5 \\
 z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 3.0 \\
 z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \leftarrow \text{solution 3} \\
@@ -531,9 +529,6 @@ z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
 \end{align}\]</div>
 <p>so for solution 3: <span class="math notranslate nohighlight">\(y(1) = 3\)</span> which is the target.</p>
 <p>So our answer is <span class="math notranslate nohighlight">\(y'(0) = 3\)</span>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>

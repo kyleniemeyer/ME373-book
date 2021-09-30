@@ -9,12 +9,11 @@ r \frac{d^2 T}{dr^2} + \frac{dT}{dr} - rm^2 (T - T_{\infty}) = 0 \;,
 where $r$ is the radial distance from the centerline (the independent
 variable) and $m^2$ is a constant that depends on the heat transfer coefficient, thermal conductivity, and thickness of the annulus. Assuming we choose a spatial step size $\Delta r$,
 
-<figure>
-  <center>
-  <img src="../images/annular-fin.png" alt="Annular fin" style="width: 400px;"/>
-  <figcaption>Figure: Annular fin</figcaption>
-  </center>
-</figure>
+:::{figure-md} markdown-fig
+<img src="../../images/annular-fin.png" alt="Annular fin" class="bg-primary mb-1" width="400px">
+
+Annular fin
+:::
 
 a.) Write the finite-difference representation of the ODE (that applies at a location $r_i$), using central differences.
 
@@ -138,7 +137,3 @@ z_2 (1.0) &= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
 so for solution 3: $y(1) = 3$ which is the target. 
 
 So our answer is $y'(0) = 3$.
-
-```python
-
-```
