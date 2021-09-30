@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Quiz 3 problems: BVPs &#8212; Mechanical Engineering Methods notes</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contributing to Jupyter Book" href="../contributing.html" />
+    <link rel="prev" title="Sample Quiz 2 problems: IVPs" href="quiz2-IVPs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../second-order/second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/quizzes/quiz3-BVPs.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/kyleniemeyer/ME373-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/quizzes/quiz3-BVPs.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/kyleniemeyer/ME373-book/edit/master/content/quizzes/quiz3-BVPs.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-1-finite-difference-method">
+   Problem 1: Finite difference method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution">
+     Solution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2-eigenvalue">
+   Problem 2: eigenvalue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Solution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3-shooting-method">
+   Problem 3: shooting method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Solution
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sample-quiz-3-problems-bvps">
+<h1>Sample Quiz 3 problems: BVPs<a class="headerlink" href="#sample-quiz-3-problems-bvps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="problem-1-finite-difference-method">
+<h2>Problem 1: Finite difference method<a class="headerlink" href="#problem-1-finite-difference-method" title="Permalink to this headline">¶</a></h2>
+<p>The temperature distribution <span class="math notranslate nohighlight">\(T(r)\)</span> in an annular fin of inner radius <span class="math notranslate nohighlight">\(r_1\)</span> and outer radius <span class="math notranslate nohighlight">\(r_2\)</span> is described by the equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9c32043b-0a25-4756-a71f-98cbfb0d919d">
+<span class="eqno">(24)<a class="headerlink" href="#equation-9c32043b-0a25-4756-a71f-98cbfb0d919d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+r \frac{d^2 T}{dr^2} + \frac{dT}{dr} - rm^2 (T - T_{\infty}) = 0 \;,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the radial distance from the centerline (the independent
+variable) and <span class="math notranslate nohighlight">\(m^2\)</span> is a constant that depends on the heat transfer coefficient, thermal conductivity, and thickness of the annulus. Assuming we choose a spatial step size <span class="math notranslate nohighlight">\(\Delta r\)</span>,</p>
+<figure>
+  <center>
+  <img src="../images/annular-fin.png" alt="Annular fin" style="width: 400px;"/>
+  <figcaption>Figure: Annular fin</figcaption>
+  </center>
+</figure>
+<p>a.) Write the finite-difference representation of the ODE (that applies at a location <span class="math notranslate nohighlight">\(r_i\)</span>), using central differences.</p>
+<p>b.) Based on the last part, write the recursion formula.</p>
+<p>c.) The boundary condition at the outer radius <span class="math notranslate nohighlight">\(r = r_2\)</span> is described by convection heat transfer:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-360e3a55-6da4-4645-bf0e-f559fbb8c622">
+<span class="eqno">(25)<a class="headerlink" href="#equation-360e3a55-6da4-4645-bf0e-f559fbb8c622" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+-k \left. \frac{dT}{dr} \right|_{r=r_2} = h \left[ T(r=r_2) - T_{\infty} \right] \;.
+\end{equation}\]</div>
+<p>Write the boundary condition at <span class="math notranslate nohighlight">\(r = r_2\)</span> in recursion form (i.e., the equation you would implement into your system of equations to solve for temperature).</p>
+<div class="section" id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
+<p>a.) Replace the derivatives in the given ODE with finite differences, and replace any locations with the <span class="math notranslate nohighlight">\(i\)</span> location:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-732fcbf7-beb5-4e02-a36e-777a2212240f">
+<span class="eqno">(26)<a class="headerlink" href="#equation-732fcbf7-beb5-4e02-a36e-777a2212240f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+r_i \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta r^2} + \frac{T_{i+1} - T_{i-1}}{2\Delta r} - r_i m^2 (T_i - T_{\infty}) = 0
+\end{equation}\]</div>
+<p>or</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5894ac55-c651-427a-b866-26a9dfe2868b">
+<span class="eqno">(27)<a class="headerlink" href="#equation-5894ac55-c651-427a-b866-26a9dfe2868b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) = 0
+\end{equation}\]</div>
+<p>b.) Rearrange and combine terms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ace5bfd6-1ca1-45a7-b268-3b6dfd791593">
+<span class="eqno">(28)<a class="headerlink" href="#equation-ace5bfd6-1ca1-45a7-b268-3b6dfd791593" title="Permalink to this equation">¶</a></span>\[\begin{align}
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 (T_i - T_{\infty}) &amp;= 0 \\
+r_i (T_{i-1} - 2T_i + T_{i+1}) + \frac{\Delta r}{2} (T_{i+1} - T_{i-1}) - r_i m^2 \Delta r^2 T_i &amp;= -r_i m^2 \Delta r^2 T_{\infty} \\
+\left(r_i - \frac{\Delta r}{2}\right) T_{i-1} + \left( -2 r_i - r_i m^2 \Delta r^2 \right) T_i + \left( r_i + \frac{\Delta r}{2} \right) T_{i+1} &amp;= -r_i m^2 \Delta r^2 T_{\infty}
+\end{align}\]</div>
+<p>c.) We can use a backward difference to approximate the <span class="math notranslate nohighlight">\(dT/dr\)</span> term. <span class="math notranslate nohighlight">\(T_n\)</span> represents the temperature at node <span class="math notranslate nohighlight">\(n\)</span> where <span class="math notranslate nohighlight">\(r_n = r_2\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-98f4a748-d900-4cbe-8259-7bff0abe26c9">
+<span class="eqno">(29)<a class="headerlink" href="#equation-98f4a748-d900-4cbe-8259-7bff0abe26c9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+-k \frac{T_n - T_{n-1}}{\Delta r} &amp;= h (T_n - T_{\infty}) \\
+-k (T_n - T_{n-1}) &amp;= h \Delta r (T_n - T_{\infty}) \\
+k T_{n-1} - (k + h\Delta r) T_n &amp;= -h \Delta r T_{\infty}
+\end{align}\]</div>
+</div>
+</div>
+<div class="section" id="problem-2-eigenvalue">
+<h2>Problem 2: eigenvalue<a class="headerlink" href="#problem-2-eigenvalue" title="Permalink to this headline">¶</a></h2>
+<p>Given the equation <span class="math notranslate nohighlight">\(y^{\prime\prime} + 9 \lambda^2 y = 0\)</span> with <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(2) = 0\)</span>,</p>
+<p>a.) Find the expression that gives all eigenvalues (<span class="math notranslate nohighlight">\(\lambda\)</span>). What is the eigenfunction?</p>
+<p>b.) Calculate the principal eigenvalue.</p>
+<div class="section" id="id1">
+<h3>Solution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>a.)</p>
+<div class="amsmath math notranslate nohighlight" id="equation-92985dd9-42b4-4b5c-990e-b8bb87e12020">
+<span class="eqno">(30)<a class="headerlink" href="#equation-92985dd9-42b4-4b5c-990e-b8bb87e12020" title="Permalink to this equation">¶</a></span>\[\begin{gather}
+y(x) = A \sin (3 \lambda x) + B \cos (3 \lambda x) \\
+\text{Apply BCs: } y(x=0) = 0 = A \sin(0) + B \cos(0) = B \\
+\therefore B = 0 \\
+y(x) = A \sin (3 \lambda x) \\
+y(x=2) = 0 = A \sin (3 \lambda 2) \\
+A \neq 0 \text{ so } \sin(3 \lambda 2) = \sin(6 \lambda) = 0 \therefore 6 \lambda = n \pi \quad n=1,2,3,\ldots \\
+\lambda = \frac{n \pi}{6} \quad n=1,2,3,\ldots,\infty
+\end{gather}\]</div>
+<p>The eigenfunction is then the solution function associated with an eigenvalue:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-22884ede-b11e-4e64-9fa4-ef25f39d4d38">
+<span class="eqno">(31)<a class="headerlink" href="#equation-22884ede-b11e-4e64-9fa4-ef25f39d4d38" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_n = A_n \sin \left( \frac{n \pi x}{2} \right) \quad n = 1, 2, 3, \ldots, \infty
+\end{equation}\]</div>
+<p>b.) The principal eigenvalue is just that associated with <span class="math notranslate nohighlight">\(n = 1\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a050fed1-299e-4edf-aad8-3ef6dd2b45b7">
+<span class="eqno">(32)<a class="headerlink" href="#equation-a050fed1-299e-4edf-aad8-3ef6dd2b45b7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\lambda_p = \lambda_1 = \frac{\pi}{6}
+\end{equation}\]</div>
+</div>
+</div>
+<div class="section" id="problem-3-shooting-method">
+<h2>Problem 3: shooting method<a class="headerlink" href="#problem-3-shooting-method" title="Permalink to this headline">¶</a></h2>
+<p>Use the shooting method to solve the boundary value problem</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b232ba90-8bb7-41e0-9123-bef80c837bd2">
+<span class="eqno">(33)<a class="headerlink" href="#equation-b232ba90-8bb7-41e0-9123-bef80c837bd2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y^{\prime\prime} - 4y = 0
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(1) = 3\)</span>. Find the initial value of <span class="math notranslate nohighlight">\(y'\)</span> (meaning, <span class="math notranslate nohighlight">\(y'(0)\)</span>) that satisfies the given boundary conditions. Use the forward Euler method with a step size of <span class="math notranslate nohighlight">\(\Delta x = 0.5\)</span>.</p>
+<div class="section" id="id2">
+<h3>Solution<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>First decompose into two 1st-order ODEs:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fadaf2b2-10ac-483b-8fd7-1c8a0385ffc0">
+<span class="eqno">(34)<a class="headerlink" href="#equation-fadaf2b2-10ac-483b-8fd7-1c8a0385ffc0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+z_1' &amp;= y' = z_2 \\
+z_2' &amp;= y'' = 4 z_1
+\end{align}\]</div>
+<p>with BCs <span class="math notranslate nohighlight">\(z_1 (x=0) = z_{1,1} = 0\)</span> and <span class="math notranslate nohighlight">\(z_1(x=1) = z_{1,3} = 3\)</span>, we do not know <span class="math notranslate nohighlight">\(y'(0) = z_2(x=0) = z_{2,1} = ?\)</span></p>
+<p>Try some guess #1: <span class="math notranslate nohighlight">\(y' (0) = 0 = z_2 (0)\)</span>, with the forward Euler method:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f776ca1b-8c3d-421b-9ab3-896ad1fad338">
+<span class="eqno">(35)<a class="headerlink" href="#equation-f776ca1b-8c3d-421b-9ab3-896ad1fad338" title="Permalink to this equation">¶</a></span>\[\begin{align}
+z_{1,2} = z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 0 \\
+z_{2,2} = z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 0 \\
+z_{1,3} = z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 0 \leftarrow \text{solution 1} \\
+z_{2,3} = z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 0
+\end{align}\]</div>
+<p>so for solution 1: <span class="math notranslate nohighlight">\(y(1) = 0 \neq 3\)</span>.</p>
+<p>For guess #2: <span class="math notranslate nohighlight">\(y' (0) = 2 = z_2 (0)\)</span>, with the forward Euler method:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-65e8daf2-f160-47c7-99a7-df182356325c">
+<span class="eqno">(36)<a class="headerlink" href="#equation-65e8daf2-f160-47c7-99a7-df182356325c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.0 \\
+z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 2.0 \\
+z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 2.0 \leftarrow \text{solution 2} \\
+z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 4.0
+\end{align}\]</div>
+<p>so for solution 1: <span class="math notranslate nohighlight">\(y(1) = 2 \neq 3\)</span>.</p>
+<p>For guess #3, we can interpolate:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-35f87f90-28be-40f2-b34c-b413a7b73c82">
+<span class="eqno">(37)<a class="headerlink" href="#equation-35f87f90-28be-40f2-b34c-b413a7b73c82" title="Permalink to this equation">¶</a></span>\[\begin{align}
+m &amp;= \frac{\text{guess 1} - \text{guess 2}}{\text{solution 1} - \text{solution 2}} = \frac{0 - 2}{0 - 2} = 1 \\
+\text{guess 3} &amp;= \text{guess 2} + m (\text{target} - \text{solution 2}) = 2 + 1(3-2) = 3
+\end{align}\]</div>
+<p>then, use this guess:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-28a44a59-c0d4-4700-b7b9-0d4f14f65849">
+<span class="eqno">(38)<a class="headerlink" href="#equation-28a44a59-c0d4-4700-b7b9-0d4f14f65849" title="Permalink to this equation">¶</a></span>\[\begin{align}
+z_1 (0.5) &amp;= z_1 (0) + z_2(0) 0.5 = 1.5 \\
+z_2 (0.5) &amp;= z_2 (0) + \left( 4z_1(0) \right) 0.5 = 3.0 \\
+z_1 (1.0) &amp;= z_1 (0.5) + z_2(0.5) 0.5 = 3.0 \leftarrow \text{solution 3} \\
+z_2 (1.0) &amp;= z_2 (0.5) + \left( 4z_1(0.5) \right) 0.5 = 6.0
+\end{align}\]</div>
+<p>so for solution 3: <span class="math notranslate nohighlight">\(y(1) = 3\)</span> which is the target.</p>
+<p>So our answer is <span class="math notranslate nohighlight">\(y'(0) = 3\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/quizzes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="quiz2-IVPs.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Sample Quiz 2 problems: IVPs</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../contributing.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Contributing to Jupyter Book</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Kyle Niemeyer<br/>
+        
+          <div class="extra_footer">
+            <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

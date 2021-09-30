@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.3. Numerical Solutions of 1st-order ODEs &#8212; Mechanical Engineering Methods notes</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4. Stability and Stiffness" href="stability.html" />
+    <link rel="prev" title="2.2. Error" href="error.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../second-order/second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/content/numerical-methods/initial-value-methods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/kyleniemeyer/ME373-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/numerical-methods/initial-value-methods.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/kyleniemeyer/ME373-book/edit/master/content/numerical-methods/initial-value-methods.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/content/numerical-methods/initial-value-methods.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-euler-method">
+   2.3.1. Forward Euler method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heuns-method">
+   2.3.2. Heun’s method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midpoint-method">
+   2.3.3. Midpoint method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourth-order-rungekutta-method">
+   2.3.4. Fourth-order Runge–Kutta method
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="numerical-solutions-of-1st-order-odes">
+<h1><span class="section-number">2.3. </span>Numerical Solutions of 1st-order ODEs<a class="headerlink" href="#numerical-solutions-of-1st-order-odes" title="Permalink to this headline">¶</a></h1>
+<p>For numerically solving definite integrals (<span class="math notranslate nohighlight">\(\int_a^b f(x) dx\)</span>) we have methods like the trapezoidal rule and Simpson’s rule. When we need to solve 1st-order ODEs of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ed85ac1b-6faf-4024-b5d3-b3b9a565bfde">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-ed85ac1b-6faf-4024-b5d3-b3b9a565bfde" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y^{\prime} = \frac{dy}{dx} = f(x, y)
+\end{equation}\]</div>
+<p>for <span class="math notranslate nohighlight">\(y(x)\)</span>, we need other methods. All of them will work by starting at the initial conditions, and then using information provided by the ODE to march forward in the solution, based on an increment (i.e., step size) <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+<p>For example, let’s say we want to solve</p>
+<div class="amsmath math notranslate nohighlight" id="equation-528de6ec-850b-4f9c-bf4a-b43e607e92d8">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-528de6ec-850b-4f9c-bf4a-b43e607e92d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\frac{dy}{dx} = 4 x - \frac{2 y}{x} \;, \quad y(1) = 1
+\end{equation}\]</div>
+<p>This problem is fairly simple, and we can find the general and particular solutions to compare our numerical results against:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-af14ecc3-b901-4612-85b1-9cbe5241b9d7">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-af14ecc3-b901-4612-85b1-9cbe5241b9d7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\text{general: } y(x) &amp;= x^2 + \frac{x}{x^2} \\
+\text{particular: } y(x) &amp;= x^2
+\end{align}\]</div>
+<div class="section" id="forward-euler-method">
+<h2><span class="section-number">2.3.1. </span>Forward Euler method<a class="headerlink" href="#forward-euler-method" title="Permalink to this headline">¶</a></h2>
+<p>Recall that the derivative, <span class="math notranslate nohighlight">\(y^{\prime}\)</span>, is the same as the slope. At the starting point, <span class="math notranslate nohighlight">\((x,y) = (1,1)\)</span>, where <span class="math notranslate nohighlight">\(y^{\prime} = 2\)</span>, this looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">format</span><span class="w"> </span><span class="n">compact</span><span class="w"></span>
+<span class="c">%plot inline</span><span class="w"></span>
+
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="s">&#39;--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">([</span><span class="s">&#39;Solution&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s">&#39;Slope at start&#39;</span><span class="p">])</span><span class="w"></span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">off</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_1_0.png" src="../../_images/initial-value-methods_1_0.png" />
+</div>
+</div>
+<p>Remember that the slope, or derivative, is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-efe02135-86b6-4047-9137-010b89f3831a">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-efe02135-86b6-4047-9137-010b89f3831a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{slope} = \frac{\text{rise}}{\text{run}} = \frac{\Delta y}{\Delta x}
+\end{equation}\]</div>
+<p>Let’s consider the initial condition—the starting point—as <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, and the next point in our numerical solution is <span class="math notranslate nohighlight">\((x_{i+1}, y_{i+1})\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> represents an index starting at 1 and ending at the number of steps <span class="math notranslate nohighlight">\(N\)</span>. Our step size is then <span class="math notranslate nohighlight">\(\Delta x = x_{i+1} - x_i\)</span>.</p>
+<p>Based on our (very simple) approximation to the first derivative based on slope, we can relate the derivative to our two points:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c2fccd51-8ca2-4623-9c50-f9a4f699d903">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-c2fccd51-8ca2-4623-9c50-f9a4f699d903" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\left(\frac{dy}{dx}\right)_{i} = \frac{y_{i+1} - y_i}{x_{i+1} - x_i} = \frac{y_{i+1} - y_i}{\Delta x}
+\end{equation}\]</div>
+<p>Then, solve this for our unknown:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b66d4883-e7c9-4e28-a5df-bb414749dba5">
+<span class="eqno">(2.10)<a class="headerlink" href="#equation-b66d4883-e7c9-4e28-a5df-bb414749dba5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y_{i+1} = y_i + \left(\frac{dy}{dx}\right)_i \Delta x
+\end{equation}\]</div>
+<p>This is the <strong>Forward Euler method</strong>.</p>
+<p>Based on a given step size <span class="math notranslate nohighlight">\(\Delta x\)</span>, we’ll use this formula (called a <em>recursion</em> formula) to march forward and obtain the full solution over given <span class="math notranslate nohighlight">\(x\)</span> domain. That will look something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">x_exact</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">);</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+
+<span class="c">% our derivative function, dy/dx</span><span class="w"></span>
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">;</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MarkerFaceColor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="nb">legend</span><span class="p">([</span><span class="s">&#39;Exact solution&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s">&#39;Numerical solution&#39;</span><span class="p">],</span><span class="w"> </span><span class="s">&#39;Location&#39;</span><span class="p">,</span><span class="s">&#39;northwest&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">hold</span><span class="w"> </span><span class="n">off</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_3_0.png" src="../../_images/initial-value-methods_3_0.png" />
+</div>
+</div>
+<p>Another way to obtain the recursion formula for the Forward Euler method is to use a Taylor series expansion.
+Recall that for well-behaved functions, the Taylor series expansion says</p>
+<div class="amsmath math notranslate nohighlight" id="equation-72e9d86c-34b6-44a4-b84e-949a46bc6ca5">
+<span class="eqno">(2.11)<a class="headerlink" href="#equation-72e9d86c-34b6-44a4-b84e-949a46bc6ca5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y(x + \Delta x) = y(x) + \Delta x y^{\prime}(x) + \frac{1}{2} \Delta x^2 y^{\prime\prime}(x) + \frac{1}{3!} \Delta x^3 y^{\prime\prime\prime}(x) \dots \;.
+\end{equation}\]</div>
+<p>This is exact for an infinite series. We can apply this formula to our (unknown) solution <span class="math notranslate nohighlight">\(y_i\)</span> and cut off the terms of order <span class="math notranslate nohighlight">\(\Delta x^2\)</span> and higher; the derivative <span class="math notranslate nohighlight">\(y^{\prime}\)</span> is given by our original ODE.
+This gives us the same recursion formula as above:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4935fd42-8c13-44c9-8165-21cd47eedde4">
+<span class="eqno">(2.12)<a class="headerlink" href="#equation-4935fd42-8c13-44c9-8165-21cd47eedde4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\therefore y_{i+1} \approx y_i + \left( \frac{dy}{dx}\right)_i \Delta x
+\end{equation}\]</div>
+<p>where we can now see that we are introducing some error on the order of <span class="math notranslate nohighlight">\(\Delta x^2\)</span> at each step. This is the <em>local truncation error</em>. The <em>global error</em> is the accumulation of error over all the steps, and is on the order of <span class="math notranslate nohighlight">\(\Delta x\)</span>. Thus, the Forward Euler method is a <strong>first-order</strong> method, because its global error is on the order of the step size to the first power: error <span class="math notranslate nohighlight">\(\sim \mathcal{O}(\Delta x)\)</span>.</p>
+<p>Forward Euler is also an <strong>explicit</strong> method, because its recursion formula is explicity defined for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>. (You’ll see when that may not be the case soon.)</p>
+<p>In general, for an <span class="math notranslate nohighlight">\(n\)</span>th-order method:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d37f0a33-11cc-4474-9ac9-fc1f601a666f">
+<span class="eqno">(2.13)<a class="headerlink" href="#equation-d37f0a33-11cc-4474-9ac9-fc1f601a666f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\text{local error } &amp;\sim \mathcal{O}(\Delta x^{n+1}) \\
+\text{global error } &amp;\sim \mathcal{O}(\Delta x^{n})
+\end{align}\]</div>
+<p>(This only applies for <span class="math notranslate nohighlight">\(\Delta x &lt; 1\)</span>; in cases where you have a <span class="math notranslate nohighlight">\(\Delta x &gt; 1\)</span>, you should nondimensionalize the problem based on the domain size such that <span class="math notranslate nohighlight">\(0 \leq x \leq 1\)</span>.)</p>
+<p>Applying the Forward Euler method then requires:</p>
+<ol class="simple">
+<li><p>Have a given first-order ODE: <span class="math notranslate nohighlight">\(\frac{dy}{dx} = y^{\prime} = f(x,y)\)</span>. Complex and/or nonlinear problems are fine!</p></li>
+<li><p>Specify the step size <span class="math notranslate nohighlight">\(\Delta x\)</span> (or <span class="math notranslate nohighlight">\(\Delta t\)</span>).</p></li>
+<li><p>Specify the domain over which to integrate: <span class="math notranslate nohighlight">\(x_1 \leq x \leq x_n\)</span></p></li>
+<li><p>Specify the initial condition: <span class="math notranslate nohighlight">\(y(x=x_1) = y_1\)</span></p></li>
+</ol>
+<p>Let’s do another example:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eb1bc76d-9441-4dad-9282-9399eaf2e41e">
+<span class="eqno">(2.14)<a class="headerlink" href="#equation-eb1bc76d-9441-4dad-9282-9399eaf2e41e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y^{\prime} = 8 e^{-x}(1+x) - 2y
+\end{equation}\]</div>
+<p>with the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>, and the domain <span class="math notranslate nohighlight">\(0 \leq x \leq 7\)</span>. This is a linear 1st-order ODE that we can find the analytical solution for comparison:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ec0e6e47-5c64-40e6-a194-0ed4b79c0bda">
+<span class="eqno">(2.15)<a class="headerlink" href="#equation-ec0e6e47-5c64-40e6-a194-0ed4b79c0bda" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+y(x) = e^{-2x} (8 x e^x + 1)
+\end{equation}\]</div>
+<p>To solve, we’ll create an anonymous function for the derivative and then incorporate that into our Forward Euler code. We’ll start with <span class="math notranslate nohighlight">\(\Delta x = 0.2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"></span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">% Forward Euler loop</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">.*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">);</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Forward Euler solution&#39;</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_6_0.png" src="../../_images/initial-value-methods_6_0.png" />
+</div>
+</div>
+<p>Notice the visible error in that plot, which is between 0.2–0.25, or in other words <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x)\)</span>.</p>
+<p>How can we reduce the error? Just like with the trapezoidal rule, we have two main options:</p>
+<ul class="simple">
+<li><p>Reduce the step size <span class="math notranslate nohighlight">\(\Delta x\)</span></p></li>
+<li><p>Choose a higher-order (i.e., more accurate) method</p></li>
+</ul>
+<p>The downside to reducing <span class="math notranslate nohighlight">\(\Delta x\)</span> is the increased number of steps we then have to take, which may make the solution too computationally expensive. A more-accurate method would have less error per step, which might allow us to use the same <span class="math notranslate nohighlight">\(\Delta x\)</span> but get a better solution. Let’s next consider some better methods.</p>
+</div>
+<div class="section" id="heuns-method">
+<h2><span class="section-number">2.3.2. </span>Heun’s method<a class="headerlink" href="#heuns-method" title="Permalink to this headline">¶</a></h2>
+<p>Heun’s method is a <strong>predictor-corrector</strong> method; these work by <em>predicting</em> a solution at some intermediate location and then using that information to get a better overall answer at the next location (<em>correcting</em>). Heun’s uses the Forward Euler method to predict the solution at <span class="math notranslate nohighlight">\(x_{i+1}\)</span>, then uses the average of the slopes at <span class="math notranslate nohighlight">\(y_i\)</span> and the predicted <span class="math notranslate nohighlight">\(y_{i+1}\)</span> to get a better overall answer for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-aab68edc-a190-4eff-bbde-b912ba473b23">
+<span class="eqno">(2.16)<a class="headerlink" href="#equation-aab68edc-a190-4eff-bbde-b912ba473b23" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\text{predictor: } y_{i+1}^p &amp;= y_i + \Delta x f(x_i, y_i) \\
+\text{corrector: } y_{i+1} &amp;= y_i + \frac{\Delta x}{2} \left( f(x_i, y_i) + f(x_{i+1}, y_{i+1}^p) \right)
+\end{align}\]</div>
+<p>Heun’s method is second-order accurate, meaning the global error is <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x^2)\)</span> and explicit.</p>
+<p>Let’s see this method in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"></span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">% Heun&#39;s method loop</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">y_p</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">y_p</span><span class="p">));</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">.*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">);</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Heun&#39;s method solution&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %5.3f&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">y_exact</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error: 0.055
+</pre></div>
+</div>
+<img alt="../../_images/initial-value-methods_8_1.png" src="../../_images/initial-value-methods_8_1.png" />
+</div>
+</div>
+<p>Notice how the error is visibly smaller than for the Forward Euler method–the maximum error is around 0.05, which is very close to <span class="math notranslate nohighlight">\(\Delta x^2 = 0.04\)</span>.</p>
+</div>
+<div class="section" id="midpoint-method">
+<h2><span class="section-number">2.3.3. </span>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">¶</a></h2>
+<p>The midpoint method, also known as the modified Euler method, is another predictor-corrector method, that instead predicts the solution at the midpoint (<span class="math notranslate nohighlight">\(x + \Delta x/2\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f73749a1-aeaf-48b8-88b5-8a2ab902b8fa">
+<span class="eqno">(2.17)<a class="headerlink" href="#equation-f73749a1-aeaf-48b8-88b5-8a2ab902b8fa" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y_{i + \frac{1}{2}} &amp;= y_i + \frac{\Delta x}{2} f(x_i, y_i) \\
+y_{i+1} &amp;= y_i + \Delta x f \left( x_{i+\frac{1}{2}} , y_{i + \frac{1}{2}} \right)
+\end{align}\]</div>
+<p>Like Heun’s method, the midpoint method is explicit and second-order accurate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"></span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">% midpoint method loop</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">y_half</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y_half</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">.*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">);</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Midpoint method solution&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %5.3f&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">y_exact</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error: 0.050
+</pre></div>
+</div>
+<img alt="../../_images/initial-value-methods_10_1.png" src="../../_images/initial-value-methods_10_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="fourth-order-rungekutta-method">
+<h2><span class="section-number">2.3.4. </span>Fourth-order Runge–Kutta method<a class="headerlink" href="#fourth-order-rungekutta-method" title="Permalink to this headline">¶</a></h2>
+<p>Runge–Kutta methods are a family of methods that use one or more stages; the methods we have discussed so far (Forward Euler, Heun’s, and midpoint) actually all fall in this family. There is also a popular fourth-order method: the <strong>fourth-order Runge–Kutta method</strong> (RK4). This uses four stages to get a more accurate solution:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5f8aeab8-6f9e-414f-9131-1720a4efac03">
+<span class="eqno">(2.18)<a class="headerlink" href="#equation-5f8aeab8-6f9e-414f-9131-1720a4efac03" title="Permalink to this equation">¶</a></span>\[\begin{align}
+y_{i+1} &amp;= y_i + \frac{\Delta x}{6} (k_1 + 2 k_2 + 2 k_3 + k_4) \\
+k_1 &amp;= f(x_i, y_i) \\
+k_2 &amp;= f \left( x_i + \frac{\Delta x}{2}, y_i + \frac{\Delta x}{2} k_1 \right) \\
+k_3 &amp;= f \left( x_i + \frac{\Delta x}{2}, y_i + \frac{\Delta x}{2} k_2 \right) \\
+k_4 &amp;= f \left( x_i + \Delta x, y_i + \Delta x \, k_3 \right)
+\end{align}\]</div>
+<p>This method is explicit and fourth-order accurate: error <span class="math notranslate nohighlight">\(\sim \mathcal{O}(\Delta x^4)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"></span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">dx</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span><span class="w"></span>
+<span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dx</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w"></span>
+<span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"></span>
+<span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="c">% 4th-order Runge-Kutta method loop</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">k1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">k2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">k1</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">k3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">k2</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">k4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dx</span><span class="o">*</span><span class="n">k3</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">dx</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">k1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">k3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k4</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">.*</span><span class="n">x</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;RK4 solution&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %6.4f&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_exact</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span><span class="p">)))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error: 0.0004
+</pre></div>
+</div>
+<img alt="../../_images/initial-value-methods_12_1.png" src="../../_images/initial-value-methods_12_1.png" />
+</div>
+</div>
+<p>The maximum error (0.0004) is actually a bit smaller than <span class="math notranslate nohighlight">\(\Delta x^4 = 0.0016\)</span>, but approximately the same order of magnitude.</p>
+<p>Matlab also offers a built-in RK4 integrator: <code class="docutils literal notranslate"><span class="pre">ode45</span></code>. (It is actually slightly more complicated than the equations shown just now, because it automatically adjusts the step size <span class="math notranslate nohighlight">\(\Delta x\)</span> to control error.) You can call this function with the syntax:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[X, Y] = ode45(function_name, [x_start x_end], [IC]);
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">function_name</span></code> is the name of a function that provides the derivative (this can be a regular function given in a file, or an anonymous function); <code class="docutils literal notranslate"><span class="pre">[x_start</span> <span class="pre">x_end]</span></code> provides the domain of integration (<span class="math notranslate nohighlight">\(x_{\text{start}} \leq x \leq x_{\text{end}}\)</span>), and <code class="docutils literal notranslate"><span class="pre">[IC]</span></code> provides the initial condition <span class="math notranslate nohighlight">\(y(x=x_{\text{start}})\)</span>.</p>
+<p>For example, let’s use this and compare with our exact solution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="nb">clear</span><span class="w"></span>
+
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+
+<span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ode45</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">7</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+
+<span class="n">x_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="n">y_exact</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">@(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">.*</span><span class="n">x</span><span class="p">)</span><span class="o">.*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">.*</span><span class="nb">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span><span class="w"> </span><span class="n">y_exact</span><span class="p">(</span><span class="n">x_exact</span><span class="p">));</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="w"></span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;o--&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Exact solution&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ode45 solution&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;Maximum error: %6.4f&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">y_exact</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y</span><span class="p">)))</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error: 0.0007
+</pre></div>
+</div>
+<img alt="../../_images/initial-value-methods_14_1.png" src="../../_images/initial-value-methods_14_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "matlab"
+        },
+        kernelOptions: {
+            kernelName: "matlab",
+            path: "./content/numerical-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'matlab'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="error.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">2.2. </span>Error</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="stability.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">2.4. </span>Stability and Stiffness</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Kyle Niemeyer<br/>
+        
+          <div class="extra_footer">
+            <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
