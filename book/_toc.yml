@@ -1,0 +1,46 @@
+
+root: content/intro
+format: jb-book
+
+parts:
+- caption: Ordinary Differential Equations
+  numbered: True
+  chapters:
+  - file: content/first-order
+  - file: content/numerical-methods/numerical-methods
+    sections:
+    - file: content/numerical-methods/integrals
+    - file: content/numerical-methods/error
+    - file: content/numerical-methods/initial-value-methods
+    - file: content/numerical-methods/stability
+  - file: content/second-order/second-order
+    sections:
+    - file: content/second-order/analytical
+    - file: content/second-order/initial-value-problems
+    - file: content/second-order/numerical-methods
+    - file: content/second-order/fourier-series
+    - file: content/second-order/power-series
+  - file: content/bvps/boundary-value-problems
+    sections:
+    - file: content/bvps/shooting-method
+    - file: content/bvps/finite-difference
+    - file: content/bvps/eigenvalue
+
+- caption: Partial Differential Equations
+  numbered: True
+  chapters:
+  - file: content/pdes/partial-differential-equations
+    sections:
+    - file: content/pdes/elliptic
+    - file: content/pdes/parabolic
+
+- caption: Sample Quizzes
+  chapters:
+  - file: content/quizzes/quiz2-IVPs
+  - file: content/quizzes/quiz3-BVPs
+
+- caption: About
+  chapters:
+  - url: https://github.com/kyleniemeyer/ME373-book
+    title: GitHub repository
+  - file: content/contributing
