@@ -21,16 +21,19 @@ jobs:
     - name: Upgrade pip
       run: python3 -m pip install --upgrade pip setuptools wheel
 
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/freeze.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
+    # - name: Cache dependencies
+    #   uses: actions/cache@v3.2.0
+    #   with:
+    #     path: ~/.cache/pip
+    #     key: ${{ runner.os }}-pip-${{ hashFiles('**/freeze.txt') }}
+    #     restore-keys: ${{ runner.os }}-pip-
     
+    # - name: Install dependencies
+    #   run: |
+    #      python3 -m pip install --no-deps -r freeze.txt
     - name: Install dependencies
       run: |
-        python3 -m pip install --no-deps -r freeze.txt
+         python3 -m pip install -r requirements.txt
 
     # Build the book
     - name: Build the book
