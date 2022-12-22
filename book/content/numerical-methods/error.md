@@ -1,5 +1,7 @@
 # Error
 
+## Types of Error
+
 Applying the trapezoidal rule and Simpson's rule introduces the concept of **error** in numerical solutions.
 
 In our work so far, we have come across two obvious kinds of error, that we'll come back to later:
@@ -19,7 +21,7 @@ In any numerical solution, there are five main sources of error:
 
 5. Human error and machine error: there are many potential sources of error in any code. These can come from typos, human programming errors, errors in input data, or (more rarely) a pure machine error. Even textbooks, tables, and formulas may have errors.
 
-### Absolute and relative error
+## Absolute and relative error
 
 We can also differentiate between **absolute** and **relative** error in a quantity. If $y$ is an exact value and $\tilde{y}$ is an approximation to that value, then we have
 

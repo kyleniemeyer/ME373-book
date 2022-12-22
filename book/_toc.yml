@@ -44,3 +44,4 @@ parts:
   - url: https://github.com/kyleniemeyer/ME373-book
     title: GitHub repository
   - file: content/contributing
+  - file: content/zbibliography

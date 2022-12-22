@@ -1,2 +1,9 @@
+name: me373-book
+channels:
+  - conda-forge
 dependencies:
-- octave_kernel
+  - python=3.10
+  - jupyter-book
+  - numpy
+  - scipy
+  - matplotlib
