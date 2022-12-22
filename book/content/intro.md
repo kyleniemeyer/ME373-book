@@ -4,7 +4,7 @@
 
 This ebook contain material and example problems in numerical methods for engineering, in the format of Jupyter notebooks, developed to supplement the course ME 373, Mechanical Engineering Methods, taught in the [School of Mechanical, Industrial, and Manufacturing Engineering](https://mime.oregonstate.edu) at [Oregon State University](https://oregonstate.edu).
 
-All problems here use Python with the [SciPy](https://www.scipy.org) ecosystem of packages {cite:p}`2020SciPy-NMeth`.
+All problems here use Python with the [NumPy](https://numpy.org) {cite:p}`vanderWalt2011` and [SciPy](https://www.scipy.org) ecosystem of packages {cite:p}`2020SciPy-NMeth`.
 All artwork here is original.
 This interactive website is powered by [Jupyter Book](https://jupyterbook.org/).
 
