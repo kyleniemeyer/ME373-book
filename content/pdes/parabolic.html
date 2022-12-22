@@ -591,22 +591,22 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 </div>
 </div>
 <p>A classic example of a parabolic partial differential equation (PDE) is the one-dimensional unsteady heat equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52d24bcb-a6d7-4845-80c7-04ce1194e852">
-<span class="eqno">(5.25)<a class="headerlink" href="#equation-52d24bcb-a6d7-4845-80c7-04ce1194e852" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ee45b7f2-f3c3-4684-af6a-889a593700fc">
+<span class="eqno">(5.25)<a class="headerlink" href="#equation-ee45b7f2-f3c3-4684-af6a-889a593700fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial t^2} 
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T(x,t)\)</span> is the temperature varying in space and time, and <span class="math notranslate nohighlight">\(\alpha\)</span> is the thermal diffusivity: <span class="math notranslate nohighlight">\(\alpha = k / (\rho c_p)\)</span>, which is a constant.</p>
 <p>We can solve this using finite differences to represent the spatial derivatives and time derivatives separately.
 First, let’s rearrange the PDE slightly:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8115f5f0-5d07-49b5-be15-d19f0581ed5a">
-<span class="eqno">(5.26)<a class="headerlink" href="#equation-8115f5f0-5d07-49b5-be15-d19f0581ed5a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb9562d0-0eb4-41f1-8ae5-d3f0ebd96e84">
+<span class="eqno">(5.26)<a class="headerlink" href="#equation-bb9562d0-0eb4-41f1-8ae5-d3f0ebd96e84" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} = \frac{1}{\alpha} \frac{\partial T}{\partial t}
 \end{equation}\]</div>
 <section id="explicit-scheme">
 <h2><span class="section-number">5.2.1. </span>Explicit scheme<a class="headerlink" href="#explicit-scheme" title="Permalink to this headline">#</a></h2>
 <p>Let’s use a <em>central difference</em> for the spatial derivative with a spacing of <span class="math notranslate nohighlight">\(\Delta x\)</span>, and a <em>forward difference</em> for the time derivative with a time-step size of <span class="math notranslate nohighlight">\(\Delta t\)</span>. With these choices, we can obtain an approximation to the PDE that applies at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae8f0252-1e45-4b0a-9736-13bce1923131">
-<span class="eqno">(5.27)<a class="headerlink" href="#equation-ae8f0252-1e45-4b0a-9736-13bce1923131" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1c351bc-17de-4c28-982f-2d9bccdd3ecd">
+<span class="eqno">(5.27)<a class="headerlink" href="#equation-f1c351bc-17de-4c28-982f-2d9bccdd3ecd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{T_{i-1}^k - 2 T_i^k + T_{i+1}^k}{\Delta x^2} = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_i^k\)</span> is the temperature at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>. The following figure shows the stencil of points involved in the PDE applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>.</p>
@@ -618,19 +618,19 @@ First, let’s rearrange the PDE slightly:</p>
 </figure>
 <p>To solve the heat equation for a one-dimensional domain over <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span>, we will need both initial conditions at <span class="math notranslate nohighlight">\(t = 0\)</span> and boundary conditions at <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=L\)</span> (for all time). In terms of our nodal values, this means we need <span class="math notranslate nohighlight">\(T_i^{k=0}\)</span> for <span class="math notranslate nohighlight">\(i = 0, \ldots, n-1\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of points, as well as information about <span class="math notranslate nohighlight">\(T_1^k\)</span> and <span class="math notranslate nohighlight">\(T_n^k\)</span> for all times <span class="math notranslate nohighlight">\(k\)</span>.</p>
 <p>We can rearrange the above equation to obtain our recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4145d1fb-bc5c-44dc-bd36-45b8d508a004">
-<span class="eqno">(5.28)<a class="headerlink" href="#equation-4145d1fb-bc5c-44dc-bd36-45b8d508a004" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d00cfeb-671d-4be5-8b63-1542fd12dbea">
+<span class="eqno">(5.28)<a class="headerlink" href="#equation-8d00cfeb-671d-4be5-8b63-1542fd12dbea" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \frac{\alpha \Delta t}{\Delta x^2} + T_i^k  \left( 1 - 2 \frac{\alpha \Delta t}{\Delta x^2} \right) \;.
 \end{equation}\]</div>
 <p>This is an <strong>explicit</strong> scheme in time, similar to the Forward Euler method we used for ordinary differential equations, and like that method it may have stability issues. The combination of terms we see repeated is also known as the Fourier number: <span class="math notranslate nohighlight">\(\text{Fo} = \frac{\alpha \Delta t}{\Delta x^2}\)</span>, and governs the stability.
 We can rewrite the recursion formula using this:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ef751da-5106-41fa-9beb-1ff4fd3eeb43">
-<span class="eqno">(5.29)<a class="headerlink" href="#equation-8ef751da-5106-41fa-9beb-1ff4fd3eeb43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95fc748f-7ec4-4a54-ab87-6999cde55ecb">
+<span class="eqno">(5.29)<a class="headerlink" href="#equation-95fc748f-7ec4-4a54-ab87-6999cde55ecb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \text{Fo} + T_i^k  \left( 1 - 2 \text{Fo} \right) \;.
 \end{equation}\]</div>
 <p>The term in parentheses there must be greater than or equal to zero for stability (<span class="math notranslate nohighlight">\(1 - 2 \text{Fo} \geq 0\)</span>); if not, the solution may become unstable and blow up. This gives us some conditions on our choice of step sizes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a87b058-227b-4570-8e96-ccf980fde0bd">
-<span class="eqno">(5.30)<a class="headerlink" href="#equation-8a87b058-227b-4570-8e96-ccf980fde0bd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bdaa9c6c-74ce-4b91-b917-9b46ea8957a9">
+<span class="eqno">(5.30)<a class="headerlink" href="#equation-bdaa9c6c-74ce-4b91-b917-9b46ea8957a9" title="Permalink to this equation">#</a></span>\[\begin{align}
 1 - 2 \text{Fo} &amp;\geq 0 \\
 1 &amp; \geq 2 \text{Fo} \\
 \text{Fo} &amp;\leq \frac{1}{2} \\
@@ -640,8 +640,8 @@ T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \text{Fo} + T_i^k  \left( 1 - 2
 For a given thermal diffusivity and chosen spatial step size, this also gives us the limit on the time-step size: <span class="math notranslate nohighlight">\(\Delta t \leq \Delta x^2 / (2 \alpha)\)</span>.</p>
 <p>Let’s look at an example where the initial temperature is 200, the temperature at the boundaries are 50, the thermal diffusivity is <span class="math notranslate nohighlight">\(\alpha = 2.3 \times 10^{-1}\)</span> m<span class="math notranslate nohighlight">\(^2 /\)</span> s, and <span class="math notranslate nohighlight">\(L = 1\)</span>.
 In other words,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0533248d-a93a-49e7-875b-6111a7184a52">
-<span class="eqno">(5.31)<a class="headerlink" href="#equation-0533248d-a93a-49e7-875b-6111a7184a52" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c0167ab9-c068-4ba1-961d-ae28ed08b2e3">
+<span class="eqno">(5.31)<a class="headerlink" href="#equation-c0167ab9-c068-4ba1-961d-ae28ed08b2e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 T(x, t=0) &amp;= 200 \\
 T(x=0, t) &amp;= 50 \\
 T(x=L, t) &amp;= 50
@@ -794,8 +794,8 @@ plt.close()
 <h2><span class="section-number">5.2.2. </span>Implicit scheme<a class="headerlink" href="#implicit-scheme" title="Permalink to this headline">#</a></h2>
 <p>Recall that for solving initial value problems, when we ran into <a class="reference internal" href="../numerical-methods/stability.html"><span class="doc std std-doc">stability</span></a> issues using explicit methods like forward Euler, we could use the backward Euler method to solve a problem with any time-step size. This worked by evaluating the derivative at the future/next step, and rearranging to get a recursion formula.</p>
 <p>We can apply the same concept to parabolic PDEs like the unsteady heat equation, where the spatial derivatives are evaluated at the next time step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d5ee462a-af7d-48fa-953b-3464cb0dc6fd">
-<span class="eqno">(5.32)<a class="headerlink" href="#equation-d5ee462a-af7d-48fa-953b-3464cb0dc6fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed73172a-ffaa-493c-87f7-e0e1035093c6">
+<span class="eqno">(5.32)<a class="headerlink" href="#equation-ed73172a-ffaa-493c-87f7-e0e1035093c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{T_{i-1}^{k+1} - 2 T_i^{k+1} + T_{i+1}^{k+1}}{\Delta x^2} = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
 \end{equation}\]</div>
 <p>where, as before, <span class="math notranslate nohighlight">\(T_i^k\)</span> is the temperature at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>. The following figure shows the stencil of points involved in the finite difference equation, applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>.</p>
@@ -806,14 +806,14 @@ plt.close()
 </figcaption>
 </figure>
 <p>Following the same process as with the explicit method, we can  rearrange to get our recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c690441-e54a-4dfb-a548-c13b247c4431">
-<span class="eqno">(5.33)<a class="headerlink" href="#equation-4c690441-e54a-4dfb-a548-c13b247c4431" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1c212b3a-ed37-4b57-b04d-28aaa61b07f5">
+<span class="eqno">(5.33)<a class="headerlink" href="#equation-1c212b3a-ed37-4b57-b04d-28aaa61b07f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left( -\text{Fo} \right) T_{i-1}^{k+1} + \left(1 + 2 \text{Fo} \right) T_i^{k+1} + \left( -\text{Fo} \right) T_{i+1}^{k+1} = T_i^k \;.
 \end{equation}\]</div>
 <p>This is an <strong>implicit</strong> scheme in time, where the recursion formula involves more than one unknown.
 As a result, like with the backward Euler method, rather than simply calculating the new temperature at each location, we instead need to construct a system of equations to be solved simultaneously at each time step for all the locations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62a16f32-e82e-428a-bc83-91c1192dec58">
-<span class="eqno">(5.34)<a class="headerlink" href="#equation-62a16f32-e82e-428a-bc83-91c1192dec58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4580b0c2-5bc0-47cd-84f2-afbecf112a3e">
+<span class="eqno">(5.34)<a class="headerlink" href="#equation-4580b0c2-5bc0-47cd-84f2-afbecf112a3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A \mathbf{T}^{k+1} = \mathbf{T}^k = \mathbf{b} \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{T}^{k+1}\)</span> is the array of unknowns.
@@ -909,8 +909,8 @@ This is particularly an issue with the implicit method, since the linear algebra
 <p>Another option is to find a more-accurate method.
 The <strong>Crank-Nicolson method</strong> is second-order accurate in both space and time, and is also unconditionally stable.</p>
 <p>This method works by averaging the spatial derivatives at both the current and next points in time:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f1494cf-b0ea-4177-a0d5-110d4e329e1b">
-<span class="eqno">(5.35)<a class="headerlink" href="#equation-7f1494cf-b0ea-4177-a0d5-110d4e329e1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b3a78504-3979-4838-8029-288b650e5512">
+<span class="eqno">(5.35)<a class="headerlink" href="#equation-b3a78504-3979-4838-8029-288b650e5512" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{1}{2} \left( \frac{T_{i-1}^k - 2 T_i^k + T_{i+1}^k}{\Delta x^2} \right) + \frac{1}{2} \left( \frac{T_{i-1}^{k+1} - 2 T_i^{k+1} + T_{i+1}^{k+1}}{\Delta x^2} \right) = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
 \end{equation}\]</div>
 <p>The following figure shows the stencil of points involved in the finite difference equation, applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>, and involving six points:</p>
@@ -921,13 +921,13 @@ The <strong>Crank-Nicolson method</strong> is second-order accurate in both spac
 </figcaption>
 </figure>
 <p>We can  rearrange to get our recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7295859d-f68b-4f5c-81ae-790667b10d3a">
-<span class="eqno">(5.36)<a class="headerlink" href="#equation-7295859d-f68b-4f5c-81ae-790667b10d3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3851a99b-796f-4334-b5d5-36cf37f351e2">
+<span class="eqno">(5.36)<a class="headerlink" href="#equation-3851a99b-796f-4334-b5d5-36cf37f351e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 -\text{Fo} \, T_{i-1}^{k+1} + \left(2 + 2 \text{Fo} \right) T_i^{k+1} - \text{Fo} \, T_{i+1}^{k+1} = \text{Fo} \, T_{i-1}^k + \left( -2 \text{Fo} + 2 \right) T_i^k + \text{Fo} \, T_{i+1}^k \;.
 \end{equation}\]</div>
 <p>As with the first-order implicit scheme, each time step requires solving a simultaneous system of equations, which we can formulate as a linear algebra problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-088f2227-f215-447f-bea0-9f071db6a70a">
-<span class="eqno">(5.37)<a class="headerlink" href="#equation-088f2227-f215-447f-bea0-9f071db6a70a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-83589639-6a13-4fc5-a089-864a4d438204">
+<span class="eqno">(5.37)<a class="headerlink" href="#equation-83589639-6a13-4fc5-a089-864a4d438204" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A \mathbf{T}^{k+1} = B \mathbf{T}^k = \mathbf{b} \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{T}^{k+1}\)</span> is the array of unknowns.

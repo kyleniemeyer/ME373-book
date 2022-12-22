@@ -602,8 +602,8 @@ title="Print to PDF"
 In engineering we mostly focus (or want!) stable systems, although there are some interesting unstable systems such as those involving resonance, nonlinear dynamics, or chaos—generally we want to know when that happens so we can prevent it.</p>
 <p>We can also define the stability of a <em>numerical scheme</em>, which is when the numerical solution exhibits unphysical behavior. In other words, it blows up.</p>
 <p>For example, let’s consider the relatively simple 1st-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbdd366e-a61f-4b42-9fef-a713f641e397">
-<span class="eqno">(2.19)<a class="headerlink" href="#equation-cbdd366e-a61f-4b42-9fef-a713f641e397" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5072a263-6222-45ab-880b-452fe0261a35">
+<span class="eqno">(2.19)<a class="headerlink" href="#equation-5072a263-6222-45ab-880b-452fe0261a35" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = -3 y
 \end{equation}\]</div>
 <p>with the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>. As we will see, this ODE can cause explicit numerical schemes to become unstable, and thus it is a <strong>stiff</strong> ODE. (Note that we can easily obtain the exact solution for this problem, which is <span class="math notranslate nohighlight">\(y(t) = e^{-3 t}\)</span>.)</p>
@@ -685,8 +685,8 @@ plt.show()
 </div>
 <p>At the smaller step sizes, <span class="math notranslate nohighlight">\(\Delta t = 0.1\)</span> and <span class="math notranslate nohighlight">\(\Delta t = 0.25\)</span>, we see that the solution is well-behaved. But, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.5, we see some instability that goes away with time. Then, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.75, the solution eventually blows up, leading to error <strong>much</strong> larger than what we should expect based on the method’s order of accuracy (first) and the step size value.</p>
 <p>Compare this behavior to that for the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12795042-ce8e-4268-a5ca-37cd23f76342">
-<span class="eqno">(2.20)<a class="headerlink" href="#equation-12795042-ce8e-4268-a5ca-37cd23f76342" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6db7f27f-84a8-4a44-b0fa-140db399ed9d">
+<span class="eqno">(2.20)<a class="headerlink" href="#equation-6db7f27f-84a8-4a44-b0fa-140db399ed9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = e^{-t}
 \end{equation}\]</div>
 <p>which is <strong>non-stiff</strong>:</p>
@@ -748,13 +748,13 @@ plt.show()
 <section id="backward-euler-method">
 <h2><span class="section-number">2.4.1. </span>Backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">#</a></h2>
 <p>The Backward Euler method is very similar to the Forward Euler method, except in one way: it uses the slope at the <em>next</em> time step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ea1a6bd-b6f7-47a3-8b5e-3d82d67d5f35">
-<span class="eqno">(2.21)<a class="headerlink" href="#equation-0ea1a6bd-b6f7-47a3-8b5e-3d82d67d5f35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8560bb3d-36c7-454d-80c1-3510cb8aaaeb">
+<span class="eqno">(2.21)<a class="headerlink" href="#equation-8560bb3d-36c7-454d-80c1-3510cb8aaaeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(\frac{dy}{dx}\right)_{i+1} \approx \frac{y_{i+1} - y_i}{\Delta x}
 \end{equation}\]</div>
 <p>Then, the resulting recursion formula is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f4384c1-779f-4907-8000-84902557c999">
-<span class="eqno">(2.22)<a class="headerlink" href="#equation-8f4384c1-779f-4907-8000-84902557c999" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b90884e1-fd58-487b-93a6-65d4b0a69b19">
+<span class="eqno">(2.22)<a class="headerlink" href="#equation-b90884e1-fd58-487b-93a6-65d4b0a69b19" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \Delta x \left(\frac{dy}{dx}\right)_{i+1}, \text{ or} \\
 y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
 \end{equation}\]</div>
@@ -763,13 +763,13 @@ y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
 <section id="backward-euler-example">
 <h3><span class="section-number">2.4.1.1. </span>Backward Euler example<a class="headerlink" href="#backward-euler-example" title="Permalink to this headline">#</a></h3>
 <p>For example, consider the problem</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5073fdd-192e-4bfa-91b0-1336c60e6d78">
-<span class="eqno">(2.23)<a class="headerlink" href="#equation-c5073fdd-192e-4bfa-91b0-1336c60e6d78" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-38c7a2d0-67da-4cad-8870-69babf459731">
+<span class="eqno">(2.23)<a class="headerlink" href="#equation-38c7a2d0-67da-4cad-8870-69babf459731" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \frac{dy}{dx} = f(x,y) = 8 e^{-x} (1+x) - 2y
 \end{equation}\]</div>
 <p>To actually solve this problem with the Backward Euler method, we need to incorporate the derivative function <span class="math notranslate nohighlight">\(f(x,y)\)</span> into the recursion formula and solve for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d29e2cd-1785-454a-ada3-fcebebdf9ea5">
-<span class="eqno">(2.24)<a class="headerlink" href="#equation-1d29e2cd-1785-454a-ada3-fcebebdf9ea5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-92e5f43b-9d31-47fd-8649-311fc7ffc303">
+<span class="eqno">(2.24)<a class="headerlink" href="#equation-92e5f43b-9d31-47fd-8649-311fc7ffc303" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta x \left[ 8 e^{-x_{i+1}} (1 + x_{i+1}) - 2 y_{i+1} \right] \\
 y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x - 2 \Delta x \, y_{i+1} \\
@@ -809,8 +809,8 @@ plt.show()
 </div>
 <p>This matches nearly what we saw with the Forward Euler method before—Backward Euler is also a <strong>first-order</strong> method, so the global error should be proportional to <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
 <p>Let’s now return to the stiff ODE <span class="math notranslate nohighlight">\(y^{\prime} = -3 y\)</span>, and see how the Backward Euler method does. First, we need to obtain our useable recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd84410a-5b35-4a84-933a-7d6a8146755c">
-<span class="eqno">(2.25)<a class="headerlink" href="#equation-dd84410a-5b35-4a84-933a-7d6a8146755c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-71a494c4-2a9b-42b2-b317-a137d92833ff">
+<span class="eqno">(2.25)<a class="headerlink" href="#equation-71a494c4-2a9b-42b2-b317-a137d92833ff" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta t \, f(t_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta t \, \left( -3 y_{i+1} \right) \\
 y_{i+1} + 3 y_{i+1} \Delta t &amp;= y_i \\
@@ -881,8 +881,8 @@ plt.show()
 <section id="stability-analysis-of-forward-euler">
 <h3><span class="section-number">2.4.2.1. </span>Stability analysis of Forward Euler<a class="headerlink" href="#stability-analysis-of-forward-euler" title="Permalink to this headline">#</a></h3>
 <p>We can perform a stability analysis of the stiff problem to identify when the Forward Euler method becomes unstable. Let’s apply the method to the ODE at hand:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-00001bb7-94f7-4097-95c4-ef17a6394a18">
-<span class="eqno">(2.26)<a class="headerlink" href="#equation-00001bb7-94f7-4097-95c4-ef17a6394a18" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-03e00501-b6de-4338-864b-ab3f24c242cf">
+<span class="eqno">(2.26)<a class="headerlink" href="#equation-03e00501-b6de-4338-864b-ab3f24c242cf" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dt} &amp;= -3 y \\
 y_{i+1} &amp;= y_i + \Delta t f(t_i, y_i) \\
 y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
@@ -891,8 +891,8 @@ y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the <strong>amplification factor</strong>. This defines whether the solution grows or decays each step—for a stable physical system, we expect the solution to get smaller or remain contant with each step.</p>
 <p>Therefore, for the method to remain stable, we must have <span class="math notranslate nohighlight">\(\sigma | \leq 1\)</span>. We can use this stability criterion to find conditions on <span class="math notranslate nohighlight">\(\Delta t\)</span> for stability:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1a32de4-3e88-4b97-bba1-c18e1c868291">
-<span class="eqno">(2.27)<a class="headerlink" href="#equation-d1a32de4-3e88-4b97-bba1-c18e1c868291" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-d74572bf-dada-45b4-af98-e5258f87790b">
+<span class="eqno">(2.27)<a class="headerlink" href="#equation-d74572bf-dada-45b4-af98-e5258f87790b" title="Permalink to this equation">#</a></span>\[\begin{gather}
 | \sigma | = | 1 - 3 \Delta t | \leq 1 \\
 -1 \leq 1 - 3 \Delta t \leq 1 \\
 -1 \leq 1 - 3 \Delta t \quad \text{or} \quad 1 - 3 \Delta t \leq 1 \\
@@ -907,8 +907,8 @@ y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
 <section id="stability-analysis-of-backward-euler">
 <h3><span class="section-number">2.4.2.2. </span>Stability analysis of Backward Euler<a class="headerlink" href="#stability-analysis-of-backward-euler" title="Permalink to this headline">#</a></h3>
 <p>We can also perform a stability analysis on the Backward Euler method to show that its stability does not depend on the step size:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-090cc50e-d5f3-46af-9a61-b47d3c93a71b">
-<span class="eqno">(2.28)<a class="headerlink" href="#equation-090cc50e-d5f3-46af-9a61-b47d3c93a71b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b2b842ff-9c9d-4db3-84be-d85b501588fd">
+<span class="eqno">(2.28)<a class="headerlink" href="#equation-b2b842ff-9c9d-4db3-84be-d85b501588fd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dt} &amp;= -3 y \\
 y_{i+1} &amp;= y_i + \Delta t f(t_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta t (-3 y_{i+1}) \\
@@ -916,8 +916,8 @@ y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
 \sigma &amp;= \frac{y_{i+1}}{y_i} = \frac{1}{1 + 3 \Delta t}
 \end{align}\]</div>
 <p>For stability, we need <span class="math notranslate nohighlight">\(| \sigma | \leq 1\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37311ebe-19b2-4ed9-baef-afd15b26ed4b">
-<span class="eqno">(2.29)<a class="headerlink" href="#equation-37311ebe-19b2-4ed9-baef-afd15b26ed4b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9e19dad6-3640-4a5f-b560-562dc70095ce">
+<span class="eqno">(2.29)<a class="headerlink" href="#equation-9e19dad6-3640-4a5f-b560-562dc70095ce" title="Permalink to this equation">#</a></span>\[\begin{align}
 | \sigma | &amp;= \left| \frac{1}{1 + 3 \Delta t} \right| \leq 1 \\
 \rightarrow \Delta t &amp;&gt; 0
 \end{align}\]</div>

@@ -606,45 +606,45 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 <section id="example-beam-buckling">
 <h2><span class="section-number">4.3.1. </span>Example: beam buckling<a class="headerlink" href="#example-beam-buckling" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider deflection in a simply supported (static) vertical beam: <span class="math notranslate nohighlight">\(y(x)\)</span>, with boundary conditions <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(L) = 0\)</span>. To get the governing equation, start with considering the sum of moments around the upper pin:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a647a53-9794-4d54-80c0-93b3626eb626">
-<span class="eqno">(4.46)<a class="headerlink" href="#equation-3a647a53-9794-4d54-80c0-93b3626eb626" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fa4d0b58-2194-40d3-8326-13f00b49b7e5">
+<span class="eqno">(4.46)<a class="headerlink" href="#equation-fa4d0b58-2194-40d3-8326-13f00b49b7e5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum M &amp;= M_z + P y = 0 \\
 M_z &amp;= -P y
 \end{align}\]</div>
 <p>We also know that <span class="math notranslate nohighlight">\(M_z = E I y''\)</span>, so we can obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a24cdfd0-69a4-433e-b648-0cee2c48f99b">
-<span class="eqno">(4.47)<a class="headerlink" href="#equation-a24cdfd0-69a4-433e-b648-0cee2c48f99b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4a57fe2e-ef75-490a-9e4f-1046e4ee19ea">
+<span class="eqno">(4.47)<a class="headerlink" href="#equation-4a57fe2e-ef75-490a-9e4f-1046e4ee19ea" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_z = E I \frac{d^2 y}{dx^2} &amp;= -P y \\
 y'' + \frac{P}{EI} y &amp;= 0
 \end{align}\]</div>
 <p>This equation governs the stability of a beam, considering small deflections.
 To simplify things, let’s define <span class="math notranslate nohighlight">\(\lambda^2 = \frac{P}{EI}\)</span>, which gives us the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-479573df-9cff-4050-919e-fab2896c57ae">
-<span class="eqno">(4.48)<a class="headerlink" href="#equation-479573df-9cff-4050-919e-fab2896c57ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a63bff02-1b77-46c0-bc0d-3075c06d0654">
+<span class="eqno">(4.48)<a class="headerlink" href="#equation-a63bff02-1b77-46c0-bc0d-3075c06d0654" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y'' + \lambda^2 y = 0
 \end{equation}\]</div>
 <p>We can get the general solution to this:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ac4b2ff-99fa-4f60-9486-add229bec8a5">
-<span class="eqno">(4.49)<a class="headerlink" href="#equation-9ac4b2ff-99fa-4f60-9486-add229bec8a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8febe949-2ee4-49cc-9bfd-6917d3684ef0">
+<span class="eqno">(4.49)<a class="headerlink" href="#equation-8febe949-2ee4-49cc-9bfd-6917d3684ef0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = A \cos (\lambda x) + B \sin (\lambda x)
 \end{equation}\]</div>
 <p>To find the coefficients, let’s apply the boundary conditions, starting with <span class="math notranslate nohighlight">\(x=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d18e5eac-e419-45a7-8dcd-824ee2227267">
-<span class="eqno">(4.50)<a class="headerlink" href="#equation-d18e5eac-e419-45a7-8dcd-824ee2227267" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3ee4a5b4-1d08-4f72-8ae5-4c9187db7c2d">
+<span class="eqno">(4.50)<a class="headerlink" href="#equation-3ee4a5b4-1d08-4f72-8ae5-4c9187db7c2d" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(x=0) &amp;= 0 = A \cos 0 + B \sin 0 \\
 \rightarrow A &amp;= 0 \\
 y(x=L) &amp;= 0 = B \sin (\lambda L)
 \end{align}\]</div>
 <p>Now what? <span class="math notranslate nohighlight">\(B \neq 0\)</span>, because otherwise we would have the trivial solution <span class="math notranslate nohighlight">\(y(x) = 0\)</span>. Instead, to satisfy the boundary condition, we need</p>
-<div class="amsmath math notranslate nohighlight" id="equation-642c0df8-e2a3-45fc-b15f-635e8ebf0fb1">
-<span class="eqno">(4.51)<a class="headerlink" href="#equation-642c0df8-e2a3-45fc-b15f-635e8ebf0fb1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ce97138b-63a2-40c0-97f2-0f5f5bdc8200">
+<span class="eqno">(4.51)<a class="headerlink" href="#equation-ce97138b-63a2-40c0-97f2-0f5f5bdc8200" title="Permalink to this equation">#</a></span>\[\begin{align}
 B \neq 0 \rightarrow \sin (\lambda L) &amp;= 0 \\
 \text{so} \quad \lambda L &amp;= n \pi \quad n = 1, 2, 3, \ldots, \infty \\
 \lambda &amp;= \frac{n \pi}{L} \quad n = 1, 2, 3, \ldots, \infty
 \end{align}\]</div>
 <p><span class="math notranslate nohighlight">\(\lambda\)</span> give the the <strong>eigenvalues</strong> for this problem; as you can see, there are an infinite number, that correspond to <strong>eigenfunctions</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6486c0c4-ecd3-4190-83da-2caf994ce3e6">
-<span class="eqno">(4.52)<a class="headerlink" href="#equation-6486c0c4-ecd3-4190-83da-2caf994ce3e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8b55d89-a731-4fe6-8523-c2448abf7368">
+<span class="eqno">(4.52)<a class="headerlink" href="#equation-d8b55d89-a731-4fe6-8523-c2448abf7368" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_n = B \sin \left( \frac{n \pi x}{L} \right) \quad n = 1, 2, 3, \ldots, \infty
 \end{equation}\]</div>
 <p>The eigenvalues and associated eigenfunctions physically represent different modes of deflection.
@@ -679,15 +679,15 @@ plt.show()
 </div>
 <p>Here we see different modes of how the beam will buckle. How do we know when this happens?</p>
 <p>Recall that the eigenvalue is connected to the physical properties of the beam:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-31da0cf0-804d-434a-b659-08676aa085fe">
-<span class="eqno">(4.53)<a class="headerlink" href="#equation-31da0cf0-804d-434a-b659-08676aa085fe" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-b16b4bad-7d36-4ce6-8cf3-73ae351b5642">
+<span class="eqno">(4.53)<a class="headerlink" href="#equation-b16b4bad-7d36-4ce6-8cf3-73ae351b5642" title="Permalink to this equation">#</a></span>\[\begin{gather}
 \lambda^2 = \frac{P}{EI} \rightarrow \lambda = \sqrt{\frac{P}{EI}} = \frac{n \pi}{L} \\
 P = \frac{EI}{L} n^2 \pi^2
 \end{gather}\]</div>
 <p>This means that when the combination of load force and beam properties match certain values, the beam will deflect—and buckle—in one of the modes corresponding to the associated eigenfunction.</p>
 <p>In particular, the first mode (<span class="math notranslate nohighlight">\(n=1\)</span>) is interesting, because this is the first one that will be encountered if a load starts at zero and increases. This is the <strong>Euler critical load</strong> of buckling, <span class="math notranslate nohighlight">\(P_{cr}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33a2f75f-6a1e-4add-952a-c3f6e7360844">
-<span class="eqno">(4.54)<a class="headerlink" href="#equation-33a2f75f-6a1e-4add-952a-c3f6e7360844" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-5531e4c3-fadd-4aa9-8f15-ddf2a9fa7058">
+<span class="eqno">(4.54)<a class="headerlink" href="#equation-5531e4c3-fadd-4aa9-8f15-ddf2a9fa7058" title="Permalink to this equation">#</a></span>\[\begin{gather}
 \lambda_1 = \frac{\pi}{L} \rightarrow \lambda_1^2 = \frac{P}{EI} = \frac{\pi^2}{L^2} \\
 P_{cr} = \frac{\pi^2 E I}{L^2}
 \end{gather}\]</div>
@@ -696,14 +696,14 @@ P_{cr} = \frac{\pi^2 E I}{L^2}
 <h2><span class="section-number">4.3.2. </span>Example: beam buckling with different boundary conditions<a class="headerlink" href="#example-beam-buckling-with-different-boundary-conditions" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider a slightly different case, where at <span class="math notranslate nohighlight">\(x=0\)</span> the beam is supported such that <span class="math notranslate nohighlight">\(y'(0) = 0\)</span>. How does the beam buckle in this case?</p>
 <p>The governing equation and general solution are the same:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-109d89f4-fcb8-42d7-928f-32cb0c915cf0">
-<span class="eqno">(4.55)<a class="headerlink" href="#equation-109d89f4-fcb8-42d7-928f-32cb0c915cf0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4a7bb815-86cc-4d96-9263-40e1941f49da">
+<span class="eqno">(4.55)<a class="headerlink" href="#equation-4a7bb815-86cc-4d96-9263-40e1941f49da" title="Permalink to this equation">#</a></span>\[\begin{align}
 y'' + \lambda^2 y &amp;= 0 \\
 y(x) &amp;= A \cos (\lambda x) + B \sin (\lambda x)
 \end{align}\]</div>
 <p>but our boundary conditions are now different:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84dccab7-4a33-49a9-a352-73dd11419a3a">
-<span class="eqno">(4.56)<a class="headerlink" href="#equation-84dccab7-4a33-49a9-a352-73dd11419a3a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a3c62478-217e-48ee-8035-fe9483245c5e">
+<span class="eqno">(4.56)<a class="headerlink" href="#equation-a3c62478-217e-48ee-8035-fe9483245c5e" title="Permalink to this equation">#</a></span>\[\begin{align}
 y'(0) = 0 = -\lambda A \sin(0) + \lambda B\cos(0) \\
 \rightarrow B &amp;= 0 \\
 y &amp;= A \cos (\lambda x) \\
@@ -713,8 +713,8 @@ A \neq 0 \rightarrow \cos(\lambda L) &amp;= 0 \\
 \lambda &amp;= \frac{(2n-1) \pi}{2 L} \quad n = 1,2,3,\ldots, \infty
 \end{align}\]</div>
 <p>Then, the critical buckling load, again corresponding to <span class="math notranslate nohighlight">\(n=1\)</span>, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e03c5fe-ebcb-4a86-a2ac-056a9cd477a4">
-<span class="eqno">(4.57)<a class="headerlink" href="#equation-0e03c5fe-ebcb-4a86-a2ac-056a9cd477a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1165a52-9952-4859-9811-29cc0158072a">
+<span class="eqno">(4.57)<a class="headerlink" href="#equation-f1165a52-9952-4859-9811-29cc0158072a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_{cr} = \frac{\pi^2 EI}{4 L^2}
 \end{equation}\]</div>
 </section>
@@ -722,74 +722,74 @@ P_{cr} = \frac{\pi^2 EI}{4 L^2}
 <h2><span class="section-number">4.3.3. </span>Getting eigenvalues numerically<a class="headerlink" href="#getting-eigenvalues-numerically" title="Permalink to this headline">#</a></h2>
 <p>We can only get the eigenvalues analytically if we can obtain an analytical solution of the ODE, but we might want to get eigenvalues for more complex problems too. In that case, we can use an approach based on <em>finite differences</em> to find the eigenvalues.</p>
 <p>Consider the same problem as above, for deflection of a simply supported beam:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d62680c4-557c-4212-993c-afbf573272ac">
-<span class="eqno">(4.58)<a class="headerlink" href="#equation-d62680c4-557c-4212-993c-afbf573272ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c4bcef6-1538-41d1-9b60-2f20159a3e10">
+<span class="eqno">(4.58)<a class="headerlink" href="#equation-8c4bcef6-1538-41d1-9b60-2f20159a3e10" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y'' + \lambda^2 y = 0 
 \end{equation}\]</div>
 <p>with boundary conditions <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(L) = 0\)</span>. Let’s represent this using finite differences, for a case where <span class="math notranslate nohighlight">\(L=3\)</span> and <span class="math notranslate nohighlight">\(\Delta x = 1\)</span>, so we have four points in our solution grid.</p>
 <p>The finite difference representation of the ODE is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-474591a3-fce7-44c0-9e28-cbd4787abdba">
-<span class="eqno">(4.59)<a class="headerlink" href="#equation-474591a3-fce7-44c0-9e28-cbd4787abdba" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9c666b9-d395-40bf-9acf-1f9465d2a8e2">
+<span class="eqno">(4.59)<a class="headerlink" href="#equation-c9c666b9-d395-40bf-9acf-1f9465d2a8e2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} + \lambda^2 y_i &amp;= 0 \\
 y_{i-1} + \left( \lambda^2 \Delta x^2 - 2 \right) y_i + y_{i+1} &amp;= 0
 \end{align}\]</div>
 <p>However, in this case, we are not solving for the values of deflection (<span class="math notranslate nohighlight">\(y_i\)</span>), but instead the <strong>eigenvalues</strong> <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>Then, we can write the system of equations using the above recursion formula and our two boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e5ab838-02ba-4a80-9b84-4c0f9f938115">
-<span class="eqno">(4.60)<a class="headerlink" href="#equation-0e5ab838-02ba-4a80-9b84-4c0f9f938115" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-87f1deee-8107-4f54-9b25-bf8de0d3db92">
+<span class="eqno">(4.60)<a class="headerlink" href="#equation-87f1deee-8107-4f54-9b25-bf8de0d3db92" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1 &amp;= 0 \\
 y_1 + y_2 \left( \lambda^2 \Delta x^2 - 2 \right) + y_3 &amp;= 0 \\
 y_2 + y_3 \left( \lambda^2 \Delta x^2 - 2 \right) + y_4 &amp;= 0 \\
 y_4 &amp;= 0
 \end{align}\]</div>
 <p>which we can simplify down to two equations by incorporating the boundary conditions into the equations for the two middle points, and also letting <span class="math notranslate nohighlight">\(k = \lambda^2 \Delta x^2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc2ffcc6-9fe1-4203-af0d-a19afa1aa54a">
-<span class="eqno">(4.61)<a class="headerlink" href="#equation-bc2ffcc6-9fe1-4203-af0d-a19afa1aa54a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca5c92b8-cc72-45cb-b7bf-7ead0bfc47f5">
+<span class="eqno">(4.61)<a class="headerlink" href="#equation-ca5c92b8-cc72-45cb-b7bf-7ead0bfc47f5" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_2 (k-2) + y_3 &amp;= 0 \\
 y_2 + y_3 (k-2) &amp;= 0
 \end{align}\]</div>
 <p>Let’s modify this once more by multiplying both equations by <span class="math notranslate nohighlight">\(-1\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1173601-aab4-4199-8231-4712e7e254f1">
-<span class="eqno">(4.62)<a class="headerlink" href="#equation-d1173601-aab4-4199-8231-4712e7e254f1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d618996e-7d82-4768-b87a-419162a37209">
+<span class="eqno">(4.62)<a class="headerlink" href="#equation-d618996e-7d82-4768-b87a-419162a37209" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_2 (2-k) - y_3 &amp;= 0 \\
 -y_2 + y_3 (2-k) &amp;= 0
 \end{align}\]</div>
 <p>Now we can represent this system of equations as a matrix equation <span class="math notranslate nohighlight">\(A \mathbf{y} = \mathbf{b} = \mathbf{0}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f507b74b-9e2a-4cca-b56a-16583ed1b48f">
-<span class="eqno">(4.63)<a class="headerlink" href="#equation-f507b74b-9e2a-4cca-b56a-16583ed1b48f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd85e45a-0585-488e-b50b-08bf3f41fa9f">
+<span class="eqno">(4.63)<a class="headerlink" href="#equation-fd85e45a-0585-488e-b50b-08bf3f41fa9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{bmatrix}
 \begin{bmatrix} y_2 \\ y_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{0}\)</span> is a trivial solution to this, so instead <span class="math notranslate nohighlight">\(\det(A) = 0\)</span> satisfies this equation.
 For our <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix, that looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cee73cf-b643-44ef-a6f9-45302bf2f7d6">
-<span class="eqno">(4.64)<a class="headerlink" href="#equation-1cee73cf-b643-44ef-a6f9-45302bf2f7d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-53fa6fe5-9296-4acb-aaae-f83f5612ed3d">
+<span class="eqno">(4.64)<a class="headerlink" href="#equation-53fa6fe5-9296-4acb-aaae-f83f5612ed3d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(A) = \begin{vmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{vmatrix} = (2-k)^2 - 1 &amp;= 0 \\
 k^2 - 4k + 3 &amp;= 0 \\
 (k-3)(k-1) &amp;= 0
 \end{align}\]</div>
 <p>so the roots of this equation are <span class="math notranslate nohighlight">\(k_1 = 1\)</span> and <span class="math notranslate nohighlight">\(k_2 = 3\)</span>. Recall that <span class="math notranslate nohighlight">\(k\)</span> is directly related to the eigenvalue: <span class="math notranslate nohighlight">\(k = \lambda^2 \Delta x^2\)</span>, and <span class="math notranslate nohighlight">\(\Delta x = 1\)</span> for this case, so we can calculate the two associated eigenvalues:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cea6c686-d7b2-40af-a2b0-4f1bbfde1d82">
-<span class="eqno">(4.65)<a class="headerlink" href="#equation-cea6c686-d7b2-40af-a2b0-4f1bbfde1d82" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9de5fc9c-dcb1-42cb-8d63-a7e781ac2c37">
+<span class="eqno">(4.65)<a class="headerlink" href="#equation-9de5fc9c-dcb1-42cb-8d63-a7e781ac2c37" title="Permalink to this equation">#</a></span>\[\begin{align}
 k_1 &amp;= \lambda_1^2 \Delta x^2 = 1 \rightarrow \lambda_1 = 1 \\
 k_2 &amp;= \lambda_2^2 \Delta x^2 = 3 \rightarrow \lambda_2 = \sqrt{3} = 1.732
 \end{align}\]</div>
 <p>Our work has given us approximations for the first two eigenvalues. We can compare these against the exact values, given in general by <span class="math notranslate nohighlight">\(\lambda = n \pi / L\)</span> (which we determined above):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4760f0c1-cec0-480e-9529-a09a3a146ea3">
-<span class="eqno">(4.66)<a class="headerlink" href="#equation-4760f0c1-cec0-480e-9529-a09a3a146ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2a917e7-ec4d-4755-93c6-852dd0c7e8d9">
+<span class="eqno">(4.66)<a class="headerlink" href="#equation-d2a917e7-ec4d-4755-93c6-852dd0c7e8d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=1: \quad \lambda_1 &amp;= \frac{\pi}{L} = \frac{\pi}{3} = 1.0472 \\
 n=2: \quad \lambda_2 &amp;= \frac{2\pi}{L} = \frac{2\pi}{3} = 2.0944
 \end{align}\]</div>
 <p>So, our approximations are close, but with some obvious error. This is because we used a fairly crude step size of <span class="math notranslate nohighlight">\(\Delta x = 1\)</span>, dividing the domain into just three segments. By using a finer resolution, we can get more-accurate eigenvalues and also more of them (remember, there are actually an infinite number!).</p>
 <p>To do that, we will need to use Python, which offers the <code class="docutils literal notranslate"><span class="pre">np.linalg.eigvals()</span></code> function for calculating eigenvalues—essentially it is finding the roots to the polynomial given by <span class="math notranslate nohighlight">\(\det(A) = 0\)</span>. We need to modify this slightly, though, to use the function:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77731d0d-a1e0-473f-ac92-800c67fd06d7">
-<span class="eqno">(4.67)<a class="headerlink" href="#equation-77731d0d-a1e0-473f-ac92-800c67fd06d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-082d7619-dbbf-4bad-bed7-de937e2c88c2">
+<span class="eqno">(4.67)<a class="headerlink" href="#equation-082d7619-dbbf-4bad-bed7-de937e2c88c2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(A) &amp;= 0 \\
 \det \left( A^* - k I \right) = 0
 \end{align}\]</div>
 <p>where the new matrix is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b71f06b3-da5f-4db0-ad6e-0299f5e77e38">
-<span class="eqno">(4.68)<a class="headerlink" href="#equation-b71f06b3-da5f-4db0-ad6e-0299f5e77e38" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-26f192d1-1495-4198-baa7-1c576ed99b29">
+<span class="eqno">(4.68)<a class="headerlink" href="#equation-26f192d1-1495-4198-baa7-1c576ed99b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A^* = \begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix}
 \end{equation}\]</div>
 <p>Then, <code class="docutils literal notranslate"><span class="pre">np.linalg.eigvals(A*)</span></code> will provide the values of <span class="math notranslate nohighlight">\(k\)</span>, which we can use to find the <span class="math notranslate nohighlight">\(\lambda\)</span>s:</p>
@@ -865,53 +865,53 @@ Error in λ_1:  0.05%
 </figcaption>
 </figure>
 <p>First, we need to write the equations of motion, based on doing a free-body diagram on each mass:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fe17d76-42b0-484a-b305-bf4d30a7d9f1">
-<span class="eqno">(4.69)<a class="headerlink" href="#equation-5fe17d76-42b0-484a-b305-bf4d30a7d9f1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-404f86c6-7780-4b5c-b388-28c0408a77d0">
+<span class="eqno">(4.69)<a class="headerlink" href="#equation-404f86c6-7780-4b5c-b388-28c0408a77d0" title="Permalink to this equation">#</a></span>\[\begin{align}
 m_1 \frac{d^2 x_1}{dt^2} &amp;= -k x_1 + k(x_2 - x_1) \\
 m_2 \frac{d^2 x_2}{dt^2} &amp;= -k (x_2 - x_1) - k x_2
 \end{align}\]</div>
 <p>We can condense these equations a bit:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7de66c1-3be1-4cff-9829-99bb64e83ec9">
-<span class="eqno">(4.70)<a class="headerlink" href="#equation-e7de66c1-3be1-4cff-9829-99bb64e83ec9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6801ca90-22ca-4c60-8400-8e6640fa7ef4">
+<span class="eqno">(4.70)<a class="headerlink" href="#equation-6801ca90-22ca-4c60-8400-8e6640fa7ef4" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_1^{\prime\prime} - \frac{k}{m_1} \left( -2 x_1 + x_2 \right) &amp;= 0 \\
 x_2^{\prime\prime} - \frac{k}{m_2} \left( x_1 - 2 x_2 \right) &amp;= 0
 \end{align}\]</div>
 <p>To proceed, we can assume that the masses will move in a sinusoidal fashion, with a shared frequency but separate amplitude:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69f870c4-c6c1-43e2-8942-e7c7220ab009">
-<span class="eqno">(4.71)<a class="headerlink" href="#equation-69f870c4-c6c1-43e2-8942-e7c7220ab009" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a62c0dab-3d9d-4e0b-aa1a-272c565ec41c">
+<span class="eqno">(4.71)<a class="headerlink" href="#equation-a62c0dab-3d9d-4e0b-aa1a-272c565ec41c" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_i &amp;= A_i \sin (\omega t) \\
 x_i^{\prime\prime} &amp;= -A_i \omega^2 \sin (\omega t)
 \end{align}\]</div>
 <p>We can plug these into the ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5524e9c3-3aa5-4e11-8739-c22eafe2ce7a">
-<span class="eqno">(4.72)<a class="headerlink" href="#equation-5524e9c3-3aa5-4e11-8739-c22eafe2ce7a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e54c6536-152f-451b-b59f-f9f29eeb55ef">
+<span class="eqno">(4.72)<a class="headerlink" href="#equation-e54c6536-152f-451b-b59f-f9f29eeb55ef" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sin (\omega t) \left[ \left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 \right] &amp;= 0 \\
 \sin (\omega t) \left[ -\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 \right] &amp;= 0
 \end{align}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-623c547e-869f-4acb-b836-3c1068b8fbb3">
-<span class="eqno">(4.73)<a class="headerlink" href="#equation-623c547e-869f-4acb-b836-3c1068b8fbb3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6eec5192-8b56-4cd3-bd1d-edd9a784df32">
+<span class="eqno">(4.73)<a class="headerlink" href="#equation-6eec5192-8b56-4cd3-bd1d-edd9a784df32" title="Permalink to this equation">#</a></span>\[\begin{align}
 \left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 &amp;= 0 \\
 -\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 &amp;= 0
 \end{align}\]</div>
 <p>Let’s put some numbers in, and try to solve for the eigenvalues: <span class="math notranslate nohighlight">\(\omega^2\)</span>.
 Let <span class="math notranslate nohighlight">\(m_1 = m_2 = 40 \)</span> kg and <span class="math notranslate nohighlight">\(k = 200\)</span> N/m.</p>
 <p>Now, the equations become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d71349e-9b7c-4905-903a-cae7f32d8eb2">
-<span class="eqno">(4.74)<a class="headerlink" href="#equation-1d71349e-9b7c-4905-903a-cae7f32d8eb2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fe138f20-cbab-4376-884f-efd1a6adece5">
+<span class="eqno">(4.74)<a class="headerlink" href="#equation-fe138f20-cbab-4376-884f-efd1a6adece5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \left( 10 - \omega^2 \right) A_1 - 5 A_2 &amp;= 0 \\
 -5 A_1 + \left( 10 - \omega^2 \right) A_2 &amp;= 0
 \end{align}\]</div>
 <p>or <span class="math notranslate nohighlight">\(A \mathbf{y} = \mathbf{0}\)</span>, which we can represent as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35fe33fa-01fb-4d03-8f48-171dd2c0512a">
-<span class="eqno">(4.75)<a class="headerlink" href="#equation-35fe33fa-01fb-4d03-8f48-171dd2c0512a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d285e2c-a30f-4e53-9daa-cb4cd089587b">
+<span class="eqno">(4.75)<a class="headerlink" href="#equation-2d285e2c-a30f-4e53-9daa-cb4cd089587b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} 10-\omega^2 &amp; -5 \\ -5 &amp; 10-\omega^2 \end{bmatrix}
 \begin{bmatrix} A_1 \\ A_2 \end{bmatrix} = 
 \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\omega^2\)</span> are the eigenvalues, and we can find them with <span class="math notranslate nohighlight">\(\det(A) = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-040d5e7d-61fb-4e72-abb4-5f7c8c6f58b5">
-<span class="eqno">(4.76)<a class="headerlink" href="#equation-040d5e7d-61fb-4e72-abb4-5f7c8c6f58b5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7620fefd-8e79-4092-a30c-d371590501b9">
+<span class="eqno">(4.76)<a class="headerlink" href="#equation-7620fefd-8e79-4092-a30c-d371590501b9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(B) &amp;= 0 \\
 \det (B^* - \omega^2 I) &amp;= 0
 \end{align}\]</div>
@@ -934,8 +934,8 @@ print(f&#39;ω_2 = {omega[1]: .2f} rad/s&#39;)
 </div>
 </div>
 <p>We find there are two modes of oscillation, each associated with a different natural frequency. Unfortunately, we cannot calculate independent and unique values for the amplitudes, but if we insert the values of <span class="math notranslate nohighlight">\(\omega\)</span> into the above equations, we can find relations connecting the amplitudes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e08ecee-13a3-4186-ab61-b3f61385316f">
-<span class="eqno">(4.77)<a class="headerlink" href="#equation-8e08ecee-13a3-4186-ab61-b3f61385316f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d94a2d00-3dcc-4258-b596-6fcdcfbf9f65">
+<span class="eqno">(4.77)<a class="headerlink" href="#equation-d94a2d00-3dcc-4258-b596-6fcdcfbf9f65" title="Permalink to this equation">#</a></span>\[\begin{align}
 \omega_1: \quad A_1 &amp;= A_2 \\
 \omega_2: \quad A_1 &amp;= -A_2
 \end{align}\]</div>

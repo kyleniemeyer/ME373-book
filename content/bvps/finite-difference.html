@@ -646,24 +646,24 @@ title="Print to PDF"
 <h2><span class="section-number">4.2.1. </span>Finite differences<a class="headerlink" href="#finite-differences" title="Permalink to this headline">#</a></h2>
 <p>Another method of solving boundary-value problems (and also partial differential equations, as we’ll see later) involves <strong>finite differences</strong>, which are numerical approximations to exact derivatives.</p>
 <p>Recall that the exact derivative of a function <span class="math notranslate nohighlight">\(f(x)\)</span> at some point <span class="math notranslate nohighlight">\(x\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f2e7def-91f9-4d53-8aa6-8012e9dd6695">
-<span class="eqno">(4.13)<a class="headerlink" href="#equation-7f2e7def-91f9-4d53-8aa6-8012e9dd6695" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-96429ba1-c0fd-4183-bccf-442933d64ffe">
+<span class="eqno">(4.13)<a class="headerlink" href="#equation-96429ba1-c0fd-4183-bccf-442933d64ffe" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) = \frac{df}{dx}(x) = \lim_{\Delta x \rightarrow 0} \frac{f(x+\Delta x) - f(x)}{\Delta x}
 \end{equation}\]</div>
 <p>So, we can <em>approximate</em> this derivative using a finite difference (rather than an infinitesimal difference as in the exact derivative):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9158f849-8d75-4269-886a-dd1c5e9867d6">
-<span class="eqno">(4.14)<a class="headerlink" href="#equation-9158f849-8d75-4269-886a-dd1c5e9867d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dbd3233b-4b69-4c61-9e63-dfa545e7ec92">
+<span class="eqno">(4.14)<a class="headerlink" href="#equation-dbd3233b-4b69-4c61-9e63-dfa545e7ec92" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) \approx \frac{f(x+\Delta x) - f(x)}{\Delta x}
 \end{equation}\]</div>
 <p>which involves some error. This is a <strong>forward difference</strong> for approximating the first derivative.
 We can also approximate the first derivative using a <strong>backward difference</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-23c9846a-ecc0-4d51-8732-07ebc9bf794d">
-<span class="eqno">(4.15)<a class="headerlink" href="#equation-23c9846a-ecc0-4d51-8732-07ebc9bf794d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-165cca82-1335-4497-aecd-ecf4c152d7a9">
+<span class="eqno">(4.15)<a class="headerlink" href="#equation-165cca82-1335-4497-aecd-ecf4c152d7a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) \approx \frac{f(x) - f(x - \Delta x)}{\Delta x}
 \end{equation}\]</div>
 <p>To understand the error involved in these differences, we can use Taylor’s theorem to obtain Taylor series expansions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb39f8ba-16c1-428a-b339-698d508865e7">
-<span class="eqno">(4.16)<a class="headerlink" href="#equation-bb39f8ba-16c1-428a-b339-698d508865e7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4981710f-260b-4fe2-870b-e243cba3928f">
+<span class="eqno">(4.16)<a class="headerlink" href="#equation-4981710f-260b-4fe2-870b-e243cba3928f" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
 \rightarrow \frac{f(x + \Delta x) - f(x)}{\Delta x} &amp;= f^{\prime}(x) + \mathcal{O}\left( \Delta x \right) \\
 f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
@@ -694,21 +694,21 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 <section id="second-order-finite-differences">
 <h2><span class="section-number">4.2.2. </span>Second-order finite differences<a class="headerlink" href="#second-order-finite-differences" title="Permalink to this headline">#</a></h2>
 <p>We can obtain higher-order approximations for the first derivative, and an approximations for the second derivative, by combining these Taylor series expansions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-549e858b-ae9a-4df5-9997-1e0a596adb07">
-<span class="eqno">(4.17)<a class="headerlink" href="#equation-549e858b-ae9a-4df5-9997-1e0a596adb07" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c26a718c-169a-460d-ac1c-22ac3d47584f">
+<span class="eqno">(4.17)<a class="headerlink" href="#equation-c26a718c-169a-460d-ac1c-22ac3d47584f" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right)
 \end{align}\]</div>
 <p>Subtracting the Taylor series for <span class="math notranslate nohighlight">\(f(x+\Delta x)\)</span> by that for <span class="math notranslate nohighlight">\(f(x-\Delta x)\)</span> gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8191aba2-62f5-494a-b4bf-ac79e51f03c1">
-<span class="eqno">(4.18)<a class="headerlink" href="#equation-8191aba2-62f5-494a-b4bf-ac79e51f03c1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a558c420-fd39-40e6-9a9c-53cbd31856e6">
+<span class="eqno">(4.18)<a class="headerlink" href="#equation-a558c420-fd39-40e6-9a9c-53cbd31856e6" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) - f(x - \Delta x) &amp;= 2 \Delta x \, f^{\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f^{\prime}(x) &amp;= \frac{f(x + \Delta x) - f(x - \Delta x)}{2 \Delta x} + \mathcal{O}\left( \Delta x^2 \right)
 \end{align}\]</div>
 <p>which is a <em>second-order accurate</em> approximation for the first derivative.</p>
 <p>Adding the Taylor series for <span class="math notranslate nohighlight">\(f(x+\Delta x)\)</span> to that for <span class="math notranslate nohighlight">\(f(x-\Delta x)\)</span> gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cfa9ffaf-ad26-4365-ab7d-5732c55b029e">
-<span class="eqno">(4.19)<a class="headerlink" href="#equation-cfa9ffaf-ad26-4365-ab7d-5732c55b029e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dad3de69-38df-4b5f-a825-e14b840e57d8">
+<span class="eqno">(4.19)<a class="headerlink" href="#equation-dad3de69-38df-4b5f-a825-e14b840e57d8" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) + f(x - \Delta x) &amp;= 2 f(x) + \Delta x^2 f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\Delta x^2} + \mathcal{O}\left( \Delta x^2 \right)
 \end{align}\]</div>
@@ -718,8 +718,8 @@ f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\De
 <h2><span class="section-number">4.2.3. </span>Solving ODEs with finite differences<a class="headerlink" href="#solving-odes-with-finite-differences" title="Permalink to this headline">#</a></h2>
 <p>We can use finite differences to solve ODEs by substituting them for exact derivatives, and then applying the equation at discrete locations in the domain. This gives us a system of simultaneous equations to solve.</p>
 <p>For example, let’s consider the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d33c7eb9-e7df-406f-a126-65f086c1ea4d">
-<span class="eqno">(4.20)<a class="headerlink" href="#equation-d33c7eb9-e7df-406f-a126-65f086c1ea4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0662693b-343e-494c-8592-99e2f82a6131">
+<span class="eqno">(4.20)<a class="headerlink" href="#equation-0662693b-343e-494c-8592-99e2f82a6131" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + x y^{\prime} - x y = 2 x \;,
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0) = 1\)</span> and <span class="math notranslate nohighlight">\(y(2) = 8\)</span>.</p>
@@ -729,22 +729,22 @@ y^{\prime\prime} + x y^{\prime} - x y = 2 x \;,
 <p>To do this, we’ll follow a few steps:</p>
 <p>1.) Replace exact derivatives in the original ODE with finite differences, and apply the equation at a particular location <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>.</p>
 <p>For our example, this gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7c1af47-6bce-4167-867c-daba38362dc8">
-<span class="eqno">(4.21)<a class="headerlink" href="#equation-a7c1af47-6bce-4167-867c-daba38362dc8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfbb6279-1bf5-4f5b-bece-3052e5878d23">
+<span class="eqno">(4.21)<a class="headerlink" href="#equation-cfbb6279-1bf5-4f5b-bece-3052e5878d23" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{y_{i+1} - 2y_i + y_{i-1}}{\Delta x^2} + x_i \left( \frac{y_{i+1} - y_{i-1}}{2 \Delta x}\right) - x_i y_i = 2 x_i
 \end{equation}\]</div>
 <p>which applies at location <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>.</p>
 <p>2.) Next, rearrange the equation into a <em>recursion formula</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-352374ac-a0f8-4c6b-a33b-1f360e03eb90">
-<span class="eqno">(4.22)<a class="headerlink" href="#equation-352374ac-a0f8-4c6b-a33b-1f360e03eb90" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ba64203-7382-46bc-b152-8cae6996645d">
+<span class="eqno">(4.22)<a class="headerlink" href="#equation-9ba64203-7382-46bc-b152-8cae6996645d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i-1} \left(1 - x_i \frac{\Delta x}{2}\right) + y_i \left( -2 -\Delta x^2 x_i \right) + y_{i+1} \left(1 + x_i \frac{\Delta x}{2}\right) = 2 x_i \Delta x^2
 \end{equation}\]</div>
 <p>We can use this equation to get an equation for each of the interior points in the domain.</p>
 <p>For the first and last points—the boundary points—we already have equations, given by the boundary conditions.</p>
 <p>3.) Set up system of linear equations</p>
 <p>Applying the recursion formula to the interior points, and the boundary conditions for the boundary points, we can get a system of simultaneous linear equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3dc3e71-9432-4921-bce1-6e0cbf8588fe">
-<span class="eqno">(4.23)<a class="headerlink" href="#equation-c3dc3e71-9432-4921-bce1-6e0cbf8588fe" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-89cb2ed7-91ff-4e32-bd3a-cc717cb25445">
+<span class="eqno">(4.23)<a class="headerlink" href="#equation-89cb2ed7-91ff-4e32-bd3a-cc717cb25445" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1 &amp;= 1 \\
 y_1 (0.875) + y_2 (-2.125) + y_3 (1.125) &amp;= 0.25 \\
 y_2 (0.75) + y_3 (-2.25) + y_4 (1.25) &amp;= 0.5 \\
@@ -752,8 +752,8 @@ y_3 (0.625) + y_4 (-2.375) + y_5 (1.375) &amp;= 0.75 \\
 y_5 &amp;= 8
 \end{align}\]</div>
 <p>This is a system of five equations and five unknowns, which we can solve! But, solving using substitution would be painful, so let’s represent this system of equations using a matrix and vectors:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e694a98-8ff5-40dd-a7f9-1e26c4847c9a">
-<span class="eqno">(4.24)<a class="headerlink" href="#equation-3e694a98-8ff5-40dd-a7f9-1e26c4847c9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be89c7d3-51ed-432e-b608-aa5f6da91325">
+<span class="eqno">(4.24)<a class="headerlink" href="#equation-be89c7d3-51ed-432e-b608-aa5f6da91325" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0.875 &amp; -2.125 &amp; 1.125 &amp; 0 &amp; 0 \\
@@ -868,8 +868,8 @@ plt.show()
 </ul>
 <p>Whichever type of boundary condition we are dealing with, the goal will be to construct an equation representing the boundary condition to incorporate in our system of equations.</p>
 <p>If we have a fixed value boundary condition, such as <span class="math notranslate nohighlight">\(y(0) = a\)</span>, then this equation is straightforward:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c2c817e-dd7b-428e-877e-ddc11487cc6e">
-<span class="eqno">(4.25)<a class="headerlink" href="#equation-2c2c817e-dd7b-428e-877e-ddc11487cc6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fe2ae411-4cae-4383-a013-96abc7f7c0dd">
+<span class="eqno">(4.25)<a class="headerlink" href="#equation-fe2ae411-4cae-4383-a013-96abc7f7c0dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_1 = a
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_1\)</span> is the first point in the grid of points, corresponding to <span class="math notranslate nohighlight">\(x_1 = 0\)</span>. (We saw this in the example above.) In Python, we can implement this equation with</p>
@@ -878,8 +878,8 @@ y_1 = a
 </pre></div>
 </div>
 <p>If we have a fixed derivative boundary condition, such as <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>, then we need to use a finite difference to represent the derivative. When the boundary condition is at the starting location, <span class="math notranslate nohighlight">\(x=0\)</span>, the easiest way to do this is with a <strong>forward difference</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2312981-6f8a-45a5-9445-7415e99573fe">
-<span class="eqno">(4.26)<a class="headerlink" href="#equation-d2312981-6f8a-45a5-9445-7415e99573fe" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-64668703-70d3-4f3b-897b-5935c9ce58e3">
+<span class="eqno">(4.26)<a class="headerlink" href="#equation-64668703-70d3-4f3b-897b-5935c9ce58e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(0) \approx \frac{y_2 - y_1}{\Delta x} &amp;= 0 \\
 -y_1 + y_2 &amp;= 0
 \end{align}\]</div>
@@ -890,8 +890,8 @@ y^{\prime}(0) \approx \frac{y_2 - y_1}{\Delta x} &amp;= 0 \\
 </pre></div>
 </div>
 <p>When we have this sort of derivative boundary condition at the right side of the domain, at <span class="math notranslate nohighlight">\(x=L\)</span>, then we can use a <strong>backward difference</strong> to represent the derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ec83b3e-ea7b-45f0-8d8c-3643216ee20b">
-<span class="eqno">(4.27)<a class="headerlink" href="#equation-0ec83b3e-ea7b-45f0-8d8c-3643216ee20b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4b63f8dd-d90b-466d-92bb-3f0ed22f3fbb">
+<span class="eqno">(4.27)<a class="headerlink" href="#equation-4b63f8dd-d90b-466d-92bb-3f0ed22f3fbb" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(L) \approx \frac{y_n - y_{n_1}}{\Delta x} &amp;= 0 \\
 -y_{n-1} + y_n &amp;= 0
 \end{align}\]</div>
@@ -902,8 +902,8 @@ y^{\prime}(L) \approx \frac{y_n - y_{n_1}}{\Delta x} &amp;= 0 \\
 </pre></div>
 </div>
 <p>If we have a linear combination of a fixed value and fixed derivative, like <span class="math notranslate nohighlight">\(a \, y(0) + b \, y^{\prime}(0) = c\)</span>, then we can combine the above approaches using a forward difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8053d354-9f71-4d05-be2c-2d8e025864a3">
-<span class="eqno">(4.28)<a class="headerlink" href="#equation-8053d354-9f71-4d05-be2c-2d8e025864a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-100188fb-d44e-400e-8631-70b4f4e3b3fe">
+<span class="eqno">(4.28)<a class="headerlink" href="#equation-100188fb-d44e-400e-8631-70b4f4e3b3fe" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y(0) + b y^{\prime}(0) \approx a y_1 + b \frac{y_2 - y_1}{\Delta x} &amp;= c \\
 (a \Delta x - b) y_1 + b y_2 &amp;= c \Delta x
 \end{align}\]</div>
@@ -917,21 +917,21 @@ a y(0) + b y^{\prime}(0) \approx a y_1 + b \frac{y_2 - y_1}{\Delta x} &amp;= c \
 <h3><span class="section-number">4.2.4.1. </span>Using central differences for derivative BCs<a class="headerlink" href="#using-central-differences-for-derivative-bcs" title="Permalink to this headline">#</a></h3>
 <p>When a boundary condition involves a derivative, we can use a <em>central difference</em> to approximate the first derivative; this is more accurate than a forward or backward difference.</p>
 <p>Consider the formula for a central difference at <span class="math notranslate nohighlight">\(x=0\)</span>, applied for the boundary condition <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0342ecba-32b6-4945-acf9-2f0fb33e3c40">
-<span class="eqno">(4.29)<a class="headerlink" href="#equation-0342ecba-32b6-4945-acf9-2f0fb33e3c40" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ab98ae8e-fd02-4d7c-99b2-2de9a0c70ea1">
+<span class="eqno">(4.29)<a class="headerlink" href="#equation-ab98ae8e-fd02-4d7c-99b2-2de9a0c70ea1" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(0) \approx \frac{y_2 - y_0}{2 \Delta x} &amp;= 0 \\
 y_0 &amp;= y_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_0\)</span> is an imaginary, or ghost, node <em>outside</em> the domain. We can’t actually keep this point in our implementation, because it isn’t a real point.</p>
 <p>We still need an equation <em>for</em> the point at the boundary, <span class="math notranslate nohighlight">\(y_1\)</span>. To get this, we’ll apply the regular recursion formula, normally used at interior points:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7a56592-0e5d-47db-b98d-f606babe3f5b">
-<span class="eqno">(4.30)<a class="headerlink" href="#equation-d7a56592-0e5d-47db-b98d-f606babe3f5b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a9b18a4f-3cd7-4355-bf53-c546843ea894">
+<span class="eqno">(4.30)<a class="headerlink" href="#equation-a9b18a4f-3cd7-4355-bf53-c546843ea894" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y_{i-1} + b y_i + c y_{i+1} = f(x_i) \\
 a y_0 + b y_1 + c y_2 = f(x_1) \;,
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(f(x)\)</span> depend on the problem. Normally we wouldn’t use this at the boundary node, <span class="math notranslate nohighlight">\(y_1\)</span>, because it references a point outside the domain to the left—but we have an equation for that! From above, based on the boundary condition, we have <span class="math notranslate nohighlight">\(y_0 = y_2\)</span>. If we incorporate that into the recursion formula, we can eliminate the ghost node <span class="math notranslate nohighlight">\(y_0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04d8000d-ba2d-4bdd-8cfa-78b4652d1d6f">
-<span class="eqno">(4.31)<a class="headerlink" href="#equation-04d8000d-ba2d-4bdd-8cfa-78b4652d1d6f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f5276d1e-d5fd-4a76-b666-dc20c75e783c">
+<span class="eqno">(4.31)<a class="headerlink" href="#equation-f5276d1e-d5fd-4a76-b666-dc20c75e783c" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y_2 + b y_1 + c y_2 &amp;= f(x_1) \\
 b y_1 + (a + c) y_2 &amp;= f(x_1) \,
 \end{align}\]</div>
@@ -948,19 +948,19 @@ In Python, this looks like</p>
 <h2><span class="section-number">4.2.5. </span>Example: nonlinear BVP<a class="headerlink" href="#example-nonlinear-bvp" title="Permalink to this headline">#</a></h2>
 <p>So far we’ve seen how to handle a linear boundary value problem, but what if we have a <strong>nonlinear</strong> BVP? This is going to be trickier, because our work so far relies on using linear algebra to solve the system of (linear) equations.</p>
 <p>For example, consider the 2nd-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26016521-bc48-4dfd-97c5-ac2975ffeb56">
-<span class="eqno">(4.32)<a class="headerlink" href="#equation-26016521-bc48-4dfd-97c5-ac2975ffeb56" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-557ff407-5af9-4ac7-a08c-5bda2790a526">
+<span class="eqno">(4.32)<a class="headerlink" href="#equation-557ff407-5af9-4ac7-a08c-5bda2790a526" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} = 3y + x^2 + 100 y^2
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0) = y(1) = 0\)</span>. This is nonlinear, due to the <span class="math notranslate nohighlight">\(y^3\)</span> term on the right-hand side.</p>
 <p>To solve this, let’s first convert it into a discrete form, by replacing the second derivative with a finite difference and any <span class="math notranslate nohighlight">\(x\)</span>/<span class="math notranslate nohighlight">\(y\)</span> present with <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>. We’ll also move any constants (i.e., terms that don’t contain <span class="math notranslate nohighlight">\(y_i\)</span>) and the nonlinear term to the right-hand side:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6678370f-26e4-4214-9ec7-19b4cb517521">
-<span class="eqno">(4.33)<a class="headerlink" href="#equation-6678370f-26e4-4214-9ec7-19b4cb517521" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-60e92fbc-c78c-4ee8-be90-2c9efb391095">
+<span class="eqno">(4.33)<a class="headerlink" href="#equation-60e92fbc-c78c-4ee8-be90-2c9efb391095" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} - 3y_i = x_i^2 + 100 y_i^2
 \end{equation}\]</div>
 <p>where the boundary conditions are now <span class="math notranslate nohighlight">\(y_1 = 0\)</span> and <span class="math notranslate nohighlight">\(y_n = 0\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> as the number of grid points. We can rearrange and simplify into our recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f8ef349-9f2f-48e1-bcc3-4da2f0c3a995">
-<span class="eqno">(4.34)<a class="headerlink" href="#equation-2f8ef349-9f2f-48e1-bcc3-4da2f0c3a995" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab0b9ce9-608c-403e-a379-b55d4ba9806f">
+<span class="eqno">(4.34)<a class="headerlink" href="#equation-ab0b9ce9-608c-403e-a379-b55d4ba9806f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 100 \Delta x^2 y_i^2
 \end{equation}\]</div>
 <p>The question is: how do we solve this now? The nonlinear term involving <span class="math notranslate nohighlight">\(y_i^3\)</span> on the right-hand side complicates things, but we know how to set up and solve this <em>without</em> the nonlinear term. We can use an approach known as <strong>successive iteration</strong>:</p>
@@ -1096,8 +1096,8 @@ print(f&#39;Number of iterations: {iters}&#39;)
 </figure>
 <p>In this situation, we have the temperature of the body <span class="math notranslate nohighlight">\(T_b\)</span>, the temperature of the ambient fluid <span class="math notranslate nohighlight">\(T_{\infty}\)</span>; the length <span class="math notranslate nohighlight">\(L\)</span>, width <span class="math notranslate nohighlight">\(w\)</span>, and thickness <span class="math notranslate nohighlight">\(t\)</span> of the fin; the thermal conductivity of the fin material <span class="math notranslate nohighlight">\(k\)</span>; and convection heat transfer coefficient <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <p>The boundary conditions can be defined in different ways, but generally we can say that the temperature of the fin at the wall is the same as the body temperature, and that the fin is insulated at the tip. This gives us</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81836e57-beed-454d-a32d-df1660a58899">
-<span class="eqno">(4.35)<a class="headerlink" href="#equation-81836e57-beed-454d-a32d-df1660a58899" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7d0549f9-9795-4b44-a633-a09b50c8d597">
+<span class="eqno">(4.35)<a class="headerlink" href="#equation-7d0549f9-9795-4b44-a633-a09b50c8d597" title="Permalink to this equation">#</a></span>\[\begin{align}
 T(x=0) &amp;= T_b \\
 q(x=L) = 0 \rightarrow \frac{dT}{dx} (x=0) &amp;= 0
 \end{align}\]</div>
@@ -1109,16 +1109,16 @@ q(x=L) = 0 \rightarrow \frac{dT}{dx} (x=0) &amp;= 0
 </figcaption>
 </figure>
 <p>Given a particular volumetric slice of the fin, we can define the heat transfer rates of conduction through the fin and convection from the fin to the air:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1eec0ef3-7cb0-4e72-83bf-e2dc1f2e4056">
-<span class="eqno">(4.36)<a class="headerlink" href="#equation-1eec0ef3-7cb0-4e72-83bf-e2dc1f2e4056" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b571f390-c24a-466a-8921-ee36ecb82561">
+<span class="eqno">(4.36)<a class="headerlink" href="#equation-b571f390-c24a-466a-8921-ee36ecb82561" title="Permalink to this equation">#</a></span>\[\begin{align}
 q_{\text{conv}} &amp;= h P \left( T - T_{\infty} \right) dx \\
 q_{\text{cond}, x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} \\
 q_{\text{cond}, x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} \;,
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(P\)</span> is the perimeter (so that <span class="math notranslate nohighlight">\(P \, dx\)</span> is the heat transfer area to the fluid) and <span class="math notranslate nohighlight">\(A_c\)</span> is the cross-sectional area.</p>
 <p>Performing a balance through the control volume:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dca27533-e0d2-46a2-88ab-a0069ea96729">
-<span class="eqno">(4.37)<a class="headerlink" href="#equation-dca27533-e0d2-46a2-88ab-a0069ea96729" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1f25a182-ef72-4584-b42d-765de951b31d">
+<span class="eqno">(4.37)<a class="headerlink" href="#equation-1f25a182-ef72-4584-b42d-765de951b31d" title="Permalink to this equation">#</a></span>\[\begin{align}
 q_{\text{cond}, x+\Delta x} &amp;= q_{\text{cond}, x} - q_{\text{conv}} \\
 -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} - h P \left( T - T_{\infty} \right) dx \\
 -k A_c \frac{\left.\frac{dT}{dx}\right|_{x+\Delta x} - \left.\frac{dT}{dx}\right|_{x}}{dx} &amp;= -h P ( T - T_{\infty} ) \\
@@ -1127,43 +1127,43 @@ q_{\text{cond}, x+\Delta x} &amp;= q_{\text{cond}, x} - q_{\text{conv}} \\
 \frac{d^2 T}{dx^2} &amp;= m^2 (T - T_{\infty})
 \end{align}\]</div>
 <p>then we have as a governing equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21fb6e18-5e8f-48b6-b417-3e0ab90f65db">
-<span class="eqno">(4.38)<a class="headerlink" href="#equation-21fb6e18-5e8f-48b6-b417-3e0ab90f65db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a0c0942-8efd-4c75-a497-8f616018bea5">
+<span class="eqno">(4.38)<a class="headerlink" href="#equation-8a0c0942-8efd-4c75-a497-8f616018bea5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m^2 = (h P)/(k A_c)\)</span>.</p>
 <p>We can obtain an exact solution for this ODE. For convenience, let’s define a new variable, <span class="math notranslate nohighlight">\(\theta\)</span>, which is a normalized temperature:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd2bfb1a-f278-4f4d-b827-852f0fcc3857">
-<span class="eqno">(4.39)<a class="headerlink" href="#equation-bd2bfb1a-f278-4f4d-b827-852f0fcc3857" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3106a863-0732-4706-b57d-f7e8e4638cdf">
+<span class="eqno">(4.39)<a class="headerlink" href="#equation-3106a863-0732-4706-b57d-f7e8e4638cdf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \theta \equiv T - T_{\infty}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta^{\prime} = T^{\prime}\)</span> and <span class="math notranslate nohighlight">\(\theta^{\prime\prime} = T^{\prime\prime}\)</span>.
 This gives us a new governing equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-45416d0d-87b0-48e6-b7b8-7f612552d43c">
-<span class="eqno">(4.40)<a class="headerlink" href="#equation-45416d0d-87b0-48e6-b7b8-7f612552d43c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ebe88f93-56bb-463b-85c4-55ed44bdd320">
+<span class="eqno">(4.40)<a class="headerlink" href="#equation-ebe88f93-56bb-463b-85c4-55ed44bdd320" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \theta^{\prime\prime} - m^2 \theta = 0 \;.
 \end{equation}\]</div>
 <p>This is a 2nd-order homogeneous ODE, which looks a lot like <span class="math notranslate nohighlight">\(y^{\prime\prime} + a y = 0\)</span>. The exact solution is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3d4bf39-14b0-4cb7-a504-60e7bbbdae1c">
-<span class="eqno">(4.41)<a class="headerlink" href="#equation-c3d4bf39-14b0-4cb7-a504-60e7bbbdae1c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-06e57a87-941c-4762-9b96-7b902ce4c6ea">
+<span class="eqno">(4.41)<a class="headerlink" href="#equation-06e57a87-941c-4762-9b96-7b902ce4c6ea" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(x) &amp;= c_1 e^{-m x} + c_2 e^{m x} \\
 T(x) &amp;= T_{\infty} + c_1 e^{-m x} + c_2 e^{m x}
 \end{align}\]</div>
 <p>We’ll use this to look at the accuracy of a numerical solution, but we will not be able to find an exact solution for more complicated versions of this problem.</p>
 <p>We can also solve this numerically using the finite difference method. Let’s replace the derivative with a finite difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9ed60a7-d70f-4529-9e55-8f3b4abaa469">
-<span class="eqno">(4.42)<a class="headerlink" href="#equation-a9ed60a7-d70f-4529-9e55-8f3b4abaa469" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e18eeb2e-a90f-439d-b9dc-6c25989ccbea">
+<span class="eqno">(4.42)<a class="headerlink" href="#equation-e18eeb2e-a90f-439d-b9dc-6c25989ccbea" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) &amp;= 0 \\
 \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta x^2} - m^2 \left( T_i - T_{\infty} \right) &amp;= 0
 \end{align}\]</div>
 <p>which we can rearrange into a recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7c5a62c-a71f-4ced-a4d4-42022ca11e16">
-<span class="eqno">(4.43)<a class="headerlink" href="#equation-e7c5a62c-a71f-4ced-a4d4-42022ca11e16" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-134459ab-bde2-4edf-b91d-974497759bc6">
+<span class="eqno">(4.43)<a class="headerlink" href="#equation-134459ab-bde2-4edf-b91d-974497759bc6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T_{i-1} + T_i \left( -2 - \Delta x^2 m^2 \right) + T_{i+1} = -m^2 \Delta x^2 \, T_{\infty}
 \end{equation}\]</div>
 <p>This gives us an equation for all the interior nodes; we can use the above boundary conditions to get equations for the boundary nodes. For the boundary condition at <span class="math notranslate nohighlight">\(x=L\)</span>, <span class="math notranslate nohighlight">\(T^{\prime}(x=L) = 0\)</span>, let’s use a <em>backward difference</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-426bdbeb-fdde-4186-a21c-0458081324e9">
-<span class="eqno">(4.44)<a class="headerlink" href="#equation-426bdbeb-fdde-4186-a21c-0458081324e9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7bd88061-1788-41ff-8731-b3d31c560cb2">
+<span class="eqno">(4.44)<a class="headerlink" href="#equation-7bd88061-1788-41ff-8731-b3d31c560cb2" title="Permalink to this equation">#</a></span>\[\begin{align}
 T_1 &amp;= T_b \\
 \frac{T_n - T_{n-1}}{\Delta x} = 0 \rightarrow - T_{n-1} + T_n &amp;= 0
 \end{align}\]</div>
@@ -1171,8 +1171,8 @@ T_1 &amp;= T_b \\
 <section id="heat-transfer-with-radiation">
 <h3><span class="section-number">4.2.6.1. </span>Heat transfer with radiation<a class="headerlink" href="#heat-transfer-with-radiation" title="Permalink to this headline">#</a></h3>
 <p>Let’s now consider a more-complicated case, where we also have radiation heat transfer occuring along the length of the fin. Now, our governing ODE is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97fa0683-3142-4d36-b12e-d29efe9dabe9">
-<span class="eqno">(4.45)<a class="headerlink" href="#equation-97fa0683-3142-4d36-b12e-d29efe9dabe9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb1ec836-8e73-45f0-8eea-eaec3a141aea">
+<span class="eqno">(4.45)<a class="headerlink" href="#equation-bb1ec836-8e73-45f0-8eea-eaec3a141aea" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 T}{dx^2} - \frac{h P}{k A_c} \left(T - T_{\infty}\right) - \frac{\sigma \epsilon P}{h A_c} \left(T^4 - T_{\infty}^4 \right) = 0
 \end{equation}\]</div>
 <p>This is a bit trickier to solve because of the nonlinear term involving <span class="math notranslate nohighlight">\(T^4\)</span>. But, we can handle it via the iterative solution method discussed above.</p>

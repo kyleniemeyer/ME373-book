@@ -635,27 +635,27 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 </div>
 </div>
 <p>The classic example of an elliptic PDE is <strong>Laplace’s equation</strong> (yep, the same Laplace that gave us the Laplace transform), which in two dimensions for a variable <span class="math notranslate nohighlight">\(u(x,y)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0957c3dc-14d4-4f87-b437-57aaac094948">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-0957c3dc-14d4-4f87-b437-57aaac094948" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f3aa0d9-298d-498b-80a0-0933cb5ea114">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-8f3aa0d9-298d-498b-80a0-0933cb5ea114" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nabla\)</span> is del, or nabla, and represents the gradient operator: <span class="math notranslate nohighlight">\(\nabla = \frac{\partial}{\partial x} + \frac{\partial}{\partial y}\)</span>.</p>
 <p>Laplace’s equation shows up in a number of physical problems, including heat transfer, fluid dynamics, and electrostatics. For example, the heat equation for conduction in two dimensions is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2ca055e-0227-48ed-a032-86f9b93fdefa">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-f2ca055e-0227-48ed-a032-86f9b93fdefa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f0c73ce1-2153-480a-bf50-c5232bcdbf2d">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-f0c73ce1-2153-480a-bf50-c5232bcdbf2d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial u}{\partial t} = \alpha \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u(x,y,t)\)</span> is temperature and <span class="math notranslate nohighlight">\(\alpha\)</span> is thermal diffusivity. Steady-state heat transfer (meaning after any initial transient period) is then described by Laplace’s equation.</p>
 <p>A related elliptic PDE is <strong>Poisson’s equation</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b265af1-7588-4394-ac9f-5836d13b67b2">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-6b265af1-7588-4394-ac9f-5836d13b67b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e15bf50d-c4b3-4430-bae6-9c3b1e9da490">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-e15bf50d-c4b3-4430-bae6-9c3b1e9da490" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \nabla^2 u = f(x,y) \;,
 \end{equation}\]</div>
 <p>which also appears in multiple physical problems—most notably, when solving for pressure in the Navier–Stokes equations.</p>
 <p>To numerically solve these equations, and any elliptic PDE, we can use finite differences, where we replace the continuous <span class="math notranslate nohighlight">\(x,y\)</span> domain with a discrete grid of points. This is similar to what we did with boundary-value problems in one dimension—but now we have two dimensions.</p>
 <p>To approximate the second derivatives in Laplace’s equation, we can use central differences in both the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, applied around the <span class="math notranslate nohighlight">\(u_{i,j}\)</span> point:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec285c61-f43e-4d6f-a48d-8e8997df5778">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-ec285c61-f43e-4d6f-a48d-8e8997df5778" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f0e9fa77-ce65-4414-939c-d3fe11c838c0">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-f0e9fa77-ce65-4414-939c-d3fe11c838c0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{\partial^2 u}{\partial x^2} &amp;\approx \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} \\
 \frac{\partial^2 u}{\partial y^2} &amp;\approx \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2}
 \end{align}\]</div>
@@ -669,25 +669,25 @@ In other words, <span class="math notranslate nohighlight">\(x_i = (i-1) \Delta 
 </figcaption>
 </figure>
 <p>Applying these finite differences gives us an approximation for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de523a38-85ec-49e3-938c-3d1346b59f7c">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-de523a38-85ec-49e3-938c-3d1346b59f7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e7588b58-34df-4aeb-845f-2349fb001069">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-e7588b58-34df-4aeb-845f-2349fb001069" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} + \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2} = 0 \;.
 \end{equation}\]</div>
 <p>If we use a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, then we can simplify to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3aa3a371-5917-46ed-912a-8ae0c19e2256">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-3aa3a371-5917-46ed-912a-8ae0c19e2256" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-561b832c-1aee-4028-baaa-243a92b2119e">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-561b832c-1aee-4028-baaa-243a92b2119e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <section id="example-heat-transfer-in-a-square-plate">
 <h2><span class="section-number">5.1.1. </span>Example: heat transfer in a square plate<a class="headerlink" href="#example-heat-transfer-in-a-square-plate" title="Permalink to this headline">#</a></h2>
 <p>As an example, let’s consider the problem of steady-state heat transfer in a square solid object. If <span class="math notranslate nohighlight">\(u(x,y)\)</span> is temperature, then this is described by Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98b8b07e-66dd-4e0f-9136-395b698afa7d">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-98b8b07e-66dd-4e0f-9136-395b698afa7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-de092e85-e679-476f-b238-04f7995bcac3">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-de092e85-e679-476f-b238-04f7995bcac3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>and we can solve this using finite differences. Using a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, Laplace’s equation gives us a recursion formula that relates the values at neighboring points:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5a5513b-6018-4f48-a6c0-d7a8b2d2febd">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-e5a5513b-6018-4f48-a6c0-d7a8b2d2febd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-80badce7-bd92-47b5-948d-0d1665fdb241">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-80badce7-bd92-47b5-948d-0d1665fdb241" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Consider a case where the square has sides of length <span class="math notranslate nohighlight">\(L\)</span>, and the boundary conditions are that the temperature is fixed at 100 on the left, right, and bottom sides, and fixed at 0 on the top.
@@ -706,8 +706,8 @@ The following figures show the example problem, and the grid of points we’ll u
 </figcaption>
 </figure>
 <p>Using the above recursion formula, we can write an equation for each of the nine unknown points (in the interior, not the boundary points):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c1973a3-e765-43d1-bfc3-b72d431b601e">
-<span class="eqno">(5.10)<a class="headerlink" href="#equation-7c1973a3-e765-43d1-bfc3-b72d431b601e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea358116-9f8b-4b92-ac5c-f472b83040de">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-ea358116-9f8b-4b92-ac5c-f472b83040de" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{0,0} &amp;= 100 \\
 u_{1,0} &amp;= 100 \\
 u_{2,0} &amp;= 100 \\
@@ -720,8 +720,8 @@ u_{2,2} &amp;= 100
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{i,j}\)</span> are the unknowns. Note that in this we used the side boundary condition values for the corner points <span class="math notranslate nohighlight">\(u_{0,2}\)</span> and <span class="math notranslate nohighlight">\(u_{2,2}\)</span>, rather than the top value. (In reality this would represent a discontinuity in temperature, so these aren’t very realistic boundary conditions.)</p>
 <p>This is a system of linear equations, that we can represent as a matrix-vector product:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17d21060-324c-41bb-83ee-e2a22824b2ea">
-<span class="eqno">(5.11)<a class="headerlink" href="#equation-17d21060-324c-41bb-83ee-e2a22824b2ea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dbf5b6bb-6816-46d0-9ff4-48b8ff352e36">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-dbf5b6bb-6816-46d0-9ff4-48b8ff352e36" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} 
 1 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
@@ -785,8 +785,8 @@ assert np.all(u == u2)
 </div>
 </div>
 <p>This gives us the values for temperature at each of the nine points. In this example, we really only have one unknown temperature: <span class="math notranslate nohighlight">\(u_{1,1}\)</span>, located in the middle. Does the value given make sense? We can check by rearranging the recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e75cd032-a9d0-48f3-b6a9-0cd1c97efab7">
-<span class="eqno">(5.12)<a class="headerlink" href="#equation-e75cd032-a9d0-48f3-b6a9-0cd1c97efab7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2dd4bfb8-01b5-45a8-af72-d6e20ec6dcf1">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-2dd4bfb8-01b5-45a8-af72-d6e20ec6dcf1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i,j} = \frac{u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1}}{4} \;,
 \end{equation}\]</div>
 <p>which shows that in such problems the value of the middle point should be the average of the four surrounding points. This matches the value of 75 found above.</p>
@@ -847,8 +847,8 @@ plt.show()
 </figcaption>
 </figure>
 <p>We want to convert the rows and columns of <span class="math notranslate nohighlight">\(u_{i,j}\)</span> points defined by column and row index into a single column array using a different index, <span class="math notranslate nohighlight">\(k\)</span> (this choice is arbitrary):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ddd46d13-7ae7-4ace-a111-a09cfa1be947">
-<span class="eqno">(5.13)<a class="headerlink" href="#equation-ddd46d13-7ae7-4ace-a111-a09cfa1be947" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ffd26350-a19c-47d1-9979-a9c6395ab9d2">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-ffd26350-a19c-47d1-9979-a9c6395ab9d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} u_{0,0} \\ u_{1,0} \\ u_{2,0} \\ \vdots \\ u_{n-1,0} \\
 u_{0,1} \\ u_{1,1} \\ u_{2,1} \\ \vdots \\ u_{n-1, 1} \\ u_{0,2} \\ \vdots \\
 u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
@@ -856,8 +856,8 @@ u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> refers to the index used in that array.</p>
 <p>To do this mapping, we can use this formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dd2db68-6355-46d3-b125-1465a97a6945">
-<span class="eqno">(5.14)<a class="headerlink" href="#equation-5dd2db68-6355-46d3-b125-1465a97a6945" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2890047d-6ab7-48d2-a035-0561bfa8f4d7">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-2890047d-6ab7-48d2-a035-0561bfa8f4d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{i,j} = j n + i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k_{i,j}\)</span> refers to the 1D index <span class="math notranslate nohighlight">\(k\)</span> mapped from the 2D indices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -869,14 +869,14 @@ k_{i,j} = j n + i
 </figure>
 <p>For example, in this <span class="math notranslate nohighlight">\(3\times 3\)</span> grid, where <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(m=3\)</span>, consider the point where <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(j=1\)</span> (the point right in the center).
 Using our formula,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f868fe24-93d9-4533-8786-7e5210b3f68b">
-<span class="eqno">(5.15)<a class="headerlink" href="#equation-f868fe24-93d9-4533-8786-7e5210b3f68b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9cb3ccd2-17d9-4fb1-aeec-9ffc136fef72">
+<span class="eqno">(5.15)<a class="headerlink" href="#equation-9cb3ccd2-17d9-4fb1-aeec-9ffc136fef72" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{1,1} = (1) 3 + 1 = 4
 \end{equation}\]</div>
 <p>which matches what we can visually confirm: the fifth point, which would have index 4.</p>
 <p>Using that mapping, we can also identify the 1D indices associated with the points surrounding location <span class="math notranslate nohighlight">\((i,j)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aac6047f-4b26-4876-be08-53a00b37b193">
-<span class="eqno">(5.16)<a class="headerlink" href="#equation-aac6047f-4b26-4876-be08-53a00b37b193" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-52faadea-a909-4001-a6ff-49d46d306fc3">
+<span class="eqno">(5.16)<a class="headerlink" href="#equation-52faadea-a909-4001-a6ff-49d46d306fc3" title="Permalink to this equation">#</a></span>\[\begin{align}
 k_{i-1,j} &amp;= j n + i - 1 \\
 k_{i+1,j} &amp;= j n + i + 1 \\
 k_{i,j-1} &amp;= (j-1)n + i \\
@@ -963,27 +963,27 @@ plt.show()
 </figcaption>
 </figure>
 <p>For example, let’s say that at the upper boundary, the derivative of temperature is zero:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04af8e8e-b42d-4a84-9d5e-aef787b5399e">
-<span class="eqno">(5.17)<a class="headerlink" href="#equation-04af8e8e-b42d-4a84-9d5e-aef787b5399e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5b11ffa3-7c91-41c0-ab0d-956d56ff3127">
+<span class="eqno">(5.17)<a class="headerlink" href="#equation-5b11ffa3-7c91-41c0-ab0d-956d56ff3127" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left. \frac{\partial u}{\partial y} \right|_{\text{boundary}} = 0
 \end{equation}\]</div>
 <p>Let’s consider this boundary condition applied at the point shown, <span class="math notranslate nohighlight">\(u_{2,3}\)</span>.
 We can approximate this derivative using a central difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9e468b7-db25-4781-ae5b-3883fa0b9c56">
-<span class="eqno">(5.18)<a class="headerlink" href="#equation-a9e468b7-db25-4781-ae5b-3883fa0b9c56" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b4743c2-0177-4f83-a440-f4060c4396e3">
+<span class="eqno">(5.18)<a class="headerlink" href="#equation-5b4743c2-0177-4f83-a440-f4060c4396e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{u_{2,3}}{\partial y} \approx \frac{u_{2,4} - u_{2,2}}{\Delta x} &amp;= 0 \\
 u_{2,4} &amp;= u_{2,2}
 \end{align}\]</div>
 <p>This tells us the value of the point above the boundary, <span class="math notranslate nohighlight">\(u_{2,4}\)</span>; however, this point is a “ghost” or imaginary point located outside the boundary, so we don’t really care about its value. Instead, we can use this relationship to give us a usable equation for the boundary point, by incorporating it into the normal recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2277461-9d60-4cba-aa08-4cfafdb7370d">
-<span class="eqno">(5.19)<a class="headerlink" href="#equation-b2277461-9d60-4cba-aa08-4cfafdb7370d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4eb10ac3-2908-46da-ba99-0da47e5cc67b">
+<span class="eqno">(5.19)<a class="headerlink" href="#equation-4eb10ac3-2908-46da-ba99-0da47e5cc67b" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{1,3} + u_{3,3} + u_{2,4} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 u_{1,3} + u_{3,3} + u_{2,2} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 \rightarrow u_{1,3} + u_{3,3} + 2 u_{2,2} - 4u_{2,3} &amp;= 0
 \end{align}\]</div>
 <p>The recursion formula for points along the upper boundary would then become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-250eb6aa-e48a-40d6-901d-a8f57f692823">
-<span class="eqno">(5.20)<a class="headerlink" href="#equation-250eb6aa-e48a-40d6-901d-a8f57f692823" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c46eeb5-92bc-4ef1-b91e-c43804a7389f">
+<span class="eqno">(5.20)<a class="headerlink" href="#equation-4c46eeb5-92bc-4ef1-b91e-c43804a7389f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Now let’s try solving the above example, but with <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial y} = 0\)</span> at the top boundary and <span class="math notranslate nohighlight">\(u = 0\)</span> at the bottom boundary:</p>
@@ -1127,33 +1127,12 @@ def heat_equation(h):
 <p>Now, we can see how long it takes to solve as we increase the resolution, and get an idea about the relationship between time-to-solution and number of unknowns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01, 0.005]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01]
 
 num_pts = np.zeros(len(step_sizes))
 times = np.zeros_like(num_pts)
 for idx, step_size in enumerate(step_sizes):
     num_pts[idx], times[idx] = heat_equation(step_size)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">MemoryError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">num_pts</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">heat_equation</span><span class="p">(</span><span class="n">step_size</span><span class="p">)</span>
-
-<span class="nn">Cell In[9], line 17,</span> in <span class="ni">heat_equation</span><span class="nt">(h)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">num_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># The coefficient matrix A is now m*n by m*n, </span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># since that is the total number of points.</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># The right-hand side vector b is m*n by 1.</span>
-<span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">num_pts</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="ne">MemoryError</span>: Unable to allocate 12.2 GiB for an array with shape (40401, 40401) and data type float64
 </pre></div>
 </div>
 </div>
@@ -1199,8 +1178,8 @@ plt.show()
 <li><p>Check for convergence: is <span class="math notranslate nohighlight">\(\epsilon\)</span> less than some tolerance, such as <span class="math notranslate nohighlight">\(10^{-6}\)</span>? Where <span class="math notranslate nohighlight">\(\epsilon = \max \left| u_{i,j} - u_{i,j}^{\text{old}} \right|\)</span>. If no, then return to step 2 and repeat.</p></li>
 </ol>
 <p>More formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a5a2251-a16d-4585-999f-b9e4f746297d">
-<span class="eqno">(5.21)<a class="headerlink" href="#equation-9a5a2251-a16d-4585-999f-b9e4f746297d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea522132-8ce5-441a-9721-11a22d650d85">
+<span class="eqno">(5.21)<a class="headerlink" href="#equation-ea522132-8ce5-441a-9721-11a22d650d85" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1210,8 +1189,8 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb55a634-85ec-4650-8081-f6ba5b7b3a52">
-<span class="eqno">(5.22)<a class="headerlink" href="#equation-cb55a634-85ec-4650-8081-f6ba5b7b3a52" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcc04f21-4af4-4998-94ac-7041bd737256">
+<span class="eqno">(5.22)<a class="headerlink" href="#equation-dcc04f21-4af4-4998-94ac-7041bd737256" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>
@@ -1293,8 +1272,8 @@ x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \ri
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01, 0.005]
 
 num_pts_jac = np.zeros(len(step_sizes))
-times_jac = np.zeros_like(num_pts)
-num_iter_jac = np.zeros_like(num_pts)
+times_jac = np.zeros_like(num_pts_jac)
+num_iter_jac = np.zeros_like(num_pts_jac)
 for idx, step_size in enumerate(step_sizes):
     sol = heat_equation_jacobi(step_size)
     num_pts_jac[idx] = sol[&#39;num_points&#39;]
@@ -1311,11 +1290,37 @@ for idx, step_size in enumerate(step_sizes):
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 33
 Number of iterations: 107
 Number of iterations: 317
-Number of iterations: 822
-Number of iterations: 1062
-Number of iterations: 1637
-Number of iterations: 1910
-Number of iterations: 2402
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 822
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 1062
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 1637
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 1910
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">num_iter_jac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts_jac</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">sol</span> <span class="o">=</span> <span class="n">heat_equation_jacobi</span><span class="p">(</span><span class="n">step_size</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">num_pts_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_points&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">times_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+
+<span class="nn">Cell In[12], line 33,</span> in <span class="ni">heat_equation_jacobi</span><span class="nt">(h)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1325,8 +1330,8 @@ Number of iterations: 2402
 <h3><span class="section-number">5.1.5.2. </span>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h3>
 <p>The Gauss-Seidel method is very similar to the Jacobi method, but with one important difference: rather than using all old values to calculate the new values, incorporate updated values as they are available. Because the method incorporates newer information more quickly, it tends to converge faster (meaning, with fewer iterations) than the Jacobi method.</p>
 <p>Formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eff9c850-d2d1-4abb-b939-c46f0f5475a8">
-<span class="eqno">(5.23)<a class="headerlink" href="#equation-eff9c850-d2d1-4abb-b939-c46f0f5475a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e9599a73-b74f-479a-ac63-29c9e9c87a22">
+<span class="eqno">(5.23)<a class="headerlink" href="#equation-e9599a73-b74f-479a-ac63-29c9e9c87a22" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1336,8 +1341,8 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1f2c9b8-983c-449a-a2f6-d38a0198ebcc">
-<span class="eqno">(5.24)<a class="headerlink" href="#equation-f1f2c9b8-983c-449a-a2f6-d38a0198ebcc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-60e2821a-be53-4cfb-9172-6c6c50db955b">
+<span class="eqno">(5.24)<a class="headerlink" href="#equation-60e2821a-be53-4cfb-9172-6c6c50db955b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} - \sum_{j =i+1}^n a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>
@@ -1419,8 +1424,8 @@ x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01, 0.005]
 
 num_pts_gs = np.zeros(len(step_sizes))
-times_gs = np.zeros_like(num_pts)
-num_iter_gs = np.zeros_like(num_pts)
+times_gs = np.zeros_like(num_pts_gs)
+num_iter_gs = np.zeros_like(num_pts_gs)
 for idx, step_size in enumerate(step_sizes):
     sol = heat_equation_gauss_seidel(step_size)
     num_pts_gs[idx] = sol[&#39;num_points&#39;]
@@ -1464,6 +1469,7 @@ plt.show()
 </div>
 </div>
 <p>We can see that for smaller numbers of points/unknowns, the direct solution method is faster, but at some point the costs of solving directly (meaning using linear algebra) grow higher.</p>
+<p>Due to time and computer memory constraints, we can’t actually show that the direct method takes longer for the smallest step size (0.005)—many computers will run out of memory!</p>
 <p>In addition, if you look at the slopes of the costs, the iterative methods have a consistent slope, while the direct method changes slope to grow in cost faster at a certain point.</p>
 <p>(Running these tests on different computers might generate slightly different results, but the overall conclusions should stay the same.)</p>
 <div class="cell docutils container">

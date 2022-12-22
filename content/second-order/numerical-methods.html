@@ -616,20 +616,20 @@ title="Print to PDF"
 <h1><span class="section-number">3.3. </span>Numerical methods for 2nd-order ODEs<a class="headerlink" href="#numerical-methods-for-2nd-order-odes" title="Permalink to this headline">#</a></h1>
 <p>We’ve gone over how to solve 1st-order ODEs using numerical methods, but what about 2nd-order or any higher-order ODEs? We can use the same methods we’ve already discussed by transforming our higher-order ODEs into a <strong>system of first-order ODEs</strong>.</p>
 <p>Meaning, if we are given a 2nd-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ef1bc88-a113-45c8-9efe-e556559513e5">
-<span class="eqno">(3.53)<a class="headerlink" href="#equation-1ef1bc88-a113-45c8-9efe-e556559513e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-993ad3e4-0749-4f38-9651-1ad48cfe3ba4">
+<span class="eqno">(3.53)<a class="headerlink" href="#equation-993ad3e4-0749-4f38-9651-1ad48cfe3ba4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 y}{dx^2} = y^{\prime\prime} = f(x, y, y^{\prime})
 \end{equation}\]</div>
 <p>we can transform this into a system of <strong>two 1st-order ODEs</strong> that are coupled:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d839e63-1fde-4638-b9e5-fb7c524400ad">
-<span class="eqno">(3.54)<a class="headerlink" href="#equation-0d839e63-1fde-4638-b9e5-fb7c524400ad" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e233d70b-d915-4fd8-9bdc-c0e7d88f4726">
+<span class="eqno">(3.54)<a class="headerlink" href="#equation-e233d70b-d915-4fd8-9bdc-c0e7d88f4726" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= y^{\prime} = u \\
 \frac{du}{dx} &amp;= u^{\prime} = y^{\prime\prime} = f(x, y, u)
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x, y, u)\)</span> is the same as that given above for <span class="math notranslate nohighlight">\(\frac{d^2 y}{dx^2}\)</span>.</p>
 <p>Thus, instead of a 2nd-order ODE to solve, we have two 1st-order ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b7123e7-c087-4e72-9382-613a00203e3c">
-<span class="eqno">(3.55)<a class="headerlink" href="#equation-9b7123e7-c087-4e72-9382-613a00203e3c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-982f3220-5218-4708-9579-536ce9fbb6a2">
+<span class="eqno">(3.55)<a class="headerlink" href="#equation-982f3220-5218-4708-9579-536ce9fbb6a2" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime} &amp;= u \\
 u^{\prime} &amp;= f(x, y, u)
 \end{align}\]</div>
@@ -637,8 +637,8 @@ u^{\prime} &amp;= f(x, y, u)
 <section id="higher-order-odes">
 <h2><span class="section-number">3.3.1. </span>Higher-order ODEs<a class="headerlink" href="#higher-order-odes" title="Permalink to this headline">#</a></h2>
 <p>This works for higher-order ODEs too! For example, if we have a 3rd-order ODE, we can transform it into a system of three 1st-order ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90e31c5f-db34-46d4-bccc-45736a23cbf6">
-<span class="eqno">(3.56)<a class="headerlink" href="#equation-90e31c5f-db34-46d4-bccc-45736a23cbf6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73129d3d-68ee-4155-99d6-a8f9fda41a6e">
+<span class="eqno">(3.56)<a class="headerlink" href="#equation-73129d3d-68ee-4155-99d6-a8f9fda41a6e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{d^3 y}{dx^3} &amp;= f(x, y, y^{\prime}, y^{\prime\prime}) \\
 \rightarrow y^{\prime} &amp;= u \\
 u^{\prime} &amp;= y^{\prime\prime} = w \\
@@ -668,29 +668,29 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 <section id="example-mass-spring-problem">
 <h2><span class="section-number">3.3.2. </span>Example: mass-spring problem<a class="headerlink" href="#example-mass-spring-problem" title="Permalink to this headline">#</a></h2>
 <p>For example, let’s solve a forced damped mass-spring problem given by a 2nd-order ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96649305-1212-490f-923f-0465e99682dd">
-<span class="eqno">(3.57)<a class="headerlink" href="#equation-96649305-1212-490f-923f-0465e99682dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c59250dc-804f-472a-adc5-fd1b0c141632">
+<span class="eqno">(3.57)<a class="headerlink" href="#equation-c59250dc-804f-472a-adc5-fd1b0c141632" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 5y^{\prime} + 6y = 10 \sin \omega t
 \end{equation}\]</div>
 <p>with the initial conditions <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = 5\)</span>.</p>
 <p>We start by transforming the equation into two 1st-order ODEs. Let’s use the variables <span class="math notranslate nohighlight">\(z_1 = y\)</span> and <span class="math notranslate nohighlight">\(z_2 = y^{\prime}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-703d8df6-318b-4892-92c4-c79828da7ef7">
-<span class="eqno">(3.58)<a class="headerlink" href="#equation-703d8df6-318b-4892-92c4-c79828da7ef7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6a80da89-86f9-43bf-aeb0-3ec01e27b4d6">
+<span class="eqno">(3.58)<a class="headerlink" href="#equation-6a80da89-86f9-43bf-aeb0-3ec01e27b4d6" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dz_1}{dt} &amp;= z_1^{\prime} = z_2 \\
 \frac{dz_2}{dt} &amp;= z_2^{\prime} = y^{\prime\prime} = 10 \sin \omega t - 5z_2 - 6z_1
 \end{align}\]</div>
 <section id="forward-euler">
 <h3><span class="section-number">3.3.2.1. </span>Forward Euler<a class="headerlink" href="#forward-euler" title="Permalink to this headline">#</a></h3>
 <p>Then, let’s solve numerically using the forward Euler method. Recall that the recursion formula for forward Euler is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-144d29bf-bac9-4c6b-a06e-fc6270baf94c">
-<span class="eqno">(3.59)<a class="headerlink" href="#equation-144d29bf-bac9-4c6b-a06e-fc6270baf94c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8dab3156-c6b5-4b27-8ba6-07abf91c3fdb">
+<span class="eqno">(3.59)<a class="headerlink" href="#equation-8dab3156-c6b5-4b27-8ba6-07abf91c3fdb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \Delta x f(x_i, y_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f(x,y) = \frac{dy}{dx}\)</span>.</p>
 <p>Let’s solve using <span class="math notranslate nohighlight">\(\omega = 1\)</span> and with a step size of <span class="math notranslate nohighlight">\(\Delta t = 0.1\)</span>, over <span class="math notranslate nohighlight">\(0 \leq t \leq 3\)</span>.</p>
 <p>We can compare this against the exact solution, obtainable using the method of undetermined coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7742d93-c016-4c02-917d-1351b3a8b33c">
-<span class="eqno">(3.60)<a class="headerlink" href="#equation-d7742d93-c016-4c02-917d-1351b3a8b33c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9da46fba-10b9-48d6-a452-14ebfe958df8">
+<span class="eqno">(3.60)<a class="headerlink" href="#equation-9da46fba-10b9-48d6-a452-14ebfe958df8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = -6 e^{-3t} + 7 e^{-2t} + \sin t - \cos t
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -833,8 +833,8 @@ plt.show()
 <h2><span class="section-number">3.3.3. </span>Backward Euler for 2nd-order ODEs<a class="headerlink" href="#backward-euler-for-2nd-order-odes" title="Permalink to this headline">#</a></h2>
 <p>We saw how to implement the Backward Euler method for a 1st-order ODE, but what about a 2nd-order ODE? (Or in general a system of 1st-order ODEs?)</p>
 <p>The recursion formula is the same, except now our dependent variable is an array/vector:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42ee6285-278d-404e-b90d-80134dffc5e4">
-<span class="eqno">(3.61)<a class="headerlink" href="#equation-42ee6285-278d-404e-b90d-80134dffc5e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0071b5a7-37c1-4336-8ba6-fc2a45a5beed">
+<span class="eqno">(3.61)<a class="headerlink" href="#equation-0071b5a7-37c1-4336-8ba6-fc2a45a5beed" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{y}_{i+1} = \mathbf{y}_i + \Delta t \, \mathbf{f} \left( t_{i+1} , \mathbf{y}_{i+1} \right)
 \end{equation}\]</div>
 <p>where the bolded <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> indicate array quantities (in other words, they hold more than one value).</p>
@@ -845,35 +845,35 @@ plt.show()
 </ol>
 <p>The main difference is that we will now have a system of two equations and two unknowns: <span class="math notranslate nohighlight">\(y_{1, i+1}\)</span> and <span class="math notranslate nohighlight">\(y_{2, i+1}\)</span>.</p>
 <p>Let’s demonstrate with an example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d203fb7e-10a8-4786-8e4a-6b61ce398178">
-<span class="eqno">(3.62)<a class="headerlink" href="#equation-d203fb7e-10a8-4786-8e4a-6b61ce398178" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5af81f2c-7bda-4e3a-bbf2-2f9f5f6e843b">
+<span class="eqno">(3.62)<a class="headerlink" href="#equation-5af81f2c-7bda-4e3a-bbf2-2f9f5f6e843b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 6 y^{\prime} + 5y = 10 \quad y(0) = 0 \quad y^{\prime}(0) = 5
 \end{equation}\]</div>
 <p>where the exact solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1245d4f-6583-42f4-938b-5cfa8bbeb45e">
-<span class="eqno">(3.63)<a class="headerlink" href="#equation-f1245d4f-6583-42f4-938b-5cfa8bbeb45e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e9b24cba-f016-4f4a-8aa7-4ae0726181bb">
+<span class="eqno">(3.63)<a class="headerlink" href="#equation-e9b24cba-f016-4f4a-8aa7-4ae0726181bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = -\frac{3}{4} e^{-5t} - \frac{5}{4} e^{-t} + 2
 \end{equation}\]</div>
 <p>To solve numerically,</p>
 <ol class="simple">
 <li><p>Convert the 2nd-order ODE into a system of two 1st-order ODEs:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-70f201f7-934d-4849-a20b-8efa82c583f2">
-<span class="eqno">(3.64)<a class="headerlink" href="#equation-70f201f7-934d-4849-a20b-8efa82c583f2" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-6a836cdc-e3fd-4341-9173-fc3db862b6ce">
+<span class="eqno">(3.64)<a class="headerlink" href="#equation-6a836cdc-e3fd-4341-9173-fc3db862b6ce" title="Permalink to this equation">#</a></span>\[\begin{gather}
 y_1 = y \quad y_1(t=0) = 0 \\
 y_2 = y^{\prime} \quad y_2 (t=0) = 5
 \end{gather}\]</div>
 <p>Then, for the derivatives of these variables:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1f0b2e64-20fa-4396-92df-036b7726ca45">
-<span class="eqno">(3.65)<a class="headerlink" href="#equation-1f0b2e64-20fa-4396-92df-036b7726ca45" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-057d95d2-b6da-4307-9ab2-f7cc4be9b251">
+<span class="eqno">(3.65)<a class="headerlink" href="#equation-057d95d2-b6da-4307-9ab2-f7cc4be9b251" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1^{\prime} &amp;= y_2 \\
 y_2^{\prime} &amp;= 10 - 6 y_2 - 5 y_1
 \end{align}\]</div>
 <ol class="simple">
 <li><p>Then plug these derivatives into the Backward Euler recursion formulas and solve for <span class="math notranslate nohighlight">\(y_{1,i+1}\)</span> and <span class="math notranslate nohighlight">\(y_{2,i+1}\)</span>:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-49aef0dd-e6c0-4e4c-bcff-525591ddb673">
-<span class="eqno">(3.66)<a class="headerlink" href="#equation-49aef0dd-e6c0-4e4c-bcff-525591ddb673" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-afc8a259-8393-4199-bd02-a78074ff5430">
+<span class="eqno">(3.66)<a class="headerlink" href="#equation-afc8a259-8393-4199-bd02-a78074ff5430" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{1, i+1} &amp;= y_{1, i} + \Delta t \, y_{2,i+1} \\
 y_{2, i+1} &amp;= y_{2, i} + \Delta t \left( 10 - 6 y_{2, i+1} - 5 y_{1,i+1} \right) \\
 \\
@@ -886,8 +886,8 @@ y_{1, i+1} - \Delta t \, y_{2, i+1} &amp;= y_{1,i} \\
 \mathbf{A} \mathbf{y}_{i+1} &amp;= \mathbf{b}
 \end{align}\]</div>
 <p>To isolate <span class="math notranslate nohighlight">\(\mathbf{y}_{i+1}\)</span> and get a usable recursion formula, we need to solve this system of two equations. We could solve this by hand using the substitution method, or we can use Cramer’s rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93a938c6-47bc-4d85-90c0-844b721a7312">
-<span class="eqno">(3.67)<a class="headerlink" href="#equation-93a938c6-47bc-4d85-90c0-844b721a7312" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73583946-ea18-4d24-abb3-284ef53254e0">
+<span class="eqno">(3.67)<a class="headerlink" href="#equation-73583946-ea18-4d24-abb3-284ef53254e0" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{1, i+1} &amp;= \frac{ y_{1,i} (1 + 6 \Delta t) + \Delta t \left( y_{2,i} + 10 \Delta t \right)}{1 + 6 \Delta t + 5 \Delta t^2} \\
 y_{2, i+1} &amp;= \frac{ y_{2,i} + 10 \Delta t - 5 \Delta t y_{1,i}}{1 + 6 \Delta t + 5 \Delta t^2}
 \end{align}\]</div>
@@ -1057,28 +1057,28 @@ plt.show()
 <section id="cramers-rule">
 <h2><span class="section-number">3.3.4. </span>Cramer’s Rule<a class="headerlink" href="#cramers-rule" title="Permalink to this headline">#</a></h2>
 <p>Cramer’s Rule provides a solution method for a system of linear equations, where the number of equations equals the number of unknowns. It works for any number of equations/unknowns, but isn’t really practical for more than two or three. We’ll focus on using it for a system of two equations, with two unknowns <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e6bc481-9d9b-4857-a891-cae8ae2e7982">
-<span class="eqno">(3.68)<a class="headerlink" href="#equation-9e6bc481-9d9b-4857-a891-cae8ae2e7982" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-80199511-1d4a-40cc-8b2a-a5446e439187">
+<span class="eqno">(3.68)<a class="headerlink" href="#equation-80199511-1d4a-40cc-8b2a-a5446e439187" title="Permalink to this equation">#</a></span>\[\begin{gather}
 a_{11} + x_1 + a_{12} x_2 = b_1 \\
 a_{21} + x_1 + a_{22} x_2 = b_2 \\
 \text{or } \mathbf{A} \mathbf{x} = \mathbf{b}
 \end{gather}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a659c6b3-a026-46d1-bec8-f560a5773cc2">
-<span class="eqno">(3.69)<a class="headerlink" href="#equation-a659c6b3-a026-46d1-bec8-f560a5773cc2" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-648d39a3-bc31-4f81-9271-954faf85b54d">
+<span class="eqno">(3.69)<a class="headerlink" href="#equation-648d39a3-bc31-4f81-9271-954faf85b54d" title="Permalink to this equation">#</a></span>\[\begin{gather}
 \mathbf{A} = \begin{bmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{bmatrix} \\
 \mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \\
 \mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}
 \end{gather}\]</div>
 <p>The solutions for the unknowns are then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f762aa1e-f598-44ba-a868-e617ad993caa">
-<span class="eqno">(3.70)<a class="headerlink" href="#equation-f762aa1e-f598-44ba-a868-e617ad993caa" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3ce328e3-dc9e-4564-b542-71f5764f5aa5">
+<span class="eqno">(3.70)<a class="headerlink" href="#equation-3ce328e3-dc9e-4564-b542-71f5764f5aa5" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_1 &amp;= \frac{ \begin{vmatrix} b_1 &amp; a_{12} \\ b_2 &amp; a_{22} \end{vmatrix} }{D} = \frac{b_1 a_{22} - a_{12} b_2}{D} \\
 x_2 &amp;= \frac{ \begin{vmatrix} a_{11} &amp; b_1 \\ a_{21} &amp; b_2 \end{vmatrix} }{D} = \frac{a_{11} b_2 - b_1 a_{21}}{D}
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(D\)</span> is the determinant of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-748e9377-c3f8-494c-9dbe-76f302824f44">
-<span class="eqno">(3.71)<a class="headerlink" href="#equation-748e9377-c3f8-494c-9dbe-76f302824f44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2442372e-2c40-4acf-a492-98958da109e1">
+<span class="eqno">(3.71)<a class="headerlink" href="#equation-2442372e-2c40-4acf-a492-98958da109e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 D = \det(\mathbf{A}) = \begin{vmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \end{vmatrix} = a_{11} a_{22} - a_{12} a_{21}
 \end{equation}\]</div>
 <p>This works as long as the determinant does not equal zero.</p>

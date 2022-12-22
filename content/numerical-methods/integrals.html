@@ -562,8 +562,8 @@ title="Print to PDF"
 <h1><span class="section-number">2.1. </span>Numerical integrals<a class="headerlink" href="#numerical-integrals" title="Permalink to this headline">#</a></h1>
 <p>What about when we cannot integrate a function analytically? In other words, when there is no (obvious) closed-form solution. In these cases, we can use <strong>numerical methods</strong> to solve the problem.</p>
 <p>Let’s use this problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27cc4530-9d0f-4d55-baa7-6eb2ccfbe3e2">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-27cc4530-9d0f-4d55-baa7-6eb2ccfbe3e2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c680af66-8a1e-4724-b4de-5d727713fe51">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-c680af66-8a1e-4724-b4de-5d727713fe51" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= e^{-x^2} \\
 y(x) &amp;= \int e^{-x^2} dx + C
 \end{align}\]</div>
@@ -638,8 +638,8 @@ plt.show()
 <section id="numerical-integration-trapezoidal-rule">
 <h2><span class="section-number">2.1.1. </span>Numerical integration: Trapezoidal rule<a class="headerlink" href="#numerical-integration-trapezoidal-rule" title="Permalink to this headline">#</a></h2>
 <p>In such cases, we can find the integral by using the <strong>trapezoidal rule</strong>, which finds the area under the curve by creating trapezoids and summing their areas:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0abae34-96c7-448f-8e26-9c1638b91694">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-e0abae34-96c7-448f-8e26-9c1638b91694" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68843b70-0262-4eca-be5f-2de66dd83feb">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-68843b70-0262-4eca-be5f-2de66dd83feb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \text{area under curve} = \sum \left( \frac{f(x_{i+1}) + f(x_i)}{2} \right) \Delta x
 \end{equation}\]</div>
 <p>Let’s see what this looks like with four trapezoids (<span class="math notranslate nohighlight">\(\Delta x = 0.25\)</span>):</p>
@@ -735,8 +735,8 @@ Error:  0.0008%
 <h2><span class="section-number">2.1.2. </span>Numerical integration: Simpson’s rule<a class="headerlink" href="#numerical-integration-simpsons-rule" title="Permalink to this headline">#</a></h2>
 <p>We can increase the accuracy of our numerical integration approach by using a more sophisticated interpolation scheme with each segment. In other words, instead of using a straight line, we can use a polynomial. <strong>Simpson’s rule</strong>, also known as Simpson’s 1/3 rule, refers to using a quadratic polynomial to approximate the line in each segment.</p>
 <p>Simpson’s rule defines the definite integral for our function <span class="math notranslate nohighlight">\(f(x)\)</span> from point <span class="math notranslate nohighlight">\(a\)</span> to point <span class="math notranslate nohighlight">\(b\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3667dad2-8af7-4cd4-85de-0037b97d9cf2">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-3667dad2-8af7-4cd4-85de-0037b97d9cf2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a544003-b1c5-4902-a86e-77bb7a28b900">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-4a544003-b1c5-4902-a86e-77bb7a28b900" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) \approx \frac{1}{6} \Delta x \left( f(a) + 4 f \left(\frac{a+b}{2}\right) + f(b) \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Delta x = b - a\)</span>.</p>
