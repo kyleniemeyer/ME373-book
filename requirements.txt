@@ -3,6 +3,6 @@
 numpy
 scipy
 matplotlib
-nbinteract
-scipy
 jupyter-book
+sympy
+sphinx>=4.0,<5.0
