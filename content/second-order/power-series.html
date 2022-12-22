@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.5. Power Series Solutions &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/second-order/power-series.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Boundary Value Problems" href="../bvps/boundary-value-problems.html" />
+    <link rel="prev" title="3.4. Fourier Series" href="fourier-series.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/second-order/power-series.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/second-order/power-series.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/second-order/power-series.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-power-series">
+   3.5.1. Properties of power series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-series-example-1">
+   3.5.2. Power series example 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-series-example-2">
+   3.5.3. Power series example 2
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Power Series Solutions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-power-series">
+   3.5.1. Properties of power series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-series-example-1">
+   3.5.2. Power series example 1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#power-series-example-2">
+   3.5.3. Power series example 2
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="power-series-solutions">
+<h1><span class="section-number">3.5. </span>Power Series Solutions<a class="headerlink" href="#power-series-solutions" title="Permalink to this headline">#</a></h1>
+<p><strong>Power series solutions</strong> are another technique we can use to solve 2nd-order homogeneous ODEs of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cc7aa276-8d8b-492c-8dc6-2e10aa881513">
+<span class="eqno">(3.104)<a class="headerlink" href="#equation-cc7aa276-8d8b-492c-8dc6-2e10aa881513" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
+\end{equation}\]</div>
+<p>This is useful for more-general cases where our other techniques fail.</p>
+<p>For example, how would you find the solution to this ODE?</p>
+<div class="amsmath math notranslate nohighlight" id="equation-34e4fe89-b17b-407f-8666-ab308336cc23">
+<span class="eqno">(3.105)<a class="headerlink" href="#equation-34e4fe89-b17b-407f-8666-ab308336cc23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+(1 + x^2) y^{\prime\prime} - 4 x y^{\prime} + 6y = 0
+\end{equation}\]</div>
+<p>None of the methods we’ve discussed so far would allow us to find an analytical solution to this problem—but we can using a power series solution.</p>
+<p>Power series solutions will be of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a41b396d-cb18-4829-9f09-0cc1d5391e8a">
+<span class="eqno">(3.106)<a class="headerlink" href="#equation-a41b396d-cb18-4829-9f09-0cc1d5391e8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = \sum_{n=0}^{\infty} a_n x^n
+\end{equation}\]</div>
+<p>where the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> are what we need to find.</p>
+<ol class="simple">
+<li><p>First, for power series to be a valid solution, we need to check whether <span class="math notranslate nohighlight">\(x=0\)</span> is an <strong>ordinary point</strong> of the ODE: is the ODE <em>continuous</em> and <em>bounded</em> at <span class="math notranslate nohighlight">\(x=0\)</span>?</p></li>
+</ol>
+<p><em>Continuous</em> means that there should be no discontinuity at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
+<p><em>Bounded</em> means that the solution should be finite at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
+<p>For example, consider the ODE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a3288a05-f0b7-4f52-8255-b10d971e9c6b">
+<span class="eqno">(3.107)<a class="headerlink" href="#equation-a3288a05-f0b7-4f52-8255-b10d971e9c6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} - 4xy^{\prime} + (4x^2 - 2)y = 0
+\end{equation}\]</div>
+<p>Both <span class="math notranslate nohighlight">\(p(x) = -4x\)</span> and <span class="math notranslate nohighlight">\(q(x) = (4x^2 - 2)\)</span> are continuous and bounded at <span class="math notranslate nohighlight">\(x=0\)</span>, so <span class="math notranslate nohighlight">\(x=0\)</span> <strong>is</strong> an ordinary point.</p>
+<p>On the other hand, what about</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e8992d4-a053-4f40-9036-6fd99ffbc892">
+<span class="eqno">(3.108)<a class="headerlink" href="#equation-8e8992d4-a053-4f40-9036-6fd99ffbc892" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + x^3 y^{\prime} + \frac{1}{x} y = 0 \text{ ?}
+\end{equation}\]</div>
+<p>In this case, the solution is unbounded at <span class="math notranslate nohighlight">\(x=0\)</span>, and so it is <strong>not</strong> an ordinary point.</p>
+<ol class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(x=0\)</span> is an ordinary point, then we can find a solution in the form of a power series:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-11e9de16-3dd1-45a0-ada0-0b97159fe6fa">
+<span class="eqno">(3.109)<a class="headerlink" href="#equation-11e9de16-3dd1-45a0-ada0-0b97159fe6fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = \sum_{n=0}^{\infty} a_n x^n
+\end{equation}\]</div>
+<p>We then solve for the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> by plugging this in to the ODE. To do that, we’ll need to take advantage of certain properties of power series.</p>
+<section id="properties-of-power-series">
+<h2><span class="section-number">3.5.1. </span>Properties of power series<a class="headerlink" href="#properties-of-power-series" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Dummy index rule</strong>. We can replace the index variable used in the power series with another index variable arbitrarily:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-550abb71-d110-4afc-9c04-88b73b85a83a">
+<span class="eqno">(3.110)<a class="headerlink" href="#equation-550abb71-d110-4afc-9c04-88b73b85a83a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=0}^{\infty} a_n x^n = \sum_{m=0}^{\infty} a_m x^m
+\end{equation}\]</div>
+<p>This is because the index variable is just a “dummy” that only has meaning inside the sum.</p>
+<ul class="simple">
+<li><p><strong>Product rule</strong>. We can bring variables, including <span class="math notranslate nohighlight">\(x\)</span>, multiplying an entire power series into the power series:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-ae686c0c-ed5c-472b-8edc-d7ccf81a99f1">
+<span class="eqno">(3.111)<a class="headerlink" href="#equation-ae686c0c-ed5c-472b-8edc-d7ccf81a99f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+x \sum_{n=0}^{\infty} a_n x^n = \sum_{n=0}^{\infty} a_n x^{n+1}
+\end{equation}\]</div>
+<ul class="simple">
+<li><p><strong>Derivatives</strong>. We can take derivatives of our power series:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-50883214-b1c7-4f56-ae7e-64b69f6fc8e4">
+<span class="eqno">(3.112)<a class="headerlink" href="#equation-50883214-b1c7-4f56-ae7e-64b69f6fc8e4" title="Permalink to this equation">#</a></span>\[\begin{align}
+y^{\prime} &amp;= \sum_{n=0}^{\infty} a_n (n) x^{n-1} = \sum_{n=1}^{\infty} a_n (n) x^{n-1} \\
+y^{\prime\prime} &amp;= \sum_{n=0}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2}
+\end{align}\]</div>
+<p>Notice that we can change where the sums in the power series start, because for <span class="math notranslate nohighlight">\(y^{\prime}\)</span> the term corresponding to <span class="math notranslate nohighlight">\(n=1\)</span> would just be zero, and similar for the first two terms of <span class="math notranslate nohighlight">\(y^{\prime\prime}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Index shift</strong>. We can redefine the index used within a sum to shift where it starts. For example, if we let <span class="math notranslate nohighlight">\(m=n-1\)</span>, or <span class="math notranslate nohighlight">\(n=m+1\)</span>, then:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-d5908d8c-d6bc-4fcb-a3b5-c34e651b9ae3">
+<span class="eqno">(3.113)<a class="headerlink" href="#equation-d5908d8c-d6bc-4fcb-a3b5-c34e651b9ae3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=1}^{\infty} a_n (n) x^{n-1} = \sum_{m=0}^{\infty} a_{m+1} (m+1) x^m
+\end{equation}\]</div>
+<p>Or, in other case, if we let <span class="math notranslate nohighlight">\(m=n-2\)</span>, or <span class="math notranslate nohighlight">\(n=m+2\)</span>, then:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3cdce769-adc1-4428-bdb7-6063e22b8c86">
+<span class="eqno">(3.114)<a class="headerlink" href="#equation-3cdce769-adc1-4428-bdb7-6063e22b8c86" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
+\end{equation}\]</div>
+<p>Now, let’s apply these properties to solve ODEs.</p>
+</section>
+<section id="power-series-example-1">
+<h2><span class="section-number">3.5.2. </span>Power series example 1<a class="headerlink" href="#power-series-example-1" title="Permalink to this headline">#</a></h2>
+<p>Let’s try to apply the power series approach to solve</p>
+<div class="amsmath math notranslate nohighlight" id="equation-78fc058b-943c-445c-8e8a-f317a1f66059">
+<span class="eqno">(3.115)<a class="headerlink" href="#equation-78fc058b-943c-445c-8e8a-f317a1f66059" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + y = 0 \;,
+\end{equation}\]</div>
+<p>where we know the solution will be <span class="math notranslate nohighlight">\(y(x) = c_1 \sin x + c_2 \cos x\)</span>.</p>
+<ol class="simple">
+<li><p>Is <span class="math notranslate nohighlight">\(x=0\)</span> an ordinary point? Yes, the ODE is continuous and bounded at <span class="math notranslate nohighlight">\(x=0\)</span>.
+So, we can find a solution of the form <span class="math notranslate nohighlight">\(y(x) = \sum_{n=0}^{\infty} a_n x^n\)</span>.</p></li>
+<li><p>Now, we solve for the coefficents by plugging the power series into the ODE:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-9b8960dc-b79a-42fc-a45e-aa865575b92c">
+<span class="eqno">(3.116)<a class="headerlink" href="#equation-9b8960dc-b79a-42fc-a45e-aa865575b92c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} + \sum_{n=0}^{\infty} a_n x^n = 0
+\end{equation}\]</div>
+<p>Let’s use the index shift rule on the first part of that:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a1208d3a-7ec4-4fb2-bea4-459421c42ef6">
+<span class="eqno">(3.117)<a class="headerlink" href="#equation-a1208d3a-7ec4-4fb2-bea4-459421c42ef6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
+\end{equation}\]</div>
+<p>Then, we can use the dummy index rule to change <span class="math notranslate nohighlight">\(m\)</span> back to <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a6663329-47b1-4e29-ba83-48c8819562d6">
+<span class="eqno">(3.118)<a class="headerlink" href="#equation-a6663329-47b1-4e29-ba83-48c8819562d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{m=0}^{\infty} a_m (m+2)(m+1) x^m \rightarrow \sum_{n=0}^{\infty} a_n (n+2)(n+1) x^n
+\end{equation}\]</div>
+<p>Now, let’s replace the first term in the ODE with that, merge both terms into a single sum, and simplify:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4af06bde-15b4-40b3-a721-bf34c2da0f68">
+<span class="eqno">(3.119)<a class="headerlink" href="#equation-4af06bde-15b4-40b3-a721-bf34c2da0f68" title="Permalink to this equation">#</a></span>\[\begin{align}
+\sum_{n=0}^{\infty} a_n (n+2)(n+1) x^n + \sum_{n=0}^{\infty} a_n x^n &amp;= 0 \\
+\sum_{n=0}^{\infty} x^n \left[ a_{n+2}(n+2)(n+1) + a_n \right] &amp;= 0
+\end{align}\]</div>
+<p>There are infinite terms in this sum, involving the continuous variable <span class="math notranslate nohighlight">\(x\)</span>; the only way that equation can be satisfied is if</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x=0\)</span> always, which cannot be true, or</p></li>
+<li><p><span class="math notranslate nohighlight">\(a_{n+2}(n+2)(n+1) + a_n = 0\)</span> for all values of <span class="math notranslate nohighlight">\(n\)</span>. This is what we can use to find the coefficients of our power series solution.</p></li>
+</ul>
+<p>Use that expression to define a recursive formula for the coefficients:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0f63a5ec-d055-4c50-8e3b-f7b66b7cd137">
+<span class="eqno">(3.120)<a class="headerlink" href="#equation-0f63a5ec-d055-4c50-8e3b-f7b66b7cd137" title="Permalink to this equation">#</a></span>\[\begin{equation}
+a_{n+2} = \frac{-a_n}{(n+1)(n+2)}
+\end{equation}\]</div>
+<p>We can see that the even coefficients will be related to each other, and the odd coefficients will be related. Let’s try to identify a pattern with each, starting with the even terms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-27f3b5d6-b456-4205-856e-1ca10e3d99fa">
+<span class="eqno">(3.121)<a class="headerlink" href="#equation-27f3b5d6-b456-4205-856e-1ca10e3d99fa" title="Permalink to this equation">#</a></span>\[\begin{align}
+n=0: \quad a_2 &amp;= \frac{-a_0}{1 \cdot 2} = \frac{-a_0}{2!} \\
+n=2: \quad a_4 &amp;= \frac{-a_2}{3 \cdot 4} = \frac{a_0}{4!} \\
+n=4: \quad a_6 &amp;= \frac{-a_4}{5 \cdot 6} = \frac{-a_0}{6!}
+\end{align}\]</div>
+<p>and the odd terms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8173a1d8-f89e-4357-b029-a5bdefe45ed9">
+<span class="eqno">(3.122)<a class="headerlink" href="#equation-8173a1d8-f89e-4357-b029-a5bdefe45ed9" title="Permalink to this equation">#</a></span>\[\begin{align}
+n=1: \quad a_3 &amp;= \frac{-a_1}{2 \cdot 3} = \frac{-a_1}{3!} \\
+n=3: \quad a_5 &amp;= \frac{-a_3}{4 \cdot 5} = \frac{a_1}{5!} \\
+n=5: \quad a_7 &amp;= \frac{-a_5}{6 \cdot 7} = \frac{-a_1}{7!}
+\end{align}\]</div>
+<p>Now, let’s put that all together:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d72a2547-3988-42fb-911f-ad9e177bec61">
+<span class="eqno">(3.123)<a class="headerlink" href="#equation-d72a2547-3988-42fb-911f-ad9e177bec61" title="Permalink to this equation">#</a></span>\[\begin{align}
+y(x) &amp;= a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \dots \\
+y &amp;= a_0 \left( 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \right) + a_1 \left( x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \right)
+\end{align}\]</div>
+<p>which you might recognize as being the Taylor series expansion of sine and cosine:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0249be1b-de63-4435-b41e-ef30fe8a9e65">
+<span class="eqno">(3.124)<a class="headerlink" href="#equation-0249be1b-de63-4435-b41e-ef30fe8a9e65" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(x) = a_0 \cos x + a_1 \sin x
+\end{equation}\]</div>
+<p>So, our unknown coefficients end up being our integration constants, which we can use our two constraints to find.</p>
+</section>
+<section id="power-series-example-2">
+<h2><span class="section-number">3.5.3. </span>Power series example 2<a class="headerlink" href="#power-series-example-2" title="Permalink to this headline">#</a></h2>
+<p>Find the solution to the ODE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7c9131c3-d6cb-42d8-a2b0-47668ba658d3">
+<span class="eqno">(3.125)<a class="headerlink" href="#equation-7c9131c3-d6cb-42d8-a2b0-47668ba658d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+(1 + x^2) y^{\prime\prime} - 4x y^{\prime} + 6y = 0
+\end{equation}\]</div>
+<p>First, rearrange into standard form:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ee7e1359-2da6-4245-a962-1284ef3f8faa">
+<span class="eqno">(3.126)<a class="headerlink" href="#equation-ee7e1359-2da6-4245-a962-1284ef3f8faa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} - \frac{4x}{1+x^2} y^{\prime} + \frac{6}{1+x^2} y = 0
+\end{equation}\]</div>
+<p>Then, check whether <span class="math notranslate nohighlight">\(x=0\)</span> is an ordinary point: yes, it is.</p>
+<p>Now, let’s insert the power series into the ODE:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e5ebf86f-cea2-4bb3-8d61-ae875878f727">
+<span class="eqno">(3.127)<a class="headerlink" href="#equation-e5ebf86f-cea2-4bb3-8d61-ae875878f727" title="Permalink to this equation">#</a></span>\[\begin{align}
+y^{\prime\prime} + x^2 y^{\prime\prime} - 4 x y^{\prime} + 6 y &amp;= 0 \\
+\sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} + x^2 \sum_{n=0}^{\infty} a_n (n)(n-1)x^{n-2} - 4 x \sum_{n=1} a_n (n) x^{n-1} + 6 \sum_{n=0}^{\infty} a_n x^n &amp;= 0
+\end{align}\]</div>
+<p>First, we’ll use the power rule:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-95af45c2-65e4-4172-9567-f10ba90529e5">
+<span class="eqno">(3.128)<a class="headerlink" href="#equation-95af45c2-65e4-4172-9567-f10ba90529e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} + \sum_{n=2}^{\infty} a_n (n)(n-1)x^{n} - 4 \sum_{n=1} a_n (n) x^{n} + 6 \sum_{n=0}^{\infty} a_n x^n = 0
+\end{equation}\]</div>
+<p>and then the index shift and dummy index rules on the first term:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-806d95b0-f3c6-4702-ae0c-06b5f45450a8">
+<span class="eqno">(3.129)<a class="headerlink" href="#equation-806d95b0-f3c6-4702-ae0c-06b5f45450a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m \rightarrow \sum_{n=0}^{\infty} a_{n+2} (n+2)(n+1) x^n
+\end{equation}\]</div>
+<p>Then, put that back into the full equation and combine the sums:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dd3f7f3b-6970-413a-b714-5e4c4d86dc66">
+<span class="eqno">(3.130)<a class="headerlink" href="#equation-dd3f7f3b-6970-413a-b714-5e4c4d86dc66" title="Permalink to this equation">#</a></span>\[\begin{align}
+\sum_{n=0}^{\infty} a_{n+2} (n+2)(n+1) x^n + \sum_{n=0}^{\infty} a_n (n)(n-1)x^{n}  - 4 \sum_{n=1} a_n (n) x^{n} + 6 \sum_{n=0}^{\infty} a_n x^n &amp;= 0 \\
+\sum_{n=0}^{\infty} x^n \left[ a_{n+2} (n+2)(n+1) + a_n (n)(n-1) - 4a_n (n) + 6a_n \right] &amp;= 0 \\
+a_{n+2} (n+2)(n+1) + a_n (n^2 -5n + 6) &amp;= 0 \\
+a_{n+2} (n+2)(n+1) + a_n (n-3)(n-2) &amp;= 0 \\
+\end{align}\]</div>
+<p>Thus, our recursion formula for the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-32b7cc44-da22-4ea9-a456-32eab00d28ae">
+<span class="eqno">(3.131)<a class="headerlink" href="#equation-32b7cc44-da22-4ea9-a456-32eab00d28ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+a_{n+2} = -a_n \frac{(n-3)(n-2)}{(n+1)(n+2)}
+\end{equation}\]</div>
+<p>Again, we can see that the even terms will be related and the odd terms will be related:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c70a1555-6c06-4e30-946a-e95fae3f2cdb">
+<span class="eqno">(3.132)<a class="headerlink" href="#equation-c70a1555-6c06-4e30-946a-e95fae3f2cdb" title="Permalink to this equation">#</a></span>\[\begin{align}
+n=0: \quad a_2 &amp;= -a_0 \frac{6}{2} = -3 a_0 \\
+n=2: \quad a_4 &amp;= 0 \\
+n=4: \quad a_6 &amp;= -a_4 \frac{2}{30} = 0 \\
+&amp;\ldots
+\end{align}\]</div>
+<p>and the odd terms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0174259b-219b-4a80-8592-adc2a3ece655">
+<span class="eqno">(3.133)<a class="headerlink" href="#equation-0174259b-219b-4a80-8592-adc2a3ece655" title="Permalink to this equation">#</a></span>\[\begin{align}
+n=1: \quad a_3 &amp;= -a_1 \frac{2}{6} = \frac{-a_1}{3} \\
+n=3: \quad a_5 &amp;= 0 \\
+n=5: \quad a_7 &amp;= -a_5 \frac{6}{42} = 0 \\
+&amp;\ldots
+\end{align}\]</div>
+<p>The solution is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a5627853-fcb5-49ec-8808-fc30d48ffc0f">
+<span class="eqno">(3.134)<a class="headerlink" href="#equation-a5627853-fcb5-49ec-8808-fc30d48ffc0f" title="Permalink to this equation">#</a></span>\[\begin{align}
+y(x) &amp;= a_0 + a_1 x - 3 a_0 x^2 - \frac{a_1}{3} x^3 \\
+y &amp;= a_0 \left(1 - 3x^2 \right) + a_1 \left( x - \frac{x^3}{3} \right)
+\end{align}\]</div>
+<p>where we find <span class="math notranslate nohighlight">\(a_0\)</span> and <span class="math notranslate nohighlight">\(a_1\)</span> using our initial or boundary conditions.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/second-order"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="fourier-series.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.4. </span>Fourier Series</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../bvps/boundary-value-problems.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Boundary Value Problems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

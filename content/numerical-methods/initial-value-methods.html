@@ -1,0 +1,1081 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.3. Numerical Solutions of 1st-order ODEs &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/numerical-methods/initial-value-methods.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4. Stability and Stiffness" href="stability.html" />
+    <link rel="prev" title="2.2. Error" href="error.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../second-order/second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/numerical-methods/initial-value-methods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/numerical-methods/initial-value-methods.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/numerical-methods/initial-value-methods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/numerical-methods/initial-value-methods.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-euler-method">
+   2.3.1. Forward Euler method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     2.3.1.1. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heuns-method">
+   2.3.2. Heun’s method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midpoint-method">
+   2.3.3. Midpoint method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourth-order-rungekutta-method">
+   2.3.4. Fourth-order Runge–Kutta method
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Numerical Solutions of 1st-order ODEs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forward-euler-method">
+   2.3.1. Forward Euler method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     2.3.1.1. Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#heuns-method">
+   2.3.2. Heun’s method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midpoint-method">
+   2.3.3. Midpoint method
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourth-order-rungekutta-method">
+   2.3.4. Fourth-order Runge–Kutta method
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-solutions-of-1st-order-odes">
+<h1><span class="section-number">2.3. </span>Numerical Solutions of 1st-order ODEs<a class="headerlink" href="#numerical-solutions-of-1st-order-odes" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
+import matplotlib_inline.backend_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
+plt.rcParams[&#39;figure.dpi&#39;]= 300
+plt.rcParams[&#39;savefig.dpi&#39;] = 300
+</pre></div>
+</div>
+</div>
+</div>
+<p>For numerically solving definite integrals (<span class="math notranslate nohighlight">\(\int_a^b f(x) dx\)</span>) we have methods like the trapezoidal rule and Simpson’s rule. When we need to solve 1st-order ODEs of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f576ac9e-f92e-46fd-805f-20dc01974009">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-f576ac9e-f92e-46fd-805f-20dc01974009" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime} = \frac{dy}{dx} = f(x, y)
+\end{equation}\]</div>
+<p>for <span class="math notranslate nohighlight">\(y(x)\)</span>, we need other methods. All of them will work by starting at the initial conditions, and then using information provided by the ODE to march forward in the solution, based on an increment (i.e., step size) <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+<p>For example, let’s say we want to solve</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f8d7469b-2486-4e08-ab96-2b0a8e774693">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-f8d7469b-2486-4e08-ab96-2b0a8e774693" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{dy}{dx} = 4 x - \frac{2 y}{x} \;, \quad y(1) = 1
+\end{equation}\]</div>
+<p>This problem is fairly simple, and we can find the general and particular solutions to compare our numerical results against:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f23273f7-9deb-4117-8012-f1e69756de99">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-f23273f7-9deb-4117-8012-f1e69756de99" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{general: } y(x) &amp;= x^2 + \frac{x}{x^2} \\
+\text{particular: } y(x) &amp;= x^2
+\end{align}\]</div>
+<section id="forward-euler-method">
+<h2><span class="section-number">2.3.1. </span>Forward Euler method<a class="headerlink" href="#forward-euler-method" title="Permalink to this headline">#</a></h2>
+<p>Recall that the derivative, <span class="math notranslate nohighlight">\(y^{\prime}\)</span>, is the same as the slope. At the starting point, <span class="math notranslate nohighlight">\((x,y) = (1,1)\)</span>, where <span class="math notranslate nohighlight">\(y^{\prime} = 2\)</span>, this looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_vals = np.linspace(1, 3)
+y_vals = x_vals**2
+
+plt.plot(x_vals, y_vals, label=&#39;Solution&#39;)
+plt.plot([1, 2], [1, 3], &#39;--&#39;, label=&#39;Slope at start&#39;)
+plt.grid(True)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_4_0.png" src="../../_images/initial-value-methods_4_0.png" />
+</div>
+</div>
+<p>Remember that the slope, or derivative, is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-19f6a87c-5a1d-4009-8c6f-126295c2462a">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-19f6a87c-5a1d-4009-8c6f-126295c2462a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\text{slope} = \frac{\text{rise}}{\text{run}} = \frac{\Delta y}{\Delta x}
+\end{equation}\]</div>
+<p>Let’s consider the initial condition—the starting point—as <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, and the next point in our numerical solution is <span class="math notranslate nohighlight">\((x_{i+1}, y_{i+1})\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> represents an index starting at 1 and ending at the number of steps <span class="math notranslate nohighlight">\(N\)</span>. Our step size is then <span class="math notranslate nohighlight">\(\Delta x = x_{i+1} - x_i\)</span>.</p>
+<p>Based on our (very simple) approximation to the first derivative based on slope, we can relate the derivative to our two points:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-38a6d1f1-fa09-4c49-b48b-35a4fb28e3c9">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-38a6d1f1-fa09-4c49-b48b-35a4fb28e3c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\left(\frac{dy}{dx}\right)_{i} = \frac{y_{i+1} - y_i}{x_{i+1} - x_i} = \frac{y_{i+1} - y_i}{\Delta x}
+\end{equation}\]</div>
+<p>Then, solve this for our unknown:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6d4382be-7da5-4ea6-a3e6-94228dd02b64">
+<span class="eqno">(2.10)<a class="headerlink" href="#equation-6d4382be-7da5-4ea6-a3e6-94228dd02b64" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_{i+1} = y_i + \left(\frac{dy}{dx}\right)_i \Delta x
+\end{equation}\]</div>
+<p>This is the <strong>Forward Euler method</strong>.</p>
+<p>Based on a given step size <span class="math notranslate nohighlight">\(\Delta x\)</span>, we’ll use this formula (called a <em>recursion</em> formula) to march forward and obtain the full solution over given <span class="math notranslate nohighlight">\(x\)</span> domain. That will look something like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_exact = np.linspace(1, 3)
+y_exact = x_exact**2
+
+plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
+
+# our derivative function, dy/dx
+dydx = lambda x,y: 4*x - (2*y)/x
+
+dx = 0.5
+x_vals = np.arange(1, 3.1, dx)
+y_vals = np.zeros_like(x_vals)
+
+# set initial condition
+y_vals[0] = 1
+
+# iterate
+for idx, x_val in enumerate(x_vals[:-1]):
+    y_vals[idx+1] = y_vals[idx] + dydx(x_val, y_vals[idx])*dx
+
+plt.plot(
+    x_vals, y_vals, 
+    marker=&#39;.&#39;, markersize=15, 
+    linestyle=&#39;--&#39;, label=&#39;Numerical solution&#39;
+    )
+
+plt.grid(True)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_6_0.png" src="../../_images/initial-value-methods_6_0.png" />
+</div>
+</div>
+<p>Another way to obtain the recursion formula for the Forward Euler method is to use a Taylor series expansion.
+Recall that for well-behaved functions, the Taylor series expansion says</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ba6372ed-99a2-4f87-aa6b-cfccf436b58a">
+<span class="eqno">(2.11)<a class="headerlink" href="#equation-ba6372ed-99a2-4f87-aa6b-cfccf436b58a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(x + \Delta x) = y(x) + \Delta x y^{\prime}(x) + \frac{1}{2} \Delta x^2 y^{\prime\prime}(x) + \frac{1}{3!} \Delta x^3 y^{\prime\prime\prime}(x) \dots \;.
+\end{equation}\]</div>
+<p>This is exact for an infinite series. We can apply this formula to our (unknown) solution <span class="math notranslate nohighlight">\(y_i\)</span> and cut off the terms of order <span class="math notranslate nohighlight">\(\Delta x^2\)</span> and higher; the derivative <span class="math notranslate nohighlight">\(y^{\prime}\)</span> is given by our original ODE.
+This gives us the same recursion formula as above:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5facabfb-0b5c-48f8-b941-29840550dde2">
+<span class="eqno">(2.12)<a class="headerlink" href="#equation-5facabfb-0b5c-48f8-b941-29840550dde2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\therefore y_{i+1} \approx y_i + \left( \frac{dy}{dx}\right)_i \Delta x
+\end{equation}\]</div>
+<p>where we can now see that we are introducing some error on the order of <span class="math notranslate nohighlight">\(\Delta x^2\)</span> at each step. This is the <em>local truncation error</em>. The <em>global error</em> is the accumulation of error over all the steps, and is on the order of <span class="math notranslate nohighlight">\(\Delta x\)</span>. Thus, the Forward Euler method is a <strong>first-order</strong> method, because its global error is on the order of the step size to the first power: error <span class="math notranslate nohighlight">\(\sim \mathcal{O}(\Delta x)\)</span>.</p>
+<p>Forward Euler is also an <strong>explicit</strong> method, because its recursion formula is explicity defined for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>. (You’ll see when that may not be the case soon.)</p>
+<p>In general, for an <span class="math notranslate nohighlight">\(n\)</span>th-order method:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-820e143d-4b09-4c0d-b2cf-865d34cd7f24">
+<span class="eqno">(2.13)<a class="headerlink" href="#equation-820e143d-4b09-4c0d-b2cf-865d34cd7f24" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{local error } &amp;\sim \mathcal{O}(\Delta x^{n+1}) \\
+\text{global error } &amp;\sim \mathcal{O}(\Delta x^{n})
+\end{align}\]</div>
+<p>(This only applies for <span class="math notranslate nohighlight">\(\Delta x &lt; 1\)</span>; in cases where you have a <span class="math notranslate nohighlight">\(\Delta x &gt; 1\)</span>, you should nondimensionalize the problem based on the domain size such that <span class="math notranslate nohighlight">\(0 \leq x \leq 1\)</span>.)</p>
+<p>Applying the Forward Euler method then requires:</p>
+<ol class="simple">
+<li><p>Have a given first-order ODE: <span class="math notranslate nohighlight">\(\frac{dy}{dx} = y^{\prime} = f(x,y)\)</span>. Complex and/or nonlinear problems are fine!</p></li>
+<li><p>Specify the step size <span class="math notranslate nohighlight">\(\Delta x\)</span> (or <span class="math notranslate nohighlight">\(\Delta t\)</span>).</p></li>
+<li><p>Specify the domain over which to integrate: <span class="math notranslate nohighlight">\(x_1 \leq x \leq x_n\)</span></p></li>
+<li><p>Specify the initial condition: <span class="math notranslate nohighlight">\(y(x=x_1) = y_1\)</span></p></li>
+</ol>
+<section id="example">
+<h3><span class="section-number">2.3.1.1. </span>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
+<p>Let’s do another example:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4eb98eff-93d1-4f8e-8281-28322801c3cb">
+<span class="eqno">(2.14)<a class="headerlink" href="#equation-4eb98eff-93d1-4f8e-8281-28322801c3cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime} = 8 e^{-x}(1+x) - 2y
+\end{equation}\]</div>
+<p>with the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>, and the domain <span class="math notranslate nohighlight">\(0 \leq x \leq 7\)</span>. This is a linear 1st-order ODE that we can find the analytical solution for comparison:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e1d656fd-5aef-43b8-a3ce-14426b1a0442">
+<span class="eqno">(2.15)<a class="headerlink" href="#equation-e1d656fd-5aef-43b8-a3ce-14426b1a0442" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(x) = e^{-2x} (8 x e^x + 1)
+\end{equation}\]</div>
+<p>To solve, we’ll create an anonymous function for the derivative and then incorporate that into our Forward Euler code. We’ll start with <span class="math notranslate nohighlight">\(\Delta x = 0.2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dydx = lambda x,y: 8*np.exp(-x)*(1 + x) - 2*y
+
+dx = 0.2
+x_vals = np.arange(0, 7.1, dx)
+y_vals = np.zeros_like(x_vals)
+
+# initial condition
+y_vals[0] = 1
+
+# forward Euler loop
+for idx, x_val in enumerate(x_vals[:-1]):
+    y_vals[idx+1] = y_vals[idx] + dx * dydx(x_val, y_vals[idx])
+
+x_exact = np.linspace(0, 7)
+y_exact = np.exp(-2*x_exact)*(8*x_exact*np.exp(x_exact) + 1)
+
+plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
+plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&#39;Forward Euler solution&#39;)
+plt.legend()
+plt.grid(True)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_9_0.png" src="../../_images/initial-value-methods_9_0.png" />
+</div>
+</div>
+<p>Notice the visible error in that plot, which is between 0.2–0.25, or in other words <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x)\)</span>.</p>
+<p>How can we reduce the error? Just like with the trapezoidal rule, we have two main options:</p>
+<ul class="simple">
+<li><p>Reduce the step size <span class="math notranslate nohighlight">\(\Delta x\)</span></p></li>
+<li><p>Choose a higher-order (i.e., more accurate) method</p></li>
+</ul>
+<p>The downside to reducing <span class="math notranslate nohighlight">\(\Delta x\)</span> is the increased number of steps we then have to take, which may make the solution too computationally expensive. A more-accurate method would have less error per step, which might allow us to use the same <span class="math notranslate nohighlight">\(\Delta x\)</span> but get a better solution. Let’s next consider some better methods.</p>
+</section>
+</section>
+<section id="heuns-method">
+<h2><span class="section-number">2.3.2. </span>Heun’s method<a class="headerlink" href="#heuns-method" title="Permalink to this headline">#</a></h2>
+<p>Heun’s method is a <strong>predictor-corrector</strong> method; these work by <em>predicting</em> a solution at some intermediate location and then using that information to get a better overall answer at the next location (<em>correcting</em>). Heun’s uses the Forward Euler method to predict the solution at <span class="math notranslate nohighlight">\(x_{i+1}\)</span>, then uses the average of the slopes at <span class="math notranslate nohighlight">\(y_i\)</span> and the predicted <span class="math notranslate nohighlight">\(y_{i+1}\)</span> to get a better overall answer for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cc35e62a-b349-4a01-93d3-381c53f84348">
+<span class="eqno">(2.16)<a class="headerlink" href="#equation-cc35e62a-b349-4a01-93d3-381c53f84348" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{predictor: } y_{i+1}^p &amp;= y_i + \Delta x f(x_i, y_i) \\
+\text{corrector: } y_{i+1} &amp;= y_i + \frac{\Delta x}{2} \left( f(x_i, y_i) + f(x_{i+1}, y_{i+1}^p) \right)
+\end{align}\]</div>
+<p>Heun’s method is second-order accurate, meaning the global error is <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x^2)\)</span> and explicit.</p>
+<p>Let’s see this method in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dydx = lambda x,y: 8*np.exp(-x)*(1 + x) - 2*y
+
+dx = 0.2
+x_vals = np.arange(0, 7.1, dx)
+y_vals = np.zeros_like(x_vals)
+
+# initial condition
+y_vals[0] = 1
+
+# Heun&#39;s method loop
+for idx, x_val in enumerate(x_vals[:-1]):
+    y_p = y_vals[idx] + dx * dydx(x_val, y_vals[idx])
+    y_vals[idx+1] = y_vals[idx] + (dx/2)*(
+        dydx(x_val, y_vals[idx]) + 
+        dydx(x_vals[idx+1], y_p)
+        )
+
+x_exact = np.linspace(0, 7)
+y_exact = np.exp(-2*x_exact)*(8*x_exact*np.exp(x_exact) + 1)
+
+plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
+plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&quot;Heun&#39;s method solution&quot;)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(f&#39;Maximum error: {np.abs(np.max(y_exact) - np.max(y_vals)): .4f}&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_11_0.png" src="../../_images/initial-value-methods_11_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error:  0.0531
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice how the error is visibly smaller than for the Forward Euler method–the maximum error is around 0.05, which is very close to <span class="math notranslate nohighlight">\(\Delta x^2 = 0.04\)</span>.</p>
+</section>
+<section id="midpoint-method">
+<h2><span class="section-number">2.3.3. </span>Midpoint method<a class="headerlink" href="#midpoint-method" title="Permalink to this headline">#</a></h2>
+<p>The midpoint method, also known as the modified Euler method, is another predictor-corrector method, that instead predicts the solution at the midpoint (<span class="math notranslate nohighlight">\(x + \Delta x/2\)</span>):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7bab1600-1215-4a57-b2e8-18ac54c2cda9">
+<span class="eqno">(2.17)<a class="headerlink" href="#equation-7bab1600-1215-4a57-b2e8-18ac54c2cda9" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_{i + \frac{1}{2}} &amp;= y_i + \frac{\Delta x}{2} f(x_i, y_i) \\
+y_{i+1} &amp;= y_i + \Delta x f \left( x_{i+\frac{1}{2}} , y_{i + \frac{1}{2}} \right)
+\end{align}\]</div>
+<p>Like Heun’s method, the midpoint method is explicit and second-order accurate:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dydx = lambda x,y: 8*np.exp(-x)*(1 + x) - 2*y
+
+dx = 0.2
+x_vals = np.arange(0, 7.1, dx)
+y_vals = np.zeros_like(x_vals)
+
+# initial condition
+y_vals[0] = 1
+
+# midpoint method loop
+for idx, x_val in enumerate(x_vals[:-1]):
+    y_half = y_vals[idx] + 0.5 * dx * dydx(x_val, y_vals[idx])
+    y_vals[idx+1] = y_vals[idx] + dx*dydx(x_val + dx/2, y_half)
+
+x_exact = np.linspace(0, 7)
+y_exact = np.exp(-2*x_exact)*(8*x_exact*np.exp(x_exact) + 1)
+
+plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
+plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&quot;Midpoint method solution&quot;)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(f&#39;Maximum error: {np.abs(np.max(y_exact) - np.max(y_vals)): .4f}&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_13_0.png" src="../../_images/initial-value-methods_13_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error:  0.0481
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fourth-order-rungekutta-method">
+<h2><span class="section-number">2.3.4. </span>Fourth-order Runge–Kutta method<a class="headerlink" href="#fourth-order-rungekutta-method" title="Permalink to this headline">#</a></h2>
+<p>Runge–Kutta methods are a family of methods that use one or more stages; the methods we have discussed so far (Forward Euler, Heun’s, and midpoint) actually all fall in this family. There is also a popular fourth-order method: the <strong>fourth-order Runge–Kutta method</strong> (RK4). This uses four stages to get a more accurate solution:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c1a88224-d2fe-4d72-b433-15aeed3d11f7">
+<span class="eqno">(2.18)<a class="headerlink" href="#equation-c1a88224-d2fe-4d72-b433-15aeed3d11f7" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_{i+1} &amp;= y_i + \frac{\Delta x}{6} (k_1 + 2 k_2 + 2 k_3 + k_4) \\
+k_1 &amp;= f(x_i, y_i) \\
+k_2 &amp;= f \left( x_i + \frac{\Delta x}{2}, y_i + \frac{\Delta x}{2} k_1 \right) \\
+k_3 &amp;= f \left( x_i + \frac{\Delta x}{2}, y_i + \frac{\Delta x}{2} k_2 \right) \\
+k_4 &amp;= f \left( x_i + \Delta x, y_i + \Delta x \, k_3 \right)
+\end{align}\]</div>
+<p>This method is explicit and fourth-order accurate: error <span class="math notranslate nohighlight">\(\sim \mathcal{O}(\Delta x^4)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dydx = lambda x,y: 8*np.exp(-x)*(1 + x) - 2*y
+
+dx = 0.2
+x_vals = np.arange(0, 7.1, dx)
+y_vals = np.zeros_like(x_vals)
+
+# initial condition
+y_vals[0] = 1
+
+# 4th order Runge-Kutta iteration
+for idx, x_val in enumerate(x_vals[:-1]):
+    k1 = dydx(x_val, y_vals[idx])
+    k2 = dydx(x_val + dx/2, y_vals[idx] + dx*k1/2)
+    k3 = dydx(x_val + dx/2, y_vals[idx] + dx*k2/2)
+    k4 = dydx(x_val + dx, y_vals[idx] + dx*k3)
+    y_vals[idx+1] = y_vals[idx] + dx*(
+        k1 + 2*k2 + 2*k3 + k4
+        ) / 6
+
+x_exact = np.linspace(0, 7)
+y_exact = lambda x: np.exp(-2*x)*(8*x*np.exp(x) + 1)
+
+plt.plot(x_exact, y_exact(x_exact), label=&#39;Exact solution&#39;)
+plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&quot;Runge-Kutta solution&quot;)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(f&#39;Maximum error: {np.max(np.abs(y_exact(x_vals)-y_vals)): .5f}&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_15_0.png" src="../../_images/initial-value-methods_15_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error:  0.00038
+</pre></div>
+</div>
+</div>
+</div>
+<p>The maximum error (0.0004) is actually a bit smaller than <span class="math notranslate nohighlight">\(\Delta x^4 = 0.0016\)</span>, but approximately the same order of magnitude.</p>
+<p>SciPy also offers a built-in RK4 integrator via the <a class="reference external" href="https://docs.scipy.org/doc//scipy/reference/generated/scipy.integrate.solve_ivp.html"><code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> function</a>, part of the <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> module. The RK4 method is the default one used, and can also be explicitly specified with the <code class="docutils literal notranslate"><span class="pre">method='RK45'</span></code> argument.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The RK45 method is actually more complicated than the RK4 method we implemented above, because it automatically adjusts the step size <span class="math notranslate nohighlight">\(\Delta x\)</span> to control error, using an embedded fifth-order method. This is why the method is RK<strong>45</strong>, because it combines fourth- and fifth-order accurate methods.</p>
+</aside>
+<p>You can call this function to perform the integration for you with the synxtax:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sol = solve_ivp(func, t_span, y0)
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">func</span></code> is the name of a function that provides the derivative; <code class="docutils literal notranslate"><span class="pre">t_span</span></code> provides the domain of integration (<span class="math notranslate nohighlight">\(x_{\text{start}} \leq x \leq x_{\text{end}}\)</span>), and <code class="docutils literal notranslate"><span class="pre">y0</span></code> provides the initial condition <span class="math notranslate nohighlight">\(y(x=x_{\text{start}})\)</span>.</p>
+<p>The return object, <code class="docutils literal notranslate"><span class="pre">sol</span></code>, contains both the integrated results and other information about the integration process.
+The field <code class="docutils literal notranslate"><span class="pre">sol.t</span></code> contains the automatically generated “<span class="math notranslate nohighlight">\(x\)</span>” points (though called <code class="docutils literal notranslate"><span class="pre">t</span></code>, since time is most commonly the independent variable in ODE problems).
+The field <code class="docutils literal notranslate"><span class="pre">sol.y</span></code> contains the integrated <span class="math notranslate nohighlight">\(y\)</span> values.</p>
+<p>For example, let’s use this and compare with our exact solution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from scipy.integrate import solve_ivp
+
+# derivative function to be integrated
+dydx = lambda x,y: 8*np.exp(-x)*(1 + x) - 2*y
+
+sol = solve_ivp(dydx, [0, 7], [1])
+
+x_exact = np.linspace(0, 7)
+y_exact = lambda x: np.exp(-2*x)*(8*x*np.exp(x) + 1)
+
+plt.plot(x_exact, y_exact(x_exact), label=&#39;Exact solution&#39;)
+plt.plot(sol.t, sol.y[0,:], &#39;o--&#39;, label=&#39;RK45 solution&#39;)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(f&#39;Maximum error: {np.max(np.abs(y_exact(sol.t) - sol.y[0,:])): .5f}&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_17_0.png" src="../../_images/initial-value-methods_17_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error:  0.00052
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that the maximum error is slightly higher than what we saw with our own implementation. This is because the <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> function used larger step sizes, likely because this error is within the default tolerances.</p>
+<p>We can actually specify the maximum step size to match what we used in the first Runge-Kutta example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sol = solve_ivp(dydx, [0, 7], [1], max_step=0.2)
+
+plt.plot(x_exact, y_exact(x_exact), label=&#39;Exact solution&#39;)
+plt.plot(sol.t, sol.y[0,:], &#39;o--&#39;, label=&#39;RK45 solution&#39;)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+print(
+    &#39;Maximum error: &#39;
+    f&#39;{np.max(np.abs(y_exact(sol.t) - sol.y[0,:])): .6f}&#39;
+    )
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/initial-value-methods_19_0.png" src="../../_images/initial-value-methods_19_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum error:  0.000006
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/numerical-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="error.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.2. </span>Error</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="stability.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>Stability and Stiffness</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,969 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.1. Analytical Solutions to 2nd-order ODEs &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/second-order/analytical.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.2. Initial-Value Problems" href="initial-value-problems.html" />
+    <link rel="prev" title="3. Second-order Ordinary Differential Equations" href="second-order.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/second-order/analytical.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/second-order/analytical.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/second-order/analytical.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/second-order/analytical.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-by-direct-integration">
+   3.1.1. Solution by direct integration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-by-substitution">
+   3.1.2. Solution by substitution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-falling-object">
+     3.1.2.1. Example: falling object
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-catenary-problem">
+     3.1.2.2. Example: catenary problem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homogeneous-2nd-order-odes">
+   3.1.3. Homogeneous 2nd-order ODEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions-have-two-parts">
+     3.1.3.1. Solutions have two parts:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linearly-independent">
+     3.1.3.2. Linearly independent:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#both-parts-satisfy-the-ode">
+     3.1.3.3. Both parts satisfy the ODE:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reduction-of-order">
+     3.1.3.4. Reduction of order:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Analytical Solutions to 2nd-order ODEs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-by-direct-integration">
+   3.1.1. Solution by direct integration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solution-by-substitution">
+   3.1.2. Solution by substitution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-falling-object">
+     3.1.2.1. Example: falling object
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-catenary-problem">
+     3.1.2.2. Example: catenary problem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homogeneous-2nd-order-odes">
+   3.1.3. Homogeneous 2nd-order ODEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions-have-two-parts">
+     3.1.3.1. Solutions have two parts:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linearly-independent">
+     3.1.3.2. Linearly independent:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#both-parts-satisfy-the-ode">
+     3.1.3.3. Both parts satisfy the ODE:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reduction-of-order">
+     3.1.3.4. Reduction of order:
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="analytical-solutions-to-2nd-order-odes">
+<h1><span class="section-number">3.1. </span>Analytical Solutions to 2nd-order ODEs<a class="headerlink" href="#analytical-solutions-to-2nd-order-odes" title="Permalink to this headline">#</a></h1>
+<p>Let’s first focus on simple analytical solutions for 2nd-order ODEs. As before, let’s categorize problems based on their solution approach.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
+import matplotlib_inline.backend_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
+plt.rcParams[&#39;figure.dpi&#39;]= 300
+plt.rcParams[&#39;savefig.dpi&#39;] = 300
+</pre></div>
+</div>
+</div>
+</div>
+<section id="solution-by-direct-integration">
+<h2><span class="section-number">3.1.1. </span>Solution by direct integration<a class="headerlink" href="#solution-by-direct-integration" title="Permalink to this headline">#</a></h2>
+<p>If you have a 2nd-order ODE of this form:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5b44f677-b33f-42a5-84ed-8f9fee1e03e5">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-5b44f677-b33f-42a5-84ed-8f9fee1e03e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{d^2 y}{dx^2} = f(x)
+\end{equation}\]</div>
+<p>then you can solve by <strong>direct integration</strong>.</p>
+<p>For example, let’s say we are trying to solve for the deflection of a cantilever beam <span class="math notranslate nohighlight">\(y(x)\)</span> with a force <span class="math notranslate nohighlight">\(P\)</span> at the end, where <span class="math notranslate nohighlight">\(E\)</span> is the modulus and <span class="math notranslate nohighlight">\(I\)</span> is the moment of intertia, and the initial conditions are <span class="math notranslate nohighlight">\(y(0)=0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>:</p>
+<p><img alt="Cantilever beam with force at end" src="../../_images/cantilever.png" /></p>
+<div class="amsmath math notranslate nohighlight" id="equation-c664f5bd-4fa1-41c0-8cde-9028dded47f8">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-c664f5bd-4fa1-41c0-8cde-9028dded47f8" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{d^2 y}{dx^2} &amp;= \frac{-P (L-x)}{EI} \\
+\frac{d}{dx} \left(\frac{dy}{dx}\right) &amp;= \frac{-P}{EI} (L-x) \\
+\int d \left(\frac{dy}{dx}\right) &amp;= \frac{-P}{EI} \int (L-x) dx \\
+y^{\prime} = \frac{dy}{dx} &amp;= \frac{-P}{EI} \left(Lx - \frac{x^2}{2}\right) + C_1 \\
+\int dy &amp;= \int \left( \frac{-P}{EI} \left(Lx - \frac{x^2}{2}\right) + C_1 \right) dx \\
+y(x) &amp;= \frac{-P}{EI} \left(\frac{L}{2} x^2 - \frac{1}{6} x^3\right) + C_1 x + C_2
+\end{align}\]</div>
+<p>That is our general solution; we can obtain the specific solution by applying our two initial conditions:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8dac6c81-2cd6-4e20-8d5a-193911c3d419">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-8dac6c81-2cd6-4e20-8d5a-193911c3d419" title="Permalink to this equation">#</a></span>\[\begin{align}
+y(0) &amp;= 0 = C_2 \\
+y^{\prime}(0) &amp;= 0 = C_1 \\
+\therefore y(x) &amp;= \frac{P}{EI} \left( \frac{x^3}{6} - \frac{L x^2}{2} \right)
+\end{align}\]</div>
+</section>
+<section id="solution-by-substitution">
+<h2><span class="section-number">3.1.2. </span>Solution by substitution<a class="headerlink" href="#solution-by-substitution" title="Permalink to this headline">#</a></h2>
+<p>If we have a 2nd-order ODE of this form:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-102d0224-edcc-4359-b9bc-9b6b8c34acf5">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-102d0224-edcc-4359-b9bc-9b6b8c34acf5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{d^2 y}{dx^2} = f(x, y^{\prime})
+\end{equation}\]</div>
+<p>then we can solve by <strong>substitution</strong>, meaning by substituting a new variable for <span class="math notranslate nohighlight">\(y^{\prime}\)</span>. (Notice that <span class="math notranslate nohighlight">\(y\)</span> itself does not show up in the ODE.)</p>
+<p>Let’s substitute <span class="math notranslate nohighlight">\(u\)</span> for <span class="math notranslate nohighlight">\(y^{\prime}\)</span> in the above ODE:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-643cc56a-47ee-4d7a-abe6-304448eb66be">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-643cc56a-47ee-4d7a-abe6-304448eb66be" title="Permalink to this equation">#</a></span>\[\begin{align}
+u &amp;= y^{\prime} \\
+u^{\prime} &amp;= y^{\prime\prime} \\
+\rightarrow u^{\prime} &amp;= f(f, u)
+\end{align}\]</div>
+<p>Now we have a 1st-order ODE! Then, we can apply the methods previously discussed to solve this; once we find <span class="math notranslate nohighlight">\(u(x)\)</span>, we can integrate that once more to get <span class="math notranslate nohighlight">\(y(x)\)</span>.</p>
+<section id="example-falling-object">
+<h3><span class="section-number">3.1.2.1. </span>Example: falling object<a class="headerlink" href="#example-falling-object" title="Permalink to this headline">#</a></h3>
+<p>For example, consider a falling mass where we are solving for the downward distance as a function of time, <span class="math notranslate nohighlight">\(y(t)\)</span>, that is experiencing the force of gravity downward and a drag force upward. It starts at some reference point so <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, and has a zero initial downward velocity: <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>. The governing equation is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8f5b8758-5db3-4f49-b520-58b88a51c9cd">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-8f5b8758-5db3-4f49-b520-58b88a51c9cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+m \frac{d^2 y}{dt^2} = mg - c \left( \frac{dy}{dt} \right)^2
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass, <span class="math notranslate nohighlight">\(g\)</span> is acceleration due to gravity, and <span class="math notranslate nohighlight">\(c\)</span> is the drag proportionality constant.
+We can substitute <span class="math notranslate nohighlight">\(V\)</span> for <span class="math notranslate nohighlight">\(y^{\prime}\)</span>, which gives us a first-order ODE:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b14cef60-1964-4dbe-aa32-9bdea6e5aa4c">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-b14cef60-1964-4dbe-aa32-9bdea6e5aa4c" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{let} \quad \frac{dy}{dt} = V \\
+\rightarrow m \frac{dV}{dt} &amp;= mg - c V^2 \\
+\end{align}\]</div>
+<p>Then, we can solve this for <span class="math notranslate nohighlight">\(V(t)\)</span> using our initial condition for velocity <span class="math notranslate nohighlight">\(V(0) = 0\)</span>. Once we have that, we can integrate once more:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4334e040-aa56-4d3b-ad33-daf8ff9e68c7">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-4334e040-aa56-4d3b-ad33-daf8ff9e68c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(t) = \int V(t) dt
+\end{equation}\]</div>
+<p>and apply our initial condition for position, <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, to obtain <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<p>Here is the full process:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1f7d218e-7559-4d5b-a9c1-9d01c9b0d70a">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-1f7d218e-7559-4d5b-a9c1-9d01c9b0d70a" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dV}{dt} &amp;= g - \frac{c}{m} V^2 \\
+\frac{dV}{g - \frac{c}{m} V^2} &amp;= dt \\
+\frac{m}{c} \int \frac{dV}{a^2 - V^2} &amp;= \int dt = t + \bar{c}, \quad \text{where} \quad a = \sqrt{\frac{mg}{c}} \\
+\frac{m}{c} \frac{1}{a} \tanh^{-1} \left(\frac{V}{a}\right) &amp;= t + c_1 \\
+V &amp;= a \tanh \left( \frac{a c}{m} t + c_1 \right) \\
+\therefore V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t + c_1\right)
+\end{align}\]</div>
+<p>Applying the initial condition for velocity, <span class="math notranslate nohighlight">\(V(0) = 0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-28baad37-6be0-4f0f-8a99-df8e2539d3c6">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-28baad37-6be0-4f0f-8a99-df8e2539d3c6" title="Permalink to this equation">#</a></span>\[\begin{align}
+V(0) &amp;= 0 = \sqrt{\frac{mg}{c}} \tanh \left(0 + c_1\right) \\
+\therefore c_1 &amp;= 0 \\
+V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t\right)
+\end{align}\]</div>
+<p>Then, to get <span class="math notranslate nohighlight">\(y(t)\)</span>, we just need to integrate once more:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1e9601cb-4fab-4fd8-94ef-930f65f45c0c">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-1e9601cb-4fab-4fd8-94ef-930f65f45c0c" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dy}{dt} = V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t\right) \\
+\int dy &amp;= \sqrt{\frac{mg}{c}} \int \tanh \left(\sqrt{\frac{gc}{m}} t\right) dt \\
+y(t) &amp;= \sqrt{\frac{mg}{c}} \sqrt{\frac{m}{gc}} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right) + c_2 \\
+\rightarrow y(t) &amp;= \frac{m}{c} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right) + c_2
+\end{align}\]</div>
+<p>Finally, we can apply the initial condition for position, <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, to get our solution:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-386bca5f-af2d-4b4f-b913-501386627ebd">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-386bca5f-af2d-4b4f-b913-501386627ebd" title="Permalink to this equation">#</a></span>\[\begin{align}
+y(0) &amp;= 0 = \frac{m}{c} \log\left(\cosh\left(0\right)\right) + c_2 = c_2 \\
+\rightarrow c_2 &amp;= 0 \\
+y(t) &amp;= \frac{m}{c} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right)
+\end{align}\]</div>
+</section>
+<section id="example-catenary-problem">
+<h3><span class="section-number">3.1.2.2. </span>Example: catenary problem<a class="headerlink" href="#example-catenary-problem" title="Permalink to this headline">#</a></h3>
+<p>The catenary problem describes the shape of a hanging chain or rope fixed between two points. (It was also a favorite of one of my professors, <a class="reference external" href="https://en.wikipedia.org/wiki/Joseph_M._Prahl">Joe Prahl</a>, and I like to teach it as an example in his honor.) The downward displacement of the hanging string/chain/rope as a function of horizontal position, <span class="math notranslate nohighlight">\(y(x)\)</span>, is governed by the equation</p>
+<div class="amsmath math notranslate nohighlight" id="equation-17b95d1b-013f-4b14-b0b2-5d693fb54b33">
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-17b95d1b-013f-4b14-b0b2-5d693fb54b33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} = \sqrt{1 + (y^{\prime})^2}
+\end{equation}\]</div>
+<p><img alt="Catenary problem (hanging rope/chain)" src="../../_images/catenary.png" /></p>
+<p>This is actually a <strong>boundary value problem</strong>, with the boundary conditions for the displacement at one side <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and that the slope is zero in the middle: <span class="math notranslate nohighlight">\(\frac{dy}{dx}\left(\frac{L}{2}\right) = 0\)</span>. (Please note that I have skipped the derivation of the governing equation, and left some details out.)</p>
+<p>We can solve this via substitution, by letting a new variable <span class="math notranslate nohighlight">\(u = y^{\prime}\)</span>; then, <span class="math notranslate nohighlight">\(u^{\prime} = \frac{du}{dx} = y^{\prime\prime}\)</span>. This gives is a first-order ODE, which we can integrate:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7b48c80e-3a14-408b-be83-0b6b54304c8d">
+<span class="eqno">(3.14)<a class="headerlink" href="#equation-7b48c80e-3a14-408b-be83-0b6b54304c8d" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{du}{dx} &amp;= \sqrt{1 + u^2} \\
+\int \frac{du}{\sqrt{1 + u^2}} &amp;= \int dx \\
+\sinh^{-1}(u) &amp;= x + c_1, \quad \text{where } \sinh(x) = \frac{e^x - e^{-x}}{2} \\
+u(x) &amp;= \sinh(x + c_1)
+\end{align}\]</div>
+<p>Then, we can integrate once again to get <span class="math notranslate nohighlight">\(y(x)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e0550b04-98ff-41ee-a9f0-e98bb9e65e66">
+<span class="eqno">(3.15)<a class="headerlink" href="#equation-e0550b04-98ff-41ee-a9f0-e98bb9e65e66" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dy}{dx} &amp;= u(x) = \sinh(x + c_1) \\
+\int dy &amp;= \int \sinh(x + c_1) dx = \int \left(\sinh(x)\cosh(c_1) + \cosh(x)\sinh(c_1)\right)dx \\
+y(x) &amp;= \cosh(x)\cosh(c_1) + \sinh(x)\sinh(c_1) + c_2 \\
+\rightarrow y(x) &amp;= \cosh(x + c_1) + c_2
+\end{align}\]</div>
+<p>This is the general solution to the catenary problem, and applies to any boundary conditions.</p>
+<p>For our specific case, we can apply the boundary conditions and find the particular solution, though it involves some algebra…:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9d4cabf0-b56e-4fd2-89d6-1597c11c1cf8">
+<span class="eqno">(3.16)<a class="headerlink" href="#equation-9d4cabf0-b56e-4fd2-89d6-1597c11c1cf8" title="Permalink to this equation">#</a></span>\[\begin{align}
+y(0) &amp;= 0 = \cosh(c_1) + c_2 \\
+\frac{dy}{dx}\left(\frac{L}{2}\right) &amp;= u(0) = \sinh \left(\frac{L}{2} + c_1\right) \\
+\rightarrow c_1 &amp;= -\frac{L}{2} \\
+0 &amp;= \cosh \left( -\frac{L}{2} \right) + c_2 \\
+\rightarrow c_2 &amp;= -\cosh\left( -\frac{L}{2} \right) = -\cosh\left(\frac{L}{2} \right)
+\end{align}\]</div>
+<p>So, the overall solution for the catenary problem with the given boundary conditions is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-18043fb1-c3c7-4da4-afda-6865f4b2567e">
+<span class="eqno">(3.17)<a class="headerlink" href="#equation-18043fb1-c3c7-4da4-afda-6865f4b2567e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(x) = \cosh \left(x - \frac{L}{2}\right) - \cosh\left( \frac{L}{2} \right)
+\end{equation}\]</div>
+<p>Let’s see what this looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>length = 1.0
+x = np.linspace(0, 1)
+y = np.cosh(x - length/2) - np.cosh(length/2)
+plt.plot(x, y)
+plt.grid(True)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/analytical_6_0.png" src="../../_images/analytical_6_0.png" />
+</div>
+</div>
+<p>Please note that I’ve made some simplifications in the above work, and skipped the details of how the ODE is derived. In general, the solution for the shape is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d737d79a-5de0-49f1-a606-b5789232252a">
+<span class="eqno">(3.18)<a class="headerlink" href="#equation-d737d79a-5de0-49f1-a606-b5789232252a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(x) = C \cosh \frac{x + c_1}{C} + c_2
+\end{equation}\]</div>
+<p>where you would solve for the constants <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, and <span class="math notranslate nohighlight">\(c_2\)</span> using the constraints:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-14c432d3-1ce6-4c45-a9f8-c9f8644ce49f">
+<span class="eqno">(3.19)<a class="headerlink" href="#equation-14c432d3-1ce6-4c45-a9f8-c9f8644ce49f" title="Permalink to this equation">#</a></span>\[\begin{align}
+\int_{x_a}^{x_b} \sqrt{1 + (y^{\prime})^2} dx &amp;= L \\
+y(x_a) &amp;= y_a \\
+y(x_b) &amp;= y_b \;,
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(L\)</span> is the length of the rope/chain.</p>
+<p>You can read more about the catenary problem here (for example): <a class="reference external" href="http://euclid.trentu.ca/aejm/V4N1/Chatterjee.V4N1.pdf">http://euclid.trentu.ca/aejm/V4N1/Chatterjee.V4N1.pdf</a></p>
+</section>
+</section>
+<section id="homogeneous-2nd-order-odes">
+<h2><span class="section-number">3.1.3. </span>Homogeneous 2nd-order ODEs<a class="headerlink" href="#homogeneous-2nd-order-odes" title="Permalink to this headline">#</a></h2>
+<p>An important category of 2nd-order ODEs are those that look like</p>
+<div class="amsmath math notranslate nohighlight" id="equation-83bdc7e7-bad2-4d6c-aa87-fcb91ce72093">
+<span class="eqno">(3.20)<a class="headerlink" href="#equation-83bdc7e7-bad2-4d6c-aa87-fcb91ce72093" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
+\end{equation}\]</div>
+<p>“Homogeneous” means that the ODE is unforced; that is, the right-hand side is zero.</p>
+<p>Depending on what <span class="math notranslate nohighlight">\(p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)\)</span> look like, we have a few different solution approaches:</p>
+<ul class="simple">
+<li><p>constant coefficients: <span class="math notranslate nohighlight">\(y^{\prime\prime} + a y^{\prime} + by = 0\)</span></p></li>
+<li><p>Euler-Cauchy equations: <span class="math notranslate nohighlight">\(x^2 y^{\prime\prime} + axy^{\prime} + by = 0\)</span></p></li>
+<li><p>Series solutions</p></li>
+</ul>
+<p>First, let’s talk about the characteristics of linear, homogeneous 2nd-order ODEs:</p>
+<section id="solutions-have-two-parts">
+<h3><span class="section-number">3.1.3.1. </span>Solutions have two parts:<a class="headerlink" href="#solutions-have-two-parts" title="Permalink to this headline">#</a></h3>
+<p>Solutions have two parts: <span class="math notranslate nohighlight">\(y(x) = c_1 y_1 + c_2 y_2\)</span>, where <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are each a basis of the solution.</p>
+</section>
+<section id="linearly-independent">
+<h3><span class="section-number">3.1.3.2. </span>Linearly independent:<a class="headerlink" href="#linearly-independent" title="Permalink to this headline">#</a></h3>
+<p>The two parts of the solution <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are linearly independent.</p>
+<p>One way of defining this is that <span class="math notranslate nohighlight">\(a_1 y_1 + a_2 y_2 = 0\)</span> only has the trivial solution <span class="math notranslate nohighlight">\(a_1=0\)</span> and <span class="math notranslate nohighlight">\(a_2=0\)</span>.</p>
+<p>Another way of thinking about this is that <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are linearly <em>dependent</em> if one is a multiple of the other, like <span class="math notranslate nohighlight">\(y_1 = x\)</span> and <span class="math notranslate nohighlight">\(y_2 = 5x\)</span>. This <em>cannot</em> be solutions to a linear, homogeneous ODE.</p>
+</section>
+<section id="both-parts-satisfy-the-ode">
+<h3><span class="section-number">3.1.3.3. </span>Both parts satisfy the ODE:<a class="headerlink" href="#both-parts-satisfy-the-ode" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> each satisfy the ODE. Meaning, you can plug each of them into the ODE for <span class="math notranslate nohighlight">\(y\)</span> and obtain 0.</p>
+<p>However, we need both parts together to fully solve the ODE.</p>
+</section>
+<section id="reduction-of-order">
+<h3><span class="section-number">3.1.3.4. </span>Reduction of order:<a class="headerlink" href="#reduction-of-order" title="Permalink to this headline">#</a></h3>
+<p>If <span class="math notranslate nohighlight">\(y_1\)</span> is known, we can get <span class="math notranslate nohighlight">\(y_2\)</span> by <strong>reduction of order</strong>. Let <span class="math notranslate nohighlight">\(y_2 = u y_1\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> is some unknown function of <span class="math notranslate nohighlight">\(x\)</span>. Then, put <span class="math notranslate nohighlight">\(y_2\)</span> into the ODE <span class="math notranslate nohighlight">\(y^{\prime}{\prime} + p(x) y^{\prime} + q(x) y = 0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-66849644-ba71-41de-84c4-7497c315fd40">
+<span class="eqno">(3.21)<a class="headerlink" href="#equation-66849644-ba71-41de-84c4-7497c315fd40" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_2 &amp;= u y_1 \\
+y_2^{\prime} &amp;= u y_1^{\prime} + u^{\prime} y_1 \\
+y_2^{\prime\prime} &amp;= 2 u^{\prime} y_1^{\prime} + u^{\prime\prime} y_1 + u y_1^{\prime\prime} \\
+\rightarrow u^{\prime\prime} &amp;= - \left[ p(x) + \left(\frac{2 y_1^{\prime}}{y_1}\right) \right] u^{\prime}
+\text{or, } u^{\prime\prime} &amp;= - \left( g(x) \right) u^{\prime}
+\end{align}\]</div>
+<p>Now, we have an ODE with only <span class="math notranslate nohighlight">\(u^{\prime\prime}\)</span>, <span class="math notranslate nohighlight">\(u^{\prime}\)</span>, and some function <span class="math notranslate nohighlight">\(g(x)\)</span>—so we can solve by substitution! Let <span class="math notranslate nohighlight">\(u^{\prime} = v\)</span>, and then we have <span class="math notranslate nohighlight">\(v^{\prime} = -g(x) v\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b346b1c1-046e-4523-a6b0-7102f9b72097">
+<span class="eqno">(3.22)<a class="headerlink" href="#equation-b346b1c1-046e-4523-a6b0-7102f9b72097" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dv}{dx} &amp;= - \left( p(x) + \frac{2 y_1^{\prime}}{y_1} \right) v \\
+\int \frac{dv}{v} &amp;= - \int \left(p(x) + \frac{2 y_1^{\prime}}{y_1} \right) dx \\
+\text{Recall } 2 \frac{d}{dx} \left( \ln y_1 \right) &amp;= 2 \frac{y_1^{\prime}}{y_1} \\
+\therefore \int \frac{dv}{v} &amp;= - \int \left(p(x) + 2 \frac{d}{dx} \left( \ln y_1 \right) \right) dx \\
+\ln v &amp;= -\int p(x) dx - 2 \ln y_1 \\
+\rightarrow v &amp;= \frac{\exp\left( -\int p(x)dx \right)}{y_1^2}
+\end{align}\]</div>
+<p>So, the actual solution procedure is then:</p>
+<ol class="simple">
+<li><p>Solve for <span class="math notranslate nohighlight">\(v\)</span>: <span class="math notranslate nohighlight">\(v = \frac{\exp\left( -\int p(x)dx \right)}{y_1^2}\)</span></p></li>
+<li><p>Solve for <span class="math notranslate nohighlight">\(u\)</span>: <span class="math notranslate nohighlight">\(u = \int v dx\)</span></p></li>
+<li><p>Get <span class="math notranslate nohighlight">\(y_2\)</span>: <span class="math notranslate nohighlight">\(y_2 = u y_1\)</span></p></li>
+</ol>
+<p>Here’s an example, where we know one part of the solution <span class="math notranslate nohighlight">\(y_1 = e^{-x}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7e24ff27-2a28-4d99-8648-f214f07629a9">
+<span class="eqno">(3.23)<a class="headerlink" href="#equation-7e24ff27-2a28-4d99-8648-f214f07629a9" title="Permalink to this equation">#</a></span>\[\begin{align}
+y^{\prime\prime} + 2 y^{\prime} + y &amp;= 0 \\
+\text{Step 1:} \quad v = \frac{\exp \left( -\int 2dx \right)}{ \left(e^{-x}\right)^2} = \frac{e^{-2x}}{e^{-2x}} &amp;= 1 \\
+\text{Step 2:} \quad u = \int v dx = \int 1 dx &amp;= x \\
+\text{Step 3:} \quad y_2 &amp;= x e^{-x}
+\end{align}\]</div>
+<p>Then, the general solution to the ODE is <span class="math notranslate nohighlight">\(y(x) = c_1 e^{-x} + c_2 x e^{-x}\)</span>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/second-order"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="second-order.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Second-order Ordinary Differential Equations</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="initial-value-problems.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Initial-Value Problems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

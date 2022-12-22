@@ -1,0 +1,1082 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.4. Fourier Series &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/second-order/fourier-series.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.5. Power Series Solutions" href="power-series.html" />
+    <link rel="prev" title="3.3. Numerical methods for 2nd-order ODEs" href="numerical-methods.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/second-order/fourier-series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/second-order/fourier-series.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/second-order/fourier-series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/second-order/fourier-series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-fourier-series">
+   3.4.1. Properties of Fourier Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-coefficients">
+   3.4.2. Fourier coefficients
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-periodic-rectangular-wave">
+   3.4.3. Example: periodic rectangular wave
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#even-and-odd-functions">
+   3.4.4. Even and Odd Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-inhomogeneous-2nd-order-ode">
+   3.4.5. Application: Inhomogeneous 2nd-order ODE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#undamped-mass-spring-system">
+     3.4.5.1. Undamped mass-spring system
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#damped-mass-spring-system">
+     3.4.5.2. Damped mass-spring system
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Fourier Series</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-fourier-series">
+   3.4.1. Properties of Fourier Series
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-coefficients">
+   3.4.2. Fourier coefficients
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-periodic-rectangular-wave">
+   3.4.3. Example: periodic rectangular wave
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#even-and-odd-functions">
+   3.4.4. Even and Odd Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-inhomogeneous-2nd-order-ode">
+   3.4.5. Application: Inhomogeneous 2nd-order ODE
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#undamped-mass-spring-system">
+     3.4.5.1. Undamped mass-spring system
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#damped-mass-spring-system">
+     3.4.5.2. Damped mass-spring system
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="fourier-series">
+<h1><span class="section-number">3.4. </span>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">#</a></h1>
+<p>Fourier series are a method we can use to solve inhomogeneous 2nd-order ODEs of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b1989017-4263-4460-b25c-68e8c56bf061">
+<span class="eqno">(3.72)<a class="headerlink" href="#equation-b1989017-4263-4460-b25c-68e8c56bf061" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + p(t) y^{\prime} + q(t) y = r(t) \;,
+\end{equation}\]</div>
+<p>where the forcing function <span class="math notranslate nohighlight">\(r(t)\)</span> is periodic. This means looking like one of these examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
+import matplotlib_inline.backend_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
+plt.rcParams[&#39;figure.dpi&#39;]= 300
+plt.rcParams[&#39;savefig.dpi&#39;] = 300
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(3, 1)
+
+# periodic square wave
+square_wave = [1, 1, 1, 1, 0, 0, 0, 0]*10
+time = np.linspace(0, 1, len(square_wave))
+axes[0].plot(time, square_wave)
+axes[0].grid(True)
+
+# sin wave
+time = np.linspace(0, 1, 100)
+axes[1].plot(time, np.sin(time*10*np.pi))
+axes[1].grid(True)
+
+# sawtooth
+y_vals = ((np.fmod(time, 2*np.pi/40)/(np.pi*2/40))*2)-1
+axes[2].plot(time, y_vals)
+axes[2].grid(True)
+
+plt.tight_layout()
+plt.show()
+#plot(t, y); ylim([-1.5, 1.5]);
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_3_0.png" src="../../_images/fourier-series_3_0.png" />
+</div>
+</div>
+<p>(Actually, as we’ll see later, we can use a Fourier series to represent generic forcing function!)</p>
+<p>Fourier series have been around a while, ever since in 1790 Jean-Baptiste Joseph Fourier found that generic periodic functions could be represented by a sum of series of sin and cos functions, harmonically related by frequency.</p>
+<p>In general, a Fourier series represents a function <span class="math notranslate nohighlight">\(f(t)\)</span> by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5292519a-7487-4192-89ed-4d0380eee0ee">
+<span class="eqno">(3.73)<a class="headerlink" href="#equation-5292519a-7487-4192-89ed-4d0380eee0ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_n\)</span>, and <span class="math notranslate nohighlight">\(b_n\)</span> are the Fourier coefficients, <span class="math notranslate nohighlight">\(\omega = \frac{2\pi}{T}\)</span> is the frequency of the function <span class="math notranslate nohighlight">\(f(t)\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> is the period. <span class="math notranslate nohighlight">\(n\)</span> is an integer used as an index.</p>
+<section id="properties-of-fourier-series">
+<h2><span class="section-number">3.4.1. </span>Properties of Fourier Series<a class="headerlink" href="#properties-of-fourier-series" title="Permalink to this headline">#</a></h2>
+<p>Considering that <span class="math notranslate nohighlight">\(n\)</span> is an integer, and the sine and cosine components of a Fourier series share the same fundamental frequency <span class="math notranslate nohighlight">\(\omega\)</span>, Fourier series have some useful properties:</p>
+<ol class="simple">
+<li><p>The integral of each component trigonometric function over the period is zero:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-2b17951d-f027-4f28-90e8-695dfa453e57">
+<span class="eqno">(3.74)<a class="headerlink" href="#equation-2b17951d-f027-4f28-90e8-695dfa453e57" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T \sin (n \omega t) dt = 0 = \int_0^T cos (n \omega t) dt
+\end{equation}\]</div>
+<ol class="simple">
+<li><p>The component trigonometric functions are <strong>orthogonal</strong> over their period:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-817b546c-a4c0-4f43-af5c-1734b40a0c84">
+<span class="eqno">(3.75)<a class="headerlink" href="#equation-817b546c-a4c0-4f43-af5c-1734b40a0c84" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T \cos(n \omega t) \sin (m \omega t) dt = 0
+\end{equation}\]</div>
+<p>for all values of <span class="math notranslate nohighlight">\(n, m = 1, 2, \ldots, \infty\)</span>.</p>
+<ol class="simple">
+<li><p>The component trigonometric functions are also orthogonal with themselves over their period:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-a9c56f0a-f831-40a1-97f5-ed4d94614208">
+<span class="eqno">(3.76)<a class="headerlink" href="#equation-a9c56f0a-f831-40a1-97f5-ed4d94614208" title="Permalink to this equation">#</a></span>\[\begin{align}
+\int_0^T \cos (n \omega t) \cos (m \omega t) dt &amp;= \begin{cases}0 \quad m \neq n \\ \frac{T}{2} \quad m = n \end{cases} \\
+%
+\int_0^T \sin (n \omega t) \sin (m \omega t) dt &amp;= \begin{cases}0 \quad m \neq n \\ \frac{T}{2} \quad m = n \end{cases}
+\end{align}\]</div>
+<p>for all values of <span class="math notranslate nohighlight">\(n, m = 1, 2, \ldots, \infty\)</span>.</p>
+</section>
+<section id="fourier-coefficients">
+<h2><span class="section-number">3.4.2. </span>Fourier coefficients<a class="headerlink" href="#fourier-coefficients" title="Permalink to this headline">#</a></h2>
+<p>We can use the above properties to calculate the Fourier coefficients, given a periodic function <span class="math notranslate nohighlight">\(f(t)\)</span>.
+First, recall</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5479163d-7eb8-4477-90c3-e8860614a9d4">
+<span class="eqno">(3.77)<a class="headerlink" href="#equation-5479163d-7eb8-4477-90c3-e8860614a9d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)
+\end{equation}\]</div>
+<ol class="simple">
+<li><p>To calculate <span class="math notranslate nohighlight">\(a_0\)</span>, integrate both sides of the equation over the period:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-140e4160-2882-41d3-9b61-c5b6dccc60d2">
+<span class="eqno">(3.78)<a class="headerlink" href="#equation-140e4160-2882-41d3-9b61-c5b6dccc60d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T f(t) dt = \int_0^T a_0 dt + \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \right)dt + \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \right) dt
+\end{equation}\]</div>
+<p>For the integrals of the infinite sums, recall that the integral of the sum of some functions is the same as the sum of the integrals of the functions: <span class="math notranslate nohighlight">\(\int (a + b + c) = \int a + \int b + \int c\)</span>. That means that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-78b35b7f-afc4-4e1f-8289-d66b9965fb6b">
+<span class="eqno">(3.79)<a class="headerlink" href="#equation-78b35b7f-afc4-4e1f-8289-d66b9965fb6b" title="Permalink to this equation">#</a></span>\[\begin{align}
+\int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \right)dt = \int_0^T a_1 \cos (\omega t) dt + \int_0^T a_2 \cos (2 \omega t) dt + \ldots &amp;= 0 \;, \text{ and} \\
+\int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \right)dt = \int_0^T b_1 \sin (\omega t) dt + \int_0^T b_2 \sin (2 \omega t) dt + \ldots &amp;= 0 \;,
+\end{align}\]</div>
+<p>since the integrals of the trigonometric functions are all zero over the period. Thus,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-32e6bcec-a9f7-4d11-9d1b-d9bdd7d9ca96">
+<span class="eqno">(3.80)<a class="headerlink" href="#equation-32e6bcec-a9f7-4d11-9d1b-d9bdd7d9ca96" title="Permalink to this equation">#</a></span>\[\begin{equation}
+a_0 = \frac{1}{T} \int_0^T f(t) dt
+\end{equation}\]</div>
+<ol class="simple">
+<li><p>To calculate <span class="math notranslate nohighlight">\(a_n\)</span>, multiply both sides of the equation by <span class="math notranslate nohighlight">\(\cos(m \omega t)\)</span> and integrate over the period:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-e270fd14-80d8-4f6c-aa0e-5c9c2f72842d">
+<span class="eqno">(3.81)<a class="headerlink" href="#equation-e270fd14-80d8-4f6c-aa0e-5c9c2f72842d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T f(t) \cos(m \omega t) dt = a_0 \int_0^T \cos(m \omega t) dt + \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \cos(m \omega t) \right)dt + \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \cos(m \omega t) \right) dt
+\end{equation}\]</div>
+<p>Let’s take a look at each of the three integrals on the right-hand side. First,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e8ac68b8-1c9a-4f3d-a1be-a17ca5e4a02e">
+<span class="eqno">(3.82)<a class="headerlink" href="#equation-e8ac68b8-1c9a-4f3d-a1be-a17ca5e4a02e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+a_0 \int_0^T \cos(m \omega t) dt = 0
+\end{equation}\]</div>
+<p>because it just integrates cosine over the period.
+Skipping to the last term,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-82f0be9f-1757-4329-a20f-5481f396d06c">
+<span class="eqno">(3.83)<a class="headerlink" href="#equation-82f0be9f-1757-4329-a20f-5481f396d06c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \cos(m \omega t) \right) dt = b_1 \int_0^T sin(\omega t) \cos (m \omega t) dt + b_2 \int_0^T \sin (2 \omega t) \cos (m \omega t) dt + \ldots = 0
+\end{equation}\]</div>
+<p>due to orthogonality. We are just left with the middle integral; let’s expand a few terms to see what that looks like:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-19495eb4-ba57-4d74-ae9f-cb06e99078a9">
+<span class="eqno">(3.84)<a class="headerlink" href="#equation-19495eb4-ba57-4d74-ae9f-cb06e99078a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \cos(m \omega t) \right)dt = a_1 \int_0^T \cos (\omega t) \cos (m \omega t) dt + a_2 \int_0^T \cos (2 \omega t) \cos (m \omega t) dt + \ldots
+\end{equation}\]</div>
+<p>Again, due to orthogonality, all of the terms of this infinite sum of integrals will be zero, <em>except</em> for the term where <span class="math notranslate nohighlight">\(n = m\)</span>. As a result, we are left with</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e4c885c0-d81a-4eb3-9c46-052edcd5d13d">
+<span class="eqno">(3.85)<a class="headerlink" href="#equation-e4c885c0-d81a-4eb3-9c46-052edcd5d13d" title="Permalink to this equation">#</a></span>\[\begin{align}
+\int_0^T f(t) \cos(m \omega t) dt &amp;= \int_0^T a_m \cos^2 (m \omega t) dt = a_m \frac{T}{2} \\
+a_n = a_m &amp;= \frac{2}{T} \int_0^T f(t) \cos (n \omega t) dt
+\end{align}\]</div>
+<ol class="simple">
+<li><p>We can find <span class="math notranslate nohighlight">\(b_n\)</span> in the same way, multiplying the equation by <span class="math notranslate nohighlight">\(\sin (m \omega t)\)</span> and integrating over the period. The work is the same, so let’s skip that:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-54e4d484-4909-41b2-aaea-4fb3035ad89f">
+<span class="eqno">(3.86)<a class="headerlink" href="#equation-54e4d484-4909-41b2-aaea-4fb3035ad89f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+b_n = \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt
+\end{equation}\]</div>
+</section>
+<section id="example-periodic-rectangular-wave">
+<h2><span class="section-number">3.4.3. </span>Example: periodic rectangular wave<a class="headerlink" href="#example-periodic-rectangular-wave" title="Permalink to this headline">#</a></h2>
+<p>Let’s find the Fourier series for representing this periodic function <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = [0, 1, 1, 2, 2, 3, 3, 4]
+y = [2, 2, 1, 1, 2, 2, 1, 1]
+plt.plot(x, y)
+plt.ylabel(&#39;f(t)&#39;)
+plt.xlabel(&#39;t&#39;)
+plt.ylim([0, 2.5])
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_8_0.png" src="../../_images/fourier-series_8_0.png" />
+</div>
+</div>
+<p>First, we need to identify the fundamental period and frequency: <span class="math notranslate nohighlight">\(T = 2\)</span> and then <span class="math notranslate nohighlight">\(\omega = \frac{2\pi}{T} = \pi\)</span>. Our work is then to calculate the Fourier coefficients. Since our periodic function <span class="math notranslate nohighlight">\(f(t)\)</span> is not easily expressed with a function–hence the need for a Fourier series—we’ll use piecewise integration.</p>
+<p>First, calculate <span class="math notranslate nohighlight">\(a_0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-87032ef3-70dc-405d-b82f-c238a14231dd">
+<span class="eqno">(3.87)<a class="headerlink" href="#equation-87032ef3-70dc-405d-b82f-c238a14231dd" title="Permalink to this equation">#</a></span>\[\begin{align}
+a_0 =&amp; \frac{1}{T} \int_0^T f(t) dt \\
+&amp;= \frac{1}{2} \int_0^2 f(t) dt = \frac{1}{2}\left( \int_0^1 2dt + \int_1^2 1dt \right) = \frac{1}{2} (2\times 1 + 1 \times 1) \\
+a_0 &amp;= \frac{3}{2}
+\end{align}\]</div>
+<p>Then, get <span class="math notranslate nohighlight">\(a_n\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6972dce5-aeaf-4b21-8658-15c040f331d6">
+<span class="eqno">(3.88)<a class="headerlink" href="#equation-6972dce5-aeaf-4b21-8658-15c040f331d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+a_n &amp;= \frac{2}{T} \int_0^T f(t) \cos (n \omega t) dt \\
+&amp;= \frac{2}{2} \int_0^2 f(t) \cos (n \pi t) dt = \left( \int_0^1 2 \cos (n \pi t) dt + \int_1^2 1 \cos (n \pi t)dt \right) \\
+&amp;= \frac{2}{n \pi} \sin(n \pi t)\Big|_0^1 + \frac{1}{n\pi} \sin(n \pi t)\Big|_1^2 \\
+&amp;= \frac{2}{n \pi}\left(\sin(n\pi) - \sin(0)\right) + \frac{1}{n\pi}\left( sin(2n\pi) - \sin(n\pi)\right) \\
+a_n &amp;= 0
+\end{align}\]</div>
+<p>Finally, we can calculate <span class="math notranslate nohighlight">\(b_n\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0d08fbb1-002e-4224-8dbd-c06d7473e13a">
+<span class="eqno">(3.89)<a class="headerlink" href="#equation-0d08fbb1-002e-4224-8dbd-c06d7473e13a" title="Permalink to this equation">#</a></span>\[\begin{align}
+b_n &amp;= \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt \\
+&amp;= \frac{2}{2} \int_0^2 f(t) \sin (n \pi t) dt = \left( \int_0^1 2 \sin (n \pi t) dt + \int_1^2 1 \sin (n \pi t)dt \right) \\
+&amp;= -\frac{2}{n \pi} \cos(n \pi t)\Big|_0^1 - \frac{1}{n\pi} \cos(n \pi t)\Big|_1^2 \\
+&amp;= -\frac{2}{n \pi}\left(\cos(n\pi) - \cos(0)\right) - \frac{1}{n\pi}\left( cos(2n\pi) - \cos(n\pi)\right) \\
+b_n &amp;= -\frac{2}{n \pi}\left(\cos(n\pi) - 1\right) - \frac{1}{n\pi}\left( 1 - \cos(n\pi)\right) = -\frac{1}{n\pi}\left( \cos(n\pi) - 1\right)
+\end{align}\]</div>
+<p>but recall that <span class="math notranslate nohighlight">\(n = 1, 2, \ldots, \infty\)</span>. Then,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b09b290a-2a87-4a00-8d3b-9bc8b4bde677">
+<span class="eqno">(3.90)<a class="headerlink" href="#equation-b09b290a-2a87-4a00-8d3b-9bc8b4bde677" title="Permalink to this equation">#</a></span>\[\begin{align}
+b_n &amp;= -\frac{1}{n\pi} \times \begin{cases} -2 \text{ if } n \text{ odd} \\0 \text{ if } n \text{ even}\end{cases} \\
+\rightarrow b_n &amp;= \frac{2}{n\pi} \quad n = \text{odd}
+\end{align}\]</div>
+<p>Then, our Fourier series representation for the function shown above is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8aa0464a-6e9c-4850-b6b8-3a5b20887167">
+<span class="eqno">(3.91)<a class="headerlink" href="#equation-8aa0464a-6e9c-4850-b6b8-3a5b20887167" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(t) = \frac{3}{2} + \sum_{\substack{n = 1 \\n = \text{odd}}}^{\infty} \frac{2}{n\pi} \sin (n \pi t)
+\end{equation}\]</div>
+<p>Now, let’s see how whether this actually works! Let’s start with one term of the infinite sum, then gradually increase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>time = np.linspace(0, 4)
+
+# maximum number of terms
+num_max = [1, 2, 3, 5, 10, 25, 50, 250, 500]
+fig, axes = plt.subplots(3, 3)
+
+for idx, num in enumerate(num_max):
+    func = np.ones_like(time) * 3/2
+    for n in range(1, 2*num)[::2]:
+        func += (2 / (n*np.pi)) * np.sin(n * np.pi * time)
+    idy, idz = np.unravel_index(idx, (3,3))
+    axes[idy,idz].plot(time, func)
+    axes[idy,idz].set_title(f&#39;{num} terms&#39;)
+
+for ax in fig.get_axes():
+    ax.label_outer()
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_10_0.png" src="../../_images/fourier-series_10_0.png" />
+</div>
+</div>
+<p>As we increase the number of terms, adding higher-frequency sine waves, we are better able to match the original rectangular wave. Notice the discrepancies that remain near the sharp corners even after the rest of the series closely resembles the function: these are known as <strong>Gibbs phenomena</strong>, caused by the Fourier series overshooting or undershooting (or “ringing”) near discontinuities.</p>
+</section>
+<section id="even-and-odd-functions">
+<h2><span class="section-number">3.4.4. </span>Even and Odd Functions<a class="headerlink" href="#even-and-odd-functions" title="Permalink to this headline">#</a></h2>
+<p>We can simplify our work generating a Fourier series if we can identify the given periodic function <span class="math notranslate nohighlight">\(f(t)\)</span> as an <strong>even function</strong> or an <strong>odd function</strong>.</p>
+<p>Even functions are those where <span class="math notranslate nohighlight">\(f(-x) = f(x)\)</span>.</p>
+<p>Odd functions are those where <span class="math notranslate nohighlight">\(f(-x) = -f(x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(2, 1)
+
+y = [-1, 0, 1, 0, -1]
+x = [-2, -1, 0, 1, 2]
+axes[0].plot(x, y)
+axes[0].set_title(&#39;Even function&#39;)
+# sets axis lines at origin
+axes[0].spines[&#39;top&#39;].set_color(&#39;none&#39;)
+axes[0].spines[&#39;left&#39;].set_position(&#39;zero&#39;)
+axes[0].spines[&#39;right&#39;].set_color(&#39;none&#39;)
+axes[0].spines[&#39;bottom&#39;].set_position(&#39;zero&#39;)
+
+y = [0, -1, 0, 1, 0]
+axes[1].plot(x,y)
+axes[1].set_title(&#39;Odd function&#39;)
+# sets axis lines at origin
+axes[1].spines[&#39;top&#39;].set_color(&#39;none&#39;)
+axes[1].spines[&#39;left&#39;].set_position(&#39;zero&#39;)
+axes[1].spines[&#39;right&#39;].set_color(&#39;none&#39;)
+axes[1].spines[&#39;bottom&#39;].set_position(&#39;zero&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_13_0.png" src="../../_images/fourier-series_13_0.png" />
+</div>
+</div>
+<p>An even function’s Fourier series simplifies to a Fourier cosine series:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6371c9b3-ad2a-4896-a1b3-8123e5a96794">
+<span class="eqno">(3.92)<a class="headerlink" href="#equation-6371c9b3-ad2a-4896-a1b3-8123e5a96794" title="Permalink to this equation">#</a></span>\[\begin{align}
+f(x) &amp;= a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega x) dx \\
+a_0 &amp;= \frac{2}{T} \int_0^{T/2} f(x) dx \\
+a_n &amp;= \frac{4}{T} \int_0^{T/2} f(x) \cos(n \omega x) dx
+\end{align}\]</div>
+<p>An odd function’s Fourier series simplifies to a Fourier sine series:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4f68c607-6d2a-4e43-b956-460a7711d18d">
+<span class="eqno">(3.93)<a class="headerlink" href="#equation-4f68c607-6d2a-4e43-b956-460a7711d18d" title="Permalink to this equation">#</a></span>\[\begin{align}
+f(x) &amp;= \sum_{n=1}^{\infty} b_n \sin (n \omega x) dx \\
+b_n &amp;= \frac{4}{T} \int_0^{T/2} f(x) \sin(n \omega x) dx
+\end{align}\]</div>
+<p>Note: not all periodic functions can be considered an even or an odd function.</p>
+</section>
+<section id="application-inhomogeneous-2nd-order-ode">
+<h2><span class="section-number">3.4.5. </span>Application: Inhomogeneous 2nd-order ODE<a class="headerlink" href="#application-inhomogeneous-2nd-order-ode" title="Permalink to this headline">#</a></h2>
+<p>One way we might use a Fourier series is to solve an inhomogeneous 2nd-order ODE, where the forcing term is given by a periodic function not easily expressed using our typical functions.</p>
+<section id="undamped-mass-spring-system">
+<h3><span class="section-number">3.4.5.1. </span>Undamped mass-spring system<a class="headerlink" href="#undamped-mass-spring-system" title="Permalink to this headline">#</a></h3>
+<p>For example, let’s consider an undamped mass-spring system, where the forcing is given by a periodic rectangular wave:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0b87baa2-0af1-4bab-b560-4a6596519f66">
+<span class="eqno">(3.94)<a class="headerlink" href="#equation-0b87baa2-0af1-4bab-b560-4a6596519f66" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + 4y = f(t)
+\end{equation}\]</div>
+<p>where the forcing function <span class="math notranslate nohighlight">\(f(t)\)</span> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>time = [0, 0, 1, 1, 2, 2, 3, 3]
+y = [0, 1, 1, -1, -1, 1, 1, 0]
+plt.plot(time, y)
+plt.title(&#39;Periodic rectangular forcing function&#39;)
+
+ax = plt.gca()
+ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+ax.spines[&#39;bottom&#39;].set_position(&#39;zero&#39;)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_16_0.png" src="../../_images/fourier-series_16_0.png" />
+</div>
+</div>
+<p>Using recognizing this as an odd function, we could construct a Fourier sine series to represent the forcing function:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8cd6628e-1567-4d08-8646-f85969ad5e82">
+<span class="eqno">(3.95)<a class="headerlink" href="#equation-8cd6628e-1567-4d08-8646-f85969ad5e82" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(t) = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n\pi} \sin(n \pi t)
+\end{equation}\]</div>
+<p>Let’s confirm this works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>time = np.linspace(0, 3, 500)
+func = 0
+for n in range(1,1000)[::2]:
+    func += (4 / (n*np.pi)) * np.sin(n * np.pi * time)
+plt.plot(time, func)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fourier-series_18_0.png" src="../../_images/fourier-series_18_0.png" />
+</div>
+</div>
+<p>Looks good!</p>
+<p>To find the exact solution for our displacement <span class="math notranslate nohighlight">\(y(t)\)</span>, we can follow our usual analytical solution approach: find the homogeneous solution <span class="math notranslate nohighlight">\(y_H\)</span>, then find the inhomogeneous solution <span class="math notranslate nohighlight">\(y_{IH}\)</span>; the overall solution is then <span class="math notranslate nohighlight">\(y(t) = y_H + y_{IH}\)</span>. The homogeneous solution is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bd92e54c-3eb8-4bae-bd17-cb85dde248ac">
+<span class="eqno">(3.96)<a class="headerlink" href="#equation-bd92e54c-3eb8-4bae-bd17-cb85dde248ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_H = c_1 \sin (2t) + c_2 \cos (2t)
+\end{equation}\]</div>
+<p>We then find the inhomogeneous solution using</p>
+<div class="amsmath math notranslate nohighlight" id="equation-42a48d70-7717-4079-b026-3bd4d188b925">
+<span class="eqno">(3.97)<a class="headerlink" href="#equation-42a48d70-7717-4079-b026-3bd4d188b925" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y^{\prime\prime} + 4y = \frac{4}{n\pi} \sin (n \pi t) \quad n = 1, 3, \ldots, \infty
+\end{equation}\]</div>
+<p>Solving this will give us a specific <span class="math notranslate nohighlight">\(y_{IH, n}\)</span>; the complete inhomogeneous solution is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f4a089e8-e370-45c9-a277-065e07f70a25">
+<span class="eqno">(3.98)<a class="headerlink" href="#equation-f4a089e8-e370-45c9-a277-065e07f70a25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_{IH} = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} y_{IH, n} \;.
+\end{equation}\]</div>
+<p>Recognizing that our forcing function is sinusoidal, we should use the method of undetermined coefficients:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0cc9d9a4-8d94-48de-ab74-7fdaacf22aaa">
+<span class="eqno">(3.99)<a class="headerlink" href="#equation-0cc9d9a4-8d94-48de-ab74-7fdaacf22aaa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_{IH, n} = K_1 \sin (n \pi t) + K_2 \cos (n \pi t)
+\end{equation}\]</div>
+<p>Inserting this into the above ODE gives</p>
+<div class="amsmath math notranslate nohighlight" id="equation-17102e6a-6f8d-459d-a90c-594ebc60f102">
+<span class="eqno">(3.100)<a class="headerlink" href="#equation-17102e6a-6f8d-459d-a90c-594ebc60f102" title="Permalink to this equation">#</a></span>\[\begin{align}
+K_1 &amp;= \frac{4}{n \pi (4 - n^2 \pi^2)} \\
+K_2 &amp;= 0
+\end{align}\]</div>
+<p>Thus, the overall solution is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2d6f13f2-861b-491a-ac75-7a53ffd395ff">
+<span class="eqno">(3.101)<a class="headerlink" href="#equation-2d6f13f2-861b-491a-ac75-7a53ffd395ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y(t) = c_1 \sin(2t) + c_2 \cos(2t) + \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n \pi (4 - n^2 \pi^2)} \sin (n \pi t)
+\end{equation}\]</div>
+</section>
+<section id="damped-mass-spring-system">
+<h3><span class="section-number">3.4.5.2. </span>Damped mass-spring system<a class="headerlink" href="#damped-mass-spring-system" title="Permalink to this headline">#</a></h3>
+<p>What about a damped mass-spring system? Recall that the homogeneous solution could take one of these three forms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-20ec17ad-5ea9-4c07-9a7f-b48073c47343">
+<span class="eqno">(3.102)<a class="headerlink" href="#equation-20ec17ad-5ea9-4c07-9a7f-b48073c47343" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_H &amp;= c_1 e^{-\lambda_1 t} + c_2 e^{-\lambda_2 t} \\
+y_H &amp;= c_1 e^{-\lambda_1 t} + c_2 t e^{-\lambda_2 t} \text{ or} \\
+y_H &amp;= e^{-\alpha t} (c_1 \sin(\beta t) + c_2 \cos(\beta t))
+\end{align}\]</div>
+<p>while the inhomogeneous solution, given a Fourier series forcing function, will take the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-438d4919-c05d-4840-9ba8-6657cf33a47f">
+<span class="eqno">(3.103)<a class="headerlink" href="#equation-438d4919-c05d-4840-9ba8-6657cf33a47f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_{IH} = K_1 \sin() + K_2 \cos()
+\end{equation}\]</div>
+<p>The overall solution combines the homogenenous and inhomogeneous solutions. But, the homogeneous solution in this case is <strong>transient</strong>, because it decays to zero. On the other hand, the inhomogeneous solution remains, and is the <strong>steady-state solution</strong>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/second-order"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="numerical-methods.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3.3. </span>Numerical methods for 2nd-order ODEs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="power-series.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.5. </span>Power Series Solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

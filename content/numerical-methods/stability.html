@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.4. Stability and Stiffness &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/numerical-methods/stability.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Second-order Ordinary Differential Equations" href="../second-order/second-order.html" />
+    <link rel="prev" title="2.3. Numerical Solutions of 1st-order ODEs" href="initial-value-methods.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../second-order/second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pdes/partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pdes/parabolic.html">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/numerical-methods/stability.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/numerical-methods/stability.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/numerical-methods/stability.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/numerical-methods/stability.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backward-euler-method">
+   2.4.1. Backward Euler method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backward-euler-example">
+     2.4.1.1. Backward Euler example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stability-analysis">
+   2.4.2. Stability analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">
+     2.4.2.1. Stability analysis of Forward Euler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">
+     2.4.2.2. Stability analysis of Backward Euler
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Stability and Stiffness</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backward-euler-method">
+   2.4.1. Backward Euler method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backward-euler-example">
+     2.4.1.1. Backward Euler example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stability-analysis">
+   2.4.2. Stability analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">
+     2.4.2.1. Stability analysis of Forward Euler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">
+     2.4.2.2. Stability analysis of Backward Euler
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="stability-and-stiffness">
+<h1><span class="section-number">2.4. </span>Stability and Stiffness<a class="headerlink" href="#stability-and-stiffness" title="Permalink to this headline">#</a></h1>
+<p>In the past when you’ve talked about <strong>stability</strong>, it has likely been regarding the stability of a <em>system</em>. Stable systems are those will well-behaved exact solutions, meaning they do not grow unbounded.
+In engineering we mostly focus (or want!) stable systems, although there are some interesting unstable systems such as those involving resonance, nonlinear dynamics, or chaos—generally we want to know when that happens so we can prevent it.</p>
+<p>We can also define the stability of a <em>numerical scheme</em>, which is when the numerical solution exhibits unphysical behavior. In other words, it blows up.</p>
+<p>For example, let’s consider the relatively simple 1st-order ODE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cbdd366e-a61f-4b42-9fef-a713f641e397">
+<span class="eqno">(2.19)<a class="headerlink" href="#equation-cbdd366e-a61f-4b42-9fef-a713f641e397" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{dy}{dt} = -3 y
+\end{equation}\]</div>
+<p>with the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>. As we will see, this ODE can cause explicit numerical schemes to become unstable, and thus it is a <strong>stiff</strong> ODE. (Note that we can easily obtain the exact solution for this problem, which is <span class="math notranslate nohighlight">\(y(t) = e^{-3 t}\)</span>.)</p>
+<p>Let’s try solving this with the Forward Euler method, integrating over <span class="math notranslate nohighlight">\(0 \leq t \leq 10\)</span>, for a range of time-step size values: <span class="math notranslate nohighlight">\(\Delta t = 0.1, 0.25, 0.5, 0.75\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
+import matplotlib_inline.backend_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
+plt.rcParams[&#39;figure.dpi&#39;]= 300
+plt.rcParams[&#39;savefig.dpi&#39;] = 300
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># dydt to integrate
+f = lambda t,y: -3*y
+
+# we&#39;ll create a simple function to do forward Euler
+def forward_euler(t_end, y0, dt):
+    &#39;&#39;&#39;Simple function to perform Forward Euler iteration&#39;&#39;&#39;
+    time = np.arange(0, t_end+0.0001, dt)
+    y = np.zeros_like(time)
+    y[0] = y0
+    for idx, t in enumerate(time[:-1]):
+        y[idx+1] = y[idx] + dt * f(t, y[idx])
+    return time, y
+
+# 4 rows, 1 column
+fig, axes = plt.subplots(4, 1)
+
+# initial condition
+y0 = 1
+t_end = 20
+
+dt = 0.1
+time, y = forward_euler(t_end, y0, dt)
+axes[0].plot(time, y)
+axes[0].grid(True)
+axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.25
+time, y = forward_euler(t_end, y0, dt)
+axes[1].plot(time, y)
+axes[1].grid(True)
+axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.5
+time, y = forward_euler(t_end, y0, dt)
+axes[2].plot(time, y)
+axes[2].grid(True)
+axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.75
+time, y = forward_euler(t_end, y0, dt)
+axes[3].plot(time, y)
+axes[3].grid(True)
+axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/stability_3_0.png" src="../../_images/stability_3_0.png" />
+</div>
+</div>
+<p>At the smaller step sizes, <span class="math notranslate nohighlight">\(\Delta t = 0.1\)</span> and <span class="math notranslate nohighlight">\(\Delta t = 0.25\)</span>, we see that the solution is well-behaved. But, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.5, we see some instability that goes away with time. Then, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.75, the solution eventually blows up, leading to error <strong>much</strong> larger than what we should expect based on the method’s order of accuracy (first) and the step size value.</p>
+<p>Compare this behavior to that for the ODE</p>
+<div class="amsmath math notranslate nohighlight" id="equation-12795042-ce8e-4268-a5ca-37cd23f76342">
+<span class="eqno">(2.20)<a class="headerlink" href="#equation-12795042-ce8e-4268-a5ca-37cd23f76342" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{dy}{dt} = e^{-t}
+\end{equation}\]</div>
+<p>which is <strong>non-stiff</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># dydt to integrate
+f = lambda t,y: np.exp(-t)
+
+# 4 rows, 1 column
+fig, axes = plt.subplots(4, 1)
+
+# initial condition
+y0 = 1
+t_end = 10
+
+dt = 0.1
+time, y = forward_euler(t_end, y0, dt)
+axes[0].plot(time, y)
+axes[0].grid(True)
+axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.25
+time, y = forward_euler(t_end, y0, dt)
+axes[1].plot(time, y)
+axes[1].grid(True)
+axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.5
+time, y = forward_euler(t_end, y0, dt)
+axes[2].plot(time, y)
+axes[2].grid(True)
+axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.75
+time, y = forward_euler(t_end, y0, dt)
+axes[3].plot(time, y)
+axes[3].grid(True)
+axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/stability_5_0.png" src="../../_images/stability_5_0.png" />
+</div>
+</div>
+<p>In this case, we see that the solution remains well-behaved even for larger time-step sizes, and the error matches the expected order based on the method and step-size value.</p>
+<p>In general numerical schemes can be:</p>
+<ul class="simple">
+<li><p><strong>unstable</strong>: the scheme blows up for any choice of parameters</p></li>
+<li><p><strong>conditionally stable</strong>: the scheme is stable for a particular choice of parameters (for example, <span class="math notranslate nohighlight">\(\Delta t\)</span> is less than some threshold</p></li>
+<li><p><strong>unconditionally stable</strong>: the scheme is always stable</p></li>
+</ul>
+<p>Schemes may be stable for some problem/system and not for another, and vice versa.</p>
+<p>Stability is related to robustness of a method, which is generally a tradeoff between complexity and computational cost. The choice of method and solution strategy depends on what you want, and how long you can wait for it. In general, we almost always want to use the largest <span class="math notranslate nohighlight">\(\Delta t\)</span> allowable.</p>
+<p>Rather than reducing <span class="math notranslate nohighlight">\(\Delta t\)</span> to avoid stability problems, we can also use a method that is unconditionally stable, such as the <strong>Backward Euler</strong> method.</p>
+<section id="backward-euler-method">
+<h2><span class="section-number">2.4.1. </span>Backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">#</a></h2>
+<p>The Backward Euler method is very similar to the Forward Euler method, except in one way: it uses the slope at the <em>next</em> time step:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0ea1a6bd-b6f7-47a3-8b5e-3d82d67d5f35">
+<span class="eqno">(2.21)<a class="headerlink" href="#equation-0ea1a6bd-b6f7-47a3-8b5e-3d82d67d5f35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \left(\frac{dy}{dx}\right)_{i+1} \approx \frac{y_{i+1} - y_i}{\Delta x}
+\end{equation}\]</div>
+<p>Then, the resulting recursion formula is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8f4384c1-779f-4907-8000-84902557c999">
+<span class="eqno">(2.22)<a class="headerlink" href="#equation-8f4384c1-779f-4907-8000-84902557c999" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y_{i+1} = y_i + \Delta x \left(\frac{dy}{dx}\right)_{i+1}, \text{ or} \\
+y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f(x,y) = dy/dx\)</span>.</p>
+<p>Notice that this recursion formula cannot be directly solved, because <span class="math notranslate nohighlight">\(y_{i+1}\)</span> shows up on both sides. This is an <strong>implicit</strong> method, where all the other methods we have covered (Forward Euler, Heun’s, Midpoint, and 4th-order Runge-Kutta) are <strong>explicit</strong>. Implicit methods require more work to actually implement.</p>
+<section id="backward-euler-example">
+<h3><span class="section-number">2.4.1.1. </span>Backward Euler example<a class="headerlink" href="#backward-euler-example" title="Permalink to this headline">#</a></h3>
+<p>For example, consider the problem</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c5073fdd-192e-4bfa-91b0-1336c60e6d78">
+<span class="eqno">(2.23)<a class="headerlink" href="#equation-c5073fdd-192e-4bfa-91b0-1336c60e6d78" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+\frac{dy}{dx} = f(x,y) = 8 e^{-x} (1+x) - 2y
+\end{equation}\]</div>
+<p>To actually solve this problem with the Backward Euler method, we need to incorporate the derivative function <span class="math notranslate nohighlight">\(f(x,y)\)</span> into the recursion formula and solve for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1d29e2cd-1785-454a-ada3-fcebebdf9ea5">
+<span class="eqno">(2.24)<a class="headerlink" href="#equation-1d29e2cd-1785-454a-ada3-fcebebdf9ea5" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta x \left[ 8 e^{-x_{i+1}} (1 + x_{i+1}) - 2 y_{i+1} \right] \\
+y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x - 2 \Delta x \, y_{i+1} \\
+y_{i+1} + 2 \Delta x \, y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x \\
+y_{i+1} &amp;= \frac{ y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x }{ 1 + 2 \Delta x }
+\end{align}\]</div>
+<p>Now we have a useable recursion formula that we can use to solve this problem. Let’s use the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>, the domain <span class="math notranslate nohighlight">\(0 \leq x \leq 7\)</span>, and <span class="math notranslate nohighlight">\(\Delta x = 0.2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.2
+
+x_vals = np.arange(0, 7.01, dx)
+y_vals = np.zeros_like(x_vals)
+y_vals[0] = 1
+
+# Backward Euler loop
+for idx, x in enumerate(x_vals[:-1]):
+    y_vals[idx+1] = (
+        y_vals[idx] + 
+        8*np.exp(-x_vals[idx+1])*(1 + x_vals[idx+1])*dx
+        ) / (1 + 2*dx)
+
+x_exact = np.linspace(0, 7)
+y_exact = np.exp(-2*x_exact)*(8*x_exact*np.exp(x_exact) + 1)
+
+plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
+plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&#39;Backward Euler solution&#39;)
+plt.legend()
+plt.grid(True)
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/stability_8_0.png" src="../../_images/stability_8_0.png" />
+</div>
+</div>
+<p>This matches nearly what we saw with the Forward Euler method before—Backward Euler is also a <strong>first-order</strong> method, so the global error should be proportional to <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+<p>Let’s now return to the stiff ODE <span class="math notranslate nohighlight">\(y^{\prime} = -3 y\)</span>, and see how the Backward Euler method does. First, we need to obtain our useable recursion formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dd84410a-5b35-4a84-933a-7d6a8146755c">
+<span class="eqno">(2.25)<a class="headerlink" href="#equation-dd84410a-5b35-4a84-933a-7d6a8146755c" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_{i+1} &amp;= y_i + \Delta t \, f(t_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta t \, \left( -3 y_{i+1} \right) \\
+y_{i+1} + 3 y_{i+1} \Delta t &amp;= y_i \\
+y_{i+1} &amp;= \frac{y_i}{1 + 3 \Delta t}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 4 rows, 1 column
+fig, axes = plt.subplots(4, 1)
+y0 = 1
+
+dt = 0.1
+time = np.arange(0, 10.001, dt)
+y = np.zeros_like(time)
+y[0] = y0
+for idx, t in enumerate(time[:-1]):
+    y[idx+1] = y[idx] / (1 + 3*dt)
+
+axes[0].plot(time, y)
+axes[0].grid(True)
+axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.25
+time = np.arange(0, 10.001, dt)
+y = np.zeros_like(time)
+y[0] = y0
+for idx, t in enumerate(time[:-1]):
+    y[idx+1] = y[idx] / (1 + 3*dt)
+
+axes[1].plot(time, y)
+axes[1].grid(True)
+axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.5
+time = np.arange(0, 10.001, dt)
+y = np.zeros_like(time)
+y[0] = y0
+for idx, t in enumerate(time[:-1]):
+    y[idx+1] = y[idx] / (1 + 3*dt)
+axes[2].plot(time, y)
+axes[2].grid(True)
+axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+dt = 0.75
+time = np.arange(0, 10.001, dt)
+y = np.zeros_like(time)
+y[0] = y0
+for idx, t in enumerate(time[:-1]):
+    y[idx+1] = y[idx] / (1 + 3*dt)
+axes[3].plot(time, y)
+axes[3].grid(True)
+axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/stability_10_0.png" src="../../_images/stability_10_0.png" />
+</div>
+</div>
+<p>In this case, we see that the solution remains well-behaved for all the step sizes, not showing any of the instability we saw with the Forward Euler method. This is because the Backward Euler method is <strong>unconditionally stable</strong>.</p>
+</section>
+</section>
+<section id="stability-analysis">
+<h2><span class="section-number">2.4.2. </span>Stability analysis<a class="headerlink" href="#stability-analysis" title="Permalink to this headline">#</a></h2>
+<section id="stability-analysis-of-forward-euler">
+<h3><span class="section-number">2.4.2.1. </span>Stability analysis of Forward Euler<a class="headerlink" href="#stability-analysis-of-forward-euler" title="Permalink to this headline">#</a></h3>
+<p>We can perform a stability analysis of the stiff problem to identify when the Forward Euler method becomes unstable. Let’s apply the method to the ODE at hand:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-00001bb7-94f7-4097-95c4-ef17a6394a18">
+<span class="eqno">(2.26)<a class="headerlink" href="#equation-00001bb7-94f7-4097-95c4-ef17a6394a18" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dy}{dt} &amp;= -3 y \\
+y_{i+1} &amp;= y_i + \Delta t f(t_i, y_i) \\
+y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
+ &amp;= y_i (1 - 3 \Delta t) \\
+\frac{y_{i+1}}{y_i} &amp;= \sigma = 1 - 3 \Delta t 
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the <strong>amplification factor</strong>. This defines whether the solution grows or decays each step—for a stable physical system, we expect the solution to get smaller or remain contant with each step.</p>
+<p>Therefore, for the method to remain stable, we must have <span class="math notranslate nohighlight">\(\sigma | \leq 1\)</span>. We can use this stability criterion to find conditions on <span class="math notranslate nohighlight">\(\Delta t\)</span> for stability:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d1a32de4-3e88-4b97-bba1-c18e1c868291">
+<span class="eqno">(2.27)<a class="headerlink" href="#equation-d1a32de4-3e88-4b97-bba1-c18e1c868291" title="Permalink to this equation">#</a></span>\[\begin{gather}
+| \sigma | = | 1 - 3 \Delta t | \leq 1 \\
+-1 \leq 1 - 3 \Delta t \leq 1 \\
+-1 \leq 1 - 3 \Delta t \quad \text{or} \quad 1 - 3 \Delta t \leq 1 \\
+\frac{-2}{3} \leq -\Delta t \quad \quad -\Delta t \leq 0 \\
+\rightarrow \Delta t \leq \frac{2}{3} \quad \text{and} \quad \Delta t \geq 0 \\
+\therefore 0 \leq \Delta t \leq \frac{2}{3}
+\end{gather}\]</div>
+<p>for stability. (For safety, we might use <span class="math notranslate nohighlight">\(\Delta t &lt; 1/2\)</span> for safety, to stay away from the absolute stability limit.)</p>
+<p>The Forward Euler method is then <em>conditionally stable</em>.</p>
+<p>As a general rule of thumb, all <strong>explicit</strong> methods are conditionally stable; these are methods where the recursion formula for <span class="math notranslate nohighlight">\(y_{i+1}\)</span> can be written and calculated explicitly in terms of known quantities.</p>
+</section>
+<section id="stability-analysis-of-backward-euler">
+<h3><span class="section-number">2.4.2.2. </span>Stability analysis of Backward Euler<a class="headerlink" href="#stability-analysis-of-backward-euler" title="Permalink to this headline">#</a></h3>
+<p>We can also perform a stability analysis on the Backward Euler method to show that its stability does not depend on the step size:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-090cc50e-d5f3-46af-9a61-b47d3c93a71b">
+<span class="eqno">(2.28)<a class="headerlink" href="#equation-090cc50e-d5f3-46af-9a61-b47d3c93a71b" title="Permalink to this equation">#</a></span>\[\begin{align}
+\frac{dy}{dt} &amp;= -3 y \\
+y_{i+1} &amp;= y_i + \Delta t f(t_{i+1}, y_{i+1}) \\
+y_{i+1} &amp;= y_i + \Delta t (-3 y_{i+1}) \\
+y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
+\sigma &amp;= \frac{y_{i+1}}{y_i} = \frac{1}{1 + 3 \Delta t}
+\end{align}\]</div>
+<p>For stability, we need <span class="math notranslate nohighlight">\(| \sigma | \leq 1\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-37311ebe-19b2-4ed9-baef-afd15b26ed4b">
+<span class="eqno">(2.29)<a class="headerlink" href="#equation-37311ebe-19b2-4ed9-baef-afd15b26ed4b" title="Permalink to this equation">#</a></span>\[\begin{align}
+| \sigma | &amp;= \left| \frac{1}{1 + 3 \Delta t} \right| \leq 1 \\
+\rightarrow \Delta t &amp;&gt; 0
+\end{align}\]</div>
+<p>Therefore the Backward Euler method is <em>unconditionally stable</em>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/numerical-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="initial-value-methods.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.3. </span>Numerical Solutions of 1st-order ODEs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../second-order/second-order.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Second-order Ordinary Differential Equations</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

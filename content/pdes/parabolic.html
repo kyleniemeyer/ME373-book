@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5.2. Parabolic PDEs &#8212; Mechanical Engineering Methods</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/pdes/parabolic.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sample Quiz 2 problems: IVPs" href="../quizzes/quiz2-IVPs.html" />
+    <link rel="prev" title="5.1. Elliptic PDEs" href="elliptic.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Mechanical Engineering Methods
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ordinary Differential Equations
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../first-order.html">
+   1. Solutions to 1st-order ODEs
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
+   2. Numerical Methods
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/integrals.html">
+     2.1. Numerical integrals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/error.html">
+     2.2. Error
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
+     2.3. Numerical Solutions of 1st-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numerical-methods/stability.html">
+     2.4. Stability and Stiffness
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../second-order/second-order.html">
+   3. Second-order Ordinary Differential Equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/analytical.html">
+     3.1. Analytical Solutions to 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/initial-value-problems.html">
+     3.2. Initial-Value Problems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/numerical-methods.html">
+     3.3. Numerical methods for 2nd-order ODEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/fourier-series.html">
+     3.4. Fourier Series
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../second-order/power-series.html">
+     3.5. Power Series Solutions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bvps/boundary-value-problems.html">
+   4. Boundary Value Problems
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/shooting-method.html">
+     4.1. Shooting Method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/finite-difference.html">
+     4.2. Finite difference method
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bvps/eigenvalue.html">
+     4.3. Eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Partial Differential Equations
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="partial-differential-equations.html">
+   5. Partial Differential Equations
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="elliptic.html">
+     5.1. Elliptic PDEs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.2. Parabolic PDEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Sample Quizzes
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
+   Sample Quiz 2 problems: IVPs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
+   Sample Quiz 3 problems: BVPs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
+   GitHub repository
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Jupyter Book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../zbibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/pdes/parabolic.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/pdes/parabolic.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/pdes/parabolic.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/content/pdes/parabolic.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explicit-scheme">
+   5.2.1. Explicit scheme
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implicit-scheme">
+   5.2.2. Implicit scheme
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#crank-nicolson-scheme">
+   5.2.3. Crank-Nicolson scheme
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Parabolic PDEs</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#explicit-scheme">
+   5.2.1. Explicit scheme
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implicit-scheme">
+   5.2.2. Implicit scheme
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#crank-nicolson-scheme">
+   5.2.3. Crank-Nicolson scheme
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="parabolic-pdes">
+<h1><span class="section-number">5.2. </span>Parabolic PDEs<a class="headerlink" href="#parabolic-pdes" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
+import matplotlib_inline.backend_inline
+matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
+plt.rcParams[&#39;figure.dpi&#39;]= 300
+plt.rcParams[&#39;savefig.dpi&#39;] = 300
+</pre></div>
+</div>
+</div>
+</div>
+<p>A classic example of a parabolic partial differential equation (PDE) is the one-dimensional unsteady heat equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-52d24bcb-a6d7-4845-80c7-04ce1194e852">
+<span class="eqno">(5.25)<a class="headerlink" href="#equation-52d24bcb-a6d7-4845-80c7-04ce1194e852" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial t^2} 
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T(x,t)\)</span> is the temperature varying in space and time, and <span class="math notranslate nohighlight">\(\alpha\)</span> is the thermal diffusivity: <span class="math notranslate nohighlight">\(\alpha = k / (\rho c_p)\)</span>, which is a constant.</p>
+<p>We can solve this using finite differences to represent the spatial derivatives and time derivatives separately.
+First, let’s rearrange the PDE slightly:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8115f5f0-5d07-49b5-be15-d19f0581ed5a">
+<span class="eqno">(5.26)<a class="headerlink" href="#equation-8115f5f0-5d07-49b5-be15-d19f0581ed5a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial^2 T}{\partial x^2} = \frac{1}{\alpha} \frac{\partial T}{\partial t}
+\end{equation}\]</div>
+<section id="explicit-scheme">
+<h2><span class="section-number">5.2.1. </span>Explicit scheme<a class="headerlink" href="#explicit-scheme" title="Permalink to this headline">#</a></h2>
+<p>Let’s use a <em>central difference</em> for the spatial derivative with a spacing of <span class="math notranslate nohighlight">\(\Delta x\)</span>, and a <em>forward difference</em> for the time derivative with a time-step size of <span class="math notranslate nohighlight">\(\Delta t\)</span>. With these choices, we can obtain an approximation to the PDE that applies at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ae8f0252-1e45-4b0a-9736-13bce1923131">
+<span class="eqno">(5.27)<a class="headerlink" href="#equation-ae8f0252-1e45-4b0a-9736-13bce1923131" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{T_{i-1}^k - 2 T_i^k + T_{i+1}^k}{\Delta x^2} = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_i^k\)</span> is the temperature at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>. The following figure shows the stencil of points involved in the PDE applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>.</p>
+<figure class="align-default" id="fig-stencil-explicit">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic-explicit-stencil.png"><img alt="stencil for explicit parabolic solution" class="bg-primary mb-1" src="../../_images/parabolic-explicit-stencil.png" style="width: 350px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.7 </span><span class="caption-text">Stencil for explicit solution to heat equation</span><a class="headerlink" href="#fig-stencil-explicit" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To solve the heat equation for a one-dimensional domain over <span class="math notranslate nohighlight">\(0 \leq x \leq L\)</span>, we will need both initial conditions at <span class="math notranslate nohighlight">\(t = 0\)</span> and boundary conditions at <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=L\)</span> (for all time). In terms of our nodal values, this means we need <span class="math notranslate nohighlight">\(T_i^{k=0}\)</span> for <span class="math notranslate nohighlight">\(i = 0, \ldots, n-1\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the number of points, as well as information about <span class="math notranslate nohighlight">\(T_1^k\)</span> and <span class="math notranslate nohighlight">\(T_n^k\)</span> for all times <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>We can rearrange the above equation to obtain our recursion formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4145d1fb-bc5c-44dc-bd36-45b8d508a004">
+<span class="eqno">(5.28)<a class="headerlink" href="#equation-4145d1fb-bc5c-44dc-bd36-45b8d508a004" title="Permalink to this equation">#</a></span>\[\begin{equation}
+T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \frac{\alpha \Delta t}{\Delta x^2} + T_i^k  \left( 1 - 2 \frac{\alpha \Delta t}{\Delta x^2} \right) \;.
+\end{equation}\]</div>
+<p>This is an <strong>explicit</strong> scheme in time, similar to the Forward Euler method we used for ordinary differential equations, and like that method it may have stability issues. The combination of terms we see repeated is also known as the Fourier number: <span class="math notranslate nohighlight">\(\text{Fo} = \frac{\alpha \Delta t}{\Delta x^2}\)</span>, and governs the stability.
+We can rewrite the recursion formula using this:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8ef751da-5106-41fa-9beb-1ff4fd3eeb43">
+<span class="eqno">(5.29)<a class="headerlink" href="#equation-8ef751da-5106-41fa-9beb-1ff4fd3eeb43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+T_i^{k+1} = \left( T_{i+1}^k + T_{i-1}^k \right) \text{Fo} + T_i^k  \left( 1 - 2 \text{Fo} \right) \;.
+\end{equation}\]</div>
+<p>The term in parentheses there must be greater than or equal to zero for stability (<span class="math notranslate nohighlight">\(1 - 2 \text{Fo} \geq 0\)</span>); if not, the solution may become unstable and blow up. This gives us some conditions on our choice of step sizes:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a87b058-227b-4570-8e96-ccf980fde0bd">
+<span class="eqno">(5.30)<a class="headerlink" href="#equation-8a87b058-227b-4570-8e96-ccf980fde0bd" title="Permalink to this equation">#</a></span>\[\begin{align}
+1 - 2 \text{Fo} &amp;\geq 0 \\
+1 &amp; \geq 2 \text{Fo} \\
+\text{Fo} &amp;\leq \frac{1}{2} \\
+\frac{\alpha \Delta t}{\Delta x^2} &amp;\leq \frac{1}{2}
+\end{align}\]</div>
+<p>This is the stability criterion for the explicit method: the Fourier number must be smaller than 0.5.
+For a given thermal diffusivity and chosen spatial step size, this also gives us the limit on the time-step size: <span class="math notranslate nohighlight">\(\Delta t \leq \Delta x^2 / (2 \alpha)\)</span>.</p>
+<p>Let’s look at an example where the initial temperature is 200, the temperature at the boundaries are 50, the thermal diffusivity is <span class="math notranslate nohighlight">\(\alpha = 2.3 \times 10^{-1}\)</span> m<span class="math notranslate nohighlight">\(^2 /\)</span> s, and <span class="math notranslate nohighlight">\(L = 1\)</span>.
+In other words,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0533248d-a93a-49e7-875b-6111a7184a52">
+<span class="eqno">(5.31)<a class="headerlink" href="#equation-0533248d-a93a-49e7-875b-6111a7184a52" title="Permalink to this equation">#</a></span>\[\begin{align}
+T(x, t=0) &amp;= 200 \\
+T(x=0, t) &amp;= 50 \\
+T(x=L, t) &amp;= 50
+\end{align}\]</div>
+<p>We’ll integrate out to <span class="math notranslate nohighlight">\(t = 1\)</span>, using a Fourier number of 0.25 to be comfortably below the stability limit (<code class="docutils literal notranslate"><span class="pre">Fo</span> <span class="pre">=</span> <span class="pre">0.25</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.1
+alpha = 2.3e-1
+
+# for stability, set the Fourier number at 0.25 (half the limit of 0.5)
+Fo_num = 0.25
+# then choose time step size based on the Fourier number
+dt = Fo_num * dx**2 / alpha
+
+x_vals = np.arange(0, 1.001, dx)
+times = np.arange(0, 1.0001, dt)
+
+temps = np.zeros((len(times), len(x_vals)))
+
+# initial conditions
+temps[0,:] = 200
+
+for k, t in enumerate(times[:-1]):
+    for idx, x in enumerate(x_vals):
+        if idx == 0 or idx == len(x_vals) - 1:
+            # boundary conditions
+            temps[k+1,idx] = 50
+        else:
+            temps[k+1,idx] = (
+                (temps[k,idx+1] + temps[k,idx-1])*Fo_num +
+                temps[k,idx] * (1 - 2*Fo_num)
+                )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create GIF of results
+
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
+ax.grid()
+line, = ax.plot([], [], lw=2)
+time_template = &#39;time = %.1f s&#39;
+time_text = ax.text(0.05, 0.9, &#39;&#39;, transform=ax.transAxes)
+ax.set_xlim([0, 1])
+ax.set_ylim([50, 200])
+ax.set_xlabel(&#39;distance&#39;)
+ax.set_ylabel(&#39;temperature&#39;)
+
+def animate(k):
+    line.set_data((x_vals, temps[k,:]))
+    time_text.set_text(time_template % (k*dt))
+    return line, time_text
+
+ani = animation.FuncAnimation(fig, animate, len(times), interval=20)
+
+writer = animation.PillowWriter(fps=25)  
+ani.save(&#39;parabolic_animated.gif&#39;, writer=writer)  
+
+plt.close()
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-transient-heat">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic_animated.gif"><img alt="movie of parabolic PDE solution" class="bg-primary mb-1" src="../../_images/parabolic_animated.gif" style="width: 450px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.8 </span><span class="caption-text">Animated solution to 1D transient heat transfer PDE</span><a class="headerlink" href="#fig-transient-heat" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>This shows the temperature decaying exponentially from the initial conditions, constrained by the boundary conditions.</p>
+<p>What happens if we tried to use a Fourier number larger than 0.5, or arbitrarily chose a time-step size that was too large (and resulted in <span class="math notranslate nohighlight">\(\text{Fo} &gt; 0.5\)</span>)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.1
+alpha = 2.3e-1
+
+# purposely choose a Fourier number past the stability limit
+Fo_num = 0.75
+dt = Fo_num * dx**2 / alpha
+
+x_vals = np.arange(0, 1.001, dx)
+times = np.arange(0, 1.0001, dt)
+
+temps = np.zeros((len(times), len(x_vals)))
+
+# initial conditions
+temps[0,:] = 200
+
+for k, t in enumerate(times[:-1]):
+    for idx, x in enumerate(x_vals):
+        if idx == 0 or idx == len(x_vals) - 1:
+            # boundary conditions
+            temps[k+1,idx] = 50
+        else:
+            temps[k+1,idx] = (
+                (temps[k,idx+1] + temps[k,idx-1])*Fo_num +
+                temps[k,idx] * (1 - 2*Fo_num)
+                )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create GIF of results
+
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
+ax.grid()
+line, = ax.plot([], [], lw=2)
+time_template = &#39;time = %.1f s&#39;
+time_text = ax.text(0.05, 0.9, &#39;&#39;, transform=ax.transAxes)
+ax.set_xlim([0, 1])
+ax.set_ylim([50, 200])
+ax.set_xlabel(&#39;distance&#39;)
+ax.set_ylabel(&#39;temperature&#39;)
+
+def animate(k):
+    line.set_data((x_vals, temps[k,:]))
+    time_text.set_text(time_template % (k*dt))
+    return line, time_text
+
+ani = animation.FuncAnimation(fig, animate, len(times), interval=20)
+
+writer = animation.PillowWriter(fps=25)  
+ani.save(&#39;parabolic_unstable_animated.gif&#39;, writer=writer)  
+
+plt.close()
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-unstable-solution">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic_unstable_animated.gif"><img alt="movie of unstable parabolic PDE solution" class="bg-primary mb-1" src="../../_images/parabolic_unstable_animated.gif" style="width: 450px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.9 </span><span class="caption-text">Animated unstable solution</span><a class="headerlink" href="#fig-unstable-solution" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In this case, the solution becomes unstable and blows up, leading to unphysical results.</p>
+<p>For this explicit scheme, the choice of <span class="math notranslate nohighlight">\(\Delta t\)</span> is limited by the stability criterion. This means that we may be stuck using a small time-step size.</p>
+<p>Rather than being forced to use a very small time-step size, we can also explore <em>implicit schemes</em> that are unconditionally stable.</p>
+</section>
+<section id="implicit-scheme">
+<h2><span class="section-number">5.2.2. </span>Implicit scheme<a class="headerlink" href="#implicit-scheme" title="Permalink to this headline">#</a></h2>
+<p>Recall that for solving initial value problems, when we ran into <a class="reference internal" href="../numerical-methods/stability.html"><span class="doc std std-doc">stability</span></a> issues using explicit methods like forward Euler, we could use the backward Euler method to solve a problem with any time-step size. This worked by evaluating the derivative at the future/next step, and rearranging to get a recursion formula.</p>
+<p>We can apply the same concept to parabolic PDEs like the unsteady heat equation, where the spatial derivatives are evaluated at the next time step:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d5ee462a-af7d-48fa-953b-3464cb0dc6fd">
+<span class="eqno">(5.32)<a class="headerlink" href="#equation-d5ee462a-af7d-48fa-953b-3464cb0dc6fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{T_{i-1}^{k+1} - 2 T_i^{k+1} + T_{i+1}^{k+1}}{\Delta x^2} = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
+\end{equation}\]</div>
+<p>where, as before, <span class="math notranslate nohighlight">\(T_i^k\)</span> is the temperature at time <span class="math notranslate nohighlight">\(t^k\)</span> and spatial location <span class="math notranslate nohighlight">\(x_i\)</span>. The following figure shows the stencil of points involved in the finite difference equation, applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>.</p>
+<figure class="align-default" id="fig-stencil-implicit">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic-implicit-stencil.png"><img alt="stencil for implicit parabolic solution" class="bg-primary mb-1" src="../../_images/parabolic-implicit-stencil.png" style="width: 350px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.10 </span><span class="caption-text">Stencil for implicit solution to heat equation</span><a class="headerlink" href="#fig-stencil-implicit" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Following the same process as with the explicit method, we can  rearrange to get our recursion formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4c690441-e54a-4dfb-a548-c13b247c4431">
+<span class="eqno">(5.33)<a class="headerlink" href="#equation-4c690441-e54a-4dfb-a548-c13b247c4431" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\left( -\text{Fo} \right) T_{i-1}^{k+1} + \left(1 + 2 \text{Fo} \right) T_i^{k+1} + \left( -\text{Fo} \right) T_{i+1}^{k+1} = T_i^k \;.
+\end{equation}\]</div>
+<p>This is an <strong>implicit</strong> scheme in time, where the recursion formula involves more than one unknown.
+As a result, like with the backward Euler method, rather than simply calculating the new temperature at each location, we instead need to construct a system of equations to be solved simultaneously at each time step for all the locations:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-62a16f32-e82e-428a-bc83-91c1192dec58">
+<span class="eqno">(5.34)<a class="headerlink" href="#equation-62a16f32-e82e-428a-bc83-91c1192dec58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A \mathbf{T}^{k+1} = \mathbf{T}^k = \mathbf{b} \;,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{T}^{k+1}\)</span> is the array of unknowns.
+We can then solve using linear algebra, via the <code class="docutils literal notranslate"><span class="pre">np.linalg.solve()</span></code> function.</p>
+<p>This method is <strong>unconditionally stable</strong>, meaning that the solution will not blow up for any combination of <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta t\)</span>.
+Unfortunately, it’s a bit challenging to actually prove that with the tools we have, so we can instead demonstrate it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># implicit scheme for solving the unsteady heat equation
+
+dx = 0.1
+alpha = 2.3e-1
+
+# choose a Fourier number deliberately past the explicit method 
+# stability limit to demonstrate unconditional stability
+Fo_num = 0.75
+# then choose time step size based on the Fourier number
+dt = Fo_num * dx**2 / alpha
+
+x_vals = np.arange(0, 1.001, dx)
+times = np.arange(0, 1.0001, dt)
+
+temps = np.zeros((len(times), len(x_vals)))
+
+# initial conditions
+temps[0,:] = 200
+
+for k, t in enumerate(times[:-1]):
+    A = np.zeros((len(x_vals), len(x_vals)))
+    b = np.zeros(len(x_vals))
+    for idx, x in enumerate(x_vals):
+        if idx == 0 or idx == len(x_vals) - 1:
+            # boundary conditions
+            A[idx,idx] = 1
+            b[idx] = 50
+        else:
+            A[idx,idx-1] = -Fo_num
+            A[idx,idx] = 2*Fo_num + 1
+            A[idx,idx+1] = -Fo_num
+            b[idx] = temps[k,idx]
+    temps[k+1,:] = np.linalg.solve(A, b)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create GIF of results
+
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
+ax.grid()
+line, = ax.plot([], [], lw=2)
+time_template = &#39;time = %.1f s&#39;
+time_text = ax.text(0.05, 0.9, &#39;&#39;, transform=ax.transAxes)
+ax.set_xlim([0, 1])
+ax.set_ylim([50, 200])
+ax.set_xlabel(&#39;distance&#39;)
+ax.set_ylabel(&#39;temperature&#39;)
+
+def animate(k):
+    line.set_data((x_vals, temps[k,:]))
+    time_text.set_text(time_template % (k*dt))
+    return line, time_text
+
+ani = animation.FuncAnimation(fig, animate, len(times), interval=20)
+
+writer = animation.PillowWriter(fps=25)  
+ani.save(&#39;parabolic_implicit_animated.gif&#39;, writer=writer)  
+
+plt.close()
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-implicit-solution">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic_implicit_animated.gif"><img alt="movie of implicit parabolic PDE solution" class="bg-primary mb-1" src="../../_images/parabolic_implicit_animated.gif" style="width: 450px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.11 </span><span class="caption-text">Solution to 1D heat equation with implicit method. Fo = 0.75</span><a class="headerlink" href="#fig-implicit-solution" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="crank-nicolson-scheme">
+<h2><span class="section-number">5.2.3. </span>Crank-Nicolson scheme<a class="headerlink" href="#crank-nicolson-scheme" title="Permalink to this headline">#</a></h2>
+<p>So far we have two options for solving the unsteady heat equation (and parabolic PDEs in general): an explicit method and an implicit method.
+The explicit method is fairly easy to implement, but can suffer stability issues with larger time-step sizes.
+The implicit method offers unconditional stability, but at the cost of requiring linear algebra operations at each time step.
+Both schemes are first-order accurate in time, due to the first-order forward and backward differences used.</p>
+<p>What do we do if we want a more-accurate solution, with less error?</p>
+<p>The easiest thing is to reduce the time-step size. However, for realistic problems, typically we want to take the largest time-step size possible, to reduce how long the integration takes.
+This is particularly an issue with the implicit method, since the linear algebra operations can become quite expensive for larger problems.</p>
+<p>Another option is to find a more-accurate method.
+The <strong>Crank-Nicolson method</strong> is second-order accurate in both space and time, and is also unconditionally stable.</p>
+<p>This method works by averaging the spatial derivatives at both the current and next points in time:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7f1494cf-b0ea-4177-a0d5-110d4e329e1b">
+<span class="eqno">(5.35)<a class="headerlink" href="#equation-7f1494cf-b0ea-4177-a0d5-110d4e329e1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{1}{2} \left( \frac{T_{i-1}^k - 2 T_i^k + T_{i+1}^k}{\Delta x^2} \right) + \frac{1}{2} \left( \frac{T_{i-1}^{k+1} - 2 T_i^{k+1} + T_{i+1}^{k+1}}{\Delta x^2} \right) = \frac{1}{\alpha} \left( \frac{T_i^{k+1} - T_i^k}{\Delta t} \right)
+\end{equation}\]</div>
+<p>The following figure shows the stencil of points involved in the finite difference equation, applied to location <span class="math notranslate nohighlight">\(x_i\)</span> at time <span class="math notranslate nohighlight">\(t^k\)</span>, and involving six points:</p>
+<figure class="align-default" id="fig-stencil-cn">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic-CN-stencil.png"><img alt="stencil for Crank-Nicolson parabolic solution" class="bg-primary mb-1" src="../../_images/parabolic-CN-stencil.png" style="width: 350px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.12 </span><span class="caption-text">Stencil for Crank–Nicolson solution to heat equation</span><a class="headerlink" href="#fig-stencil-cn" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We can  rearrange to get our recursion formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7295859d-f68b-4f5c-81ae-790667b10d3a">
+<span class="eqno">(5.36)<a class="headerlink" href="#equation-7295859d-f68b-4f5c-81ae-790667b10d3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+-\text{Fo} \, T_{i-1}^{k+1} + \left(2 + 2 \text{Fo} \right) T_i^{k+1} - \text{Fo} \, T_{i+1}^{k+1} = \text{Fo} \, T_{i-1}^k + \left( -2 \text{Fo} + 2 \right) T_i^k + \text{Fo} \, T_{i+1}^k \;.
+\end{equation}\]</div>
+<p>As with the first-order implicit scheme, each time step requires solving a simultaneous system of equations, which we can formulate as a linear algebra problem:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-088f2227-f215-447f-bea0-9f071db6a70a">
+<span class="eqno">(5.37)<a class="headerlink" href="#equation-088f2227-f215-447f-bea0-9f071db6a70a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A \mathbf{T}^{k+1} = B \mathbf{T}^k = \mathbf{b} \;,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{T}^{k+1}\)</span> is the array of unknowns.
+We can then solve using the <code class="docutils literal notranslate"><span class="pre">np.linalg.solve()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Crank-Nicolson scheme for solving the unsteady heat equation
+
+dx = 0.1
+alpha = 2.3e-1
+
+# choose a Fourier number deliberately past the explicit method 
+# stability limit to demonstrate unconditional stability
+Fo_num = 0.75
+# then choose time step size based on the Fourier number
+dt = Fo_num * dx**2 / alpha
+
+x_vals = np.arange(0, 1.001, dx)
+times = np.arange(0, 1.0001, dt)
+
+temps = np.zeros((len(times), len(x_vals)))
+
+# initial conditions
+temps[0,:] = 200
+
+# set boundary conditions
+temps[:,0] = 50
+temps[:,-1] = 50
+
+for k, t in enumerate(times[:-1]):
+    A = np.zeros((len(x_vals), len(x_vals)))
+    B = np.zeros((len(x_vals), len(x_vals)))
+    for idx, x in enumerate(x_vals):
+        if idx == 0 or idx == len(x_vals) - 1:
+            # boundaries
+            A[idx,idx] = 1
+            B[idx,idx] = 1
+        else:
+            A[idx,idx-1] = -Fo_num
+            A[idx,idx] = 2*Fo_num + 2
+            A[idx,idx+1] = -Fo_num
+            B[idx,idx-1] = Fo_num
+            B[idx,idx] = -2*Fo_num + 2
+            B[idx,idx+1] = Fo_num
+    b = np.dot(B, temps[k, :])
+    temps[k+1,:] = np.linalg.solve(A, b)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># create GIF of results
+
+import matplotlib.animation as animation
+
+fig, ax = plt.subplots()
+ax.grid()
+line, = ax.plot([], [], lw=2)
+time_template = &#39;time = %.1f s&#39;
+time_text = ax.text(0.05, 0.9, &#39;&#39;, transform=ax.transAxes)
+ax.set_xlim([0, 1])
+ax.set_ylim([50, 200])
+ax.set_xlabel(&#39;distance&#39;)
+ax.set_ylabel(&#39;temperature&#39;)
+
+def animate(k):
+    line.set_data((x_vals, temps[k,:]))
+    time_text.set_text(time_template % (k*dt))
+    return line, time_text
+
+ani = animation.FuncAnimation(fig, animate, len(times), interval=20)
+
+writer = animation.PillowWriter(fps=25)  
+ani.save(&#39;parabolic_crank_nicolson_animated.gif&#39;, writer=writer)  
+
+plt.close()
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="fig-cn-solution">
+<a class="bg-primary mb-1 reference internal image-reference" href="../../_images/parabolic_crank_nicolson_animated.gif"><img alt="movie of Crank-Nicolson parabolic PDE solution" class="bg-primary mb-1" src="../../_images/parabolic_crank_nicolson_animated.gif" style="width: 450px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.13 </span><span class="caption-text">Solution to 1D heat equation with Crank-Nicolson method. Fo = 0.75</span><a class="headerlink" href="#fig-cn-solution" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./content/pdes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="elliptic.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">5.1. </span>Elliptic PDEs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../quizzes/quiz2-IVPs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sample Quiz 2 problems: IVPs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Kyle Niemeyer<br/>
+  
+    <div class="extra_footer">
+      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
