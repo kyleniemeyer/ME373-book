@@ -433,45 +433,45 @@ document.write(`
 <section id="equations-with-constant-coefficents">
 <h2><span class="section-number">3.2.1. </span>Equations with constant coefficents<a class="headerlink" href="#equations-with-constant-coefficents" title="Permalink to this headline">#</a></h2>
 <p>A common category of 2nd-order homogeneous ODEs are equations with constant coefficients, of the form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3677cf0-f424-4f33-8c27-0a82c48e1445">
-<span class="eqno">(3.24)<a class="headerlink" href="#equation-d3677cf0-f424-4f33-8c27-0a82c48e1445" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-446c63ca-ad9c-4c76-9026-5b3011d1de97">
+<span class="eqno">(3.24)<a class="headerlink" href="#equation-446c63ca-ad9c-4c76-9026-5b3011d1de97" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + a y^{\prime} + by = 0
 \end{equation}\]</div>
 <p>Note that these are unforced, and the right-hand side is zero.</p>
 <p>Solutions to these equations take the form <span class="math notranslate nohighlight">\(y(x) = e^{\lambda x}\)</span>, and inserting this into the ODE gives us the characteristic equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2942dc92-f5ee-4a12-b2c3-cb72595215d8">
-<span class="eqno">(3.25)<a class="headerlink" href="#equation-2942dc92-f5ee-4a12-b2c3-cb72595215d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f96c96c5-803c-4177-9795-6bcb6c95adce">
+<span class="eqno">(3.25)<a class="headerlink" href="#equation-f96c96c5-803c-4177-9795-6bcb6c95adce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \lambda^2 + a \lambda + b = 0
 \end{equation}\]</div>
 <p>which we can solve to find the solution for given coefficients <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> and initial conditions. Depending on those coefficients and the solution to the characteristic equation, our solution can fall into one of three cases:</p>
 <ul class="simple">
 <li><p>Real roots: <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span>. This is an <strong>overdamped</strong> system and the full solution takes the form</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-edc50190-43e0-4d26-b630-4ad3dc4f1842">
-<span class="eqno">(3.26)<a class="headerlink" href="#equation-edc50190-43e0-4d26-b630-4ad3dc4f1842" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca969fbe-a0eb-47c5-9f51-1cf48d7e741d">
+<span class="eqno">(3.26)<a class="headerlink" href="#equation-ca969fbe-a0eb-47c5-9f51-1cf48d7e741d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = c_1 e^{\lambda_1 x} + c_2 e^{\lambda_2 x}
 \end{equation}\]</div>
 <ul class="simple">
 <li><p>Repeated roots: <span class="math notranslate nohighlight">\(\lambda_1 = \lambda_2 = \lambda\)</span>. This is a <strong>critically damped</strong> system and the full solution is</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-701db576-f315-4f9b-ba5b-ed76b07641da">
-<span class="eqno">(3.27)<a class="headerlink" href="#equation-701db576-f315-4f9b-ba5b-ed76b07641da" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-223c509d-a46d-4647-b6d8-57761b085cc0">
+<span class="eqno">(3.27)<a class="headerlink" href="#equation-223c509d-a46d-4647-b6d8-57761b085cc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = c_1 e^{\lambda x} + c_2 x e^{\lambda x}
 \end{equation}\]</div>
 <p>(Where does that second part come from, you might ask? Well, we know that <span class="math notranslate nohighlight">\(y_1\)</span> is <span class="math notranslate nohighlight">\(e^{\lambda x}\)</span>, but the second part cannot also be <span class="math notranslate nohighlight">\(e^{\lambda x}\)</span> because those are linearly dependent. So, we use <em>reduction of order</em> to find <span class="math notranslate nohighlight">\(y_2\)</span>, which is <span class="math notranslate nohighlight">\(x e^{\lambda x}\)</span>.</p>
 <ul class="simple">
 <li><p>Imaginary roots: <span class="math notranslate nohighlight">\(\lambda = \frac{-a}{2} \pm \beta i\)</span>, where <span class="math notranslate nohighlight">\(\beta = \frac{1}{2} \sqrt{4b - a^2}\)</span>. This is an <strong>underdamped</strong> system and the solution takes the form</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-920c53fc-3292-4a27-9165-eb153891355a">
-<span class="eqno">(3.28)<a class="headerlink" href="#equation-920c53fc-3292-4a27-9165-eb153891355a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1a1ae2f6-3691-454c-8093-3e9fdd23627c">
+<span class="eqno">(3.28)<a class="headerlink" href="#equation-1a1ae2f6-3691-454c-8093-3e9fdd23627c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = e^{-ax/2} \left( c_1 \sin \beta x + c_2 \cos \beta x \right)
 \end{equation}\]</div>
 <p>Some examples:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(y^{\prime\prime} + 3 y^{\prime} + 2y = 0\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-15d73e36-5b92-4797-a0dc-9ba5e576b96e">
-<span class="eqno">(3.29)<a class="headerlink" href="#equation-15d73e36-5b92-4797-a0dc-9ba5e576b96e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-60e491ba-1abe-4990-a3d4-d09f1b6fe802">
+<span class="eqno">(3.29)<a class="headerlink" href="#equation-60e491ba-1abe-4990-a3d4-d09f1b6fe802" title="Permalink to this equation">#</a></span>\[\begin{align}
 \rightarrow \lambda^2 + 3\lambda + 2 &amp;= 0 \\
 (\lambda + 2)(\lambda + 1) &amp;= 0 \\
 \lambda &amp;= -2, -1 \\
@@ -481,8 +481,8 @@ y(x) &amp;= c_1 e^{-x} + c_2 e^{-2x}
 <ol class="arabic simple" start="2">
 <li><p><span class="math notranslate nohighlight">\(y^{\prime\prime} + 6 y^{\prime} + 9y = 0\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-f6333963-0c9c-4b7e-8ff7-ee2f72e8c776">
-<span class="eqno">(3.30)<a class="headerlink" href="#equation-f6333963-0c9c-4b7e-8ff7-ee2f72e8c776" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-89da3371-ed7e-457a-8b15-cd8216c2c0e9">
+<span class="eqno">(3.30)<a class="headerlink" href="#equation-89da3371-ed7e-457a-8b15-cd8216c2c0e9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \rightarrow \lambda^2 + 6\lambda + 9 &amp;= 0 \\
 (\lambda + 3)(\lambda + 3) &amp;= 0 \\
 \lambda &amp;= -3 \\
@@ -491,8 +491,8 @@ y(x) &amp;= c_1 e^{-3x} + c_2 x e^{-3x}
 <ol class="arabic simple" start="3">
 <li><p><span class="math notranslate nohighlight">\(y^{\prime\prime} + 6 y^{\prime} + 25 y = 0\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-97af43b7-28c9-41c7-940a-281f536b7709">
-<span class="eqno">(3.31)<a class="headerlink" href="#equation-97af43b7-28c9-41c7-940a-281f536b7709" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9257d3df-e092-4cb5-90c7-8250d53f8c3e">
+<span class="eqno">(3.31)<a class="headerlink" href="#equation-9257d3df-e092-4cb5-90c7-8250d53f8c3e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \rightarrow \lambda^2 + 6\lambda + 25 &amp;= 0 \\
 \lambda &amp;= -3 \pm 4i \\
 y(x) &amp;= e^{-3x} \left( c_1 \sin 4x + c_2 \cos 4x \right)
@@ -501,13 +501,13 @@ y(x) &amp;= e^{-3x} \left( c_1 \sin 4x + c_2 \cos 4x \right)
 <section id="euler-cauchy-equations">
 <h2><span class="section-number">3.2.2. </span>Euler-Cauchy equations<a class="headerlink" href="#euler-cauchy-equations" title="Permalink to this headline">#</a></h2>
 <p>Euler-Cauchy equations are of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c48741da-9017-4c50-aeff-a03cb7ca15a5">
-<span class="eqno">(3.32)<a class="headerlink" href="#equation-c48741da-9017-4c50-aeff-a03cb7ca15a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64de6908-9881-493c-a381-d65cb4d3cf8a">
+<span class="eqno">(3.32)<a class="headerlink" href="#equation-64de6908-9881-493c-a381-d65cb4d3cf8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x^2 y^{\prime\prime} + axy^{\prime} + by = 0
 \end{equation}\]</div>
 <p>Solutions take the form <span class="math notranslate nohighlight">\(y = x^m\)</span>, which when plugged into the ODE leads to a different characterisic equation to find <span class="math notranslate nohighlight">\(m\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0368977-a49e-456f-8f9f-cd4703000233">
-<span class="eqno">(3.33)<a class="headerlink" href="#equation-c0368977-a49e-456f-8f9f-cd4703000233" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0ab091e9-9de7-4905-a762-8a3e296cb942">
+<span class="eqno">(3.33)<a class="headerlink" href="#equation-0ab091e9-9de7-4905-a762-8a3e296cb942" title="Permalink to this equation">#</a></span>\[\begin{align}
 y &amp;= x^m \\
 y^{\prime} &amp;= m x^{m-1} \\
 y^{\prime\prime} &amp;= m (m-1) x^{m-2} \\
@@ -525,8 +525,8 @@ m^2 + (a-1)m + b &amp;= 0
 <section id="inhomogeneous-2nd-order-odes">
 <h2><span class="section-number">3.2.3. </span>Inhomogeneous 2nd-order ODEs<a class="headerlink" href="#inhomogeneous-2nd-order-odes" title="Permalink to this headline">#</a></h2>
 <p>Inhomogeneous, or forced, 2nd-order ODEs with constant coefficients take the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4d4679c-6c1b-4129-a5e4-5a7f9a180a44">
-<span class="eqno">(3.34)<a class="headerlink" href="#equation-b4d4679c-6c1b-4129-a5e4-5a7f9a180a44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7bd41637-3dcc-426c-8481-dcdff03e6494">
+<span class="eqno">(3.34)<a class="headerlink" href="#equation-7bd41637-3dcc-426c-8481-dcdff03e6494" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + a y^{\prime} + by = F(t)
 \end{equation}\]</div>
 <p>with initial conditions <span class="math notranslate nohighlight">\(y(0) = y_0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = y_0^{\prime}\)</span>. Depending on the form of the forcing function <span class="math notranslate nohighlight">\(F(t)\)</span>, we can solve with techniques such as</p>
@@ -536,8 +536,8 @@ y^{\prime\prime} + a y^{\prime} + by = F(t)
 <li><p>LaPlace transforms</p></li>
 </ul>
 <p>The solution in general to inhomogeneous ODEs includes two parts:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7cf66497-9309-45e7-9962-774862d7cdc0">
-<span class="eqno">(3.35)<a class="headerlink" href="#equation-7cf66497-9309-45e7-9962-774862d7cdc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d0977aa-bc30-40bb-8255-712254a31a15">
+<span class="eqno">(3.35)<a class="headerlink" href="#equation-9d0977aa-bc30-40bb-8255-712254a31a15" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = y_{\text{H}} + y_{\text{IH}} = c_1 y_1 + c_2 y_2 + y_{\text{IH}} \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_{\text{H}}\)</span> is the solution from the equivalent homogeneous ODE <span class="math notranslate nohighlight">\(y^{\prime\prime} + a y^{\prime} + b y = 0\)</span>.</p>
@@ -579,33 +579,33 @@ y(t) = y_{\text{H}} + y_{\text{IH}} = c_1 y_1 + c_2 y_2 + y_{\text{IH}} \;,
 </tbody>
 </table>
 <p>For combinations of these functions, we can combine functions; for example, given</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ddb4b1ad-6c11-4f5c-a1d6-fc158615d837">
-<span class="eqno">(3.36)<a class="headerlink" href="#equation-ddb4b1ad-6c11-4f5c-a1d6-fc158615d837" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e1ef51ee-653d-4305-bd17-de42e97b9504">
+<span class="eqno">(3.36)<a class="headerlink" href="#equation-e1ef51ee-653d-4305-bd17-de42e97b9504" title="Permalink to this equation">#</a></span>\[\begin{align}
 F(t) &amp;= e^{-at} \cos \omega t \quad \text{or} e^{-at} \sin \omega t \\
 y_{\text{IH}} &amp;= K_1 e^{-at} \cos \omega t + K_2 e^{-at} \sin \omega t
 \end{align}\]</div>
 <p>(Note how in all the above cases how the inhomogeneous solution follows the functional form of the forcing function; for example, the exponential decay rate <span class="math notranslate nohighlight">\(a\)</span> or the sinusoidal frequency <span class="math notranslate nohighlight">\(\omega\)</span> match.</p>
 <p>The method of undetermined coefficients works by plugging the candidate inhomogeneous solutionn <span class="math notranslate nohighlight">\(y_{\text{IH}}\)</span> into the full ODE, and solving for the constants (e.g., <span class="math notranslate nohighlight">\(K\)</span>)—but <strong>not</strong> from the initial conditions.</p>
 <p>For example, let’s solve</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36c6b9c4-6836-4356-9ac0-62a16b5ecf70">
-<span class="eqno">(3.37)<a class="headerlink" href="#equation-36c6b9c4-6836-4356-9ac0-62a16b5ecf70" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c6f07b2c-f88c-413a-86bb-806e602af8e2">
+<span class="eqno">(3.37)<a class="headerlink" href="#equation-c6f07b2c-f88c-413a-86bb-806e602af8e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 2y^{\prime} + y = e^{-x}
 \end{equation}\]</div>
 <p>with initial conditions <span class="math notranslate nohighlight">\(y(0) = y^{\prime}(0) = 0\)</span>. First, we should find the solution to the homogeneous equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9487445e-9531-4a30-9e9c-315e55bb920a">
-<span class="eqno">(3.38)<a class="headerlink" href="#equation-9487445e-9531-4a30-9e9c-315e55bb920a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a98f613-372f-4156-a00e-95290a7dc1db">
+<span class="eqno">(3.38)<a class="headerlink" href="#equation-8a98f613-372f-4156-a00e-95290a7dc1db" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 2y^{\prime} + y = 0 \;.
 \end{equation}\]</div>
 <p>We can do this by using the associated characteristic formula</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92ad72b0-f2b3-4da6-b8c9-c48df9a172a3">
-<span class="eqno">(3.39)<a class="headerlink" href="#equation-92ad72b0-f2b3-4da6-b8c9-c48df9a172a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6353a76a-2f0e-4fd4-9f24-7001e0032323">
+<span class="eqno">(3.39)<a class="headerlink" href="#equation-6353a76a-2f0e-4fd4-9f24-7001e0032323" title="Permalink to this equation">#</a></span>\[\begin{align}
 \lambda^2 + 2 \lambda + 1 &amp;= 0 \\
 (\lambda + 1)(\lambda + 1) &amp;= 0 \\
 \rightarrow y_{\text{H}} &amp;= c_1 e^{-x} + c_2 x e^{-x}
 \end{align}\]</div>
 <p>To find the inhomogeneous solution, we would look at the table above to find what matches the forcing function <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Normally, we’d grab <span class="math notranslate nohighlight">\(K e^{-x}\)</span>, but that would not be linearly independent from the first part of the homogeneous solution <span class="math notranslate nohighlight">\(y_{\text{H}}\)</span>. The same is true for <span class="math notranslate nohighlight">\(K x e^{-x}\)</span>, which is linearly dependent with the second part of <span class="math notranslate nohighlight">\(y_{\text{H}}\)</span>, but <span class="math notranslate nohighlight">\(K x^2 e^{-x}\)</span> works! Then, we just need to find <span class="math notranslate nohighlight">\(K\)</span> by plugging this into the ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c58a55e4-2ea8-48ff-a566-0b8a2335d96c">
-<span class="eqno">(3.40)<a class="headerlink" href="#equation-c58a55e4-2ea8-48ff-a566-0b8a2335d96c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5519a45f-de20-4697-904e-f94ed12fff1c">
+<span class="eqno">(3.40)<a class="headerlink" href="#equation-5519a45f-de20-4697-904e-f94ed12fff1c" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{\text{IH}} &amp;= K x^2 e^{-x} \\
 y^{\prime} &amp;= K e^{-x} (2x - x^2) \\
 y^{\prime\prime} &amp;= K e^{-x} (x^2 - 4x + 2) \\
@@ -614,8 +614,8 @@ y^{\prime\prime} &amp;= K e^{-x} (x^2 - 4x + 2) \\
 y_{\text{IH}} &amp;= \frac{1}{2} x^2 e^{-x}
 \end{align}\]</div>
 <p>Thus, the overall general solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-918199e5-87ac-4485-a6a2-cfa5dfdd4506">
-<span class="eqno">(3.41)<a class="headerlink" href="#equation-918199e5-87ac-4485-a6a2-cfa5dfdd4506" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f5928b51-834f-4831-ae95-9256dbe68b3e">
+<span class="eqno">(3.41)<a class="headerlink" href="#equation-f5928b51-834f-4831-ae95-9256dbe68b3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = c_1 e^{-x} + c_2 x e^{-x} + \frac{1}{2} x^2 e^{-x}
 \end{equation}\]</div>
 <p>and we would solve for the integration constants <span class="math notranslate nohighlight">\(c_1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span> using the initial conditions.</p>
@@ -628,8 +628,8 @@ y(x) = c_1 e^{-x} + c_2 x e^{-x} + \frac{1}{2} x^2 e^{-x}
 <section id="continuous-f-t-variation-of-parameters">
 <h3><span class="section-number">3.2.3.2. </span>Continuous <span class="math notranslate nohighlight">\(F(t)\)</span>: variation of parameters<a class="headerlink" href="#continuous-f-t-variation-of-parameters" title="Permalink to this headline">#</a></h3>
 <p>We have the variation of parameters approach to solve for inhomogeneous 2nd-order ODEs that are more general:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a92337a9-b39b-4a80-9138-b7d784664413">
-<span class="eqno">(3.42)<a class="headerlink" href="#equation-a92337a9-b39b-4a80-9138-b7d784664413" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45686528-46f1-4bbd-823b-da203e904822">
+<span class="eqno">(3.42)<a class="headerlink" href="#equation-45686528-46f1-4bbd-823b-da203e904822" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + p(x) y^{\prime} + q(x) y = r(x)
 \end{equation}\]</div>
 <p>In this case, we can assume a solution <span class="math notranslate nohighlight">\(y(x) = y_1 u_1 + y_2 u_2\)</span>.</p>
@@ -638,8 +638,8 @@ y^{\prime\prime} + p(x) y^{\prime} + q(x) y = r(x)
 <li><p>Obtain <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> by solving the homogeneous equation: <span class="math notranslate nohighlight">\(y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0\)</span></p></li>
 <li><p>Solve for <span class="math notranslate nohighlight">\(u_1\)</span> and <span class="math notranslate nohighlight">\(u_2\)</span>:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ff62f4a6-4c71-4aee-9ba8-e0929db49c0b">
-<span class="eqno">(3.43)<a class="headerlink" href="#equation-ff62f4a6-4c71-4aee-9ba8-e0929db49c0b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-884e07da-ede8-47f9-8849-fec89c38456b">
+<span class="eqno">(3.43)<a class="headerlink" href="#equation-884e07da-ede8-47f9-8849-fec89c38456b" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_1 &amp;= - \int \frac{y_2 r(x)}{W} dx + c_1 \\
 u_2 &amp;= \int \frac{y_1 r(x)}{W} dx + c_2 \\
 W &amp;= \begin{vmatrix}
@@ -650,8 +650,8 @@ y_1 &amp; y_2\\ y_1^{\prime} &amp; y_2^{\prime}\\
 <ol class="arabic simple" start="3">
 <li><p>Then, we have the general solution:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-412c6e55-9d63-4199-b1bc-112d3b8f4f1a">
-<span class="eqno">(3.44)<a class="headerlink" href="#equation-412c6e55-9d63-4199-b1bc-112d3b8f4f1a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6e0660f7-5456-43b4-92f1-32d00df9003e">
+<span class="eqno">(3.44)<a class="headerlink" href="#equation-6e0660f7-5456-43b4-92f1-32d00df9003e" title="Permalink to this equation">#</a></span>\[\begin{align}
 y &amp;= u_1 y_1 + u_2 y_2 \\
 &amp;= \left( -\int \frac{y_2 r(x)}{W} dx + c_1 \right) y_1 + \left( \int \frac{y_1 r(x)}{W} dx + c_2 \right) y_2 \;,
 \end{align}\]</div>
@@ -659,14 +659,14 @@ y &amp;= u_1 y_1 + u_2 y_2 \\
 <section id="example-1-variation-of-parameters">
 <h4><span class="section-number">3.2.3.2.1. </span>Example 1: variation of parameters<a class="headerlink" href="#example-1-variation-of-parameters" title="Permalink to this headline">#</a></h4>
 <p>First, let’s try the same example we used for the method of undetermined coefficients above:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ad6a3fd-3511-4a72-93b3-375183730dd7">
-<span class="eqno">(3.45)<a class="headerlink" href="#equation-7ad6a3fd-3511-4a72-93b3-375183730dd7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-55a99376-8bf1-4057-b784-31cee58f43f6">
+<span class="eqno">(3.45)<a class="headerlink" href="#equation-55a99376-8bf1-4057-b784-31cee58f43f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 2 y^{\prime} + y = e^{-x}
 \end{equation}\]</div>
 <p>We already found the homogeneous solution, so we know that <span class="math notranslate nohighlight">\(y_1 = e^{-x}\)</span> and <span class="math notranslate nohighlight">\(y_2 = x e^{-x}\)</span>.
 Next, let’s get the Wronksian, and then <span class="math notranslate nohighlight">\(u_1\)</span> and <span class="math notranslate nohighlight">\(u_2\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39c86d40-20c4-47ca-a1e3-dcd69a865b52">
-<span class="eqno">(3.46)<a class="headerlink" href="#equation-39c86d40-20c4-47ca-a1e3-dcd69a865b52" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f438113d-555e-4b70-a770-5035f02cd1e3">
+<span class="eqno">(3.46)<a class="headerlink" href="#equation-f438113d-555e-4b70-a770-5035f02cd1e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 W &amp;= \begin{vmatrix} y_1 &amp; y_2 \\ y_1^{\prime} &amp; y_2^{\prime} \end{vmatrix} = e^{-x} e^{-x}(1-x) - x e^{-x} (-e^{-x}) = e^{-2x} \\
 %
 u_1 &amp;= -\int \frac{x e^{-x} e^{-x}}{e^{-2x}} dx + c_1 = -\int x dx + c_1 = -\frac{1}{2} x^2 + c_1 \\
@@ -674,34 +674,34 @@ u_2 &amp;= \int \frac{e^{-x} e^{-x}}{e^{-2x}} dx + c_2 = \int dx + c_2 = x + c_2
 y(x) &amp;= \left(-\frac{1}{2} x^2 + c_1\right) e^{-x} + (x + c_2) x e^{-x} \\
 \end{align}\]</div>
 <p>After simplifying, we obtain the same solution as via the method of undetermined coefficients (but with a bit more work):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dca9c628-9e97-4a8a-ad49-da7e88adc53b">
-<span class="eqno">(3.47)<a class="headerlink" href="#equation-dca9c628-9e97-4a8a-ad49-da7e88adc53b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2cf19768-c924-463c-9078-419adcd0e84c">
+<span class="eqno">(3.47)<a class="headerlink" href="#equation-2cf19768-c924-463c-9078-419adcd0e84c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = x_1 e^{-x} + c_2 x e^{-x} + \frac{1}{2} x^2 e^{-x}
 \end{equation}\]</div>
 </section>
 <section id="example-2-variation-of-parameters">
 <h4><span class="section-number">3.2.3.2.2. </span>Example 2: variation of parameters<a class="headerlink" href="#example-2-variation-of-parameters" title="Permalink to this headline">#</a></h4>
 <p>Now let’s try an example that we could <em>not</em> solve using the method of undetermined coefficients, with a forcing term that involves hyperbolic cosine (cosh); recall that <span class="math notranslate nohighlight">\(\cosh(x) = \frac{e^x + e^{-x}}{2}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12a1565d-41c7-48f5-bd9e-a3a91130d063">
-<span class="eqno">(3.48)<a class="headerlink" href="#equation-12a1565d-41c7-48f5-bd9e-a3a91130d063" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47a49809-b484-42bf-8050-93518f85e84c">
+<span class="eqno">(3.48)<a class="headerlink" href="#equation-47a49809-b484-42bf-8050-93518f85e84c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 4 y^{\prime} + 4y = \cosh(x)
 \end{equation}\]</div>
 <p>First, we need to find the homogeneous solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e9731fe4-ad7c-4cd8-9d7d-f76bc202a944">
-<span class="eqno">(3.49)<a class="headerlink" href="#equation-e9731fe4-ad7c-4cd8-9d7d-f76bc202a944" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-319ae998-dcdd-4dd5-9b33-8ec4b7d00e97">
+<span class="eqno">(3.49)<a class="headerlink" href="#equation-319ae998-dcdd-4dd5-9b33-8ec4b7d00e97" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime\prime} + 4 y^{\prime} + 4y &amp;= 0 \\
 \lambda^2 + 4 \lambda + 4 &amp;= 0 \\
 \rightarrow \lambda &amp;= -2
 \end{align}\]</div>
 <p>So our homogeneous solution involves repeated roots:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02997615-d73c-46df-b170-79a83c6e3750">
-<span class="eqno">(3.50)<a class="headerlink" href="#equation-02997615-d73c-46df-b170-79a83c6e3750" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ccfc7d87-2c26-4a0d-b0f5-7df582eb889c">
+<span class="eqno">(3.50)<a class="headerlink" href="#equation-ccfc7d87-2c26-4a0d-b0f5-7df582eb889c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_H = c_1 e^{-2x} + c_2 x e^{-2x}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_1 = e^{-2x}\)</span> and <span class="math notranslate nohighlight">\(y_2 = x e^{-2x}\)</span>.</p>
 <p>Then, we need to find <span class="math notranslate nohighlight">\(u_1\)</span> and <span class="math notranslate nohighlight">\(u_2\)</span>, so let’s get the Wronksian and then solve</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c864acd8-5b5b-4d8c-905d-0ee905ab2f17">
-<span class="eqno">(3.51)<a class="headerlink" href="#equation-c864acd8-5b5b-4d8c-905d-0ee905ab2f17" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4a8b519e-5e2d-4f60-9c19-ec1182528553">
+<span class="eqno">(3.51)<a class="headerlink" href="#equation-4a8b519e-5e2d-4f60-9c19-ec1182528553" title="Permalink to this equation">#</a></span>\[\begin{align}
 W &amp;= \begin{vmatrix} y_1 &amp; y_2 \\ y_1^{\prime} &amp; y_2^{\prime} \end{vmatrix} = e^{-2x} (e^{-2x}) (1 - 2x) - x e^{-2x}(-2 e^{-2x}) = e^{-4x} \\
 %
 u_1 &amp;= - \int \frac{x e^{-2x} \cosh x}{e^{-4x}} dx + c_1 = -\int \frac{x \frac{1}{2}(e^x + e^{-x})}{e^{-2x}} dx + c_1 \\
@@ -712,8 +712,8 @@ u_2 &amp;= \int \frac{e^{-2x} \cosh x}{e^{-4x}} dx + c_2 = \frac{1}{2} \int e^{2
 u_2 &amp;= \frac{1}{6} e^{3x} + \frac{1}{2} e^x + c_2
 \end{align}\]</div>
 <p>Then, when we put these all together, we get the full (complicated) solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-793adcda-8f90-4044-8701-082743acc062">
-<span class="eqno">(3.52)<a class="headerlink" href="#equation-793adcda-8f90-4044-8701-082743acc062" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8396083-9a5a-4ab4-a9e4-c2391929a2b3">
+<span class="eqno">(3.52)<a class="headerlink" href="#equation-d8396083-9a5a-4ab4-a9e4-c2391929a2b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = \left[ -\frac{1}{18} e^{3x} (3x-1) - \frac{1}{2} e^x (x-1) + c_1 \right] e^{-2x} + \left( \frac{1}{6} e^{3x} + \frac{1}{2} e^x + c_2 \right) x e^{-2x}
 \end{equation}\]</div>
 </section>

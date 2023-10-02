@@ -422,20 +422,20 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="power-series-solutions">
 <h1><span class="section-number">3.5. </span>Power Series Solutions<a class="headerlink" href="#power-series-solutions" title="Permalink to this headline">#</a></h1>
 <p><strong>Power series solutions</strong> are another technique we can use to solve 2nd-order homogeneous ODEs of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37402622-005c-447c-baa1-89f8f04e3f64">
-<span class="eqno">(3.104)<a class="headerlink" href="#equation-37402622-005c-447c-baa1-89f8f04e3f64" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf0d4a1e-5061-4b3c-b255-639c7f97f963">
+<span class="eqno">(3.105)<a class="headerlink" href="#equation-cf0d4a1e-5061-4b3c-b255-639c7f97f963" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
 \end{equation}\]</div>
 <p>This is useful for more-general cases where our other techniques fail.</p>
 <p>For example, how would you find the solution to this ODE?</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a5c0267f-6b7b-4ff3-844a-c2faeb84108d">
-<span class="eqno">(3.105)<a class="headerlink" href="#equation-a5c0267f-6b7b-4ff3-844a-c2faeb84108d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d0d5a186-90c2-41cb-9a45-4d5f784ba6bb">
+<span class="eqno">(3.106)<a class="headerlink" href="#equation-d0d5a186-90c2-41cb-9a45-4d5f784ba6bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (1 + x^2) y^{\prime\prime} - 4 x y^{\prime} + 6y = 0
 \end{equation}\]</div>
 <p>None of the methods we’ve discussed so far would allow us to find an analytical solution to this problem—but we can using a power series solution.</p>
 <p>Power series solutions will be of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-042dd484-83f1-4aaa-aaaa-3ce6ad8c31ac">
-<span class="eqno">(3.106)<a class="headerlink" href="#equation-042dd484-83f1-4aaa-aaaa-3ce6ad8c31ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c08e0ba-376d-4cc0-9a78-1bf74ca5ad28">
+<span class="eqno">(3.107)<a class="headerlink" href="#equation-9c08e0ba-376d-4cc0-9a78-1bf74ca5ad28" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = \sum_{n=0}^{\infty} a_n x^n
 \end{equation}\]</div>
 <p>where the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> are what we need to find.</p>
@@ -445,22 +445,22 @@ y = \sum_{n=0}^{\infty} a_n x^n
 <p><em>Continuous</em> means that there should be no discontinuity at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
 <p><em>Bounded</em> means that the solution should be finite at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
 <p>For example, consider the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1da7204-b026-40bb-a29a-89686ba58fa2">
-<span class="eqno">(3.107)<a class="headerlink" href="#equation-b1da7204-b026-40bb-a29a-89686ba58fa2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c59a7583-3488-4af4-a050-a47deb1a6582">
+<span class="eqno">(3.108)<a class="headerlink" href="#equation-c59a7583-3488-4af4-a050-a47deb1a6582" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} - 4xy^{\prime} + (4x^2 - 2)y = 0
 \end{equation}\]</div>
 <p>Both <span class="math notranslate nohighlight">\(p(x) = -4x\)</span> and <span class="math notranslate nohighlight">\(q(x) = (4x^2 - 2)\)</span> are continuous and bounded at <span class="math notranslate nohighlight">\(x=0\)</span>, so <span class="math notranslate nohighlight">\(x=0\)</span> <strong>is</strong> an ordinary point.</p>
 <p>On the other hand, what about</p>
-<div class="amsmath math notranslate nohighlight" id="equation-249b5b8a-7eca-4538-aeeb-b3cd0c180c97">
-<span class="eqno">(3.108)<a class="headerlink" href="#equation-249b5b8a-7eca-4538-aeeb-b3cd0c180c97" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd601af0-e759-4846-a699-1a3143249454">
+<span class="eqno">(3.109)<a class="headerlink" href="#equation-fd601af0-e759-4846-a699-1a3143249454" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + x^3 y^{\prime} + \frac{1}{x} y = 0 \text{ ?}
 \end{equation}\]</div>
 <p>In this case, the solution is unbounded at <span class="math notranslate nohighlight">\(x=0\)</span>, and so it is <strong>not</strong> an ordinary point.</p>
 <ol class="arabic simple" start="2">
 <li><p>If <span class="math notranslate nohighlight">\(x=0\)</span> is an ordinary point, then we can find a solution in the form of a power series:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-496117bf-56ea-4f7a-b200-9102d02d67d8">
-<span class="eqno">(3.109)<a class="headerlink" href="#equation-496117bf-56ea-4f7a-b200-9102d02d67d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e6f8b580-de10-4b88-9a73-5521eb0afb04">
+<span class="eqno">(3.110)<a class="headerlink" href="#equation-e6f8b580-de10-4b88-9a73-5521eb0afb04" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = \sum_{n=0}^{\infty} a_n x^n
 \end{equation}\]</div>
 <p>We then solve for the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> by plugging this in to the ODE. To do that, we’ll need to take advantage of certain properties of power series.</p>
@@ -469,23 +469,23 @@ y = \sum_{n=0}^{\infty} a_n x^n
 <ul class="simple">
 <li><p><strong>Dummy index rule</strong>. We can replace the index variable used in the power series with another index variable arbitrarily:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-69ad85b3-71b4-4149-8c21-dbc791177e64">
-<span class="eqno">(3.110)<a class="headerlink" href="#equation-69ad85b3-71b4-4149-8c21-dbc791177e64" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9c230ec3-56e3-4bd3-8759-e60a9f7dfd7a">
+<span class="eqno">(3.111)<a class="headerlink" href="#equation-9c230ec3-56e3-4bd3-8759-e60a9f7dfd7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=0}^{\infty} a_n x^n = \sum_{m=0}^{\infty} a_m x^m
 \end{equation}\]</div>
 <p>This is because the index variable is just a “dummy” that only has meaning inside the sum.</p>
 <ul class="simple">
 <li><p><strong>Product rule</strong>. We can bring variables, including <span class="math notranslate nohighlight">\(x\)</span>, multiplying an entire power series into the power series:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-54137d06-ea72-43fc-9c99-0010589ef75b">
-<span class="eqno">(3.111)<a class="headerlink" href="#equation-54137d06-ea72-43fc-9c99-0010589ef75b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01911961-3e1a-49b9-8130-78cd54ea846e">
+<span class="eqno">(3.112)<a class="headerlink" href="#equation-01911961-3e1a-49b9-8130-78cd54ea846e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x \sum_{n=0}^{\infty} a_n x^n = \sum_{n=0}^{\infty} a_n x^{n+1}
 \end{equation}\]</div>
 <ul class="simple">
 <li><p><strong>Derivatives</strong>. We can take derivatives of our power series:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-5cdf7cc8-7cbe-4386-b2a3-f95b1261521f">
-<span class="eqno">(3.112)<a class="headerlink" href="#equation-5cdf7cc8-7cbe-4386-b2a3-f95b1261521f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-28f3776f-d210-4e5f-9dd9-d0f26eaec0ee">
+<span class="eqno">(3.113)<a class="headerlink" href="#equation-28f3776f-d210-4e5f-9dd9-d0f26eaec0ee" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime} &amp;= \sum_{n=0}^{\infty} a_n (n) x^{n-1} = \sum_{n=1}^{\infty} a_n (n) x^{n-1} \\
 y^{\prime\prime} &amp;= \sum_{n=0}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2}
 \end{align}\]</div>
@@ -493,13 +493,13 @@ y^{\prime\prime} &amp;= \sum_{n=0}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{n=2}^{\
 <ul class="simple">
 <li><p><strong>Index shift</strong>. We can redefine the index used within a sum to shift where it starts. For example, if we let <span class="math notranslate nohighlight">\(m=n-1\)</span>, or <span class="math notranslate nohighlight">\(n=m+1\)</span>, then:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-23b3f59d-4f7e-4140-90f1-8ac0c70acace">
-<span class="eqno">(3.113)<a class="headerlink" href="#equation-23b3f59d-4f7e-4140-90f1-8ac0c70acace" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c8d9f33e-3198-48e8-83ef-b83b4f75726b">
+<span class="eqno">(3.114)<a class="headerlink" href="#equation-c8d9f33e-3198-48e8-83ef-b83b4f75726b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=1}^{\infty} a_n (n) x^{n-1} = \sum_{m=0}^{\infty} a_{m+1} (m+1) x^m
 \end{equation}\]</div>
 <p>Or, in other case, if we let <span class="math notranslate nohighlight">\(m=n-2\)</span>, or <span class="math notranslate nohighlight">\(n=m+2\)</span>, then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10e5cae1-3cb1-4c3a-8703-e19edf193a67">
-<span class="eqno">(3.114)<a class="headerlink" href="#equation-10e5cae1-3cb1-4c3a-8703-e19edf193a67" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d21f377-87b7-449d-bc91-409dfd784aad">
+<span class="eqno">(3.115)<a class="headerlink" href="#equation-5d21f377-87b7-449d-bc91-409dfd784aad" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
 \end{equation}\]</div>
 <p>Now, let’s apply these properties to solve ODEs.</p>
@@ -507,8 +507,8 @@ y^{\prime\prime} &amp;= \sum_{n=0}^{\infty} a_n (n)(n-1) x^{n-2} = \sum_{n=2}^{\
 <section id="power-series-example-1">
 <h2><span class="section-number">3.5.2. </span>Power series example 1<a class="headerlink" href="#power-series-example-1" title="Permalink to this headline">#</a></h2>
 <p>Let’s try to apply the power series approach to solve</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1e40ee7-6bb3-4cb8-b160-5ef264edab15">
-<span class="eqno">(3.115)<a class="headerlink" href="#equation-c1e40ee7-6bb3-4cb8-b160-5ef264edab15" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-616dad68-9683-4fe0-8c5c-b9fbb05c66df">
+<span class="eqno">(3.116)<a class="headerlink" href="#equation-616dad68-9683-4fe0-8c5c-b9fbb05c66df" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + y = 0 \;,
 \end{equation}\]</div>
 <p>where we know the solution will be <span class="math notranslate nohighlight">\(y(x) = c_1 \sin x + c_2 \cos x\)</span>.</p>
@@ -517,23 +517,23 @@ y^{\prime\prime} + y = 0 \;,
 So, we can find a solution of the form <span class="math notranslate nohighlight">\(y(x) = \sum_{n=0}^{\infty} a_n x^n\)</span>.</p></li>
 <li><p>Now, we solve for the coefficents by plugging the power series into the ODE:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-728fa207-15b2-4c0c-a057-0f447b357a7d">
-<span class="eqno">(3.116)<a class="headerlink" href="#equation-728fa207-15b2-4c0c-a057-0f447b357a7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fbeb869d-054f-45c2-acdb-f59dbaf335a8">
+<span class="eqno">(3.117)<a class="headerlink" href="#equation-fbeb869d-054f-45c2-acdb-f59dbaf335a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} + \sum_{n=0}^{\infty} a_n x^n = 0
 \end{equation}\]</div>
 <p>Let’s use the index shift rule on the first part of that:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c4d51b0-321e-4c3f-a56e-7e28d504fb0c">
-<span class="eqno">(3.117)<a class="headerlink" href="#equation-2c4d51b0-321e-4c3f-a56e-7e28d504fb0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d5807ff-fe44-4824-bab9-e9165b5508f5">
+<span class="eqno">(3.118)<a class="headerlink" href="#equation-7d5807ff-fe44-4824-bab9-e9165b5508f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=2}^{\infty} a_n (n)(n-1) x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m
 \end{equation}\]</div>
 <p>Then, we can use the dummy index rule to change <span class="math notranslate nohighlight">\(m\)</span> back to <span class="math notranslate nohighlight">\(n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0e2066e-1dad-4cef-ba00-0c3a31295b0e">
-<span class="eqno">(3.118)<a class="headerlink" href="#equation-a0e2066e-1dad-4cef-ba00-0c3a31295b0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a71eb3f4-068f-4baf-a372-ea9dc7706ef0">
+<span class="eqno">(3.119)<a class="headerlink" href="#equation-a71eb3f4-068f-4baf-a372-ea9dc7706ef0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{m=0}^{\infty} a_m (m+2)(m+1) x^m \rightarrow \sum_{n=0}^{\infty} a_n (n+2)(n+1) x^n
 \end{equation}\]</div>
 <p>Now, let’s replace the first term in the ODE with that, merge both terms into a single sum, and simplify:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-523dfb56-132e-4b23-8076-638a4115cd17">
-<span class="eqno">(3.119)<a class="headerlink" href="#equation-523dfb56-132e-4b23-8076-638a4115cd17" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9ed79f5e-d6b7-45af-b056-75c9faf90134">
+<span class="eqno">(3.120)<a class="headerlink" href="#equation-9ed79f5e-d6b7-45af-b056-75c9faf90134" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{n=0}^{\infty} a_n (n+2)(n+1) x^n + \sum_{n=0}^{\infty} a_n x^n &amp;= 0 \\
 \sum_{n=0}^{\infty} x^n \left[ a_{n+2}(n+2)(n+1) + a_n \right] &amp;= 0
 \end{align}\]</div>
@@ -543,33 +543,33 @@ So, we can find a solution of the form <span class="math notranslate nohighlight
 <li><p><span class="math notranslate nohighlight">\(a_{n+2}(n+2)(n+1) + a_n = 0\)</span> for all values of <span class="math notranslate nohighlight">\(n\)</span>. This is what we can use to find the coefficients of our power series solution.</p></li>
 </ul>
 <p>Use that expression to define a recursive formula for the coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d70d083-2bb8-4fe4-b20f-1fb1a4f7f756">
-<span class="eqno">(3.120)<a class="headerlink" href="#equation-6d70d083-2bb8-4fe4-b20f-1fb1a4f7f756" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ee2234b-3ce9-48bd-aa61-6dce6192fb6a">
+<span class="eqno">(3.121)<a class="headerlink" href="#equation-2ee2234b-3ce9-48bd-aa61-6dce6192fb6a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a_{n+2} = \frac{-a_n}{(n+1)(n+2)}
 \end{equation}\]</div>
 <p>We can see that the even coefficients will be related to each other, and the odd coefficients will be related. Let’s try to identify a pattern with each, starting with the even terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6cb6045-105e-4543-a266-781ee6369039">
-<span class="eqno">(3.121)<a class="headerlink" href="#equation-b6cb6045-105e-4543-a266-781ee6369039" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-46bb05c6-3e67-4152-8513-70780ed6c16a">
+<span class="eqno">(3.122)<a class="headerlink" href="#equation-46bb05c6-3e67-4152-8513-70780ed6c16a" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=0: \quad a_2 &amp;= \frac{-a_0}{1 \cdot 2} = \frac{-a_0}{2!} \\
 n=2: \quad a_4 &amp;= \frac{-a_2}{3 \cdot 4} = \frac{a_0}{4!} \\
 n=4: \quad a_6 &amp;= \frac{-a_4}{5 \cdot 6} = \frac{-a_0}{6!}
 \end{align}\]</div>
 <p>and the odd terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2aa101df-887f-4d30-ae8e-45c87bb45132">
-<span class="eqno">(3.122)<a class="headerlink" href="#equation-2aa101df-887f-4d30-ae8e-45c87bb45132" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-86678d5a-c118-4e17-90ca-1d372ef7c454">
+<span class="eqno">(3.123)<a class="headerlink" href="#equation-86678d5a-c118-4e17-90ca-1d372ef7c454" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=1: \quad a_3 &amp;= \frac{-a_1}{2 \cdot 3} = \frac{-a_1}{3!} \\
 n=3: \quad a_5 &amp;= \frac{-a_3}{4 \cdot 5} = \frac{a_1}{5!} \\
 n=5: \quad a_7 &amp;= \frac{-a_5}{6 \cdot 7} = \frac{-a_1}{7!}
 \end{align}\]</div>
 <p>Now, let’s put that all together:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbdd6bad-6145-4931-9883-d0828cde8214">
-<span class="eqno">(3.123)<a class="headerlink" href="#equation-cbdd6bad-6145-4931-9883-d0828cde8214" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-68da518c-d8b6-4341-b3f1-a469e5b8976b">
+<span class="eqno">(3.124)<a class="headerlink" href="#equation-68da518c-d8b6-4341-b3f1-a469e5b8976b" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(x) &amp;= a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \dots \\
 y &amp;= a_0 \left( 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \right) + a_1 \left( x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \right)
 \end{align}\]</div>
 <p>which you might recognize as being the Taylor series expansion of sine and cosine:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-993358a1-df46-4acd-b75a-b07628f1e3bb">
-<span class="eqno">(3.124)<a class="headerlink" href="#equation-993358a1-df46-4acd-b75a-b07628f1e3bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3aa7c703-e5b1-4187-88dd-c296933220ef">
+<span class="eqno">(3.125)<a class="headerlink" href="#equation-3aa7c703-e5b1-4187-88dd-c296933220ef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = a_0 \cos x + a_1 \sin x
 \end{equation}\]</div>
 <p>So, our unknown coefficients end up being our integration constants, which we can use our two constraints to find.</p>
@@ -577,64 +577,64 @@ y(x) = a_0 \cos x + a_1 \sin x
 <section id="power-series-example-2">
 <h2><span class="section-number">3.5.3. </span>Power series example 2<a class="headerlink" href="#power-series-example-2" title="Permalink to this headline">#</a></h2>
 <p>Find the solution to the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f167c4c7-740a-46f3-8c3a-9ea2e56f800e">
-<span class="eqno">(3.125)<a class="headerlink" href="#equation-f167c4c7-740a-46f3-8c3a-9ea2e56f800e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0f359cf8-1da8-439f-b1b6-b3f9032e0b55">
+<span class="eqno">(3.126)<a class="headerlink" href="#equation-0f359cf8-1da8-439f-b1b6-b3f9032e0b55" title="Permalink to this equation">#</a></span>\[\begin{equation}
 (1 + x^2) y^{\prime\prime} - 4x y^{\prime} + 6y = 0
 \end{equation}\]</div>
 <p>First, rearrange into standard form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aba88e3f-ecc0-441e-bc2e-e3b71a31320a">
-<span class="eqno">(3.126)<a class="headerlink" href="#equation-aba88e3f-ecc0-441e-bc2e-e3b71a31320a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-73faa7eb-6498-4049-8706-631abe80247b">
+<span class="eqno">(3.127)<a class="headerlink" href="#equation-73faa7eb-6498-4049-8706-631abe80247b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} - \frac{4x}{1+x^2} y^{\prime} + \frac{6}{1+x^2} y = 0
 \end{equation}\]</div>
 <p>Then, check whether <span class="math notranslate nohighlight">\(x=0\)</span> is an ordinary point: yes, it is.</p>
 <p>Now, let’s insert the power series into the ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29113377-cb67-4fdd-bdf2-cae9021aaf90">
-<span class="eqno">(3.127)<a class="headerlink" href="#equation-29113377-cb67-4fdd-bdf2-cae9021aaf90" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2fc4ab9a-3ab7-4d2a-8a9f-ae11c1374738">
+<span class="eqno">(3.128)<a class="headerlink" href="#equation-2fc4ab9a-3ab7-4d2a-8a9f-ae11c1374738" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime\prime} + x^2 y^{\prime\prime} - 4 x y^{\prime} + 6 y &amp;= 0 \\
 \sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} + x^2 \sum_{n=0}^{\infty} a_n (n)(n-1)x^{n-2} - 4 x \sum_{n=1} a_n (n) x^{n-1} + 6 \sum_{n=0}^{\infty} a_n x^n &amp;= 0
 \end{align}\]</div>
 <p>First, we’ll use the power rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ef5bdea-0bc9-4164-9981-408d63d4eff6">
-<span class="eqno">(3.128)<a class="headerlink" href="#equation-1ef5bdea-0bc9-4164-9981-408d63d4eff6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-079deb98-67e2-49cd-ad91-f82468546718">
+<span class="eqno">(3.129)<a class="headerlink" href="#equation-079deb98-67e2-49cd-ad91-f82468546718" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} + \sum_{n=2}^{\infty} a_n (n)(n-1)x^{n} - 4 \sum_{n=1} a_n (n) x^{n} + 6 \sum_{n=0}^{\infty} a_n x^n = 0
 \end{equation}\]</div>
 <p>and then the index shift and dummy index rules on the first term:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4dc74caa-6326-4c73-b32b-f113073bf682">
-<span class="eqno">(3.129)<a class="headerlink" href="#equation-4dc74caa-6326-4c73-b32b-f113073bf682" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-18eb54d2-4020-4c05-aed5-71dde03328bf">
+<span class="eqno">(3.130)<a class="headerlink" href="#equation-18eb54d2-4020-4c05-aed5-71dde03328bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sum_{n=2}^{\infty} a_n (n)(n-1)x^{n-2} \rightarrow \sum_{m=0}^{\infty} a_{m+2} (m+2)(m+1) x^m \rightarrow \sum_{n=0}^{\infty} a_{n+2} (n+2)(n+1) x^n
 \end{equation}\]</div>
 <p>Then, put that back into the full equation and combine the sums:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-be2c5fc8-c769-48cf-a610-562b2cefae4a">
-<span class="eqno">(3.130)<a class="headerlink" href="#equation-be2c5fc8-c769-48cf-a610-562b2cefae4a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ccb0c71f-920a-4334-b71c-8f68261e4f2b">
+<span class="eqno">(3.131)<a class="headerlink" href="#equation-ccb0c71f-920a-4334-b71c-8f68261e4f2b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{n=0}^{\infty} a_{n+2} (n+2)(n+1) x^n + \sum_{n=0}^{\infty} a_n (n)(n-1)x^{n}  - 4 \sum_{n=1} a_n (n) x^{n} + 6 \sum_{n=0}^{\infty} a_n x^n &amp;= 0 \\
 \sum_{n=0}^{\infty} x^n \left[ a_{n+2} (n+2)(n+1) + a_n (n)(n-1) - 4a_n (n) + 6a_n \right] &amp;= 0 \\
 a_{n+2} (n+2)(n+1) + a_n (n^2 -5n + 6) &amp;= 0 \\
 a_{n+2} (n+2)(n+1) + a_n (n-3)(n-2) &amp;= 0 \\
 \end{align}\]</div>
 <p>Thus, our recursion formula for the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a05a133a-877c-4f18-9b24-c6c29c7fbc31">
-<span class="eqno">(3.131)<a class="headerlink" href="#equation-a05a133a-877c-4f18-9b24-c6c29c7fbc31" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64461da8-1c43-4d3f-96d9-2c77c2cef047">
+<span class="eqno">(3.132)<a class="headerlink" href="#equation-64461da8-1c43-4d3f-96d9-2c77c2cef047" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a_{n+2} = -a_n \frac{(n-3)(n-2)}{(n+1)(n+2)}
 \end{equation}\]</div>
 <p>Again, we can see that the even terms will be related and the odd terms will be related:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8c9f167-4178-4c84-a673-626e9dc04f06">
-<span class="eqno">(3.132)<a class="headerlink" href="#equation-f8c9f167-4178-4c84-a673-626e9dc04f06" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4b404911-2308-4cf3-af6f-74dac1136478">
+<span class="eqno">(3.133)<a class="headerlink" href="#equation-4b404911-2308-4cf3-af6f-74dac1136478" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=0: \quad a_2 &amp;= -a_0 \frac{6}{2} = -3 a_0 \\
 n=2: \quad a_4 &amp;= 0 \\
 n=4: \quad a_6 &amp;= -a_4 \frac{2}{30} = 0 \\
 &amp;\ldots
 \end{align}\]</div>
 <p>and the odd terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67b4a33b-b3ee-4ed5-b3b3-3a839410ab52">
-<span class="eqno">(3.133)<a class="headerlink" href="#equation-67b4a33b-b3ee-4ed5-b3b3-3a839410ab52" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2dd0094b-d08c-48c2-9c90-5c83993330a6">
+<span class="eqno">(3.134)<a class="headerlink" href="#equation-2dd0094b-d08c-48c2-9c90-5c83993330a6" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=1: \quad a_3 &amp;= -a_1 \frac{2}{6} = \frac{-a_1}{3} \\
 n=3: \quad a_5 &amp;= 0 \\
 n=5: \quad a_7 &amp;= -a_5 \frac{6}{42} = 0 \\
 &amp;\ldots
 \end{align}\]</div>
 <p>The solution is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b99f558-8bd1-48bd-8bfc-c7b76ca412f0">
-<span class="eqno">(3.134)<a class="headerlink" href="#equation-1b99f558-8bd1-48bd-8bfc-c7b76ca412f0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6c26547-3cd1-4648-9f54-cb052743e5d6">
+<span class="eqno">(3.135)<a class="headerlink" href="#equation-b6c26547-3cd1-4648-9f54-cb052743e5d6" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(x) &amp;= a_0 + a_1 x - 3 a_0 x^2 - \frac{a_1}{3} x^3 \\
 y &amp;= a_0 \left(1 - 3x^2 \right) + a_1 \left( x - \frac{x^3}{3} \right)
 \end{align}\]</div>

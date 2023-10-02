@@ -425,21 +425,21 @@ document.write(`
 <section id="solution-by-direct-integration">
 <h2><span class="section-number">1.1. </span>1. Solution by direct integration<a class="headerlink" href="#solution-by-direct-integration" title="Permalink to this headline">#</a></h2>
 <p>When equations are of this form, we can directly integrate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dd2d155-1dba-407b-916b-3e1efdc258e8">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-9dd2d155-1dba-407b-916b-3e1efdc258e8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c624b849-69b5-4dc9-9705-2d21248d45ac">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-c624b849-69b5-4dc9-9705-2d21248d45ac" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= y^{\prime} = f(x) \\
 \int dy &amp;= \int f(x) dx \\
 y(x) &amp;= \int f(x) dx + C
 \end{align}\]</div>
 <p>For example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fef2354a-6f67-4161-963a-d07dccae1d8c">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-fef2354a-6f67-4161-963a-d07dccae1d8c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7fa79f20-e24d-41c6-9654-8ecd8038cc9d">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-7fa79f20-e24d-41c6-9654-8ecd8038cc9d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= x^2 \\
 y(x) &amp;= \frac{1}{3} x^3 + C
 \end{align}\]</div>
 <p>While these problems look simple, there may not be an obvious closed-form solution to all:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-507ce4f8-ee32-418e-afc7-a26315e01348">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-507ce4f8-ee32-418e-afc7-a26315e01348" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6aa106fa-471d-4964-a033-29fb687c199c">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-6aa106fa-471d-4964-a033-29fb687c199c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= e^{-x^2} \\
 y(x) &amp;= \int e^{-x^2} dx + C
 \end{align}\]</div>
@@ -450,26 +450,26 @@ so the exact solution to the integral over the range <span class="math notransla
 <section id="solution-by-separation-of-variables">
 <h2><span class="section-number">1.2. </span>2. Solution by separation of variables<a class="headerlink" href="#solution-by-separation-of-variables" title="Permalink to this headline">#</a></h2>
 <p>If the given derivative is a separate function of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, then we can solve via separation of variables:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5468782d-079b-49a7-8483-151075a1dc14">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-5468782d-079b-49a7-8483-151075a1dc14" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f65e93ba-3b2c-4323-9e58-adb015a9594c">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-f65e93ba-3b2c-4323-9e58-adb015a9594c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= f(x) g(y) = \frac{h(x)}{j(y)} \\
 \int \frac{1}{g(y)} dy &amp;= \int f(x) dx
 \end{align}\]</div>
 <p>For example, consider this problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f9f717c-1ad6-4965-a18d-e7e11ca63692">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-5f9f717c-1ad6-4965-a18d-e7e11ca63692" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c58ab6b3-f9cd-4315-91c7-f095ffcc0af3">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-c58ab6b3-f9cd-4315-91c7-f095ffcc0af3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime} = \frac{dy}{dx} = 1 + y^2 \\
 \end{equation}\]</div>
 <p>We can separate this into a problem that looks like <span class="math notranslate nohighlight">\(f(y) dy = g(x) dx\)</span>, where <span class="math notranslate nohighlight">\(dy = \frac{1}{1+y^2}\)</span> and <span class="math notranslate nohighlight">\(g(x) = 1\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9974d46-b454-4270-a90c-fcfb7434a106">
-<span class="eqno">(1.6)<a class="headerlink" href="#equation-c9974d46-b454-4270-a90c-fcfb7434a106" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cbb3ea2e-6093-4769-8e7f-489d1fd7f688">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-cbb3ea2e-6093-4769-8e7f-489d1fd7f688" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int \frac{dy}{1 + y^2} &amp;= \int dx \\
 \arctan y &amp;= x + c \\
 y(x) &amp;= \tan(x+c)
 \end{align}\]</div>
 <p>Unfortunately, not every separable ODE can be integrated:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0aa2d70-f454-4bf6-a65c-81d42f749079">
-<span class="eqno">(1.7)<a class="headerlink" href="#equation-a0aa2d70-f454-4bf6-a65c-81d42f749079" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8e43e0cd-fc0f-4ad6-b99e-3102296eae75">
+<span class="eqno">(1.7)<a class="headerlink" href="#equation-8e43e0cd-fc0f-4ad6-b99e-3102296eae75" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= \frac{e^x / 2 + 5}{y^2 + \cos y} \\
 (y^2 + \cos y) dy &amp;= (e^x / 2 + 5) dx
 \end{align}\]</div>
@@ -477,23 +477,23 @@ y(x) &amp;= \tan(x+c)
 <section id="general-solution-to-linear-1st-order-odes">
 <h2><span class="section-number">1.3. </span>3. General solution to linear 1st-order ODEs<a class="headerlink" href="#general-solution-to-linear-1st-order-odes" title="Permalink to this headline">#</a></h2>
 <p>Given a general linear 1st-order ODE of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c3da1ca-00f6-4b0d-979e-730706ff276a">
-<span class="eqno">(1.8)<a class="headerlink" href="#equation-0c3da1ca-00f6-4b0d-979e-730706ff276a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0f7c935-de2f-4673-9332-40b5efe87b95">
+<span class="eqno">(1.8)<a class="headerlink" href="#equation-c0f7c935-de2f-4673-9332-40b5efe87b95" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dx} + p(x) y = q(x)
 \end{equation}\]</div>
 <p>we can solve by integration factor:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06b27e92-72a4-43fe-babf-e331d9905085">
-<span class="eqno">(1.9)<a class="headerlink" href="#equation-06b27e92-72a4-43fe-babf-e331d9905085" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2cbdaf53-cb5e-4f04-b580-089f050019c7">
+<span class="eqno">(1.9)<a class="headerlink" href="#equation-2cbdaf53-cb5e-4f04-b580-089f050019c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = e^{-\int p(x) dx} \left[ \int e^{\int p(x) dx} q(x) dx + C \right]
 \end{equation}\]</div>
 <p>For example, in this equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-057c5d9a-f86e-4d7b-a833-c02fe51550f2">
-<span class="eqno">(1.10)<a class="headerlink" href="#equation-057c5d9a-f86e-4d7b-a833-c02fe51550f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d663793f-581d-41e2-9e63-da0e21a1e187">
+<span class="eqno">(1.10)<a class="headerlink" href="#equation-d663793f-581d-41e2-9e63-da0e21a1e187" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime} + xy - 5 e^x = 0
 \end{equation}\]</div>
 <p>after rearranging to the standard form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f511af2-231b-42ba-968c-4d031023167b">
-<span class="eqno">(1.11)<a class="headerlink" href="#equation-9f511af2-231b-42ba-968c-4d031023167b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6643820f-9b47-4bc0-8099-968faf0bdfa3">
+<span class="eqno">(1.11)<a class="headerlink" href="#equation-6643820f-9b47-4bc0-8099-968faf0bdfa3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime} + xy = 5 e^x
 \end{equation}\]</div>
 <p>we see that <span class="math notranslate nohighlight">\(p(x) = x\)</span> and <span class="math notranslate nohighlight">\(q(x) = 5e^x\)</span>.</p>
@@ -501,32 +501,32 @@ y^{\prime} + xy = 5 e^x
 <section id="solution-to-nonlinear-1st-order-odes">
 <h2><span class="section-number">1.4. </span>4. Solution to nonlinear 1st-order ODEs<a class="headerlink" href="#solution-to-nonlinear-1st-order-odes" title="Permalink to this headline">#</a></h2>
 <p>Given a general nonlinear 1st-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1afb94b-a203-467b-a33a-02f3bf74efc9">
-<span class="eqno">(1.12)<a class="headerlink" href="#equation-a1afb94b-a203-467b-a33a-02f3bf74efc9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12bfa6f7-0605-428a-84e2-4d5cdbbae511">
+<span class="eqno">(1.12)<a class="headerlink" href="#equation-12bfa6f7-0605-428a-84e2-4d5cdbbae511" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dx} + p(x) y = q(x) y^a 
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a \neq 1\)</span> and <span class="math notranslate nohighlight">\(a\)</span> is a constant. This is known as the Bernoulli equation.</p>
 <p>We can solve by transforming to a linear equation, by changing the dependent variable from <span class="math notranslate nohighlight">\(y\)</span> to <span class="math notranslate nohighlight">\(z\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f366232b-e19f-4bef-aa6c-5c670f18b5c9">
-<span class="eqno">(1.13)<a class="headerlink" href="#equation-f366232b-e19f-4bef-aa6c-5c670f18b5c9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d9c9c23-a2c7-4eff-b0e7-08ca4c77525d">
+<span class="eqno">(1.13)<a class="headerlink" href="#equation-4d9c9c23-a2c7-4eff-b0e7-08ca4c77525d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{let} \quad z &amp;= y^{1-a} \\
 \frac{dz}{dx} &amp;= (1-a) y^{-a} \frac{dy}{dx}
 \end{align}\]</div>
 <p>Multiply the original equation by <span class="math notranslate nohighlight">\((1-a) y^{-a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccb44f9f-ff7c-49a8-af69-244b371129ae">
-<span class="eqno">(1.14)<a class="headerlink" href="#equation-ccb44f9f-ff7c-49a8-af69-244b371129ae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-884e3930-d890-496a-91de-879f86df1772">
+<span class="eqno">(1.14)<a class="headerlink" href="#equation-884e3930-d890-496a-91de-879f86df1772" title="Permalink to this equation">#</a></span>\[\begin{align}
 (1-a) y^{-a} \frac{dy}{dx} + (1-a) y^{-a} p(x) y &amp;= (1-a) y^{-a} q(x) y^a \\
 \frac{dz}{dx} + p(x) (1-a) z &amp;= q(x) (1-a) \;,
 \end{align}\]</div>
 <p>which is now a <em>linear</em> first-order ODE, that looks like</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4c6e457-d668-4e54-b202-8b5f94464768">
-<span class="eqno">(1.15)<a class="headerlink" href="#equation-d4c6e457-d668-4e54-b202-8b5f94464768" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-679fee01-3856-4596-8ce1-8c6f57103e6e">
+<span class="eqno">(1.15)<a class="headerlink" href="#equation-679fee01-3856-4596-8ce1-8c6f57103e6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dz}{dx} + p(x)^{\prime} z = q(x)^{\prime}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(p(x)^{\prime} = (1-a) p(x)\)</span> and <span class="math notranslate nohighlight">\(q(x)^{\prime} = (1-a)q(x)\)</span>.</p>
 <p>We can solve this using the integrating-factor approach discussed above. Then, once we have <span class="math notranslate nohighlight">\(z(x)\)</span>, we can find <span class="math notranslate nohighlight">\(y(x)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbe11572-0a25-4059-ab6d-8f7381db02e9">
-<span class="eqno">(1.16)<a class="headerlink" href="#equation-bbe11572-0a25-4059-ab6d-8f7381db02e9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-32e7eab1-a854-4582-ba25-d8478033d8cc">
+<span class="eqno">(1.16)<a class="headerlink" href="#equation-32e7eab1-a854-4582-ba25-d8478033d8cc" title="Permalink to this equation">#</a></span>\[\begin{align}
 z &amp;= y^{1-a} \\
 y &amp;= z^{\frac{1}{1-a}}
 \end{align}\]</div>

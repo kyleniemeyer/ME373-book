@@ -437,8 +437,8 @@ document.write(`
 <section id="problem-1-stability-analysis">
 <h2>Problem 1: Stability analysis<a class="headerlink" href="#problem-1-stability-analysis" title="Permalink to this headline">#</a></h2>
 <p>Given the first-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec847b24-7cd4-4200-8d59-facbfc50dc5d">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ec847b24-7cd4-4200-8d59-facbfc50dc5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dccf4078-445b-49f3-b1e0-4a85bb0bd242">
+<span class="eqno">(1)<a class="headerlink" href="#equation-dccf4078-445b-49f3-b1e0-4a85bb0bd242" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = -8y \;,
 \end{equation}\]</div>
 <p>a.) Perform a linear stability analysis to find the amplification factor (<span class="math notranslate nohighlight">\(\sigma\)</span>) for the <strong>midpoint method</strong> (also known as the modified Euler method) applied to this ODE.</p>
@@ -449,34 +449,34 @@ document.write(`
 <section id="solution">
 <h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h3>
 <p>a.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bd94a75-7ce2-48ff-bfdb-f9aebc4b3dce">
-<span class="eqno">(2)<a class="headerlink" href="#equation-6bd94a75-7ce2-48ff-bfdb-f9aebc4b3dce" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-63f77db2-6b06-45d0-97f1-8bf90224d724">
+<span class="eqno">(2)<a class="headerlink" href="#equation-63f77db2-6b06-45d0-97f1-8bf90224d724" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1/2} &amp;= y_i + \frac{\Delta t}{2} \, f(t_i, y_i) \\
 y_{i+1} &amp;= y_i + \Delta t \, f(t_i + \frac{\Delta t}{2}, y_{i+1/2})
 \end{align}\]</div>
 <p>For this ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8482acde-8fa2-4362-8b9d-d537bb738437">
-<span class="eqno">(3)<a class="headerlink" href="#equation-8482acde-8fa2-4362-8b9d-d537bb738437" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-31a6909b-d0d9-4f6f-9f1a-03399246c3f2">
+<span class="eqno">(3)<a class="headerlink" href="#equation-31a6909b-d0d9-4f6f-9f1a-03399246c3f2" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1/2} &amp;= y_i + \frac{\Delta t}{2} \, (-8 y_i) = y_i - 4 \Delta t \, y_i \\
 y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right) \right] \\
 &amp;= y_i - 8 \Delta t \, y_i + 32 \Delta t^2 \, y_i \\
 &amp;= y_i (1 - 8 \Delta t + 32 \Delta t^2)
 \end{align}\]</div>
 <p>So,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06d47dc0-4cf0-4339-8051-198dc11bf7ce">
-<span class="eqno">(4)<a class="headerlink" href="#equation-06d47dc0-4cf0-4339-8051-198dc11bf7ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b79ada91-9463-4998-814f-f62e9045a36a">
+<span class="eqno">(4)<a class="headerlink" href="#equation-b79ada91-9463-4998-814f-f62e9045a36a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = \frac{y_{i+1}}{y_i} = 1 - 8 \Delta t + 32 \Delta t^2
 \end{equation}\]</div>
 <p>b.) For stability, <span class="math notranslate nohighlight">\(|\sigma| \leq 1\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\Delta t = 0.2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18a41029-c0da-4987-b11d-13bcc642b4e0">
-<span class="eqno">(5)<a class="headerlink" href="#equation-18a41029-c0da-4987-b11d-13bcc642b4e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1ff08ce7-edd3-44dd-9ecb-505734cc09c1">
+<span class="eqno">(5)<a class="headerlink" href="#equation-1ff08ce7-edd3-44dd-9ecb-505734cc09c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = 1 - 8(0.2) + 32 (0.2)^2 = 0.68
 \end{equation}\]</div>
 <p>so <strong>stable</strong>.</p>
 <p><span class="math notranslate nohighlight">\(\Delta t = 0.4\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b93c9d8-870f-4ac9-b8c8-6bc77c2710be">
-<span class="eqno">(6)<a class="headerlink" href="#equation-8b93c9d8-870f-4ac9-b8c8-6bc77c2710be" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f0b5c308-5f08-415e-b019-4d25d8916016">
+<span class="eqno">(6)<a class="headerlink" href="#equation-f0b5c308-5f08-415e-b019-4d25d8916016" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = 1 - 8(0.4) + 32 (0.4)^2 = 2.92
 \end{equation}\]</div>
 <p>so <strong>unstable</strong>.</p>
@@ -492,8 +492,8 @@ y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right
 <section id="problem-2-second-order-backward-euler">
 <h2>Problem 2: Second-order Backward Euler<a class="headerlink" href="#problem-2-second-order-backward-euler" title="Permalink to this headline">#</a></h2>
 <p>Given the second-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b78b6b09-ca0c-4ec5-b619-10519c9ae79a">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b78b6b09-ca0c-4ec5-b619-10519c9ae79a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1d95f970-ee36-4050-9b99-1be0b83706c1">
+<span class="eqno">(7)<a class="headerlink" href="#equation-1d95f970-ee36-4050-9b99-1be0b83706c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2 y^{\prime\prime} + y^{\prime} + 4y = 3x
 \end{equation}\]</div>
 <p>a.) Find the recursion formulas (i.e., <span class="math notranslate nohighlight">\(y_{i+1} = \ldots\)</span>) for numerically solving this ODE using the backward Euler method. Clearly define/state any variable or function you use.</p>
@@ -502,37 +502,37 @@ y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right
 <section id="id1">
 <h3>Solution<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>a.) System of Backward Euler recursion formulas, for <span class="math notranslate nohighlight">\(y(x)\)</span> and <span class="math notranslate nohighlight">\(u(x) = y^{\prime}\)</span>, where <span class="math notranslate nohighlight">\(f(x,y,u) = dy/dx\)</span> and <span class="math notranslate nohighlight">\(g(x,y,u) = du/dx = y^{\prime\prime}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8382f791-64c7-4648-9d82-9fad2b9ac950">
-<span class="eqno">(8)<a class="headerlink" href="#equation-8382f791-64c7-4648-9d82-9fad2b9ac950" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-229ba33c-2591-49b3-ba5b-529d5c1241a0">
+<span class="eqno">(8)<a class="headerlink" href="#equation-229ba33c-2591-49b3-ba5b-529d5c1241a0" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}, u_{i+1}) = y_i + \Delta x \, u_{i+1} \\
 u_{i+1} &amp;= u_i + \Delta x \, g(x_{i+1}, y_{i+1}, u_{i+1}) = u_i + \Delta x \, \left( \frac{3}{2}x_{i+1} - \frac{1}{2} u_{i+1} - 2 y_{i+1} \right)
 \end{align}\]</div>
 <p>This form is implicit and cannot be used directly, so we need to solve the system of equations.</p>
 <p><em>There are two ways to approach this, that give an equivalent solution</em></p>
 <p><strong>Option 1:</strong> Use substitution and elimination to solve:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b6bf8ea-0012-4d9a-b633-8c899f9490b9">
-<span class="eqno">(9)<a class="headerlink" href="#equation-3b6bf8ea-0012-4d9a-b633-8c899f9490b9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2ef963ef-111a-43ba-85aa-d2b08f1d9627">
+<span class="eqno">(9)<a class="headerlink" href="#equation-2ef963ef-111a-43ba-85aa-d2b08f1d9627" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \left( y_i + \Delta x \, u_{i+1} \right) \\
 &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \, y_i - 2 \Delta x^2 \, u_{i+1} \\
 u_{i+1} \left( 1 + 2 \Delta x^2 + \frac{1}{2} \Delta x \right) &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i
 \end{align}\]</div>
 <p>Thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f2882aa-c9d0-4a8b-aaae-04475603de42">
-<span class="eqno">(10)<a class="headerlink" href="#equation-7f2882aa-c9d0-4a8b-aaae-04475603de42" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17d6d0f4-1364-4c8d-a0e7-341fd3c3614f">
+<span class="eqno">(10)<a class="headerlink" href="#equation-17d6d0f4-1364-4c8d-a0e7-341fd3c3614f" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + 2 \Delta x^2 + \frac{1}{2} \Delta x} \\
 y_{i+1} &amp;= y_i + \Delta x \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + 2 \Delta x^2 + \frac{1}{2} \Delta x}
 \end{align}\]</div>
 <p><strong>Option 2:</strong> Or, use Cramer’s rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c938c39c-23f7-4714-8842-1591e53ae0a4">
-<span class="eqno">(11)<a class="headerlink" href="#equation-c938c39c-23f7-4714-8842-1591e53ae0a4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dc405cb1-269b-4755-914a-5b3c95e8256b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-dc405cb1-269b-4755-914a-5b3c95e8256b" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} - \Delta x u_{i+1} &amp;= y_i \\
 2 \Delta x \, y_{i+1} + \left( 1 + \frac{1}{2} \Delta x \right) u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} \\
 \rightarrow \begin{bmatrix} 1 &amp; -\Delta x \\ 2 \Delta x &amp; \left( 1 + \frac{1}{2} \Delta x \right)\end{bmatrix} \begin{bmatrix} y_{i+1} \\ u_{i+1} \end{bmatrix} &amp;= 
 \begin{bmatrix} y_i \\ u_i + \frac{3}{2} \Delta x \, x_{i+1} \end{bmatrix}
 \end{align}\]</div>
 <p>Then,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93977d13-152a-4738-92a3-dee3677d9640">
-<span class="eqno">(12)<a class="headerlink" href="#equation-93977d13-152a-4738-92a3-dee3677d9640" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0d5a91f-c618-4d0d-8f7f-df3b5f21a930">
+<span class="eqno">(12)<a class="headerlink" href="#equation-a0d5a91f-c618-4d0d-8f7f-df3b5f21a930" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= \frac{y_i \left(1 + \frac{\Delta x}{2} \right) + \Delta x \left( u_i + \frac{3}{2} \Delta x \, x_{i+1} \right)}{1 + \frac{\Delta x}{2} + 2 \Delta x^2} \\
 u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + \frac{\Delta x}{2} + 2 \Delta x^2}
 \end{align}\]</div>
@@ -549,27 +549,27 @@ u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{
 <p>a.) What is the period and fundamental frequency of the input forcing function?</p>
 <p>b.) Is the periodic function <span class="math notranslate nohighlight">\(R(t)\)</span> odd, even, or neither?</p>
 <p>c.) Find the coefficients <span class="math notranslate nohighlight">\(a_0\)</span> and <span class="math notranslate nohighlight">\(a_n\)</span> of the Fourier series representation of <span class="math notranslate nohighlight">\(R(t)\)</span>. (For purposes of time, you do not need to find <span class="math notranslate nohighlight">\(b_n\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-506faf31-46bf-4d90-ad8c-158794286be3">
-<span class="eqno">(13)<a class="headerlink" href="#equation-506faf31-46bf-4d90-ad8c-158794286be3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e2bbed6-7313-4731-b1f3-db1e78164a39">
+<span class="eqno">(13)<a class="headerlink" href="#equation-9e2bbed6-7313-4731-b1f3-db1e78164a39" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos(n \omega t) + \sum_{n=1}^{\infty} b_n \sin(n \omega t) 
 \end{equation}\]</div>
 <section id="id2">
 <h3>Solution<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>a.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35474ba7-be50-4ed9-bd17-3aa0841f678b">
-<span class="eqno">(14)<a class="headerlink" href="#equation-35474ba7-be50-4ed9-bd17-3aa0841f678b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43ee3d64-26ad-4c93-ae6c-1515ef373b05">
+<span class="eqno">(14)<a class="headerlink" href="#equation-43ee3d64-26ad-4c93-ae6c-1515ef373b05" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T = 4\pi \quad \omega = \frac{2\pi}{T} = \frac{1}{2}
 \end{equation}\]</div>
 <p>b.) Neither.</p>
 <p>c.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6c14fc6-e061-4aeb-8b27-4b93cff1e7b5">
-<span class="eqno">(15)<a class="headerlink" href="#equation-f6c14fc6-e061-4aeb-8b27-4b93cff1e7b5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb6afec2-3be4-435d-ab3b-3ded66b9c7c7">
+<span class="eqno">(15)<a class="headerlink" href="#equation-bb6afec2-3be4-435d-ab3b-3ded66b9c7c7" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_0 &amp;= \frac{1}{T} \int_0^T f(t) dt = \frac{1}{4\pi} \left[ \int_0^{\pi} 0 dt + \int_{\pi}^{2\pi} 3 dt + \int_{2\pi}^{3\pi} 2 dt + \int_{3\pi}^{4\pi} 1 dt  \right] \\
 &amp;= \frac{1}{4\pi} \left[ 3 \pi + 2 \pi + 1 \pi \right] \\
 a_0 &amp;= \frac{3}{2}
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-33016703-01fa-4b9f-bbc6-3b381e8ef4e8">
-<span class="eqno">(16)<a class="headerlink" href="#equation-33016703-01fa-4b9f-bbc6-3b381e8ef4e8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8b04a693-8a1b-41c6-915b-bc92e618e722">
+<span class="eqno">(16)<a class="headerlink" href="#equation-8b04a693-8a1b-41c6-915b-bc92e618e722" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_n &amp;= \frac{2}{T} \int_0^T f(t) \cos(n \omega t) dt \\
 &amp;= \frac{2}{4\pi} \left[ \int_0^{\pi} 0 \cos \left(\frac{n t}{2}\right) dt + \int_{\pi}^{2\pi} 3 \cos \left(\frac{n t}{2}\right) dt + \int_{2\pi}^{3\pi} 2 \cos \left(\frac{n t}{2}\right) dt + \int_{3\pi}^{4\pi} 1 \cos \left(\frac{n t}{2}\right) dt  \right] \\
 &amp;\cdots \\
@@ -580,8 +580,8 @@ a_n &amp;= \frac{1}{n\pi} \left[ \sin\left(\frac{3 n \pi}{2}\right) - 3 \sin\lef
 <section id="problem-4-second-order-analytical">
 <h2>Problem 4: Second-order analytical<a class="headerlink" href="#problem-4-second-order-analytical" title="Permalink to this headline">#</a></h2>
 <p>The displacement <span class="math notranslate nohighlight">\(y(t)\)</span> of a harmonically forced mass-spring system is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-59f0ef9f-7200-49d8-a270-6b5477e34a78">
-<span class="eqno">(17)<a class="headerlink" href="#equation-59f0ef9f-7200-49d8-a270-6b5477e34a78" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d552ffb-5ea5-4425-8122-27123b763ea8">
+<span class="eqno">(17)<a class="headerlink" href="#equation-0d552ffb-5ea5-4425-8122-27123b763ea8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 8y^{\prime} + 16y = 6 e^{-4t}
 \end{equation}\]</div>
 <p>a.) For initial conditions <span class="math notranslate nohighlight">\(y(0)=0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = 2\)</span>, find the response of the system <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
@@ -589,40 +589,40 @@ y^{\prime\prime} + 8y^{\prime} + 16y = 6 e^{-4t}
 <section id="id3">
 <h3>Solution<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>a.) First, get the homogeneous solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82b3520d-5251-4d28-a220-4270a4acd867">
-<span class="eqno">(18)<a class="headerlink" href="#equation-82b3520d-5251-4d28-a220-4270a4acd867" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-518deac6-ac0b-4012-83ce-f6965008a3a6">
+<span class="eqno">(18)<a class="headerlink" href="#equation-518deac6-ac0b-4012-83ce-f6965008a3a6" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_H^{\prime\prime} + 8y_H^{\prime} + 16y_H &amp;= 0 \\
 \rightarrow \lambda^2 + 8 \lambda + 16 &amp;= 0 = (\lambda + 4)^2 \\
 \lambda &amp;= 4 \text{ (repeated)} \\
 \text{so } y_H &amp;= c_1 e^{-4t} + c_2 t e^{-4t}
 \end{align}\]</div>
 <p>Next, use the method of undetermined coefficients to get the inhomogeneous solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88a5b012-c1bc-413f-ac70-e14715b8ccbb">
-<span class="eqno">(19)<a class="headerlink" href="#equation-88a5b012-c1bc-413f-ac70-e14715b8ccbb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4d2ed048-bd27-435b-87c0-67fb47f80b7c">
+<span class="eqno">(19)<a class="headerlink" href="#equation-4d2ed048-bd27-435b-87c0-67fb47f80b7c" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{IH} &amp;= K t^2 e^{-4t} \\
 y_{IH}^{\prime} &amp;= K e^{-4t} \left( 2t - 4t^2 \right) \\
 y_{IH}^{\prime\prime} &amp;= K e^{-4t} \left( -8t + 2 - 8t + 16t^2 \right) \\
 \rightarrow K &amp;= 3 
 \end{align}\]</div>
 <p>Then, the general solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-829c3a03-8ceb-42fe-b54c-4522f4a25298">
-<span class="eqno">(20)<a class="headerlink" href="#equation-829c3a03-8ceb-42fe-b54c-4522f4a25298" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06c9fae4-11a6-489c-8a1a-004b039cd4fa">
+<span class="eqno">(20)<a class="headerlink" href="#equation-06c9fae4-11a6-489c-8a1a-004b039cd4fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = c_1 e^{-4t} + c_2 t e^{-4t} + 3 t^2 e^{-4t}
 \end{equation}\]</div>
 <p>Applying the initial conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-226bd253-bf0c-4d40-9418-48e7113e32fc">
-<span class="eqno">(21)<a class="headerlink" href="#equation-226bd253-bf0c-4d40-9418-48e7113e32fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-239fc69c-4624-49cf-ad39-48ce7be8c07c">
+<span class="eqno">(21)<a class="headerlink" href="#equation-239fc69c-4624-49cf-ad39-48ce7be8c07c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = 2 t e^{-4t} + 3 t^2 e^{-4t}
 \end{equation}\]</div>
 <p>b.) If <span class="math notranslate nohighlight">\(z_1 = y\)</span> and <span class="math notranslate nohighlight">\(z_2 = y^{\prime}\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d08be76-0c5a-4800-bbff-c670987627d3">
-<span class="eqno">(22)<a class="headerlink" href="#equation-7d08be76-0c5a-4800-bbff-c670987627d3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8972cdef-2785-4ff6-8b08-71a18d707a6d">
+<span class="eqno">(22)<a class="headerlink" href="#equation-8972cdef-2785-4ff6-8b08-71a18d707a6d" title="Permalink to this equation">#</a></span>\[\begin{align}
 z_1^{\prime} &amp;= z_2 \\
 z_2^{\prime} &amp;= y^{\prime\prime} = 6e^{-4t} - 8z_2 - 16z_1 = f(t, z_1, z_2)
 \end{align}\]</div>
 <p>Then, the recursion formulas are:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36be9d57-db8c-4397-8432-ecef8ef9efdd">
-<span class="eqno">(23)<a class="headerlink" href="#equation-36be9d57-db8c-4397-8432-ecef8ef9efdd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14a4acf6-3f88-44e5-a2fa-29e5fe7198f3">
+<span class="eqno">(23)<a class="headerlink" href="#equation-14a4acf6-3f88-44e5-a2fa-29e5fe7198f3" title="Permalink to this equation">#</a></span>\[\begin{align}
 z_{1, i+1} &amp;= z_{1,i} + \Delta t \, z_{2,i} \\
 z_{2, i+1} &amp;= z_{2, i} + \Delta t \left( 6 e^{-4t} - 8 z_{2,i} - 16 z_{1,i} \right)
 \end{align}\]</div>

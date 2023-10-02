@@ -455,15 +455,15 @@ document.write(`
 <section id="solution-by-direct-integration">
 <h2><span class="section-number">3.1.1. </span>Solution by direct integration<a class="headerlink" href="#solution-by-direct-integration" title="Permalink to this headline">#</a></h2>
 <p>If you have a 2nd-order ODE of this form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68879f15-cc1d-4760-8ac5-6533f15a4a26">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-68879f15-cc1d-4760-8ac5-6533f15a4a26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa422e76-7f95-4f1e-9e68-c0d6a4b49b02">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-fa422e76-7f95-4f1e-9e68-c0d6a4b49b02" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 y}{dx^2} = f(x)
 \end{equation}\]</div>
 <p>then you can solve by <strong>direct integration</strong>.</p>
 <p>For example, let’s say we are trying to solve for the deflection of a cantilever beam <span class="math notranslate nohighlight">\(y(x)\)</span> with a force <span class="math notranslate nohighlight">\(P\)</span> at the end, where <span class="math notranslate nohighlight">\(E\)</span> is the modulus and <span class="math notranslate nohighlight">\(I\)</span> is the moment of intertia, and the initial conditions are <span class="math notranslate nohighlight">\(y(0)=0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>:</p>
 <p><img alt="Cantilever beam with force at end" src="../../_images/cantilever.png" /></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f72a5fd2-c8b1-4c62-875e-e87c36f374a5">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-f72a5fd2-c8b1-4c62-875e-e87c36f374a5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a86b8ce6-5ae9-4324-b82f-baf0199e7b4c">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-a86b8ce6-5ae9-4324-b82f-baf0199e7b4c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{d^2 y}{dx^2} &amp;= \frac{-P (L-x)}{EI} \\
 \frac{d}{dx} \left(\frac{dy}{dx}\right) &amp;= \frac{-P}{EI} (L-x) \\
 \int d \left(\frac{dy}{dx}\right) &amp;= \frac{-P}{EI} \int (L-x) dx \\
@@ -472,8 +472,8 @@ y^{\prime} = \frac{dy}{dx} &amp;= \frac{-P}{EI} \left(Lx - \frac{x^2}{2}\right) 
 y(x) &amp;= \frac{-P}{EI} \left(\frac{L}{2} x^2 - \frac{1}{6} x^3\right) + C_1 x + C_2
 \end{align}\]</div>
 <p>That is our general solution; we can obtain the specific solution by applying our two initial conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac8e7f52-e2ad-4704-8143-c8863a79d6d7">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-ac8e7f52-e2ad-4704-8143-c8863a79d6d7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-757bce32-fa09-49be-b8e4-70531c273b32">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-757bce32-fa09-49be-b8e4-70531c273b32" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(0) &amp;= 0 = C_2 \\
 y^{\prime}(0) &amp;= 0 = C_1 \\
 \therefore y(x) &amp;= \frac{P}{EI} \left( \frac{x^3}{6} - \frac{L x^2}{2} \right)
@@ -482,14 +482,14 @@ y^{\prime}(0) &amp;= 0 = C_1 \\
 <section id="solution-by-substitution">
 <h2><span class="section-number">3.1.2. </span>Solution by substitution<a class="headerlink" href="#solution-by-substitution" title="Permalink to this headline">#</a></h2>
 <p>If we have a 2nd-order ODE of this form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b9ba0fe-33cf-47bd-abb2-fe669e227832">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-0b9ba0fe-33cf-47bd-abb2-fe669e227832" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4494f3d3-723f-4e68-89b5-433b16eb1083">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-4494f3d3-723f-4e68-89b5-433b16eb1083" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 y}{dx^2} = f(x, y^{\prime})
 \end{equation}\]</div>
 <p>then we can solve by <strong>substitution</strong>, meaning by substituting a new variable for <span class="math notranslate nohighlight">\(y^{\prime}\)</span>. (Notice that <span class="math notranslate nohighlight">\(y\)</span> itself does not show up in the ODE.)</p>
 <p>Let’s substitute <span class="math notranslate nohighlight">\(u\)</span> for <span class="math notranslate nohighlight">\(y^{\prime}\)</span> in the above ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04f52e6d-c2c9-4428-a353-eac96498c1eb">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-04f52e6d-c2c9-4428-a353-eac96498c1eb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bc35db9a-92bd-4e27-9a6f-3cbae9fb5477">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-bc35db9a-92bd-4e27-9a6f-3cbae9fb5477" title="Permalink to this equation">#</a></span>\[\begin{align}
 u &amp;= y^{\prime} \\
 u^{\prime} &amp;= y^{\prime\prime} \\
 \rightarrow u^{\prime} &amp;= f(f, u)
@@ -498,26 +498,26 @@ u^{\prime} &amp;= y^{\prime\prime} \\
 <section id="example-falling-object">
 <h3><span class="section-number">3.1.2.1. </span>Example: falling object<a class="headerlink" href="#example-falling-object" title="Permalink to this headline">#</a></h3>
 <p>For example, consider a falling mass where we are solving for the downward distance as a function of time, <span class="math notranslate nohighlight">\(y(t)\)</span>, that is experiencing the force of gravity downward and a drag force upward. It starts at some reference point so <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, and has a zero initial downward velocity: <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>. The governing equation is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bc5cac6-63d3-402e-aa90-3e8cebd8a2dd">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-3bc5cac6-63d3-402e-aa90-3e8cebd8a2dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-33b74138-4148-4b96-9a88-602af619213d">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-33b74138-4148-4b96-9a88-602af619213d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 m \frac{d^2 y}{dt^2} = mg - c \left( \frac{dy}{dt} \right)^2
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is the mass, <span class="math notranslate nohighlight">\(g\)</span> is acceleration due to gravity, and <span class="math notranslate nohighlight">\(c\)</span> is the drag proportionality constant.
 We can substitute <span class="math notranslate nohighlight">\(V\)</span> for <span class="math notranslate nohighlight">\(y^{\prime}\)</span>, which gives us a first-order ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79d4c6d4-4345-4190-8604-a4a7730a0030">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-79d4c6d4-4345-4190-8604-a4a7730a0030" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3c47b0e4-81b4-489c-8504-3e22010d4721">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-3c47b0e4-81b4-489c-8504-3e22010d4721" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{let} \quad \frac{dy}{dt} = V \\
 \rightarrow m \frac{dV}{dt} &amp;= mg - c V^2 \\
 \end{align}\]</div>
 <p>Then, we can solve this for <span class="math notranslate nohighlight">\(V(t)\)</span> using our initial condition for velocity <span class="math notranslate nohighlight">\(V(0) = 0\)</span>. Once we have that, we can integrate once more:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09b189ba-f0fa-4cff-b318-74aa2dfe5c4a">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-09b189ba-f0fa-4cff-b318-74aa2dfe5c4a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5dbc0c5-3889-4d32-a916-b973b3af60c5">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-b5dbc0c5-3889-4d32-a916-b973b3af60c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = \int V(t) dt
 \end{equation}\]</div>
 <p>and apply our initial condition for position, <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, to obtain <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
 <p>Here is the full process:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e401147-b1d6-4751-a51b-6ccf50823b6c">
-<span class="eqno">(3.9)<a class="headerlink" href="#equation-2e401147-b1d6-4751-a51b-6ccf50823b6c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dcf05fc5-74c6-4efe-b4d8-257f5c9ab37f">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-dcf05fc5-74c6-4efe-b4d8-257f5c9ab37f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dV}{dt} &amp;= g - \frac{c}{m} V^2 \\
 \frac{dV}{g - \frac{c}{m} V^2} &amp;= dt \\
 \frac{m}{c} \int \frac{dV}{a^2 - V^2} &amp;= \int dt = t + \bar{c}, \quad \text{where} \quad a = \sqrt{\frac{mg}{c}} \\
@@ -526,23 +526,23 @@ V &amp;= a \tanh \left( \frac{a c}{m} t + c_1 \right) \\
 \therefore V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t + c_1\right)
 \end{align}\]</div>
 <p>Applying the initial condition for velocity, <span class="math notranslate nohighlight">\(V(0) = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b72877d-e04f-4727-a9d7-2bab46d50d24">
-<span class="eqno">(3.10)<a class="headerlink" href="#equation-4b72877d-e04f-4727-a9d7-2bab46d50d24" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d5ae69ca-ae08-4212-8d4e-223e8ec5427b">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-d5ae69ca-ae08-4212-8d4e-223e8ec5427b" title="Permalink to this equation">#</a></span>\[\begin{align}
 V(0) &amp;= 0 = \sqrt{\frac{mg}{c}} \tanh \left(0 + c_1\right) \\
 \therefore c_1 &amp;= 0 \\
 V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t\right)
 \end{align}\]</div>
 <p>Then, to get <span class="math notranslate nohighlight">\(y(t)\)</span>, we just need to integrate once more:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a35e05cf-b3b7-49b9-b334-8f80697f509f">
-<span class="eqno">(3.11)<a class="headerlink" href="#equation-a35e05cf-b3b7-49b9-b334-8f80697f509f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b56065b1-4efb-4bb2-8aa9-bec5a96d4d0f">
+<span class="eqno">(3.11)<a class="headerlink" href="#equation-b56065b1-4efb-4bb2-8aa9-bec5a96d4d0f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dt} = V(t) &amp;= \sqrt{\frac{mg}{c}} \tanh \left(\sqrt{\frac{gc}{m}} t\right) \\
 \int dy &amp;= \sqrt{\frac{mg}{c}} \int \tanh \left(\sqrt{\frac{gc}{m}} t\right) dt \\
 y(t) &amp;= \sqrt{\frac{mg}{c}} \sqrt{\frac{m}{gc}} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right) + c_2 \\
 \rightarrow y(t) &amp;= \frac{m}{c} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right) + c_2
 \end{align}\]</div>
 <p>Finally, we can apply the initial condition for position, <span class="math notranslate nohighlight">\(y(0) = 0\)</span>, to get our solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e2dd55b-e4df-4246-bee4-b1a1ac5ffcf0">
-<span class="eqno">(3.12)<a class="headerlink" href="#equation-7e2dd55b-e4df-4246-bee4-b1a1ac5ffcf0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-057a7777-f79c-43ab-97d5-e5446e396dcb">
+<span class="eqno">(3.12)<a class="headerlink" href="#equation-057a7777-f79c-43ab-97d5-e5446e396dcb" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(0) &amp;= 0 = \frac{m}{c} \log\left(\cosh\left(0\right)\right) + c_2 = c_2 \\
 \rightarrow c_2 &amp;= 0 \\
 y(t) &amp;= \frac{m}{c} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right)
@@ -551,23 +551,23 @@ y(t) &amp;= \frac{m}{c} \log\left(\cosh\left(\sqrt{\frac{gc}{m}} t\right)\right)
 <section id="example-catenary-problem">
 <h3><span class="section-number">3.1.2.2. </span>Example: catenary problem<a class="headerlink" href="#example-catenary-problem" title="Permalink to this headline">#</a></h3>
 <p>The catenary problem describes the shape of a hanging chain or rope fixed between two points. (It was also a favorite of one of my professors, <a class="reference external" href="https://en.wikipedia.org/wiki/Joseph_M._Prahl">Joe Prahl</a>, and I like to teach it as an example in his honor.) The downward displacement of the hanging string/chain/rope as a function of horizontal position, <span class="math notranslate nohighlight">\(y(x)\)</span>, is governed by the equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0701159f-81ce-4ee4-b41b-9538f3129e71">
-<span class="eqno">(3.13)<a class="headerlink" href="#equation-0701159f-81ce-4ee4-b41b-9538f3129e71" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2004210-7b3a-4904-b718-82f9586ee870">
+<span class="eqno">(3.13)<a class="headerlink" href="#equation-e2004210-7b3a-4904-b718-82f9586ee870" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} = \sqrt{1 + (y^{\prime})^2}
 \end{equation}\]</div>
 <p><img alt="Catenary problem (hanging rope/chain)" src="../../_images/catenary.png" /></p>
 <p>This is actually a <strong>boundary value problem</strong>, with the boundary conditions for the displacement at one side <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and that the slope is zero in the middle: <span class="math notranslate nohighlight">\(\frac{dy}{dx}\left(\frac{L}{2}\right) = 0\)</span>. (Please note that I have skipped the derivation of the governing equation, and left some details out.)</p>
 <p>We can solve this via substitution, by letting a new variable <span class="math notranslate nohighlight">\(u = y^{\prime}\)</span>; then, <span class="math notranslate nohighlight">\(u^{\prime} = \frac{du}{dx} = y^{\prime\prime}\)</span>. This gives is a first-order ODE, which we can integrate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a81cb502-f7c5-4516-b5ae-ce14fd5b0fd6">
-<span class="eqno">(3.14)<a class="headerlink" href="#equation-a81cb502-f7c5-4516-b5ae-ce14fd5b0fd6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eda73e0a-8bc4-47b9-8ab6-7eb0857595b5">
+<span class="eqno">(3.14)<a class="headerlink" href="#equation-eda73e0a-8bc4-47b9-8ab6-7eb0857595b5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{du}{dx} &amp;= \sqrt{1 + u^2} \\
 \int \frac{du}{\sqrt{1 + u^2}} &amp;= \int dx \\
 \sinh^{-1}(u) &amp;= x + c_1, \quad \text{where } \sinh(x) = \frac{e^x - e^{-x}}{2} \\
 u(x) &amp;= \sinh(x + c_1)
 \end{align}\]</div>
 <p>Then, we can integrate once again to get <span class="math notranslate nohighlight">\(y(x)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-543ef49b-3d04-45da-8254-86f156beb5fe">
-<span class="eqno">(3.15)<a class="headerlink" href="#equation-543ef49b-3d04-45da-8254-86f156beb5fe" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9b4f0b91-8b9a-4b14-b66a-da4c8d24b498">
+<span class="eqno">(3.15)<a class="headerlink" href="#equation-9b4f0b91-8b9a-4b14-b66a-da4c8d24b498" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dx} &amp;= u(x) = \sinh(x + c_1) \\
 \int dy &amp;= \int \sinh(x + c_1) dx = \int \left(\sinh(x)\cosh(c_1) + \cosh(x)\sinh(c_1)\right)dx \\
 y(x) &amp;= \cosh(x)\cosh(c_1) + \sinh(x)\sinh(c_1) + c_2 \\
@@ -575,8 +575,8 @@ y(x) &amp;= \cosh(x)\cosh(c_1) + \sinh(x)\sinh(c_1) + c_2 \\
 \end{align}\]</div>
 <p>This is the general solution to the catenary problem, and applies to any boundary conditions.</p>
 <p>For our specific case, we can apply the boundary conditions and find the particular solution, though it involves some algebra…:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fd08216-8873-454f-a7e7-8e92e816d096">
-<span class="eqno">(3.16)<a class="headerlink" href="#equation-5fd08216-8873-454f-a7e7-8e92e816d096" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a05d3ca4-c695-4b18-bef5-288256f8824f">
+<span class="eqno">(3.16)<a class="headerlink" href="#equation-a05d3ca4-c695-4b18-bef5-288256f8824f" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(0) &amp;= 0 = \cosh(c_1) + c_2 \\
 \frac{dy}{dx}\left(\frac{L}{2}\right) &amp;= u(0) = \sinh \left(\frac{L}{2} + c_1\right) \\
 \rightarrow c_1 &amp;= -\frac{L}{2} \\
@@ -584,8 +584,8 @@ y(0) &amp;= 0 = \cosh(c_1) + c_2 \\
 \rightarrow c_2 &amp;= -\cosh\left( -\frac{L}{2} \right) = -\cosh\left(\frac{L}{2} \right)
 \end{align}\]</div>
 <p>So, the overall solution for the catenary problem with the given boundary conditions is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-08fe18bc-e2f6-41f0-a92d-8f0535af0603">
-<span class="eqno">(3.17)<a class="headerlink" href="#equation-08fe18bc-e2f6-41f0-a92d-8f0535af0603" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-499d5b87-e70f-459d-a578-007b99ce3e7a">
+<span class="eqno">(3.17)<a class="headerlink" href="#equation-499d5b87-e70f-459d-a578-007b99ce3e7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = \cosh \left(x - \frac{L}{2}\right) - \cosh\left( \frac{L}{2} \right)
 \end{equation}\]</div>
 <p>Let’s see what this looks like:</p>
@@ -605,13 +605,13 @@ y(x) = \cosh \left(x - \frac{L}{2}\right) - \cosh\left( \frac{L}{2} \right)
 </div>
 </div>
 <p>Please note that I’ve made some simplifications in the above work, and skipped the details of how the ODE is derived. In general, the solution for the shape is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26c7a8ec-403c-40b0-999d-cfbdfea8dcc9">
-<span class="eqno">(3.18)<a class="headerlink" href="#equation-26c7a8ec-403c-40b0-999d-cfbdfea8dcc9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c52093e-3074-4d56-9b6f-16d362eeb567">
+<span class="eqno">(3.18)<a class="headerlink" href="#equation-8c52093e-3074-4d56-9b6f-16d362eeb567" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = C \cosh \frac{x + c_1}{C} + c_2
 \end{equation}\]</div>
 <p>where you would solve for the constants <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, and <span class="math notranslate nohighlight">\(c_2\)</span> using the constraints:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb09875a-11fe-4eb1-8ad0-b2e5d8251639">
-<span class="eqno">(3.19)<a class="headerlink" href="#equation-fb09875a-11fe-4eb1-8ad0-b2e5d8251639" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d8ff9787-a5a1-416c-9eec-d84dedd0992f">
+<span class="eqno">(3.19)<a class="headerlink" href="#equation-d8ff9787-a5a1-416c-9eec-d84dedd0992f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_{x_a}^{x_b} \sqrt{1 + (y^{\prime})^2} dx &amp;= L \\
 y(x_a) &amp;= y_a \\
 y(x_b) &amp;= y_b \;,
@@ -623,8 +623,8 @@ y(x_b) &amp;= y_b \;,
 <section id="homogeneous-2nd-order-odes">
 <h2><span class="section-number">3.1.3. </span>Homogeneous 2nd-order ODEs<a class="headerlink" href="#homogeneous-2nd-order-odes" title="Permalink to this headline">#</a></h2>
 <p>An important category of 2nd-order ODEs are those that look like</p>
-<div class="amsmath math notranslate nohighlight" id="equation-924318af-7bd9-4c12-9b7e-55f9a2e0ba6b">
-<span class="eqno">(3.20)<a class="headerlink" href="#equation-924318af-7bd9-4c12-9b7e-55f9a2e0ba6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-78f8f134-0278-41cc-84ce-6c3ecffce492">
+<span class="eqno">(3.20)<a class="headerlink" href="#equation-78f8f134-0278-41cc-84ce-6c3ecffce492" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
 \end{equation}\]</div>
 <p>“Homogeneous” means that the ODE is unforced; that is, the right-hand side is zero.</p>
@@ -653,8 +653,8 @@ y^{\prime\prime} + p(x) y^{\prime} + q(x) y = 0
 <section id="reduction-of-order">
 <h3><span class="section-number">3.1.3.4. </span>Reduction of order:<a class="headerlink" href="#reduction-of-order" title="Permalink to this headline">#</a></h3>
 <p>If <span class="math notranslate nohighlight">\(y_1\)</span> is known, we can get <span class="math notranslate nohighlight">\(y_2\)</span> by <strong>reduction of order</strong>. Let <span class="math notranslate nohighlight">\(y_2 = u y_1\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> is some unknown function of <span class="math notranslate nohighlight">\(x\)</span>. Then, put <span class="math notranslate nohighlight">\(y_2\)</span> into the ODE <span class="math notranslate nohighlight">\(y^{\prime}{\prime} + p(x) y^{\prime} + q(x) y = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6be9308-590b-409e-9da4-6b6e686b47f9">
-<span class="eqno">(3.21)<a class="headerlink" href="#equation-b6be9308-590b-409e-9da4-6b6e686b47f9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9ecc5cab-2024-486d-bb99-d8f0356b607f">
+<span class="eqno">(3.21)<a class="headerlink" href="#equation-9ecc5cab-2024-486d-bb99-d8f0356b607f" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_2 &amp;= u y_1 \\
 y_2^{\prime} &amp;= u y_1^{\prime} + u^{\prime} y_1 \\
 y_2^{\prime\prime} &amp;= 2 u^{\prime} y_1^{\prime} + u^{\prime\prime} y_1 + u y_1^{\prime\prime} \\
@@ -662,8 +662,8 @@ y_2^{\prime\prime} &amp;= 2 u^{\prime} y_1^{\prime} + u^{\prime\prime} y_1 + u y
 \text{or, } u^{\prime\prime} &amp;= - \left( g(x) \right) u^{\prime}
 \end{align}\]</div>
 <p>Now, we have an ODE with only <span class="math notranslate nohighlight">\(u^{\prime\prime}\)</span>, <span class="math notranslate nohighlight">\(u^{\prime}\)</span>, and some function <span class="math notranslate nohighlight">\(g(x)\)</span>—so we can solve by substitution! Let <span class="math notranslate nohighlight">\(u^{\prime} = v\)</span>, and then we have <span class="math notranslate nohighlight">\(v^{\prime} = -g(x) v\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af3c15d9-37c8-4f1a-9de7-645c16a47b80">
-<span class="eqno">(3.22)<a class="headerlink" href="#equation-af3c15d9-37c8-4f1a-9de7-645c16a47b80" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d2e5b6ea-0baf-460b-884c-796cb03b89b8">
+<span class="eqno">(3.22)<a class="headerlink" href="#equation-d2e5b6ea-0baf-460b-884c-796cb03b89b8" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dv}{dx} &amp;= - \left( p(x) + \frac{2 y_1^{\prime}}{y_1} \right) v \\
 \int \frac{dv}{v} &amp;= - \int \left(p(x) + \frac{2 y_1^{\prime}}{y_1} \right) dx \\
 \text{Recall } 2 \frac{d}{dx} \left( \ln y_1 \right) &amp;= 2 \frac{y_1^{\prime}}{y_1} \\
@@ -678,8 +678,8 @@ y_2^{\prime\prime} &amp;= 2 u^{\prime} y_1^{\prime} + u^{\prime\prime} y_1 + u y
 <li><p>Get <span class="math notranslate nohighlight">\(y_2\)</span>: <span class="math notranslate nohighlight">\(y_2 = u y_1\)</span></p></li>
 </ol>
 <p>Here’s an example, where we know one part of the solution <span class="math notranslate nohighlight">\(y_1 = e^{-x}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16a4191d-c27d-4d2e-ab3a-da4d3dc6bcfb">
-<span class="eqno">(3.23)<a class="headerlink" href="#equation-16a4191d-c27d-4d2e-ab3a-da4d3dc6bcfb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-693826fe-f5e8-4248-942a-9ac6dac1834e">
+<span class="eqno">(3.23)<a class="headerlink" href="#equation-693826fe-f5e8-4248-942a-9ac6dac1834e" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime\prime} + 2 y^{\prime} + y &amp;= 0 \\
 \text{Step 1:} \quad v = \frac{\exp \left( -\int 2dx \right)}{ \left(e^{-x}\right)^2} = \frac{e^{-2x}}{e^{-2x}} &amp;= 1 \\
 \text{Step 2:} \quad u = \int v dx = \int 1 dx &amp;= x \\

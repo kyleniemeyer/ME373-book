@@ -448,27 +448,27 @@ document.write(`
 </div>
 </div>
 <p>The classic example of an elliptic PDE is <strong>Laplace’s equation</strong> (yep, the same Laplace that gave us the Laplace transform), which in two dimensions for a variable <span class="math notranslate nohighlight">\(u(x,y)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bd4f8af-2b4c-445e-936f-429dea52d0dd">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-5bd4f8af-2b4c-445e-936f-429dea52d0dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-507a90b8-c554-4927-83af-474136f9b094">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-507a90b8-c554-4927-83af-474136f9b094" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nabla\)</span> is del, or nabla, and represents the gradient operator: <span class="math notranslate nohighlight">\(\nabla = \frac{\partial}{\partial x} + \frac{\partial}{\partial y}\)</span>.</p>
 <p>Laplace’s equation shows up in a number of physical problems, including heat transfer, fluid dynamics, and electrostatics. For example, the heat equation for conduction in two dimensions is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-249f707d-2400-48c9-a52c-7724f8f1268c">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-249f707d-2400-48c9-a52c-7724f8f1268c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47dcd7d1-41a7-4a8a-8774-5a9a6bc7619b">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-47dcd7d1-41a7-4a8a-8774-5a9a6bc7619b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial u}{\partial t} = \alpha \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u(x,y,t)\)</span> is temperature and <span class="math notranslate nohighlight">\(\alpha\)</span> is thermal diffusivity. Steady-state heat transfer (meaning after any initial transient period) is then described by Laplace’s equation.</p>
 <p>A related elliptic PDE is <strong>Poisson’s equation</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7366b6e3-6c7b-4302-9911-737467efaa70">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-7366b6e3-6c7b-4302-9911-737467efaa70" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e82776ab-8020-466c-84aa-f4bd6462135d">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-e82776ab-8020-466c-84aa-f4bd6462135d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \nabla^2 u = f(x,y) \;,
 \end{equation}\]</div>
 <p>which also appears in multiple physical problems—most notably, when solving for pressure in the Navier–Stokes equations.</p>
 <p>To numerically solve these equations, and any elliptic PDE, we can use finite differences, where we replace the continuous <span class="math notranslate nohighlight">\(x,y\)</span> domain with a discrete grid of points. This is similar to what we did with boundary-value problems in one dimension—but now we have two dimensions.</p>
 <p>To approximate the second derivatives in Laplace’s equation, we can use central differences in both the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, applied around the <span class="math notranslate nohighlight">\(u_{i,j}\)</span> point:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b91ffa2-54bf-43bb-8bbf-bc8c272846dd">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-3b91ffa2-54bf-43bb-8bbf-bc8c272846dd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6f99b17a-a9a4-4444-b041-e2e745f30a8c">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-6f99b17a-a9a4-4444-b041-e2e745f30a8c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{\partial^2 u}{\partial x^2} &amp;\approx \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} \\
 \frac{\partial^2 u}{\partial y^2} &amp;\approx \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2}
 \end{align}\]</div>
@@ -482,25 +482,25 @@ In other words, <span class="math notranslate nohighlight">\(x_i = (i-1) \Delta 
 </figcaption>
 </figure>
 <p>Applying these finite differences gives us an approximation for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-baaf54cd-7243-495e-8884-4f672d2b8cc2">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-baaf54cd-7243-495e-8884-4f672d2b8cc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e537f55-38ff-4fa2-a515-7d2d7a34d40c">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-9e537f55-38ff-4fa2-a515-7d2d7a34d40c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} + \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2} = 0 \;.
 \end{equation}\]</div>
 <p>If we use a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, then we can simplify to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ef4134b4-9485-469a-8fc2-833723868139">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-ef4134b4-9485-469a-8fc2-833723868139" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e292c0b9-3c09-4388-a423-a6d976598e43">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-e292c0b9-3c09-4388-a423-a6d976598e43" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <section id="example-heat-transfer-in-a-square-plate">
 <h2><span class="section-number">5.1.1. </span>Example: heat transfer in a square plate<a class="headerlink" href="#example-heat-transfer-in-a-square-plate" title="Permalink to this headline">#</a></h2>
 <p>As an example, let’s consider the problem of steady-state heat transfer in a square solid object. If <span class="math notranslate nohighlight">\(u(x,y)\)</span> is temperature, then this is described by Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3942b726-f1ce-4f70-bc13-6c02c64d6a29">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-3942b726-f1ce-4f70-bc13-6c02c64d6a29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f64316a5-340f-4d53-912c-8d62d2595111">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-f64316a5-340f-4d53-912c-8d62d2595111" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>and we can solve this using finite differences. Using a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, Laplace’s equation gives us a recursion formula that relates the values at neighboring points:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-138d18f1-4df2-49b0-9088-fa01937f9583">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-138d18f1-4df2-49b0-9088-fa01937f9583" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b0295791-9abe-4bb2-bfc4-3ae217a82d14">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-b0295791-9abe-4bb2-bfc4-3ae217a82d14" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Consider a case where the square has sides of length <span class="math notranslate nohighlight">\(L\)</span>, and the boundary conditions are that the temperature is fixed at 100 on the left, right, and bottom sides, and fixed at 0 on the top.
@@ -519,8 +519,8 @@ The following figures show the example problem, and the grid of points we’ll u
 </figcaption>
 </figure>
 <p>Using the above recursion formula, we can write an equation for each of the nine unknown points (in the interior, not the boundary points):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f8a2981-c663-4a5d-a174-a5e49d377692">
-<span class="eqno">(5.10)<a class="headerlink" href="#equation-4f8a2981-c663-4a5d-a174-a5e49d377692" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8a0eb028-a3ea-4781-a561-e43f789628db">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-8a0eb028-a3ea-4781-a561-e43f789628db" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{0,0} &amp;= 100 \\
 u_{1,0} &amp;= 100 \\
 u_{2,0} &amp;= 100 \\
@@ -533,8 +533,8 @@ u_{2,2} &amp;= 100
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{i,j}\)</span> are the unknowns. Note that in this we used the side boundary condition values for the corner points <span class="math notranslate nohighlight">\(u_{0,2}\)</span> and <span class="math notranslate nohighlight">\(u_{2,2}\)</span>, rather than the top value. (In reality this would represent a discontinuity in temperature, so these aren’t very realistic boundary conditions.)</p>
 <p>This is a system of linear equations, that we can represent as a matrix-vector product:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01f49c12-9df3-4689-b092-bc8386d27649">
-<span class="eqno">(5.11)<a class="headerlink" href="#equation-01f49c12-9df3-4689-b092-bc8386d27649" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d66464ea-849d-40ee-b019-e9075e85efe9">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-d66464ea-849d-40ee-b019-e9075e85efe9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} 
 1 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
@@ -598,8 +598,8 @@ For <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>, we had to 
 </div>
 </div>
 <p>This gives us the values for temperature at each of the nine points. In this example, we really only have one unknown temperature: <span class="math notranslate nohighlight">\(u_{1,1}\)</span>, located in the middle. Does the value given make sense? We can check by rearranging the recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c207736-7df1-41f7-8dda-8b8c0f603b42">
-<span class="eqno">(5.12)<a class="headerlink" href="#equation-2c207736-7df1-41f7-8dda-8b8c0f603b42" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-51752966-fec6-4f57-b2ff-5401e358d164">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-51752966-fec6-4f57-b2ff-5401e358d164" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i,j} = \frac{u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1}}{4} \;,
 \end{equation}\]</div>
 <p>which shows that in such problems the value of the middle point should be the average of the four surrounding points. This matches the value of 75 found above.</p>
@@ -660,8 +660,8 @@ u_{i,j} = \frac{u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1}}{4} \;,
 </figcaption>
 </figure>
 <p>We want to convert the rows and columns of <span class="math notranslate nohighlight">\(u_{i,j}\)</span> points defined by column and row index into a single column array using a different index, <span class="math notranslate nohighlight">\(k\)</span> (this choice is arbitrary):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6373435a-a3ed-4ece-bec8-8855c411809f">
-<span class="eqno">(5.13)<a class="headerlink" href="#equation-6373435a-a3ed-4ece-bec8-8855c411809f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-03de1758-a2d2-413e-9d30-8f1abe0476a1">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-03de1758-a2d2-413e-9d30-8f1abe0476a1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} u_{0,0} \\ u_{1,0} \\ u_{2,0} \\ \vdots \\ u_{n-1,0} \\
 u_{0,1} \\ u_{1,1} \\ u_{2,1} \\ \vdots \\ u_{n-1, 1} \\ u_{0,2} \\ \vdots \\
 u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
@@ -669,8 +669,8 @@ u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> refers to the index used in that array.</p>
 <p>To do this mapping, we can use this formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad3262cb-6503-4f4d-acef-3a4c9f36a613">
-<span class="eqno">(5.14)<a class="headerlink" href="#equation-ad3262cb-6503-4f4d-acef-3a4c9f36a613" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-50d2e2db-a2a1-49cf-85b0-1ddeb03d807a">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-50d2e2db-a2a1-49cf-85b0-1ddeb03d807a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{i,j} = j n + i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k_{i,j}\)</span> refers to the 1D index <span class="math notranslate nohighlight">\(k\)</span> mapped from the 2D indices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -682,14 +682,14 @@ k_{i,j} = j n + i
 </figure>
 <p>For example, in this <span class="math notranslate nohighlight">\(3\times 3\)</span> grid, where <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(m=3\)</span>, consider the point where <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(j=1\)</span> (the point right in the center).
 Using our formula,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca384872-9eb2-45bb-b670-c42977768f53">
-<span class="eqno">(5.15)<a class="headerlink" href="#equation-ca384872-9eb2-45bb-b670-c42977768f53" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-49c9e28f-12fb-442a-8473-721488fdc2de">
+<span class="eqno">(5.15)<a class="headerlink" href="#equation-49c9e28f-12fb-442a-8473-721488fdc2de" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{1,1} = (1) 3 + 1 = 4
 \end{equation}\]</div>
 <p>which matches what we can visually confirm: the fifth point, which would have index 4.</p>
 <p>Using that mapping, we can also identify the 1D indices associated with the points surrounding location <span class="math notranslate nohighlight">\((i,j)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e088ed3-d0f0-4e1c-8088-e84a8b7aa040">
-<span class="eqno">(5.16)<a class="headerlink" href="#equation-0e088ed3-d0f0-4e1c-8088-e84a8b7aa040" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb73ffc6-abc8-44d2-97d1-0ec7b29c2bad">
+<span class="eqno">(5.16)<a class="headerlink" href="#equation-bb73ffc6-abc8-44d2-97d1-0ec7b29c2bad" title="Permalink to this equation">#</a></span>\[\begin{align}
 k_{i-1,j} &amp;= j n + i - 1 \\
 k_{i+1,j} &amp;= j n + i + 1 \\
 k_{i,j-1} &amp;= (j-1)n + i \\
@@ -776,27 +776,27 @@ k_{i,j+1} &amp;= (j+1) n + i
 </figcaption>
 </figure>
 <p>For example, let’s say that at the upper boundary, the derivative of temperature is zero:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7274831e-ffcd-4783-a926-744b3476fc71">
-<span class="eqno">(5.17)<a class="headerlink" href="#equation-7274831e-ffcd-4783-a926-744b3476fc71" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e5f8b639-57af-4292-b870-0a794ed63204">
+<span class="eqno">(5.17)<a class="headerlink" href="#equation-e5f8b639-57af-4292-b870-0a794ed63204" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left. \frac{\partial u}{\partial y} \right|_{\text{boundary}} = 0
 \end{equation}\]</div>
 <p>Let’s consider this boundary condition applied at the point shown, <span class="math notranslate nohighlight">\(u_{2,3}\)</span>.
 We can approximate this derivative using a central difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa9ed5ae-1d12-4a67-9384-a4aba84b6834">
-<span class="eqno">(5.18)<a class="headerlink" href="#equation-aa9ed5ae-1d12-4a67-9384-a4aba84b6834" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8406212b-2b9d-4d7d-a570-4bc98c334a56">
+<span class="eqno">(5.18)<a class="headerlink" href="#equation-8406212b-2b9d-4d7d-a570-4bc98c334a56" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{u_{2,3}}{\partial y} \approx \frac{u_{2,4} - u_{2,2}}{\Delta x} &amp;= 0 \\
 u_{2,4} &amp;= u_{2,2}
 \end{align}\]</div>
 <p>This tells us the value of the point above the boundary, <span class="math notranslate nohighlight">\(u_{2,4}\)</span>; however, this point is a “ghost” or imaginary point located outside the boundary, so we don’t really care about its value. Instead, we can use this relationship to give us a usable equation for the boundary point, by incorporating it into the normal recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83d3b799-d05a-49dc-b2f7-1c355e340337">
-<span class="eqno">(5.19)<a class="headerlink" href="#equation-83d3b799-d05a-49dc-b2f7-1c355e340337" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6fca6a80-69df-46ca-9e18-612a71c342d1">
+<span class="eqno">(5.19)<a class="headerlink" href="#equation-6fca6a80-69df-46ca-9e18-612a71c342d1" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{1,3} + u_{3,3} + u_{2,4} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 u_{1,3} + u_{3,3} + u_{2,2} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 \rightarrow u_{1,3} + u_{3,3} + 2 u_{2,2} - 4u_{2,3} &amp;= 0
 \end{align}\]</div>
 <p>The recursion formula for points along the upper boundary would then become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f758365c-7c7d-464a-978e-122960aa4b29">
-<span class="eqno">(5.20)<a class="headerlink" href="#equation-f758365c-7c7d-464a-978e-122960aa4b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a0f2361-7fc3-4d40-adea-a922f3b9cfa4">
+<span class="eqno">(5.20)<a class="headerlink" href="#equation-2a0f2361-7fc3-4d40-adea-a922f3b9cfa4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Now let’s try solving the above example, but with <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial y} = 0\)</span> at the top boundary and <span class="math notranslate nohighlight">\(u = 0\)</span> at the bottom boundary:</p>
@@ -970,7 +970,7 @@ u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7f711f2b201482a2add484c3f6eb0f8c7b8b4ac8f329a7b994262c6279a8fdf8.png" src="../../_images/7f711f2b201482a2add484c3f6eb0f8c7b8b4ac8f329a7b994262c6279a8fdf8.png" />
+<img alt="../../_images/dac150d470553d11c7c50e1bc6da50b65579865babfe54328f35fac255180845.png" src="../../_images/dac150d470553d11c7c50e1bc6da50b65579865babfe54328f35fac255180845.png" />
 </div>
 </div>
 <p>After about 100 points/unknowns, the cost begins increasing exponentially with the number of points, somewhere between quadratic (<span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span>) and cubic (<span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>).</p>
@@ -991,8 +991,8 @@ u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
 <li><p>Check for convergence: is <span class="math notranslate nohighlight">\(\epsilon\)</span> less than some tolerance, such as <span class="math notranslate nohighlight">\(10^{-6}\)</span>? Where <span class="math notranslate nohighlight">\(\epsilon = \max \left| u_{i,j} - u_{i,j}^{\text{old}} \right|\)</span>. If no, then return to step 2 and repeat.</p></li>
 </ol>
 <p>More formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f107fe8-72ee-4a76-9949-50f4130a3366">
-<span class="eqno">(5.21)<a class="headerlink" href="#equation-4f107fe8-72ee-4a76-9949-50f4130a3366" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d30347d6-2ce8-4713-9424-f9ecdf6cf5e9">
+<span class="eqno">(5.21)<a class="headerlink" href="#equation-d30347d6-2ce8-4713-9424-f9ecdf6cf5e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1002,8 +1002,8 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1b49005-ab33-4410-8d9c-cc92ed33092f">
-<span class="eqno">(5.22)<a class="headerlink" href="#equation-d1b49005-ab33-4410-8d9c-cc92ed33092f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b024adc3-c769-4354-8744-cf8d46a5bb6e">
+<span class="eqno">(5.22)<a class="headerlink" href="#equation-b024adc3-c769-4354-8744-cf8d46a5bb6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>
@@ -1126,13 +1126,13 @@ Number of iterations: 317
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">num_pts_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_points&#39;</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">times_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 
-<span class="nn">Cell In[12], line 35,</span> in <span class="ni">heat_equation_jacobi</span><span class="nt">(h)</span>
+<span class="nn">Cell In[12], line 34,</span> in <span class="ni">heat_equation_jacobi</span><span class="nt">(h)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
-<span class="ne">---&gt; </span><span class="mi">35</span> <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="ne">---&gt; </span><span class="mi">34</span> <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
 <span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="c1"># this is the left boundary</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1144,8 +1144,8 @@ Number of iterations: 317
 <h3><span class="section-number">5.1.5.2. </span>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h3>
 <p>The Gauss-Seidel method is very similar to the Jacobi method, but with one important difference: rather than using all old values to calculate the new values, incorporate updated values as they are available. Because the method incorporates newer information more quickly, it tends to converge faster (meaning, with fewer iterations) than the Jacobi method.</p>
 <p>Formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37dd69c1-9dd7-4d08-88b5-064a4afea719">
-<span class="eqno">(5.23)<a class="headerlink" href="#equation-37dd69c1-9dd7-4d08-88b5-064a4afea719" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a018c961-a6be-4a53-ac34-0acdef7dcb76">
+<span class="eqno">(5.23)<a class="headerlink" href="#equation-a018c961-a6be-4a53-ac34-0acdef7dcb76" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1155,8 +1155,8 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d1cc2d6-80a8-49dd-9051-149781abc34f">
-<span class="eqno">(5.24)<a class="headerlink" href="#equation-9d1cc2d6-80a8-49dd-9051-149781abc34f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8813529-a934-44a6-adc8-a422163f9360">
+<span class="eqno">(5.24)<a class="headerlink" href="#equation-d8813529-a934-44a6-adc8-a422163f9360" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} - \sum_{j =i+1}^n a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>

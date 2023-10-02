@@ -428,8 +428,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="fourier-series">
 <h1><span class="section-number">3.4. </span>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">#</a></h1>
 <p>Fourier series are a method we can use to solve inhomogeneous 2nd-order ODEs of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53668e9e-1e1b-4760-9776-785f89fba0d5">
-<span class="eqno">(3.72)<a class="headerlink" href="#equation-53668e9e-1e1b-4760-9776-785f89fba0d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ce0340f-fdec-43e0-9b24-630329b6607e">
+<span class="eqno">(3.73)<a class="headerlink" href="#equation-7ce0340f-fdec-43e0-9b24-630329b6607e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + p(t) y^{\prime} + q(t) y = r(t) \;,
 \end{equation}\]</div>
 <p>where the forcing function <span class="math notranslate nohighlight">\(r(t)\)</span> is periodic. This means looking like one of these examples:</p>
@@ -486,8 +486,8 @@ y^{\prime\prime} + p(t) y^{\prime} + q(t) y = r(t) \;,
 <p>(Actually, as we’ll see later, we can use a Fourier series to represent generic forcing function!)</p>
 <p>Fourier series have been around a while, ever since in 1790 Jean-Baptiste Joseph Fourier found that generic periodic functions could be represented by a sum of series of sin and cos functions, harmonically related by frequency.</p>
 <p>In general, a Fourier series represents a function <span class="math notranslate nohighlight">\(f(t)\)</span> by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd7397d4-4d3b-4685-be42-141348def13b">
-<span class="eqno">(3.73)<a class="headerlink" href="#equation-fd7397d4-4d3b-4685-be42-141348def13b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53c4634e-6acf-45c5-aa7b-ab84f8df9e77">
+<span class="eqno">(3.74)<a class="headerlink" href="#equation-53c4634e-6acf-45c5-aa7b-ab84f8df9e77" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_n\)</span>, and <span class="math notranslate nohighlight">\(b_n\)</span> are the Fourier coefficients, <span class="math notranslate nohighlight">\(\omega = \frac{2\pi}{T}\)</span> is the frequency of the function <span class="math notranslate nohighlight">\(f(t)\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> is the period. <span class="math notranslate nohighlight">\(n\)</span> is an integer used as an index.</p>
@@ -497,23 +497,23 @@ f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n
 <ol class="arabic simple">
 <li><p>The integral of each component trigonometric function over the period is zero:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-fee1c565-8c3b-4f2c-8dd5-ff258b27f786">
-<span class="eqno">(3.74)<a class="headerlink" href="#equation-fee1c565-8c3b-4f2c-8dd5-ff258b27f786" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b88f03a5-072d-415a-9081-1fc96c08b13f">
+<span class="eqno">(3.75)<a class="headerlink" href="#equation-b88f03a5-072d-415a-9081-1fc96c08b13f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T \sin (n \omega t) dt = 0 = \int_0^T cos (n \omega t) dt
 \end{equation}\]</div>
 <ol class="arabic simple" start="2">
 <li><p>The component trigonometric functions are <strong>orthogonal</strong> over their period:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-61c6dfc2-a50e-442a-bd92-6272003fcc27">
-<span class="eqno">(3.75)<a class="headerlink" href="#equation-61c6dfc2-a50e-442a-bd92-6272003fcc27" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b3764bd5-b21e-4f3d-a4e2-6494d463f3cb">
+<span class="eqno">(3.76)<a class="headerlink" href="#equation-b3764bd5-b21e-4f3d-a4e2-6494d463f3cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T \cos(n \omega t) \sin (m \omega t) dt = 0
 \end{equation}\]</div>
 <p>for all values of <span class="math notranslate nohighlight">\(n, m = 1, 2, \ldots, \infty\)</span>.</p>
 <ol class="arabic simple" start="3">
 <li><p>The component trigonometric functions are also orthogonal with themselves over their period:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-a67dc0f9-9eb1-4f11-a290-554186421d0c">
-<span class="eqno">(3.76)<a class="headerlink" href="#equation-a67dc0f9-9eb1-4f11-a290-554186421d0c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a29adc79-3bb3-474f-ae9c-2ce56df5b425">
+<span class="eqno">(3.77)<a class="headerlink" href="#equation-a29adc79-3bb3-474f-ae9c-2ce56df5b425" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_0^T \cos (n \omega t) \cos (m \omega t) dt &amp;= \begin{cases}0 \quad m \neq n \\ \frac{T}{2} \quad m = n \end{cases} \\
 %
 \int_0^T \sin (n \omega t) \sin (m \omega t) dt &amp;= \begin{cases}0 \quad m \neq n \\ \frac{T}{2} \quad m = n \end{cases}
@@ -524,62 +524,62 @@ f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n
 <h2><span class="section-number">3.4.2. </span>Fourier coefficients<a class="headerlink" href="#fourier-coefficients" title="Permalink to this headline">#</a></h2>
 <p>We can use the above properties to calculate the Fourier coefficients, given a periodic function <span class="math notranslate nohighlight">\(f(t)\)</span>.
 First, recall</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69c69b28-a407-4126-bbdd-a51f68ef26a7">
-<span class="eqno">(3.77)<a class="headerlink" href="#equation-69c69b28-a407-4126-bbdd-a51f68ef26a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-067e3e14-1bbe-4db4-90cc-320570408ec6">
+<span class="eqno">(3.78)<a class="headerlink" href="#equation-067e3e14-1bbe-4db4-90cc-320570408ec6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega t) + \sum_{n=1}^{\infty} b_n \sin (n \omega t)
 \end{equation}\]</div>
 <ol class="arabic simple">
 <li><p>To calculate <span class="math notranslate nohighlight">\(a_0\)</span>, integrate both sides of the equation over the period:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-3c012a68-585f-4d16-81c7-096621c63e80">
-<span class="eqno">(3.78)<a class="headerlink" href="#equation-3c012a68-585f-4d16-81c7-096621c63e80" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c7d69d7-f7ec-451a-befe-8b9ffc63d537">
+<span class="eqno">(3.79)<a class="headerlink" href="#equation-2c7d69d7-f7ec-451a-befe-8b9ffc63d537" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T f(t) dt = \int_0^T a_0 dt + \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \right)dt + \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \right) dt
 \end{equation}\]</div>
 <p>For the integrals of the infinite sums, recall that the integral of the sum of some functions is the same as the sum of the integrals of the functions: <span class="math notranslate nohighlight">\(\int (a + b + c) = \int a + \int b + \int c\)</span>. That means that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b324af8-e0bb-48a8-9015-24116c916fcc">
-<span class="eqno">(3.79)<a class="headerlink" href="#equation-2b324af8-e0bb-48a8-9015-24116c916fcc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-71d6c8b9-a2f0-430b-bcdd-659e389d959b">
+<span class="eqno">(3.80)<a class="headerlink" href="#equation-71d6c8b9-a2f0-430b-bcdd-659e389d959b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \right)dt = \int_0^T a_1 \cos (\omega t) dt + \int_0^T a_2 \cos (2 \omega t) dt + \ldots &amp;= 0 \;, \text{ and} \\
 \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \right)dt = \int_0^T b_1 \sin (\omega t) dt + \int_0^T b_2 \sin (2 \omega t) dt + \ldots &amp;= 0 \;,
 \end{align}\]</div>
 <p>since the integrals of the trigonometric functions are all zero over the period. Thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2766e53f-7106-4b40-8510-ec4177904657">
-<span class="eqno">(3.80)<a class="headerlink" href="#equation-2766e53f-7106-4b40-8510-ec4177904657" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d307a613-c2fb-4d52-b2a6-feb3774dd727">
+<span class="eqno">(3.81)<a class="headerlink" href="#equation-d307a613-c2fb-4d52-b2a6-feb3774dd727" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a_0 = \frac{1}{T} \int_0^T f(t) dt
 \end{equation}\]</div>
 <ol class="arabic simple" start="2">
 <li><p>To calculate <span class="math notranslate nohighlight">\(a_n\)</span>, multiply both sides of the equation by <span class="math notranslate nohighlight">\(\cos(m \omega t)\)</span> and integrate over the period:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-16b04dff-7f41-41dd-bba8-084a66b64703">
-<span class="eqno">(3.81)<a class="headerlink" href="#equation-16b04dff-7f41-41dd-bba8-084a66b64703" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c9d1dca9-a22b-49e3-ba0a-9f5ce1c84f55">
+<span class="eqno">(3.82)<a class="headerlink" href="#equation-c9d1dca9-a22b-49e3-ba0a-9f5ce1c84f55" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T f(t) \cos(m \omega t) dt = a_0 \int_0^T \cos(m \omega t) dt + \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \cos(m \omega t) \right)dt + \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \cos(m \omega t) \right) dt
 \end{equation}\]</div>
 <p>Let’s take a look at each of the three integrals on the right-hand side. First,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-94b95bf4-01d4-4110-bb1b-3162a5489c53">
-<span class="eqno">(3.82)<a class="headerlink" href="#equation-94b95bf4-01d4-4110-bb1b-3162a5489c53" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6e0e37dc-4814-446f-b6a2-701a273aea9e">
+<span class="eqno">(3.83)<a class="headerlink" href="#equation-6e0e37dc-4814-446f-b6a2-701a273aea9e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 a_0 \int_0^T \cos(m \omega t) dt = 0
 \end{equation}\]</div>
 <p>because it just integrates cosine over the period.
 Skipping to the last term,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b05da011-14ca-4cf1-87e0-b2af662c2cf6">
-<span class="eqno">(3.83)<a class="headerlink" href="#equation-b05da011-14ca-4cf1-87e0-b2af662c2cf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4052bf36-f8e1-4292-8d21-24b7bbcdc425">
+<span class="eqno">(3.84)<a class="headerlink" href="#equation-4052bf36-f8e1-4292-8d21-24b7bbcdc425" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T \left( \sum_{n=1}^{\infty} b_n \sin (n \omega t) \cos(m \omega t) \right) dt = b_1 \int_0^T sin(\omega t) \cos (m \omega t) dt + b_2 \int_0^T \sin (2 \omega t) \cos (m \omega t) dt + \ldots = 0
 \end{equation}\]</div>
 <p>due to orthogonality. We are just left with the middle integral; let’s expand a few terms to see what that looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3cb86191-0847-44c9-aec0-3a92522c7015">
-<span class="eqno">(3.84)<a class="headerlink" href="#equation-3cb86191-0847-44c9-aec0-3a92522c7015" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e70e1db-0942-419d-bae5-f1ce0e8483ae">
+<span class="eqno">(3.85)<a class="headerlink" href="#equation-3e70e1db-0942-419d-bae5-f1ce0e8483ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_0^T \left( \sum_{n=1}^{\infty} a_n \cos (n \omega t) \cos(m \omega t) \right)dt = a_1 \int_0^T \cos (\omega t) \cos (m \omega t) dt + a_2 \int_0^T \cos (2 \omega t) \cos (m \omega t) dt + \ldots
 \end{equation}\]</div>
 <p>Again, due to orthogonality, all of the terms of this infinite sum of integrals will be zero, <em>except</em> for the term where <span class="math notranslate nohighlight">\(n = m\)</span>. As a result, we are left with</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72823c48-d853-4d4e-adf9-666f10f44c02">
-<span class="eqno">(3.85)<a class="headerlink" href="#equation-72823c48-d853-4d4e-adf9-666f10f44c02" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8e81272f-b1fc-493e-90d2-b43d78d5cf6a">
+<span class="eqno">(3.86)<a class="headerlink" href="#equation-8e81272f-b1fc-493e-90d2-b43d78d5cf6a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_0^T f(t) \cos(m \omega t) dt &amp;= \int_0^T a_m \cos^2 (m \omega t) dt = a_m \frac{T}{2} \\
 a_n = a_m &amp;= \frac{2}{T} \int_0^T f(t) \cos (n \omega t) dt
 \end{align}\]</div>
 <ol class="arabic simple" start="3">
 <li><p>We can find <span class="math notranslate nohighlight">\(b_n\)</span> in the same way, multiplying the equation by <span class="math notranslate nohighlight">\(\sin (m \omega t)\)</span> and integrating over the period. The work is the same, so let’s skip that:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-682e883a-df70-4334-a228-bfa7426ca873">
-<span class="eqno">(3.86)<a class="headerlink" href="#equation-682e883a-df70-4334-a228-bfa7426ca873" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d767670e-81a5-450b-aa6c-e75ebaf8c549">
+<span class="eqno">(3.87)<a class="headerlink" href="#equation-d767670e-81a5-450b-aa6c-e75ebaf8c549" title="Permalink to this equation">#</a></span>\[\begin{equation}
 b_n = \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt
 \end{equation}\]</div>
 </section>
@@ -604,15 +604,15 @@ b_n = \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt
 </div>
 <p>First, we need to identify the fundamental period and frequency: <span class="math notranslate nohighlight">\(T = 2\)</span> and then <span class="math notranslate nohighlight">\(\omega = \frac{2\pi}{T} = \pi\)</span>. Our work is then to calculate the Fourier coefficients. Since our periodic function <span class="math notranslate nohighlight">\(f(t)\)</span> is not easily expressed with a function–hence the need for a Fourier series—we’ll use piecewise integration.</p>
 <p>First, calculate <span class="math notranslate nohighlight">\(a_0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cabf85e-d139-4659-8807-6ca0a1a59002">
-<span class="eqno">(3.87)<a class="headerlink" href="#equation-2cabf85e-d139-4659-8807-6ca0a1a59002" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-549c6a1d-c6b3-471d-a9a9-cd2aef008841">
+<span class="eqno">(3.88)<a class="headerlink" href="#equation-549c6a1d-c6b3-471d-a9a9-cd2aef008841" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_0 =&amp; \frac{1}{T} \int_0^T f(t) dt \\
 &amp;= \frac{1}{2} \int_0^2 f(t) dt = \frac{1}{2}\left( \int_0^1 2dt + \int_1^2 1dt \right) = \frac{1}{2} (2\times 1 + 1 \times 1) \\
 a_0 &amp;= \frac{3}{2}
 \end{align}\]</div>
 <p>Then, get <span class="math notranslate nohighlight">\(a_n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f635ecc1-3e90-4e7b-9f67-fad9ef5879ec">
-<span class="eqno">(3.88)<a class="headerlink" href="#equation-f635ecc1-3e90-4e7b-9f67-fad9ef5879ec" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ed0d82d7-fdde-4bf8-97f9-26f1ef037f72">
+<span class="eqno">(3.89)<a class="headerlink" href="#equation-ed0d82d7-fdde-4bf8-97f9-26f1ef037f72" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_n &amp;= \frac{2}{T} \int_0^T f(t) \cos (n \omega t) dt \\
 &amp;= \frac{2}{2} \int_0^2 f(t) \cos (n \pi t) dt = \left( \int_0^1 2 \cos (n \pi t) dt + \int_1^2 1 \cos (n \pi t)dt \right) \\
 &amp;= \frac{2}{n \pi} \sin(n \pi t)\Big|_0^1 + \frac{1}{n\pi} \sin(n \pi t)\Big|_1^2 \\
@@ -620,8 +620,8 @@ a_n &amp;= \frac{2}{T} \int_0^T f(t) \cos (n \omega t) dt \\
 a_n &amp;= 0
 \end{align}\]</div>
 <p>Finally, we can calculate <span class="math notranslate nohighlight">\(b_n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d74c7ce-71a3-417b-8fa7-2e980e8aeaa2">
-<span class="eqno">(3.89)<a class="headerlink" href="#equation-4d74c7ce-71a3-417b-8fa7-2e980e8aeaa2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-566c9164-7878-4825-8c8b-de382dc5b3c3">
+<span class="eqno">(3.90)<a class="headerlink" href="#equation-566c9164-7878-4825-8c8b-de382dc5b3c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 b_n &amp;= \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt \\
 &amp;= \frac{2}{2} \int_0^2 f(t) \sin (n \pi t) dt = \left( \int_0^1 2 \sin (n \pi t) dt + \int_1^2 1 \sin (n \pi t)dt \right) \\
 &amp;= -\frac{2}{n \pi} \cos(n \pi t)\Big|_0^1 - \frac{1}{n\pi} \cos(n \pi t)\Big|_1^2 \\
@@ -629,14 +629,14 @@ b_n &amp;= \frac{2}{T} \int_0^T f(t) \sin (n \omega t) dt \\
 b_n &amp;= -\frac{2}{n \pi}\left(\cos(n\pi) - 1\right) - \frac{1}{n\pi}\left( 1 - \cos(n\pi)\right) = -\frac{1}{n\pi}\left( \cos(n\pi) - 1\right)
 \end{align}\]</div>
 <p>but recall that <span class="math notranslate nohighlight">\(n = 1, 2, \ldots, \infty\)</span>. Then,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3758d9a9-6df8-49dd-839a-f5ca474a20ec">
-<span class="eqno">(3.90)<a class="headerlink" href="#equation-3758d9a9-6df8-49dd-839a-f5ca474a20ec" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d06bbadb-abc3-401e-a978-852e6038b83c">
+<span class="eqno">(3.91)<a class="headerlink" href="#equation-d06bbadb-abc3-401e-a978-852e6038b83c" title="Permalink to this equation">#</a></span>\[\begin{align}
 b_n &amp;= -\frac{1}{n\pi} \times \begin{cases} -2 \text{ if } n \text{ odd} \\0 \text{ if } n \text{ even}\end{cases} \\
 \rightarrow b_n &amp;= \frac{2}{n\pi} \quad n = \text{odd}
 \end{align}\]</div>
 <p>Then, our Fourier series representation for the function shown above is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-978860c8-80dc-4d2b-8f23-4142475ed438">
-<span class="eqno">(3.91)<a class="headerlink" href="#equation-978860c8-80dc-4d2b-8f23-4142475ed438" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b61d05f2-9f1b-4ab8-97d9-5f94579cc5a8">
+<span class="eqno">(3.92)<a class="headerlink" href="#equation-b61d05f2-9f1b-4ab8-97d9-5f94579cc5a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = \frac{3}{2} + \sum_{\substack{n = 1 \\n = \text{odd}}}^{\infty} \frac{2}{n\pi} \sin (n \pi t)
 \end{equation}\]</div>
 <p>Now, let’s see how whether this actually works! Let’s start with one term of the infinite sum, then gradually increase.</p>
@@ -707,15 +707,15 @@ f(t) = \frac{3}{2} + \sum_{\substack{n = 1 \\n = \text{odd}}}^{\infty} \frac{2}{
 </div>
 </div>
 <p>An even function’s Fourier series simplifies to a Fourier cosine series:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26bebd3a-62c2-40d0-87b8-a00b4242d3c2">
-<span class="eqno">(3.92)<a class="headerlink" href="#equation-26bebd3a-62c2-40d0-87b8-a00b4242d3c2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d44b33aa-8026-4591-bc13-35e4a6695299">
+<span class="eqno">(3.93)<a class="headerlink" href="#equation-d44b33aa-8026-4591-bc13-35e4a6695299" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) &amp;= a_0 + \sum_{n=1}^{\infty} a_n \cos (n \omega x) dx \\
 a_0 &amp;= \frac{2}{T} \int_0^{T/2} f(x) dx \\
 a_n &amp;= \frac{4}{T} \int_0^{T/2} f(x) \cos(n \omega x) dx
 \end{align}\]</div>
 <p>An odd function’s Fourier series simplifies to a Fourier sine series:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8a2fae6-8151-450b-9b16-8c778b60643b">
-<span class="eqno">(3.93)<a class="headerlink" href="#equation-b8a2fae6-8151-450b-9b16-8c778b60643b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5c7b5826-0834-4c7a-8f0b-2031fca4d4d7">
+<span class="eqno">(3.94)<a class="headerlink" href="#equation-5c7b5826-0834-4c7a-8f0b-2031fca4d4d7" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x) &amp;= \sum_{n=1}^{\infty} b_n \sin (n \omega x) dx \\
 b_n &amp;= \frac{4}{T} \int_0^{T/2} f(x) \sin(n \omega x) dx
 \end{align}\]</div>
@@ -727,8 +727,8 @@ b_n &amp;= \frac{4}{T} \int_0^{T/2} f(x) \sin(n \omega x) dx
 <section id="undamped-mass-spring-system">
 <h3><span class="section-number">3.4.5.1. </span>Undamped mass-spring system<a class="headerlink" href="#undamped-mass-spring-system" title="Permalink to this headline">#</a></h3>
 <p>For example, let’s consider an undamped mass-spring system, where the forcing is given by a periodic rectangular wave:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a4fb260b-fa44-4ab0-aa82-bf716b4b8d46">
-<span class="eqno">(3.94)<a class="headerlink" href="#equation-a4fb260b-fa44-4ab0-aa82-bf716b4b8d46" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d75a99e2-0b69-4eb2-8e41-bceb076ce865">
+<span class="eqno">(3.95)<a class="headerlink" href="#equation-d75a99e2-0b69-4eb2-8e41-bceb076ce865" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 4y = f(t)
 \end{equation}\]</div>
 <p>where the forcing function <span class="math notranslate nohighlight">\(f(t)\)</span> is</p>
@@ -751,8 +751,8 @@ y^{\prime\prime} + 4y = f(t)
 </div>
 </div>
 <p>Using recognizing this as an odd function, we could construct a Fourier sine series to represent the forcing function:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1ce5b2d-3b8b-4cae-afdf-06a415d10a70">
-<span class="eqno">(3.95)<a class="headerlink" href="#equation-b1ce5b2d-3b8b-4cae-afdf-06a415d10a70" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16034999-549b-4337-98ad-cb0a3def7b24">
+<span class="eqno">(3.96)<a class="headerlink" href="#equation-16034999-549b-4337-98ad-cb0a3def7b24" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(t) = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n\pi} \sin(n \pi t)
 \end{equation}\]</div>
 <p>Let’s confirm this works:</p>
@@ -773,49 +773,49 @@ f(t) = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n\pi} \sin(n \pi t)
 </div>
 <p>Looks good!</p>
 <p>To find the exact solution for our displacement <span class="math notranslate nohighlight">\(y(t)\)</span>, we can follow our usual analytical solution approach: find the homogeneous solution <span class="math notranslate nohighlight">\(y_H\)</span>, then find the inhomogeneous solution <span class="math notranslate nohighlight">\(y_{IH}\)</span>; the overall solution is then <span class="math notranslate nohighlight">\(y(t) = y_H + y_{IH}\)</span>. The homogeneous solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6205ca8f-0ee5-41b0-8e58-34cdac48be62">
-<span class="eqno">(3.96)<a class="headerlink" href="#equation-6205ca8f-0ee5-41b0-8e58-34cdac48be62" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b579674-3f83-4a5d-8fed-11486d883c80">
+<span class="eqno">(3.97)<a class="headerlink" href="#equation-9b579674-3f83-4a5d-8fed-11486d883c80" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_H = c_1 \sin (2t) + c_2 \cos (2t)
 \end{equation}\]</div>
 <p>We then find the inhomogeneous solution using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb3adc61-066d-470a-acf5-da999cff9f9f">
-<span class="eqno">(3.97)<a class="headerlink" href="#equation-eb3adc61-066d-470a-acf5-da999cff9f9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-66993ebf-a257-4e9d-8f92-9abc0ef71fff">
+<span class="eqno">(3.98)<a class="headerlink" href="#equation-66993ebf-a257-4e9d-8f92-9abc0ef71fff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 4y = \frac{4}{n\pi} \sin (n \pi t) \quad n = 1, 3, \ldots, \infty
 \end{equation}\]</div>
 <p>Solving this will give us a specific <span class="math notranslate nohighlight">\(y_{IH, n}\)</span>; the complete inhomogeneous solution is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d6f4065-8b50-4ed0-bfb3-5dc591f58b3b">
-<span class="eqno">(3.98)<a class="headerlink" href="#equation-7d6f4065-8b50-4ed0-bfb3-5dc591f58b3b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-09a0deda-f347-4f63-9978-58de22bed58c">
+<span class="eqno">(3.99)<a class="headerlink" href="#equation-09a0deda-f347-4f63-9978-58de22bed58c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{IH} = \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} y_{IH, n} \;.
 \end{equation}\]</div>
 <p>Recognizing that our forcing function is sinusoidal, we should use the method of undetermined coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5ea377ab-719f-46ba-be53-d8ac436a8525">
-<span class="eqno">(3.99)<a class="headerlink" href="#equation-5ea377ab-719f-46ba-be53-d8ac436a8525" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-674a7dfe-1b46-4c43-896f-13c261ba88f0">
+<span class="eqno">(3.100)<a class="headerlink" href="#equation-674a7dfe-1b46-4c43-896f-13c261ba88f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{IH, n} = K_1 \sin (n \pi t) + K_2 \cos (n \pi t)
 \end{equation}\]</div>
 <p>Inserting this into the above ODE gives</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16a64e16-8073-4617-80d9-9066267bf3f2">
-<span class="eqno">(3.100)<a class="headerlink" href="#equation-16a64e16-8073-4617-80d9-9066267bf3f2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-49be2f4d-f15a-49f9-8c2a-463300aadf2f">
+<span class="eqno">(3.101)<a class="headerlink" href="#equation-49be2f4d-f15a-49f9-8c2a-463300aadf2f" title="Permalink to this equation">#</a></span>\[\begin{align}
 K_1 &amp;= \frac{4}{n \pi (4 - n^2 \pi^2)} \\
 K_2 &amp;= 0
 \end{align}\]</div>
 <p>Thus, the overall solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac3687f7-aa1c-4b10-b191-5ebd85c132a8">
-<span class="eqno">(3.101)<a class="headerlink" href="#equation-ac3687f7-aa1c-4b10-b191-5ebd85c132a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc409d99-3dae-40ac-9be4-374c7cd6b17d">
+<span class="eqno">(3.102)<a class="headerlink" href="#equation-dc409d99-3dae-40ac-9be4-374c7cd6b17d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = c_1 \sin(2t) + c_2 \cos(2t) + \sum_{\substack{n=1\\n=\text{odd}}}^{\infty} \frac{4}{n \pi (4 - n^2 \pi^2)} \sin (n \pi t)
 \end{equation}\]</div>
 </section>
 <section id="damped-mass-spring-system">
 <h3><span class="section-number">3.4.5.2. </span>Damped mass-spring system<a class="headerlink" href="#damped-mass-spring-system" title="Permalink to this headline">#</a></h3>
 <p>What about a damped mass-spring system? Recall that the homogeneous solution could take one of these three forms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d47f921-c1ea-481e-91d8-fe7eda3c2a7f">
-<span class="eqno">(3.102)<a class="headerlink" href="#equation-7d47f921-c1ea-481e-91d8-fe7eda3c2a7f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b8060ef-435b-42e8-961c-c6ccfe363ea3">
+<span class="eqno">(3.103)<a class="headerlink" href="#equation-5b8060ef-435b-42e8-961c-c6ccfe363ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_H &amp;= c_1 e^{-\lambda_1 t} + c_2 e^{-\lambda_2 t} \\
 y_H &amp;= c_1 e^{-\lambda_1 t} + c_2 t e^{-\lambda_2 t} \text{ or} \\
 y_H &amp;= e^{-\alpha t} (c_1 \sin(\beta t) + c_2 \cos(\beta t))
 \end{align}\]</div>
 <p>while the inhomogeneous solution, given a Fourier series forcing function, will take the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17205b9a-49e9-4244-8018-51ff762e291f">
-<span class="eqno">(3.103)<a class="headerlink" href="#equation-17205b9a-49e9-4244-8018-51ff762e291f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4160f3b9-e70c-4f25-8ebc-187989b5dce2">
+<span class="eqno">(3.104)<a class="headerlink" href="#equation-4160f3b9-e70c-4f25-8ebc-187989b5dce2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{IH} = K_1 \sin() + K_2 \cos()
 \end{equation}\]</div>
 <p>The overall solution combines the homogenenous and inhomogeneous solutions. But, the homogeneous solution in this case is <strong>transient</strong>, because it decays to zero. On the other hand, the inhomogeneous solution remains, and is the <strong>steady-state solution</strong>.</p>
