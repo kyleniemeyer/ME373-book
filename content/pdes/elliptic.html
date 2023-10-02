@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>5.1. Elliptic PDEs &#8212; Mechanical Engineering Methods</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,57 +62,88 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/pdes/elliptic';</script>
     <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/pdes/elliptic.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5.2. Parabolic PDEs" href="parabolic.html" />
     <link rel="prev" title="5. Partial Differential Equations" href="partial-differential-equations.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mechanical Engineering Methods</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,551 +152,323 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Ordinary Differential Equations
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../first-order.html">
-   1. Solutions to 1st-order ODEs
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
-   2. Numerical Methods
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/integrals.html">
-     2.1. Numerical integrals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/error.html">
-     2.2. Error
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
-     2.3. Numerical Solutions of 1st-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/stability.html">
-     2.4. Stability and Stiffness
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../second-order/second-order.html">
-   3. Second-order Ordinary Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/analytical.html">
-     3.1. Analytical Solutions to 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/initial-value-problems.html">
-     3.2. Initial-Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/numerical-methods.html">
-     3.3. Numerical methods for 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/fourier-series.html">
-     3.4. Fourier Series
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/power-series.html">
-     3.5. Power Series Solutions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../bvps/boundary-value-problems.html">
-   4. Boundary Value Problems
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/shooting-method.html">
-     4.1. Shooting Method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/finite-difference.html">
-     4.2. Finite difference method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/eigenvalue.html">
-     4.3. Eigenvalue problems
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../first-order.html">1. Solutions to 1st-order ODEs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/numerical-methods.html">2. Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/integrals.html">2.1. Numerical integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/error.html">2.2. Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/initial-value-methods.html">2.3. Numerical Solutions of 1st-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/stability.html">2.4. Stability and Stiffness</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Partial Differential Equations
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../second-order/second-order.html">3. Second-order Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/analytical.html">3.1. Analytical Solutions to 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/initial-value-problems.html">3.2. Initial-Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/numerical-methods.html">3.3. Numerical methods for 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/fourier-series.html">3.4. Fourier Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/power-series.html">3.5. Power Series Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../bvps/boundary-value-problems.html">4. Boundary Value Problems</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/shooting-method.html">4.1. Shooting Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/finite-difference.html">4.2. Finite difference method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/eigenvalue.html">4.3. Eigenvalue problems</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Partial Differential Equations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="partial-differential-equations.html">
-   5. Partial Differential Equations
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     5.1. Elliptic PDEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="parabolic.html">
-     5.2. Parabolic PDEs
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="partial-differential-equations.html">5. Partial Differential Equations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Elliptic PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parabolic.html">5.2. Parabolic PDEs</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sample Quizzes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
-   Sample Quiz 2 problems: IVPs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
-   Sample Quiz 3 problems: BVPs
-  </a>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample Quizzes</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
-   GitHub repository
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributing.html">
-   Contributing to Jupyter Book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz2-IVPs.html">Sample Quiz 2 problems: IVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz3-BVPs.html">Sample Quiz 3 problems: BVPs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zbibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/pdes/elliptic.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/pdes/elliptic.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/pdes/elliptic.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/pdes/elliptic.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/pdes/elliptic.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/pdes/elliptic.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/content/pdes/elliptic.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate">
-   5.1.1. Example: heat transfer in a square plate
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#row-major-mapping">
-   5.1.2. Row-major mapping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate-redux">
-   5.1.3. Example: heat transfer in a square plate (redux)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neumann-derivative-boundary-conditions">
-   5.1.4. Neumann (derivative) boundary conditions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iterative-solutions-for-very-large-problems">
-   5.1.5. Iterative solutions for (very) large problems
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jacobi-method">
-     5.1.5.1. Jacobi method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gauss-seidel-method">
-     5.1.5.2. Gauss-Seidel method
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Elliptic PDEs</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate">
-   5.1.1. Example: heat transfer in a square plate
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#row-major-mapping">
-   5.1.2. Row-major mapping
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate-redux">
-   5.1.3. Example: heat transfer in a square plate (redux)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#neumann-derivative-boundary-conditions">
-   5.1.4. Neumann (derivative) boundary conditions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iterative-solutions-for-very-large-problems">
-   5.1.5. Iterative solutions for (very) large problems
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jacobi-method">
-     5.1.5.1. Jacobi method
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gauss-seidel-method">
-     5.1.5.2. Gauss-Seidel method
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Elliptic PDEs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate">5.1.1. Example: heat transfer in a square plate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#row-major-mapping">5.1.2. Row-major mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate-redux">5.1.3. Example: heat transfer in a square plate (redux)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-derivative-boundary-conditions">5.1.4. Neumann (derivative) boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solutions-for-very-large-problems">5.1.5. Iterative solutions for (very) large problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-method">5.1.5.1. Jacobi method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-seidel-method">5.1.5.2. Gauss-Seidel method</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="elliptic-pdes">
 <h1><span class="section-number">5.1. </span>Elliptic PDEs<a class="headerlink" href="#elliptic-pdes" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries for numerical functions and plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
-import matplotlib_inline.backend_inline
-matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
-plt.rcParams[&#39;figure.dpi&#39;]= 300
-plt.rcParams[&#39;savefig.dpi&#39;] = 300
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these lines are only for helping improve the display</span>
+<span class="kn">import</span> <span class="nn">matplotlib_inline.backend_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span><span class="o">=</span> <span class="mi">300</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>The classic example of an elliptic PDE is <strong>Laplace’s equation</strong> (yep, the same Laplace that gave us the Laplace transform), which in two dimensions for a variable <span class="math notranslate nohighlight">\(u(x,y)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f3aa0d9-298d-498b-80a0-0933cb5ea114">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-8f3aa0d9-298d-498b-80a0-0933cb5ea114" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5bd4f8af-2b4c-445e-936f-429dea52d0dd">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-5bd4f8af-2b4c-445e-936f-429dea52d0dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nabla\)</span> is del, or nabla, and represents the gradient operator: <span class="math notranslate nohighlight">\(\nabla = \frac{\partial}{\partial x} + \frac{\partial}{\partial y}\)</span>.</p>
 <p>Laplace’s equation shows up in a number of physical problems, including heat transfer, fluid dynamics, and electrostatics. For example, the heat equation for conduction in two dimensions is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0c73ce1-2153-480a-bf50-c5232bcdbf2d">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-f0c73ce1-2153-480a-bf50-c5232bcdbf2d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-249f707d-2400-48c9-a52c-7724f8f1268c">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-249f707d-2400-48c9-a52c-7724f8f1268c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial u}{\partial t} = \alpha \left( \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \right) \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u(x,y,t)\)</span> is temperature and <span class="math notranslate nohighlight">\(\alpha\)</span> is thermal diffusivity. Steady-state heat transfer (meaning after any initial transient period) is then described by Laplace’s equation.</p>
 <p>A related elliptic PDE is <strong>Poisson’s equation</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e15bf50d-c4b3-4430-bae6-9c3b1e9da490">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-e15bf50d-c4b3-4430-bae6-9c3b1e9da490" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7366b6e3-6c7b-4302-9911-737467efaa70">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-7366b6e3-6c7b-4302-9911-737467efaa70" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \nabla^2 u = f(x,y) \;,
 \end{equation}\]</div>
 <p>which also appears in multiple physical problems—most notably, when solving for pressure in the Navier–Stokes equations.</p>
 <p>To numerically solve these equations, and any elliptic PDE, we can use finite differences, where we replace the continuous <span class="math notranslate nohighlight">\(x,y\)</span> domain with a discrete grid of points. This is similar to what we did with boundary-value problems in one dimension—but now we have two dimensions.</p>
 <p>To approximate the second derivatives in Laplace’s equation, we can use central differences in both the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, applied around the <span class="math notranslate nohighlight">\(u_{i,j}\)</span> point:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0e9fa77-ce65-4414-939c-d3fe11c838c0">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-f0e9fa77-ce65-4414-939c-d3fe11c838c0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3b91ffa2-54bf-43bb-8bbf-bc8c272846dd">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-3b91ffa2-54bf-43bb-8bbf-bc8c272846dd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{\partial^2 u}{\partial x^2} &amp;\approx \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} \\
 \frac{\partial^2 u}{\partial y^2} &amp;\approx \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2}
 \end{align}\]</div>
@@ -669,25 +482,25 @@ In other words, <span class="math notranslate nohighlight">\(x_i = (i-1) \Delta 
 </figcaption>
 </figure>
 <p>Applying these finite differences gives us an approximation for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7588b58-34df-4aeb-845f-2349fb001069">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-e7588b58-34df-4aeb-845f-2349fb001069" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-baaf54cd-7243-495e-8884-4f672d2b8cc2">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-baaf54cd-7243-495e-8884-4f672d2b8cc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{u_{i-1,j} - 2u_{i,j} + u_{i+1,j}}{\Delta x^2} + \frac{u_{i,j-1} - 2u_{i,j} + u_{i,j+1}}{\Delta y^2} = 0 \;.
 \end{equation}\]</div>
 <p>If we use a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, then we can simplify to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-561b832c-1aee-4028-baaa-243a92b2119e">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-561b832c-1aee-4028-baaa-243a92b2119e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ef4134b4-9485-469a-8fc2-833723868139">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-ef4134b4-9485-469a-8fc2-833723868139" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <section id="example-heat-transfer-in-a-square-plate">
 <h2><span class="section-number">5.1.1. </span>Example: heat transfer in a square plate<a class="headerlink" href="#example-heat-transfer-in-a-square-plate" title="Permalink to this headline">#</a></h2>
 <p>As an example, let’s consider the problem of steady-state heat transfer in a square solid object. If <span class="math notranslate nohighlight">\(u(x,y)\)</span> is temperature, then this is described by Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de092e85-e679-476f-b238-04f7995bcac3">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-de092e85-e679-476f-b238-04f7995bcac3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3942b726-f1ce-4f70-bc13-6c02c64d6a29">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-3942b726-f1ce-4f70-bc13-6c02c64d6a29" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = \nabla^2 u = 0 \;,
 \end{equation}\]</div>
 <p>and we can solve this using finite differences. Using a uniform grid where <span class="math notranslate nohighlight">\(\Delta x = \Delta y = h\)</span>, Laplace’s equation gives us a recursion formula that relates the values at neighboring points:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80badce7-bd92-47b5-948d-0d1665fdb241">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-80badce7-bd92-47b5-948d-0d1665fdb241" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-138d18f1-4df2-49b0-9088-fa01937f9583">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-138d18f1-4df2-49b0-9088-fa01937f9583" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Consider a case where the square has sides of length <span class="math notranslate nohighlight">\(L\)</span>, and the boundary conditions are that the temperature is fixed at 100 on the left, right, and bottom sides, and fixed at 0 on the top.
@@ -706,8 +519,8 @@ The following figures show the example problem, and the grid of points we’ll u
 </figcaption>
 </figure>
 <p>Using the above recursion formula, we can write an equation for each of the nine unknown points (in the interior, not the boundary points):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea358116-9f8b-4b92-ac5c-f472b83040de">
-<span class="eqno">(5.10)<a class="headerlink" href="#equation-ea358116-9f8b-4b92-ac5c-f472b83040de" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4f8a2981-c663-4a5d-a174-a5e49d377692">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-4f8a2981-c663-4a5d-a174-a5e49d377692" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{0,0} &amp;= 100 \\
 u_{1,0} &amp;= 100 \\
 u_{2,0} &amp;= 100 \\
@@ -720,8 +533,8 @@ u_{2,2} &amp;= 100
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u_{i,j}\)</span> are the unknowns. Note that in this we used the side boundary condition values for the corner points <span class="math notranslate nohighlight">\(u_{0,2}\)</span> and <span class="math notranslate nohighlight">\(u_{2,2}\)</span>, rather than the top value. (In reality this would represent a discontinuity in temperature, so these aren’t very realistic boundary conditions.)</p>
 <p>This is a system of linear equations, that we can represent as a matrix-vector product:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dbf5b6bb-6816-46d0-9ff4-48b8ff352e36">
-<span class="eqno">(5.11)<a class="headerlink" href="#equation-dbf5b6bb-6816-46d0-9ff4-48b8ff352e36" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-01f49c12-9df3-4689-b092-bc8386d27649">
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-01f49c12-9df3-4689-b092-bc8386d27649" title="Permalink to this equation">#</a></span>\[\begin{align}
 \begin{bmatrix} 
 1 &amp; 0 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; 0 &amp; 0 &amp;  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
@@ -743,21 +556,21 @@ For <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>, we had to 
 <p>If we set this up in Python, we can solve using <code class="docutils literal notranslate"><span class="pre">np.linalg.solve()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([
-    [1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 1, 0, 1,-4, 1, 0, 1, 0],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1]
-    ])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">])</span>
 
-b = np.array([100, 100, 100, 100, 0, 100, 100, 0, 100])
-u = np.linalg.solve(A, b)
-print(u)
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -769,41 +582,41 @@ print(u)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># alternatively, for creating the A matrix, we could create
-# a diagonal matrix of ones and then only modify the one row
-# that needs it
-A = np.eye(9)
-A[4, 1] = 1
-A[4, 3] = 1
-A[4, 4] = -4
-A[4, 5] = 1
-A[4, 7] = 1
-u2 = np.linalg.solve(A, b)
-assert np.all(u == u2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># alternatively, for creating the A matrix, we could create</span>
+<span class="c1"># a diagonal matrix of ones and then only modify the one row</span>
+<span class="c1"># that needs it</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">u</span> <span class="o">==</span> <span class="n">u2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>This gives us the values for temperature at each of the nine points. In this example, we really only have one unknown temperature: <span class="math notranslate nohighlight">\(u_{1,1}\)</span>, located in the middle. Does the value given make sense? We can check by rearranging the recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2dd4bfb8-01b5-45a8-af72-d6e20ec6dcf1">
-<span class="eqno">(5.12)<a class="headerlink" href="#equation-2dd4bfb8-01b5-45a8-af72-d6e20ec6dcf1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c207736-7df1-41f7-8dda-8b8c0f603b42">
+<span class="eqno">(5.12)<a class="headerlink" href="#equation-2c207736-7df1-41f7-8dda-8b8c0f603b42" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i,j} = \frac{u_{i+1,j} + u_{i,j+1} + u_{i-1,j} + u_{i,j-1}}{4} \;,
 \end{equation}\]</div>
 <p>which shows that in such problems the value of the middle point should be the average of the four surrounding points. This matches the value of 75 found above.</p>
 <p>We can use a contour plot to visualize the results, though we’ll need to convert the one-dimensional solution array into a two-dimensional matrix to plot. The NumPy <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.reshape.html"><code class="docutils literal notranslate"><span class="pre">reshape()</span></code></a> function can help us here: it can reshapes a one-dimensional array into a two-dimensional array, by specifying the target number of desired rows and columns:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Example of using the reshape method, with a simple array 
-# going from 1 to 10
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of using the reshape method, with a simple array </span>
+<span class="c1"># going from 1 to 10</span>
 
-# We want to convert it into a 2D array with 2 row and 5 columns.
-# The expected output is:
-# [[0, 1, 2, 3, 4],
-#  [5, 6, 7, 8, 9]]
+<span class="c1"># We want to convert it into a 2D array with 2 row and 5 columns.</span>
+<span class="c1"># The expected output is:</span>
+<span class="c1"># [[0, 1, 2, 3, 4],</span>
+<span class="c1">#  [5, 6, 7, 8, 9]]</span>
 
-b = np.array(range(10))
-A = np.reshape(b, [2, 5])
-print(A)
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -816,21 +629,21 @@ print(A)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># We can use the reshape function to convert the calculated 
-# temperatures into a 3x3 array:
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can use the reshape function to convert the calculated </span>
+<span class="c1"># temperatures into a 3x3 array:</span>
 
-num_x = 3
-num_y = 3
-u_square = np.reshape(u, [num_y, num_x])
+<span class="n">num_x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num_y</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="n">num_y</span><span class="p">,</span> <span class="n">num_x</span><span class="p">])</span>
 
-plt.contourf(u_square, levels=10)
-plt.colorbar()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">u_square</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_9_0.png" src="../../_images/elliptic_9_0.png" />
+<img alt="../../_images/454fade00fbe8f0d7c90d792d7b58fd9a38ae09b87bb255d8c2924ad2936056d.png" src="../../_images/454fade00fbe8f0d7c90d792d7b58fd9a38ae09b87bb255d8c2924ad2936056d.png" />
 </div>
 </div>
 <p>Overall that looks correct: the boundary conditions are right, and we see that the center is the average of the boundaries.</p>
@@ -847,8 +660,8 @@ plt.show()
 </figcaption>
 </figure>
 <p>We want to convert the rows and columns of <span class="math notranslate nohighlight">\(u_{i,j}\)</span> points defined by column and row index into a single column array using a different index, <span class="math notranslate nohighlight">\(k\)</span> (this choice is arbitrary):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ffd26350-a19c-47d1-9979-a9c6395ab9d2">
-<span class="eqno">(5.13)<a class="headerlink" href="#equation-ffd26350-a19c-47d1-9979-a9c6395ab9d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6373435a-a3ed-4ece-bec8-8855c411809f">
+<span class="eqno">(5.13)<a class="headerlink" href="#equation-6373435a-a3ed-4ece-bec8-8855c411809f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} u_{0,0} \\ u_{1,0} \\ u_{2,0} \\ \vdots \\ u_{n-1,0} \\
 u_{0,1} \\ u_{1,1} \\ u_{2,1} \\ \vdots \\ u_{n-1, 1} \\ u_{0,2} \\ \vdots \\
 u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
@@ -856,8 +669,8 @@ u_{0,m-1} \\ u_{1,m-1} \\ \vdots \\ u_{n-1,m-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> refers to the index used in that array.</p>
 <p>To do this mapping, we can use this formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2890047d-6ab7-48d2-a035-0561bfa8f4d7">
-<span class="eqno">(5.14)<a class="headerlink" href="#equation-2890047d-6ab7-48d2-a035-0561bfa8f4d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad3262cb-6503-4f4d-acef-3a4c9f36a613">
+<span class="eqno">(5.14)<a class="headerlink" href="#equation-ad3262cb-6503-4f4d-acef-3a4c9f36a613" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{i,j} = j n + i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k_{i,j}\)</span> refers to the 1D index <span class="math notranslate nohighlight">\(k\)</span> mapped from the 2D indices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
@@ -869,14 +682,14 @@ k_{i,j} = j n + i
 </figure>
 <p>For example, in this <span class="math notranslate nohighlight">\(3\times 3\)</span> grid, where <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(m=3\)</span>, consider the point where <span class="math notranslate nohighlight">\(i=1\)</span> and <span class="math notranslate nohighlight">\(j=1\)</span> (the point right in the center).
 Using our formula,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cb3ccd2-17d9-4fb1-aeec-9ffc136fef72">
-<span class="eqno">(5.15)<a class="headerlink" href="#equation-9cb3ccd2-17d9-4fb1-aeec-9ffc136fef72" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca384872-9eb2-45bb-b670-c42977768f53">
+<span class="eqno">(5.15)<a class="headerlink" href="#equation-ca384872-9eb2-45bb-b670-c42977768f53" title="Permalink to this equation">#</a></span>\[\begin{equation}
 k_{1,1} = (1) 3 + 1 = 4
 \end{equation}\]</div>
 <p>which matches what we can visually confirm: the fifth point, which would have index 4.</p>
 <p>Using that mapping, we can also identify the 1D indices associated with the points surrounding location <span class="math notranslate nohighlight">\((i,j)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-52faadea-a909-4001-a6ff-49d46d306fc3">
-<span class="eqno">(5.16)<a class="headerlink" href="#equation-52faadea-a909-4001-a6ff-49d46d306fc3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0e088ed3-d0f0-4e1c-8088-e84a8b7aa040">
+<span class="eqno">(5.16)<a class="headerlink" href="#equation-0e088ed3-d0f0-4e1c-8088-e84a8b7aa040" title="Permalink to this equation">#</a></span>\[\begin{align}
 k_{i-1,j} &amp;= j n + i - 1 \\
 k_{i+1,j} &amp;= j n + i + 1 \\
 k_{i,j-1} &amp;= (j-1)n + i \\
@@ -889,66 +702,66 @@ k_{i,j+1} &amp;= (j+1) n + i
 <p>Let’s return to the example of steady-state heat transfer in a square plate—but this time we’ll set the solution up more generally so we can vary the step size <span class="math notranslate nohighlight">\(h = \Delta x = \Delta y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>h = 0.1
-length_x = 1.0
-length_y = 1.0
-x_vals = np.arange(0, length_x + 0.001, h)
-y_vals = np.arange(0, length_y + 0.001, h)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">length_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">length_y</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_x</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_y</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 
-# The coefficient matrix A is now m*n by m*n, 
-# since that is the total number of points.
-# The right-hand side vector b is m*n by 1.
-A = np.zeros((len(x_vals)*len(y_vals), len(x_vals)*len(y_vals)))
-b = np.zeros(len(x_vals)*len(y_vals))
+<span class="c1"># The coefficient matrix A is now m*n by m*n, </span>
+<span class="c1"># since that is the total number of points.</span>
+<span class="c1"># The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">))</span>
 
-u_left = 100
-u_right = 100
-u_bottom = 100
-u_top = 0
+<span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">u_right</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">u_bottom</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">u_top</span> <span class="o">=</span> <span class="mi">0</span>
 
-for j, y in enumerate(y_vals):
-    for i, x in enumerate(x_vals):
-        # for convenience, calculate all indices now
-        kij = j*len(x_vals) + i
-        kim1j = j*len(x_vals) + i - 1
-        kip1j = j*len(x_vals) + i + 1
-        kijm1 = (j-1)*len(x_vals) + i
-        kijp1 = (j+1)*len(x_vals) + i
-        if i == 0:
-            # this is the left boundary
-            A[kij, kij] = 1
-            b[kij] = u_left
-        elif i == len(x_vals) - 1:
-            # right boundary
-            A[kij, kij] = 1
-            b[kij] = u_right
-        elif j == 0:
-            # bottom boundary
-            A[kij, kij] = 1
-            b[kij] = u_bottom
-        elif j == len(y_vals) - 1:
-            # top boundary
-            A[kij, kij] = 1
-            b[kij] = u_top
-        else:
-            # coefficients for interior points, based
-            # on the recursion formula
-            A[kij, kim1j] = 1
-            A[kij, kip1j] = 1
-            A[kij, kijm1] = 1
-            A[kij, kijp1] = 1
-            A[kij, kij] = -4
-u = np.linalg.solve(A, b)
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_vals</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+        <span class="c1"># for convenience, calculate all indices now</span>
+        <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># this is the left boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># right boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_right</span>
+        <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># bottom boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_bottom</span>
+        <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># top boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_top</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># coefficients for interior points, based</span>
+            <span class="c1"># on the recursion formula</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-u_square = np.reshape(u, (len(y_vals), len(x_vals)))
-plt.contourf(x_vals, y_vals, u_square, levels=10)
-plt.colorbar(label=&#39;Temperature&#39;)
-plt.show()
+<span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">u_square</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_13_0.png" src="../../_images/elliptic_13_0.png" />
+<img alt="../../_images/939f078c1cd2288d6cddc83c652afc8b464955f109990d38d41782896f0e6d59.png" src="../../_images/939f078c1cd2288d6cddc83c652afc8b464955f109990d38d41782896f0e6d59.png" />
 </div>
 </div>
 </section>
@@ -963,94 +776,94 @@ plt.show()
 </figcaption>
 </figure>
 <p>For example, let’s say that at the upper boundary, the derivative of temperature is zero:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b11ffa3-7c91-41c0-ab0d-956d56ff3127">
-<span class="eqno">(5.17)<a class="headerlink" href="#equation-5b11ffa3-7c91-41c0-ab0d-956d56ff3127" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7274831e-ffcd-4783-a926-744b3476fc71">
+<span class="eqno">(5.17)<a class="headerlink" href="#equation-7274831e-ffcd-4783-a926-744b3476fc71" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left. \frac{\partial u}{\partial y} \right|_{\text{boundary}} = 0
 \end{equation}\]</div>
 <p>Let’s consider this boundary condition applied at the point shown, <span class="math notranslate nohighlight">\(u_{2,3}\)</span>.
 We can approximate this derivative using a central difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b4743c2-0177-4f83-a440-f4060c4396e3">
-<span class="eqno">(5.18)<a class="headerlink" href="#equation-5b4743c2-0177-4f83-a440-f4060c4396e3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aa9ed5ae-1d12-4a67-9384-a4aba84b6834">
+<span class="eqno">(5.18)<a class="headerlink" href="#equation-aa9ed5ae-1d12-4a67-9384-a4aba84b6834" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{u_{2,3}}{\partial y} \approx \frac{u_{2,4} - u_{2,2}}{\Delta x} &amp;= 0 \\
 u_{2,4} &amp;= u_{2,2}
 \end{align}\]</div>
 <p>This tells us the value of the point above the boundary, <span class="math notranslate nohighlight">\(u_{2,4}\)</span>; however, this point is a “ghost” or imaginary point located outside the boundary, so we don’t really care about its value. Instead, we can use this relationship to give us a usable equation for the boundary point, by incorporating it into the normal recursion formula for Laplace’s equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4eb10ac3-2908-46da-ba99-0da47e5cc67b">
-<span class="eqno">(5.19)<a class="headerlink" href="#equation-4eb10ac3-2908-46da-ba99-0da47e5cc67b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-83d3b799-d05a-49dc-b2f7-1c355e340337">
+<span class="eqno">(5.19)<a class="headerlink" href="#equation-83d3b799-d05a-49dc-b2f7-1c355e340337" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{1,3} + u_{3,3} + u_{2,4} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 u_{1,3} + u_{3,3} + u_{2,2} + u_{2,2} - 4u_{2,3} &amp;= 0 \\
 \rightarrow u_{1,3} + u_{3,3} + 2 u_{2,2} - 4u_{2,3} &amp;= 0
 \end{align}\]</div>
 <p>The recursion formula for points along the upper boundary would then become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c46eeb5-92bc-4ef1-b91e-c43804a7389f">
-<span class="eqno">(5.20)<a class="headerlink" href="#equation-4c46eeb5-92bc-4ef1-b91e-c43804a7389f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f758365c-7c7d-464a-978e-122960aa4b29">
+<span class="eqno">(5.20)<a class="headerlink" href="#equation-f758365c-7c7d-464a-978e-122960aa4b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
 u_{i+1,j} + u_{i-1,j} + 2 u_{i,j-1} - 4 u_{i,j} = 0 \;.
 \end{equation}\]</div>
 <p>Now let’s try solving the above example, but with <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial y} = 0\)</span> at the top boundary and <span class="math notranslate nohighlight">\(u = 0\)</span> at the bottom boundary:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>h = 0.1
-length_x = 1.0
-length_y = 1.0
-x_vals = np.arange(0, length_x + 0.001, h)
-y_vals = np.arange(0, length_y + 0.001, h)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">length_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">length_y</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_x</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_y</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 
-# The coefficient matrix A is now m*n by m*n, 
-# since that is the total number of points.
-# The right-hand side vector b is m*n by 1.
-A = np.zeros((len(x_vals)*len(y_vals), len(x_vals)*len(y_vals)))
-b = np.zeros(len(x_vals)*len(y_vals))
+<span class="c1"># The coefficient matrix A is now m*n by m*n, </span>
+<span class="c1"># since that is the total number of points.</span>
+<span class="c1"># The right-hand side vector b is m*n by 1.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">))</span>
 
-u_left = 100
-u_right = 100
-u_bottom = 0
-# u_top is not needed, insulated BC
+<span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">u_right</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">u_bottom</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># u_top is not needed, insulated BC</span>
 
-for j, y in enumerate(y_vals):
-    for i, x in enumerate(x_vals):
-        # for convenience, calculate all indices now
-        kij = j*len(x_vals) + i
-        kim1j = j*len(x_vals) + i - 1
-        kip1j = j*len(x_vals) + i + 1
-        kijm1 = (j-1)*len(x_vals) + i
-        kijp1 = (j+1)*len(x_vals) + i
-        if i == 0:
-            # this is the left boundary
-            A[kij, kij] = 1
-            b[kij] = u_left
-        elif i == len(x_vals) - 1:
-            # right boundary
-            A[kij, kij] = 1
-            b[kij] = u_right
-        elif j == 0:
-            # bottom boundary
-            A[kij, kij] = 1
-            b[kij] = u_bottom
-        elif j == len(y_vals) - 1:
-            # top boundary, using the ghost node + recursion formula            
-            A[kij, kim1j] = 1
-            A[kij, kip1j] = 1
-            A[kij, kijm1] = 2
-            A[kij, kij] = -4
-        else:
-            # coefficients for interior points, based
-            # on the recursion formula
-            A[kij, kim1j] = 1
-            A[kij, kip1j] = 1
-            A[kij, kijm1] = 1
-            A[kij, kijp1] = 1
-            A[kij, kij] = -4
-u = np.linalg.solve(A, b)
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_vals</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+        <span class="c1"># for convenience, calculate all indices now</span>
+        <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># this is the left boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># right boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_right</span>
+        <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># bottom boundary</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_bottom</span>
+        <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># top boundary, using the ghost node + recursion formula            </span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># coefficients for interior points, based</span>
+            <span class="c1"># on the recursion formula</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-u_square = np.reshape(u, (len(y_vals), len(x_vals)))
-plt.contourf(x_vals, y_vals, u_square, levels=20)
-plt.colorbar(label=&#39;Temperature&#39;)
-plt.show()
+<span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">u_square</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_15_0.png" src="../../_images/elliptic_15_0.png" />
+<img alt="../../_images/1dbc73bcd775829b3d4f13adb90499aebf0e84b9f5ed88a84aac6b26cde3d9ba.png" src="../../_images/1dbc73bcd775829b3d4f13adb90499aebf0e84b9f5ed88a84aac6b26cde3d9ba.png" />
 </div>
 </div>
 </section>
@@ -1060,66 +873,66 @@ plt.show()
 <p>However, this approach will become very slow as the grid resolution (<span class="math notranslate nohighlight">\(h = \Delta x = \Delta y\)</span>) becomes smaller, and eventually unfeasable due to the associated computational requirements. First, let’s create a function that takes as input the segment size <span class="math notranslate nohighlight">\(h\)</span>, then returns the time it takes to solve the problem for different sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import time 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> 
 
-def heat_equation(h):
-    &#39;&#39;&#39;Solves 2D steady heat equation problem given step size&#39;&#39;&#39;
-    t0 = time.time()
+<span class="k">def</span> <span class="nf">heat_equation</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Solves 2D steady heat equation problem given step size&#39;&#39;&#39;</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    length_x = 1.0
-    length_y = 1.0
-    x_vals = np.arange(0, length_x + 0.001, h)
-    y_vals = np.arange(0, length_y + 0.001, h)
+    <span class="n">length_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">length_y</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_x</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_y</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
     
-    num_pts = len(x_vals)*len(y_vals)
+    <span class="n">num_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span>
 
-    # The coefficient matrix A is now m*n by m*n, 
-    # since that is the total number of points.
-    # The right-hand side vector b is m*n by 1.
-    A = np.zeros((num_pts, num_pts))
-    b = np.zeros(num_pts)
+    <span class="c1"># The coefficient matrix A is now m*n by m*n, </span>
+    <span class="c1"># since that is the total number of points.</span>
+    <span class="c1"># The right-hand side vector b is m*n by 1.</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">num_pts</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
 
-    u_left = 100
-    u_right = 100
-    u_bottom = 100
-    u_top = 0
+    <span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_right</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_bottom</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_top</span> <span class="o">=</span> <span class="mi">0</span>
 
-    for j, y in enumerate(y_vals):
-        for i, x in enumerate(x_vals):
-            # for convenience, calculate all indices now
-            kij = j*len(x_vals) + i
-            kim1j = j*len(x_vals) + i - 1
-            kip1j = j*len(x_vals) + i + 1
-            kijm1 = (j-1)*len(x_vals) + i
-            kijp1 = (j+1)*len(x_vals) + i
-            if i == 0:
-                # this is the left boundary
-                A[kij, kij] = 1
-                b[kij] = u_left
-            elif i == len(x_vals) - 1:
-                # right boundary
-                A[kij, kij] = 1
-                b[kij] = u_right
-            elif j == 0:
-                # bottom boundary
-                A[kij, kij] = 1
-                b[kij] = u_bottom
-            elif j == len(y_vals) - 1:
-                # top boundary
-                A[kij, kij] = 1
-                b[kij] = u_top
-            else:
-                # coefficients for interior points, based
-                # on the recursion formula
-                A[kij, kim1j] = 1
-                A[kij, kip1j] = 1
-                A[kij, kijm1] = 1
-                A[kij, kijp1] = 1
-                A[kij, kij] = -4
-    u = np.linalg.solve(A, b)
-    u_square = np.reshape(u, (len(y_vals), len(x_vals)))
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_vals</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+            <span class="c1"># for convenience, calculate all indices now</span>
+            <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># this is the left boundary</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># right boundary</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_right</span>
+            <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># bottom boundary</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_bottom</span>
+            <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># top boundary</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">b</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_top</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># coefficients for interior points, based</span>
+                <span class="c1"># on the recursion formula</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kim1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kip1j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijm1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kijp1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">kij</span><span class="p">,</span> <span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
     
-    return num_pts, (time.time() - t0)
+    <span class="k">return</span> <span class="n">num_pts</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1127,37 +940,37 @@ def heat_equation(h):
 <p>Now, we can see how long it takes to solve as we increase the resolution, and get an idea about the relationship between time-to-solution and number of unknowns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0125</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]</span>
 
-num_pts = np.zeros(len(step_sizes))
-times = np.zeros_like(num_pts)
-for idx, step_size in enumerate(step_sizes):
-    num_pts[idx], times[idx] = heat_equation(step_size)
+<span class="n">num_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">))</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">):</span>
+    <span class="n">num_pts</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">heat_equation</span><span class="p">(</span><span class="n">step_size</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.loglog(num_pts, times, &#39;o&#39;, label=&#39;Actual cost&#39;)
-#plt.loglog(nums, times, &#39;-o&#39;)
-plt.xlabel(&#39;Number of unknowns&#39;); 
-plt.ylabel(&#39;Time for direct solution (sec)&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual cost&#39;</span><span class="p">)</span>
+<span class="c1">#plt.loglog(nums, times, &#39;-o&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of unknowns&#39;</span><span class="p">);</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Time for direct solution (sec)&#39;</span><span class="p">)</span>
 
-x = num_pts[:]
-n2 = x**2 * (times[1] / x[1]**2) 
-n3 = x**3 * (times[1] / x[1]**3)
-plt.loglog(x, n2, &#39;--&#39;, label=&#39;quadratic&#39;)
-plt.loglog(x, n3, &#39;--&#39;, label=&#39;cubic&#39;)
+<span class="n">x</span> <span class="o">=</span> <span class="n">num_pts</span><span class="p">[:]</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">n3</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
 
-plt.legend()
-plt.grid(True)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_20_0.png" src="../../_images/elliptic_20_0.png" />
+<img alt="../../_images/7f711f2b201482a2add484c3f6eb0f8c7b8b4ac8f329a7b994262c6279a8fdf8.png" src="../../_images/7f711f2b201482a2add484c3f6eb0f8c7b8b4ac8f329a7b994262c6279a8fdf8.png" />
 </div>
 </div>
 <p>After about 100 points/unknowns, the cost begins increasing exponentially with the number of points, somewhere between quadratic (<span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span>) and cubic (<span class="math notranslate nohighlight">\(\mathcal{O}(n^3)\)</span>).</p>
@@ -1171,15 +984,15 @@ plt.show()
 <h3><span class="section-number">5.1.5.1. </span>Jacobi method<a class="headerlink" href="#jacobi-method" title="Permalink to this headline">#</a></h3>
 <p>The Jacobi method essentially works by starting with an initial guess to the solution, then using the recursion formula to solve for values at each point, then repeating this until the values converge (i.e., stop changing).</p>
 <p>An algorithm we can use to solve Laplace’s equation:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Set some initial guess for all unknowns: <span class="math notranslate nohighlight">\(u_{i,j}^{\text{old}}\)</span></p></li>
 <li><p>Set the boundary values</p></li>
 <li><p>For each point in the interior, use the recursion formula to solve for new values based on old values at the surrounding points: <span class="math notranslate nohighlight">\(u_{i,j} = \left( u_{i+1,j}^{\text{old}} + u_{i-1,j}^{\text{old}} + u_{i,j+1}^{\text{old}} + u_{i,j-1}^{\text{old}} \right)/4\)</span>.</p></li>
 <li><p>Check for convergence: is <span class="math notranslate nohighlight">\(\epsilon\)</span> less than some tolerance, such as <span class="math notranslate nohighlight">\(10^{-6}\)</span>? Where <span class="math notranslate nohighlight">\(\epsilon = \max \left| u_{i,j} - u_{i,j}^{\text{old}} \right|\)</span>. If no, then return to step 2 and repeat.</p></li>
 </ol>
 <p>More formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea522132-8ce5-441a-9721-11a22d650d85">
-<span class="eqno">(5.21)<a class="headerlink" href="#equation-ea522132-8ce5-441a-9721-11a22d650d85" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4f107fe8-72ee-4a76-9949-50f4130a3366">
+<span class="eqno">(5.21)<a class="headerlink" href="#equation-4f107fe8-72ee-4a76-9949-50f4130a3366" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1189,100 +1002,100 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dcc04f21-4af4-4998-94ac-7041bd737256">
-<span class="eqno">(5.22)<a class="headerlink" href="#equation-dcc04f21-4af4-4998-94ac-7041bd737256" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d1b49005-ab33-4410-8d9c-cc92ed33092f">
+<span class="eqno">(5.22)<a class="headerlink" href="#equation-d1b49005-ab33-4410-8d9c-cc92ed33092f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def heat_equation_jacobi(h):
-    &#39;&#39;&#39;Solves heat equation using Jacobi iteration&#39;&#39;&#39;
-    t0 = time.time()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heat_equation_jacobi</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Solves heat equation using Jacobi iteration&#39;&#39;&#39;</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    length_x = 1.0
-    length_y = 1.0
-    x_vals = np.arange(0, length_x + 0.001, h)
-    y_vals = np.arange(0, length_y + 0.001, h)
+    <span class="n">length_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">length_y</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_x</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_y</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
     
-    num_pts = len(x_vals)*len(y_vals)
+    <span class="n">num_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span>
 
-    # initial guess
-    u = 100 * np.ones(num_pts)
+    <span class="c1"># initial guess</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
 
-    u_left = 100
-    u_right = 100
-    u_bottom = 100
-    u_top = 0
+    <span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_right</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_bottom</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_top</span> <span class="o">=</span> <span class="mi">0</span>
     
-    # dummy value for residual variable
-    epsilon = 1.0
+    <span class="c1"># dummy value for residual variable</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1.0</span>
     
-    num_iter = 0
-    while epsilon &gt; 1e-2:
-        u_old = np.copy(u)
-        epsilon = 0.0
+    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="mf">1e-2</span><span class="p">:</span>
+        <span class="n">u_old</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-        for j, y in enumerate(y_vals):
-            for i, x in enumerate(x_vals):
-                # for convenience, calculate all indices now
-                kij = j*len(x_vals) + i
-                kim1j = j*len(x_vals) + i - 1
-                kip1j = j*len(x_vals) + i + 1
-                kijm1 = (j-1)*len(x_vals) + i
-                kijp1 = (j+1)*len(x_vals) + i
-                if i == 0:
-                    # this is the left boundary
-                    u[kij] = u_left
-                elif i == len(x_vals) - 1:
-                    # right boundary
-                    u[kij] = u_right
-                elif j == 0:
-                    # bottom boundary
-                    u[kij] = u_bottom
-                elif j == len(y_vals) - 1:
-                    # top boundary
-                    u[kij] = u_top
-                else:
-                    # interior points
-                    u[kij] = (
-                        u_old[kip1j] + u_old[kim1j] + 
-                        u_old[kijm1] + u_old[kijp1]
-                        ) / 4.0
-        epsilon = np.max(np.abs(u - u_old))
-        num_iter += 1
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_vals</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+                <span class="c1"># for convenience, calculate all indices now</span>
+                <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># this is the left boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
+                <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># right boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_right</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># bottom boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_bottom</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># top boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_top</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># interior points</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">u_old</span><span class="p">[</span><span class="n">kip1j</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_old</span><span class="p">[</span><span class="n">kim1j</span><span class="p">]</span> <span class="o">+</span> 
+                        <span class="n">u_old</span><span class="p">[</span><span class="n">kijm1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u_old</span><span class="p">[</span><span class="n">kijp1</span><span class="p">]</span>
+                        <span class="p">)</span> <span class="o">/</span> <span class="mf">4.0</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">u_old</span><span class="p">))</span>
+        <span class="n">num_iter</span> <span class="o">+=</span> <span class="mi">1</span>
     
-    u_square = np.reshape(u, (len(y_vals), len(x_vals)))
-    # use a dict to package a large number of return objects
-    solution = {&#39;num_points&#39;: num_pts,
-                &#39;time&#39;: time.time() - t0,
-                &#39;num_iter&#39;: num_iter,
-                &#39;u&#39;: u_square,
-                &#39;x&#39;: x_vals,
-                &#39;y&#39;: y_vals
-                }
+    <span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+    <span class="c1"># use a dict to package a large number of return objects</span>
+    <span class="n">solution</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num_points&#39;</span><span class="p">:</span> <span class="n">num_pts</span><span class="p">,</span>
+                <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">,</span>
+                <span class="s1">&#39;num_iter&#39;</span><span class="p">:</span> <span class="n">num_iter</span><span class="p">,</span>
+                <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u_square</span><span class="p">,</span>
+                <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_vals</span><span class="p">,</span>
+                <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_vals</span>
+                <span class="p">}</span>
     
-    return solution
+    <span class="k">return</span> <span class="n">solution</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01, 0.005]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0125</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">]</span>
 
-num_pts_jac = np.zeros(len(step_sizes))
-times_jac = np.zeros_like(num_pts_jac)
-num_iter_jac = np.zeros_like(num_pts_jac)
-for idx, step_size in enumerate(step_sizes):
-    sol = heat_equation_jacobi(step_size)
-    num_pts_jac[idx] = sol[&#39;num_points&#39;]
-    times_jac[idx] = sol[&#39;time&#39;]
-    num_iter_jac[idx] = sol[&#39;num_iter&#39;]
-    x_vals = sol[&#39;x&#39;]
-    y_vals = sol[&#39;y&#39;]
-    u = sol[&#39;u&#39;]
-    print(f&quot;Number of iterations: {sol[&#39;num_iter&#39;]}&quot;)
+<span class="n">num_pts_jac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">))</span>
+<span class="n">times_jac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts_jac</span><span class="p">)</span>
+<span class="n">num_iter_jac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts_jac</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">):</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">heat_equation_jacobi</span><span class="p">(</span><span class="n">step_size</span><span class="p">)</span>
+    <span class="n">num_pts_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_points&#39;</span><span class="p">]</span>
+    <span class="n">times_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">num_iter_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_iter&#39;</span><span class="p">]</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of iterations: </span><span class="si">{</span><span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_iter&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1313,12 +1126,13 @@ Number of iterations: 317
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">num_pts_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_points&#39;</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">times_jac</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
 
-<span class="nn">Cell In[12], line 33,</span> in <span class="ni">heat_equation_jacobi</span><span class="nt">(h)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="nn">Cell In[12], line 35,</span> in <span class="ni">heat_equation_jacobi</span><span class="nt">(h)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="ne">---&gt; </span><span class="mi">35</span> <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="c1"># this is the left boundary</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1330,8 +1144,8 @@ Number of iterations: 317
 <h3><span class="section-number">5.1.5.2. </span>Gauss-Seidel method<a class="headerlink" href="#gauss-seidel-method" title="Permalink to this headline">#</a></h3>
 <p>The Gauss-Seidel method is very similar to the Jacobi method, but with one important difference: rather than using all old values to calculate the new values, incorporate updated values as they are available. Because the method incorporates newer information more quickly, it tends to converge faster (meaning, with fewer iterations) than the Jacobi method.</p>
 <p>Formally, if we have a system <span class="math notranslate nohighlight">\(A \mathbf{x} = \mathbf{b}\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e9599a73-b74f-479a-ac63-29c9e9c87a22">
-<span class="eqno">(5.23)<a class="headerlink" href="#equation-e9599a73-b74f-479a-ac63-29c9e9c87a22" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-37dd69c1-9dd7-4d08-88b5-064a4afea719">
+<span class="eqno">(5.23)<a class="headerlink" href="#equation-37dd69c1-9dd7-4d08-88b5-064a4afea719" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A = \begin{bmatrix}
 a_{0,0} &amp; a_{0,1} &amp; \cdots &amp; a_{0,n-1} \\
 a_{1,0} &amp; a_{1,1} &amp; \cdots &amp; a_{1,n-1} \\
@@ -1341,100 +1155,100 @@ a_{n-1,0} &amp; a_{n-1,1} &amp; \cdots &amp; a_{n-1,n-1} \end{bmatrix}
 \quad \mathbf{b} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_{n-1} \end{bmatrix}
 \end{equation}\]</div>
 <p>then we can solve iterative for <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> using</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60e2821a-be53-4cfb-9172-6c6c50db955b">
-<span class="eqno">(5.24)<a class="headerlink" href="#equation-60e2821a-be53-4cfb-9172-6c6c50db955b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d1cc2d6-80a8-49dd-9051-149781abc34f">
+<span class="eqno">(5.24)<a class="headerlink" href="#equation-9d1cc2d6-80a8-49dd-9051-149781abc34f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} - \sum_{j =i+1}^n a_{ij} x_j^{(k)} \right) , \quad i = 0,1,\ldots, n-1
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_i^{(k)}\)</span> is a value of the solution at iteration <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(x_i^{(k+1)}\)</span> is at the next iteration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def heat_equation_gauss_seidel(h):
-    &#39;&#39;&#39;Solves heat equation using the Gauss-Seidel method&#39;&#39;&#39;
-    t0 = time.time()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">heat_equation_gauss_seidel</span><span class="p">(</span><span class="n">h</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Solves heat equation using the Gauss-Seidel method&#39;&#39;&#39;</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    length_x = 1.0
-    length_y = 1.0
-    x_vals = np.arange(0, length_x + 0.001, h)
-    y_vals = np.arange(0, length_y + 0.001, h)
+    <span class="n">length_x</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">length_y</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_x</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length_y</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
     
-    num_pts = len(x_vals)*len(y_vals)
+    <span class="n">num_pts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span>
 
-    # initial guess
-    u = 100 * np.ones(num_pts)
+    <span class="c1"># initial guess</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">num_pts</span><span class="p">)</span>
 
-    u_left = 100
-    u_right = 100
-    u_bottom = 100
-    u_top = 0
+    <span class="n">u_left</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_right</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_bottom</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">u_top</span> <span class="o">=</span> <span class="mi">0</span>
     
-    # dummy value for residual variable
-    epsilon = 1.0
+    <span class="c1"># dummy value for residual variable</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1.0</span>
     
-    num_iter = 0
-    while epsilon &gt; 1e-2:
-        u_old = np.copy(u)
-        epsilon = 0.0
+    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">epsilon</span> <span class="o">&gt;</span> <span class="mf">1e-2</span><span class="p">:</span>
+        <span class="n">u_old</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-        for j, y in enumerate(y_vals):
-            for i, x in enumerate(x_vals):
-                # for convenience, calculate all indices now
-                kij = j*len(x_vals) + i
-                kim1j = j*len(x_vals) + i - 1
-                kip1j = j*len(x_vals) + i + 1
-                kijm1 = (j-1)*len(x_vals) + i
-                kijp1 = (j+1)*len(x_vals) + i
-                if i == 0:
-                    # this is the left boundary
-                    u[kij] = u_left
-                elif i == len(x_vals) - 1:
-                    # right boundary
-                    u[kij] = u_right
-                elif j == 0:
-                    # bottom boundary
-                    u[kij] = u_bottom
-                elif j == len(y_vals) - 1:
-                    # top boundary
-                    u[kij] = u_top
-                else:
-                    # interior points
-                    u[kij] = (
-                        u[kip1j] + u[kim1j] + 
-                        u[kijm1] + u[kijp1]
-                        ) / 4.0
-        epsilon = np.max(np.abs(u - u_old))
-        num_iter += 1
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">y_vals</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+                <span class="c1"># for convenience, calculate all indices now</span>
+                <span class="n">kij</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="n">kim1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">kip1j</span> <span class="o">=</span> <span class="n">j</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">kijm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="n">kijp1</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># this is the left boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_left</span>
+                <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># right boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_right</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="c1"># bottom boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_bottom</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c1"># top boundary</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="n">u_top</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># interior points</span>
+                    <span class="n">u</span><span class="p">[</span><span class="n">kij</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">u</span><span class="p">[</span><span class="n">kip1j</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="n">kim1j</span><span class="p">]</span> <span class="o">+</span> 
+                        <span class="n">u</span><span class="p">[</span><span class="n">kijm1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[</span><span class="n">kijp1</span><span class="p">]</span>
+                        <span class="p">)</span> <span class="o">/</span> <span class="mf">4.0</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">u_old</span><span class="p">))</span>
+        <span class="n">num_iter</span> <span class="o">+=</span> <span class="mi">1</span>
     
-    u_square = np.reshape(u, (len(y_vals), len(x_vals)))
-    # use a dict to package a large number of return objects
-    solution = {&#39;num_points&#39;: num_pts,
-                &#39;time&#39;: time.time() - t0,
-                &#39;num_iter&#39;: num_iter,
-                &#39;u&#39;: u_square,
-                &#39;x&#39;: x_vals,
-                &#39;y&#39;: y_vals
-                }
+    <span class="n">u_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+    <span class="c1"># use a dict to package a large number of return objects</span>
+    <span class="n">solution</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;num_points&#39;</span><span class="p">:</span> <span class="n">num_pts</span><span class="p">,</span>
+                <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">,</span>
+                <span class="s1">&#39;num_iter&#39;</span><span class="p">:</span> <span class="n">num_iter</span><span class="p">,</span>
+                <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u_square</span><span class="p">,</span>
+                <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x_vals</span><span class="p">,</span>
+                <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_vals</span>
+                <span class="p">}</span>
     
-    return solution
+    <span class="k">return</span> <span class="n">solution</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>step_sizes = [0.2, 0.1, 0.05, 0.025, 0.02, 0.0125, 0.01, 0.005]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">step_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.0125</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">]</span>
 
-num_pts_gs = np.zeros(len(step_sizes))
-times_gs = np.zeros_like(num_pts_gs)
-num_iter_gs = np.zeros_like(num_pts_gs)
-for idx, step_size in enumerate(step_sizes):
-    sol = heat_equation_gauss_seidel(step_size)
-    num_pts_gs[idx] = sol[&#39;num_points&#39;]
-    times_gs[idx] = sol[&#39;time&#39;]
-    num_iter_gs[idx] = sol[&#39;num_iter&#39;]
-    x_vals = sol[&#39;x&#39;]
-    y_vals = sol[&#39;y&#39;]
-    u = sol[&#39;u&#39;]
-    print(f&quot;Number of iterations: {sol[&#39;num_iter&#39;]}&quot;)
+<span class="n">num_pts_gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">))</span>
+<span class="n">times_gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts_gs</span><span class="p">)</span>
+<span class="n">num_iter_gs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">num_pts_gs</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">step_size</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">step_sizes</span><span class="p">):</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">heat_equation_gauss_seidel</span><span class="p">(</span><span class="n">step_size</span><span class="p">)</span>
+    <span class="n">num_pts_gs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_points&#39;</span><span class="p">]</span>
+    <span class="n">times_gs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+    <span class="n">num_iter_gs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_iter&#39;</span><span class="p">]</span>
+    <span class="n">x_vals</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of iterations: </span><span class="si">{</span><span class="n">sol</span><span class="p">[</span><span class="s1">&#39;num_iter&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1453,19 +1267,19 @@ Number of iterations: 2275
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.loglog(num_pts, times, &#39;-o&#39;, label=&#39;Direct solution&#39;)
-plt.loglog(num_pts_jac, times_jac, &#39;-^&#39;, label=&#39;Jacobi solution&#39;)
-plt.loglog(num_pts_gs, times_gs, &#39;-x&#39;, label=&#39;Gauss-Seidel solution&#39;)
-plt.xlabel(&#39;Number of unknowns&#39;)
-plt.ylabel(&#39;Time for solution (sec)&#39;)
-plt.legend()
-plt.grid()
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Direct solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts_jac</span><span class="p">,</span> <span class="n">times_jac</span><span class="p">,</span> <span class="s1">&#39;-^&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jacobi solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts_gs</span><span class="p">,</span> <span class="n">times_gs</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gauss-Seidel solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of unknowns&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Time for solution (sec)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_28_0.png" src="../../_images/elliptic_28_0.png" />
+<img alt="../../_images/6799937f08e29cda4c083834c3a37a4c01f3db25f10d1bf4c832bfd9a28cd3fc.png" src="../../_images/6799937f08e29cda4c083834c3a37a4c01f3db25f10d1bf4c832bfd9a28cd3fc.png" />
 </div>
 </div>
 <p>We can see that for smaller numbers of points/unknowns, the direct solution method is faster, but at some point the costs of solving directly (meaning using linear algebra) grow higher.</p>
@@ -1474,18 +1288,18 @@ plt.show()
 <p>(Running these tests on different computers might generate slightly different results, but the overall conclusions should stay the same.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.loglog(num_pts_jac, num_iter_jac, &#39;-^&#39;, label=&#39;Jacobi method&#39;)
-plt.loglog(num_pts_gs, num_iter_gs, &#39;-x&#39;, label=&#39;Gauss-Seidel method&#39;)
-plt.xlabel(&#39;Number of unknowns&#39;)
-plt.ylabel(&#39;Number of iterations required&#39;)
-plt.legend()
-plt.grid()
-plt.show()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts_jac</span><span class="p">,</span> <span class="n">num_iter_jac</span><span class="p">,</span> <span class="s1">&#39;-^&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Jacobi method&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">num_pts_gs</span><span class="p">,</span> <span class="n">num_iter_gs</span><span class="p">,</span> <span class="s1">&#39;-x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gauss-Seidel method&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of unknowns&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of iterations required&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/elliptic_30_0.png" src="../../_images/elliptic_30_0.png" />
+<img alt="../../_images/479500ec933b6c1cc9bbf06fd11d3f0879fb785f358f800e01ee04cc1b20aa58.png" src="../../_images/479500ec933b6c1cc9bbf06fd11d3f0879fb785f358f800e01ee04cc1b20aa58.png" />
 </div>
 </div>
 <p>These results show us a few things:</p>
@@ -1511,7 +1325,7 @@ plt.show()
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./content/pdes"
         },
         predefinedOutput: true
@@ -1519,53 +1333,110 @@ plt.show()
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="partial-differential-equations.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5. </span>Partial Differential Equations</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="partial-differential-equations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Partial Differential Equations</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="parabolic.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="parabolic.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5.2. </span>Parabolic PDEs</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kyle Niemeyer<br/>
-  
-    <div class="extra_footer">
-      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
-
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate">5.1.1. Example: heat transfer in a square plate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#row-major-mapping">5.1.2. Row-major mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-in-a-square-plate-redux">5.1.3. Example: heat transfer in a square plate (redux)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-derivative-boundary-conditions">5.1.4. Neumann (derivative) boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-solutions-for-very-large-problems">5.1.5. Iterative solutions for (very) large problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jacobi-method">5.1.5.1. Jacobi method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-seidel-method">5.1.5.2. Gauss-Seidel method</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kyle Niemeyer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

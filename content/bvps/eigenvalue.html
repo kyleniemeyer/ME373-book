@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>4.3. Eigenvalue problems &#8212; Mechanical Engineering Methods</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,57 +62,88 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/bvps/eigenvalue';</script>
     <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/bvps/eigenvalue.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5. Partial Differential Equations" href="../pdes/partial-differential-equations.html" />
     <link rel="prev" title="4.2. Finite difference method" href="finite-difference.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mechanical Engineering Methods</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,494 +152,295 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Ordinary Differential Equations
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../first-order.html">
-   1. Solutions to 1st-order ODEs
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
-   2. Numerical Methods
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/integrals.html">
-     2.1. Numerical integrals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/error.html">
-     2.2. Error
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
-     2.3. Numerical Solutions of 1st-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/stability.html">
-     2.4. Stability and Stiffness
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../second-order/second-order.html">
-   3. Second-order Ordinary Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/analytical.html">
-     3.1. Analytical Solutions to 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/initial-value-problems.html">
-     3.2. Initial-Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/numerical-methods.html">
-     3.3. Numerical methods for 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/fourier-series.html">
-     3.4. Fourier Series
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/power-series.html">
-     3.5. Power Series Solutions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="boundary-value-problems.html">
-   4. Boundary Value Problems
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="shooting-method.html">
-     4.1. Shooting Method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="finite-difference.html">
-     4.2. Finite difference method
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     4.3. Eigenvalue problems
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../first-order.html">1. Solutions to 1st-order ODEs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/numerical-methods.html">2. Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/integrals.html">2.1. Numerical integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/error.html">2.2. Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/initial-value-methods.html">2.3. Numerical Solutions of 1st-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/stability.html">2.4. Stability and Stiffness</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Partial Differential Equations
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../pdes/partial-differential-equations.html">
-   5. Partial Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/elliptic.html">
-     5.1. Elliptic PDEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/parabolic.html">
-     5.2. Parabolic PDEs
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../second-order/second-order.html">3. Second-order Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/analytical.html">3.1. Analytical Solutions to 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/initial-value-problems.html">3.2. Initial-Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/numerical-methods.html">3.3. Numerical methods for 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/fourier-series.html">3.4. Fourier Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/power-series.html">3.5. Power Series Solutions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sample Quizzes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
-   Sample Quiz 2 problems: IVPs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
-   Sample Quiz 3 problems: BVPs
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="boundary-value-problems.html">4. Boundary Value Problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shooting-method.html">4.1. Shooting Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="finite-difference.html">4.2. Finite difference method</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.3. Eigenvalue problems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Partial Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
-   GitHub repository
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributing.html">
-   Contributing to Jupyter Book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pdes/partial-differential-equations.html">5. Partial Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/elliptic.html">5.1. Elliptic PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/parabolic.html">5.2. Parabolic PDEs</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample Quizzes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz2-IVPs.html">Sample Quiz 2 problems: IVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz3-BVPs.html">Sample Quiz 3 problems: BVPs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zbibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/bvps/eigenvalue.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/bvps/eigenvalue.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/bvps/eigenvalue.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/bvps/eigenvalue.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/bvps/eigenvalue.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/bvps/eigenvalue.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/content/bvps/eigenvalue.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-beam-buckling">
-   4.3.1. Example: beam buckling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-beam-buckling-with-different-boundary-conditions">
-   4.3.2. Example: beam buckling with different boundary conditions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#getting-eigenvalues-numerically">
-   4.3.3. Getting eigenvalues numerically
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-mass-spring-system">
-   4.3.4. Example: mass-spring system
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Eigenvalue problems</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-beam-buckling">
-   4.3.1. Example: beam buckling
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-beam-buckling-with-different-boundary-conditions">
-   4.3.2. Example: beam buckling with different boundary conditions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#getting-eigenvalues-numerically">
-   4.3.3. Getting eigenvalues numerically
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-mass-spring-system">
-   4.3.4. Example: mass-spring system
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Eigenvalue problems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-beam-buckling">4.3.1. Example: beam buckling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-beam-buckling-with-different-boundary-conditions">4.3.2. Example: beam buckling with different boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-eigenvalues-numerically">4.3.3. Getting eigenvalues numerically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-mass-spring-system">4.3.4. Example: mass-spring system</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="eigenvalue-problems">
 <h1><span class="section-number">4.3. </span>Eigenvalue problems<a class="headerlink" href="#eigenvalue-problems" title="Permalink to this headline">#</a></h1>
 <p>“Eigenvalue” means characteristic value. These types of problems show up in many areas involving boundary-value problems, where we may not be able to obtain an analytical solution, but we can identify certain characteristic values that tell us important information about the system: the eigenvalues.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries for numerical functions and plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-from scipy.integrate import solve_ivp
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
-import matplotlib_inline.backend_inline
-matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
-plt.rcParams[&#39;figure.dpi&#39;]= 300
-plt.rcParams[&#39;savefig.dpi&#39;] = 300
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these lines are only for helping improve the display</span>
+<span class="kn">import</span> <span class="nn">matplotlib_inline.backend_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span><span class="o">=</span> <span class="mi">300</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
 </div>
@@ -606,88 +448,88 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 <section id="example-beam-buckling">
 <h2><span class="section-number">4.3.1. </span>Example: beam buckling<a class="headerlink" href="#example-beam-buckling" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider deflection in a simply supported (static) vertical beam: <span class="math notranslate nohighlight">\(y(x)\)</span>, with boundary conditions <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(L) = 0\)</span>. To get the governing equation, start with considering the sum of moments around the upper pin:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa4d0b58-2194-40d3-8326-13f00b49b7e5">
-<span class="eqno">(4.46)<a class="headerlink" href="#equation-fa4d0b58-2194-40d3-8326-13f00b49b7e5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0fb37cff-4e28-43e1-a87a-64af9ecc86ea">
+<span class="eqno">(4.46)<a class="headerlink" href="#equation-0fb37cff-4e28-43e1-a87a-64af9ecc86ea" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum M &amp;= M_z + P y = 0 \\
 M_z &amp;= -P y
 \end{align}\]</div>
 <p>We also know that <span class="math notranslate nohighlight">\(M_z = E I y''\)</span>, so we can obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a57fe2e-ef75-490a-9e4f-1046e4ee19ea">
-<span class="eqno">(4.47)<a class="headerlink" href="#equation-4a57fe2e-ef75-490a-9e4f-1046e4ee19ea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c9743980-985f-4fc5-8c1b-808b7152d13b">
+<span class="eqno">(4.47)<a class="headerlink" href="#equation-c9743980-985f-4fc5-8c1b-808b7152d13b" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_z = E I \frac{d^2 y}{dx^2} &amp;= -P y \\
 y'' + \frac{P}{EI} y &amp;= 0
 \end{align}\]</div>
 <p>This equation governs the stability of a beam, considering small deflections.
 To simplify things, let’s define <span class="math notranslate nohighlight">\(\lambda^2 = \frac{P}{EI}\)</span>, which gives us the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a63bff02-1b77-46c0-bc0d-3075c06d0654">
-<span class="eqno">(4.48)<a class="headerlink" href="#equation-a63bff02-1b77-46c0-bc0d-3075c06d0654" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-77389586-5ab9-4c26-b750-c45f73b5a402">
+<span class="eqno">(4.48)<a class="headerlink" href="#equation-77389586-5ab9-4c26-b750-c45f73b5a402" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y'' + \lambda^2 y = 0
 \end{equation}\]</div>
 <p>We can get the general solution to this:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8febe949-2ee4-49cc-9bfd-6917d3684ef0">
-<span class="eqno">(4.49)<a class="headerlink" href="#equation-8febe949-2ee4-49cc-9bfd-6917d3684ef0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53c11b0f-a16d-4c3a-93fa-abef6e786819">
+<span class="eqno">(4.49)<a class="headerlink" href="#equation-53c11b0f-a16d-4c3a-93fa-abef6e786819" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(x) = A \cos (\lambda x) + B \sin (\lambda x)
 \end{equation}\]</div>
 <p>To find the coefficients, let’s apply the boundary conditions, starting with <span class="math notranslate nohighlight">\(x=0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ee4a5b4-1d08-4f72-8ae5-4c9187db7c2d">
-<span class="eqno">(4.50)<a class="headerlink" href="#equation-3ee4a5b4-1d08-4f72-8ae5-4c9187db7c2d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a90463a5-3a2c-4498-9d03-465589a34d20">
+<span class="eqno">(4.50)<a class="headerlink" href="#equation-a90463a5-3a2c-4498-9d03-465589a34d20" title="Permalink to this equation">#</a></span>\[\begin{align}
 y(x=0) &amp;= 0 = A \cos 0 + B \sin 0 \\
 \rightarrow A &amp;= 0 \\
 y(x=L) &amp;= 0 = B \sin (\lambda L)
 \end{align}\]</div>
 <p>Now what? <span class="math notranslate nohighlight">\(B \neq 0\)</span>, because otherwise we would have the trivial solution <span class="math notranslate nohighlight">\(y(x) = 0\)</span>. Instead, to satisfy the boundary condition, we need</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ce97138b-63a2-40c0-97f2-0f5f5bdc8200">
-<span class="eqno">(4.51)<a class="headerlink" href="#equation-ce97138b-63a2-40c0-97f2-0f5f5bdc8200" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-734b238e-5cac-41b4-b03e-0d3d9610a4d7">
+<span class="eqno">(4.51)<a class="headerlink" href="#equation-734b238e-5cac-41b4-b03e-0d3d9610a4d7" title="Permalink to this equation">#</a></span>\[\begin{align}
 B \neq 0 \rightarrow \sin (\lambda L) &amp;= 0 \\
 \text{so} \quad \lambda L &amp;= n \pi \quad n = 1, 2, 3, \ldots, \infty \\
 \lambda &amp;= \frac{n \pi}{L} \quad n = 1, 2, 3, \ldots, \infty
 \end{align}\]</div>
 <p><span class="math notranslate nohighlight">\(\lambda\)</span> give the the <strong>eigenvalues</strong> for this problem; as you can see, there are an infinite number, that correspond to <strong>eigenfunctions</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8b55d89-a731-4fe6-8523-c2448abf7368">
-<span class="eqno">(4.52)<a class="headerlink" href="#equation-d8b55d89-a731-4fe6-8523-c2448abf7368" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b33b82c1-9d86-4f89-81b5-e7132db03b8f">
+<span class="eqno">(4.52)<a class="headerlink" href="#equation-b33b82c1-9d86-4f89-81b5-e7132db03b8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_n = B \sin \left( \frac{n \pi x}{L} \right) \quad n = 1, 2, 3, \ldots, \infty
 \end{equation}\]</div>
 <p>The eigenvalues and associated eigenfunctions physically represent different modes of deflection.
 For example, consider the first three modes (corresponding to <span class="math notranslate nohighlight">\(n = 1, 2, 3\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>L = 1.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span>
 
-fig, axes = plt.subplots(1, 3)
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-x = np.linspace(0, L)
-y = np.sin(np.pi * x / L)
-axes[0].plot(y, x)
-axes[0].set_title(&#39;n = 1&#39;)
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;n = 1&#39;</span><span class="p">)</span>
 
-y = np.sin(2 * np.pi * x / L)
-axes[1].plot(y, x)
-axes[1].set_title(&#39;n = 2&#39;)
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;n = 2&#39;</span><span class="p">)</span>
 
-y = np.sin(3 * np.pi * x / L)
-axes[2].plot(y, x)
-axes[2].set_title(&#39;n = 3&#39;)
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;n = 3&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eigenvalue_4_0.png" src="../../_images/eigenvalue_4_0.png" />
+<img alt="../../_images/4905c3d9423255b784961553b0dd39a9cf3efd9996447b6ab97bfd5f5421ad54.png" src="../../_images/4905c3d9423255b784961553b0dd39a9cf3efd9996447b6ab97bfd5f5421ad54.png" />
 </div>
 </div>
 <p>Here we see different modes of how the beam will buckle. How do we know when this happens?</p>
 <p>Recall that the eigenvalue is connected to the physical properties of the beam:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b16b4bad-7d36-4ce6-8cf3-73ae351b5642">
-<span class="eqno">(4.53)<a class="headerlink" href="#equation-b16b4bad-7d36-4ce6-8cf3-73ae351b5642" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-11cd340b-b647-45a3-848a-67b16448a775">
+<span class="eqno">(4.53)<a class="headerlink" href="#equation-11cd340b-b647-45a3-848a-67b16448a775" title="Permalink to this equation">#</a></span>\[\begin{gather}
 \lambda^2 = \frac{P}{EI} \rightarrow \lambda = \sqrt{\frac{P}{EI}} = \frac{n \pi}{L} \\
 P = \frac{EI}{L} n^2 \pi^2
 \end{gather}\]</div>
 <p>This means that when the combination of load force and beam properties match certain values, the beam will deflect—and buckle—in one of the modes corresponding to the associated eigenfunction.</p>
 <p>In particular, the first mode (<span class="math notranslate nohighlight">\(n=1\)</span>) is interesting, because this is the first one that will be encountered if a load starts at zero and increases. This is the <strong>Euler critical load</strong> of buckling, <span class="math notranslate nohighlight">\(P_{cr}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5531e4c3-fadd-4aa9-8f15-ddf2a9fa7058">
-<span class="eqno">(4.54)<a class="headerlink" href="#equation-5531e4c3-fadd-4aa9-8f15-ddf2a9fa7058" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-f002fed6-683f-4247-8713-3e730975e5f8">
+<span class="eqno">(4.54)<a class="headerlink" href="#equation-f002fed6-683f-4247-8713-3e730975e5f8" title="Permalink to this equation">#</a></span>\[\begin{gather}
 \lambda_1 = \frac{\pi}{L} \rightarrow \lambda_1^2 = \frac{P}{EI} = \frac{\pi^2}{L^2} \\
 P_{cr} = \frac{\pi^2 E I}{L^2}
 \end{gather}\]</div>
@@ -696,14 +538,14 @@ P_{cr} = \frac{\pi^2 E I}{L^2}
 <h2><span class="section-number">4.3.2. </span>Example: beam buckling with different boundary conditions<a class="headerlink" href="#example-beam-buckling-with-different-boundary-conditions" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider a slightly different case, where at <span class="math notranslate nohighlight">\(x=0\)</span> the beam is supported such that <span class="math notranslate nohighlight">\(y'(0) = 0\)</span>. How does the beam buckle in this case?</p>
 <p>The governing equation and general solution are the same:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a7bb815-86cc-4d96-9263-40e1941f49da">
-<span class="eqno">(4.55)<a class="headerlink" href="#equation-4a7bb815-86cc-4d96-9263-40e1941f49da" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1580368a-dc29-4cac-a284-3c43bdb43fef">
+<span class="eqno">(4.55)<a class="headerlink" href="#equation-1580368a-dc29-4cac-a284-3c43bdb43fef" title="Permalink to this equation">#</a></span>\[\begin{align}
 y'' + \lambda^2 y &amp;= 0 \\
 y(x) &amp;= A \cos (\lambda x) + B \sin (\lambda x)
 \end{align}\]</div>
 <p>but our boundary conditions are now different:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3c62478-217e-48ee-8035-fe9483245c5e">
-<span class="eqno">(4.56)<a class="headerlink" href="#equation-a3c62478-217e-48ee-8035-fe9483245c5e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8d40b3bb-a738-4f6d-bf93-ba57087a77f0">
+<span class="eqno">(4.56)<a class="headerlink" href="#equation-8d40b3bb-a738-4f6d-bf93-ba57087a77f0" title="Permalink to this equation">#</a></span>\[\begin{align}
 y'(0) = 0 = -\lambda A \sin(0) + \lambda B\cos(0) \\
 \rightarrow B &amp;= 0 \\
 y &amp;= A \cos (\lambda x) \\
@@ -713,8 +555,8 @@ A \neq 0 \rightarrow \cos(\lambda L) &amp;= 0 \\
 \lambda &amp;= \frac{(2n-1) \pi}{2 L} \quad n = 1,2,3,\ldots, \infty
 \end{align}\]</div>
 <p>Then, the critical buckling load, again corresponding to <span class="math notranslate nohighlight">\(n=1\)</span>, is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1165a52-9952-4859-9811-29cc0158072a">
-<span class="eqno">(4.57)<a class="headerlink" href="#equation-f1165a52-9952-4859-9811-29cc0158072a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4971bdd4-b022-40cc-ac90-cd79e3cd4ad1">
+<span class="eqno">(4.57)<a class="headerlink" href="#equation-4971bdd4-b022-40cc-ac90-cd79e3cd4ad1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_{cr} = \frac{\pi^2 EI}{4 L^2}
 \end{equation}\]</div>
 </section>
@@ -722,89 +564,89 @@ P_{cr} = \frac{\pi^2 EI}{4 L^2}
 <h2><span class="section-number">4.3.3. </span>Getting eigenvalues numerically<a class="headerlink" href="#getting-eigenvalues-numerically" title="Permalink to this headline">#</a></h2>
 <p>We can only get the eigenvalues analytically if we can obtain an analytical solution of the ODE, but we might want to get eigenvalues for more complex problems too. In that case, we can use an approach based on <em>finite differences</em> to find the eigenvalues.</p>
 <p>Consider the same problem as above, for deflection of a simply supported beam:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c4bcef6-1538-41d1-9b60-2f20159a3e10">
-<span class="eqno">(4.58)<a class="headerlink" href="#equation-8c4bcef6-1538-41d1-9b60-2f20159a3e10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-869f1bdd-8499-4f64-ac79-50c412ea5a94">
+<span class="eqno">(4.58)<a class="headerlink" href="#equation-869f1bdd-8499-4f64-ac79-50c412ea5a94" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y'' + \lambda^2 y = 0 
 \end{equation}\]</div>
 <p>with boundary conditions <span class="math notranslate nohighlight">\(y(0) = 0\)</span> and <span class="math notranslate nohighlight">\(y(L) = 0\)</span>. Let’s represent this using finite differences, for a case where <span class="math notranslate nohighlight">\(L=3\)</span> and <span class="math notranslate nohighlight">\(\Delta x = 1\)</span>, so we have four points in our solution grid.</p>
 <p>The finite difference representation of the ODE is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9c666b9-d395-40bf-9acf-1f9465d2a8e2">
-<span class="eqno">(4.59)<a class="headerlink" href="#equation-c9c666b9-d395-40bf-9acf-1f9465d2a8e2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f1ff8d43-6691-43b3-8f6f-6536c0a2cae3">
+<span class="eqno">(4.59)<a class="headerlink" href="#equation-f1ff8d43-6691-43b3-8f6f-6536c0a2cae3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} + \lambda^2 y_i &amp;= 0 \\
 y_{i-1} + \left( \lambda^2 \Delta x^2 - 2 \right) y_i + y_{i+1} &amp;= 0
 \end{align}\]</div>
 <p>However, in this case, we are not solving for the values of deflection (<span class="math notranslate nohighlight">\(y_i\)</span>), but instead the <strong>eigenvalues</strong> <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>Then, we can write the system of equations using the above recursion formula and our two boundary conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87f1deee-8107-4f54-9b25-bf8de0d3db92">
-<span class="eqno">(4.60)<a class="headerlink" href="#equation-87f1deee-8107-4f54-9b25-bf8de0d3db92" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cc0b70dd-6dc0-4280-89a2-4393a5efda94">
+<span class="eqno">(4.60)<a class="headerlink" href="#equation-cc0b70dd-6dc0-4280-89a2-4393a5efda94" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1 &amp;= 0 \\
 y_1 + y_2 \left( \lambda^2 \Delta x^2 - 2 \right) + y_3 &amp;= 0 \\
 y_2 + y_3 \left( \lambda^2 \Delta x^2 - 2 \right) + y_4 &amp;= 0 \\
 y_4 &amp;= 0
 \end{align}\]</div>
 <p>which we can simplify down to two equations by incorporating the boundary conditions into the equations for the two middle points, and also letting <span class="math notranslate nohighlight">\(k = \lambda^2 \Delta x^2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca5c92b8-cc72-45cb-b7bf-7ead0bfc47f5">
-<span class="eqno">(4.61)<a class="headerlink" href="#equation-ca5c92b8-cc72-45cb-b7bf-7ead0bfc47f5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8f4e4a76-95f8-4f89-8968-5ae6ae8acb8a">
+<span class="eqno">(4.61)<a class="headerlink" href="#equation-8f4e4a76-95f8-4f89-8968-5ae6ae8acb8a" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_2 (k-2) + y_3 &amp;= 0 \\
 y_2 + y_3 (k-2) &amp;= 0
 \end{align}\]</div>
 <p>Let’s modify this once more by multiplying both equations by <span class="math notranslate nohighlight">\(-1\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d618996e-7d82-4768-b87a-419162a37209">
-<span class="eqno">(4.62)<a class="headerlink" href="#equation-d618996e-7d82-4768-b87a-419162a37209" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3d300951-e178-4c42-a428-6c398a5db054">
+<span class="eqno">(4.62)<a class="headerlink" href="#equation-3d300951-e178-4c42-a428-6c398a5db054" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_2 (2-k) - y_3 &amp;= 0 \\
 -y_2 + y_3 (2-k) &amp;= 0
 \end{align}\]</div>
 <p>Now we can represent this system of equations as a matrix equation <span class="math notranslate nohighlight">\(A \mathbf{y} = \mathbf{b} = \mathbf{0}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd85e45a-0585-488e-b50b-08bf3f41fa9f">
-<span class="eqno">(4.63)<a class="headerlink" href="#equation-fd85e45a-0585-488e-b50b-08bf3f41fa9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d9d25fd4-0deb-4fe1-a201-83822ac33f15">
+<span class="eqno">(4.63)<a class="headerlink" href="#equation-d9d25fd4-0deb-4fe1-a201-83822ac33f15" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{bmatrix}
 \begin{bmatrix} y_2 \\ y_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\mathbf{y} = \mathbf{0}\)</span> is a trivial solution to this, so instead <span class="math notranslate nohighlight">\(\det(A) = 0\)</span> satisfies this equation.
 For our <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix, that looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53fa6fe5-9296-4acb-aaae-f83f5612ed3d">
-<span class="eqno">(4.64)<a class="headerlink" href="#equation-53fa6fe5-9296-4acb-aaae-f83f5612ed3d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-52000ab2-eb0e-4101-8225-9c48fe862d7a">
+<span class="eqno">(4.64)<a class="headerlink" href="#equation-52000ab2-eb0e-4101-8225-9c48fe862d7a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(A) = \begin{vmatrix} 2-k &amp; -1 \\ -1 &amp; 2-k \end{vmatrix} = (2-k)^2 - 1 &amp;= 0 \\
 k^2 - 4k + 3 &amp;= 0 \\
 (k-3)(k-1) &amp;= 0
 \end{align}\]</div>
 <p>so the roots of this equation are <span class="math notranslate nohighlight">\(k_1 = 1\)</span> and <span class="math notranslate nohighlight">\(k_2 = 3\)</span>. Recall that <span class="math notranslate nohighlight">\(k\)</span> is directly related to the eigenvalue: <span class="math notranslate nohighlight">\(k = \lambda^2 \Delta x^2\)</span>, and <span class="math notranslate nohighlight">\(\Delta x = 1\)</span> for this case, so we can calculate the two associated eigenvalues:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9de5fc9c-dcb1-42cb-8d63-a7e781ac2c37">
-<span class="eqno">(4.65)<a class="headerlink" href="#equation-9de5fc9c-dcb1-42cb-8d63-a7e781ac2c37" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-15789369-f26e-4211-9492-f3f6ac965d60">
+<span class="eqno">(4.65)<a class="headerlink" href="#equation-15789369-f26e-4211-9492-f3f6ac965d60" title="Permalink to this equation">#</a></span>\[\begin{align}
 k_1 &amp;= \lambda_1^2 \Delta x^2 = 1 \rightarrow \lambda_1 = 1 \\
 k_2 &amp;= \lambda_2^2 \Delta x^2 = 3 \rightarrow \lambda_2 = \sqrt{3} = 1.732
 \end{align}\]</div>
 <p>Our work has given us approximations for the first two eigenvalues. We can compare these against the exact values, given in general by <span class="math notranslate nohighlight">\(\lambda = n \pi / L\)</span> (which we determined above):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d2a917e7-ec4d-4755-93c6-852dd0c7e8d9">
-<span class="eqno">(4.66)<a class="headerlink" href="#equation-d2a917e7-ec4d-4755-93c6-852dd0c7e8d9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-478fb651-e068-4776-995a-7a2e2b3b32e3">
+<span class="eqno">(4.66)<a class="headerlink" href="#equation-478fb651-e068-4776-995a-7a2e2b3b32e3" title="Permalink to this equation">#</a></span>\[\begin{align}
 n=1: \quad \lambda_1 &amp;= \frac{\pi}{L} = \frac{\pi}{3} = 1.0472 \\
 n=2: \quad \lambda_2 &amp;= \frac{2\pi}{L} = \frac{2\pi}{3} = 2.0944
 \end{align}\]</div>
 <p>So, our approximations are close, but with some obvious error. This is because we used a fairly crude step size of <span class="math notranslate nohighlight">\(\Delta x = 1\)</span>, dividing the domain into just three segments. By using a finer resolution, we can get more-accurate eigenvalues and also more of them (remember, there are actually an infinite number!).</p>
 <p>To do that, we will need to use Python, which offers the <code class="docutils literal notranslate"><span class="pre">np.linalg.eigvals()</span></code> function for calculating eigenvalues—essentially it is finding the roots to the polynomial given by <span class="math notranslate nohighlight">\(\det(A) = 0\)</span>. We need to modify this slightly, though, to use the function:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-082d7619-dbbf-4bad-bed7-de937e2c88c2">
-<span class="eqno">(4.67)<a class="headerlink" href="#equation-082d7619-dbbf-4bad-bed7-de937e2c88c2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16c93103-93e5-4588-9571-85bee91339b3">
+<span class="eqno">(4.67)<a class="headerlink" href="#equation-16c93103-93e5-4588-9571-85bee91339b3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(A) &amp;= 0 \\
 \det \left( A^* - k I \right) = 0
 \end{align}\]</div>
 <p>where the new matrix is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26f192d1-1495-4198-baa7-1c576ed99b29">
-<span class="eqno">(4.68)<a class="headerlink" href="#equation-26f192d1-1495-4198-baa7-1c576ed99b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f2b66aa6-d937-42d4-aba4-7a86a72bec68">
+<span class="eqno">(4.68)<a class="headerlink" href="#equation-f2b66aa6-d937-42d4-aba4-7a86a72bec68" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A^* = \begin{bmatrix} 2 &amp; -1 \\ -1 &amp; 2 \end{bmatrix}
 \end{equation}\]</div>
 <p>Then, <code class="docutils literal notranslate"><span class="pre">np.linalg.eigvals(A*)</span></code> will provide the values of <span class="math notranslate nohighlight">\(k\)</span>, which we can use to find the <span class="math notranslate nohighlight">\(\lambda\)</span>s:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 1.0
-L = 3.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">3.0</span>
 
-Astar = np.array([[2, -1], [-1, 2]])
-k = np.linalg.eigvals(Astar)
+<span class="n">Astar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Astar</span><span class="p">)</span>
 
-lambdas = np.sqrt(k) / dx
+<span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>
 
-print(f&#39;λ_1: {lambdas[0]: 5.3f}&#39;)
-print(f&#39;λ_2: {lambdas[1]: 5.3f}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;λ_1: </span><span class="si">{</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1"> 5.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;λ_2: </span><span class="si">{</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1"> 5.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -818,31 +660,31 @@ print(f&#39;λ_2: {lambdas[1]: 5.3f}&#39;)
 <p>As expected, this matches with our manual calculation above. But, we might want to calculate these eigenvalues more accurately, so let’s generalize this a bit and then try using <span class="math notranslate nohighlight">\(\Delta x= 0.1\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.1
-L = 3.0
-x = np.arange(0, L+0.001, dx)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="o">+</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
 
-Astar = np.zeros((len(x)-2, len(x)-2))
-Astar[0,0] = 2
-Astar[0,1] = -1
-Astar[-1,-2] = -1
-Astar[-1,-1] = 2
-for idx in range(len(Astar) - 1):
-    if idx &gt; 0 and idx &lt; len(Astar) - 1:
-        Astar[idx,idx-1] = -1
-        Astar[idx,idx] = 2
-        Astar[idx,idx+1] = -1
+<span class="n">Astar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">Astar</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Astar</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Astar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Astar</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Astar</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">Astar</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">Astar</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">Astar</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">Astar</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-# sort in ascending order
-k = np.sort(np.linalg.eigvals(Astar))
+<span class="c1"># sort in ascending order</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Astar</span><span class="p">))</span>
 
-lambdas = np.sqrt(k) / dx
+<span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">/</span> <span class="n">dx</span>
 
-print(f&#39;λ_1: {lambdas[0]: 5.3f}&#39;)
-print(f&#39;λ_2: {lambdas[1]: 5.3f}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;λ_1: </span><span class="si">{</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1"> 5.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;λ_2: </span><span class="si">{</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1"> 5.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-err = 100*np.abs(lambdas[0] - (np.pi/L)) / (np.pi/L)
-print(f&#39;Error in λ_1: {err: .2f}%&#39;)
+<span class="n">err</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lambdas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error in λ_1: </span><span class="si">{</span><span class="n">err</span><span class="si">:</span><span class="s1"> .2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -865,64 +707,64 @@ Error in λ_1:  0.05%
 </figcaption>
 </figure>
 <p>First, we need to write the equations of motion, based on doing a free-body diagram on each mass:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-404f86c6-7780-4b5c-b388-28c0408a77d0">
-<span class="eqno">(4.69)<a class="headerlink" href="#equation-404f86c6-7780-4b5c-b388-28c0408a77d0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f164f671-5c37-4473-9636-90347716c335">
+<span class="eqno">(4.69)<a class="headerlink" href="#equation-f164f671-5c37-4473-9636-90347716c335" title="Permalink to this equation">#</a></span>\[\begin{align}
 m_1 \frac{d^2 x_1}{dt^2} &amp;= -k x_1 + k(x_2 - x_1) \\
 m_2 \frac{d^2 x_2}{dt^2} &amp;= -k (x_2 - x_1) - k x_2
 \end{align}\]</div>
 <p>We can condense these equations a bit:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6801ca90-22ca-4c60-8400-8e6640fa7ef4">
-<span class="eqno">(4.70)<a class="headerlink" href="#equation-6801ca90-22ca-4c60-8400-8e6640fa7ef4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-47676e42-c8d8-4447-b6ee-4b252eb2f1a1">
+<span class="eqno">(4.70)<a class="headerlink" href="#equation-47676e42-c8d8-4447-b6ee-4b252eb2f1a1" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_1^{\prime\prime} - \frac{k}{m_1} \left( -2 x_1 + x_2 \right) &amp;= 0 \\
 x_2^{\prime\prime} - \frac{k}{m_2} \left( x_1 - 2 x_2 \right) &amp;= 0
 \end{align}\]</div>
 <p>To proceed, we can assume that the masses will move in a sinusoidal fashion, with a shared frequency but separate amplitude:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a62c0dab-3d9d-4e0b-aa1a-272c565ec41c">
-<span class="eqno">(4.71)<a class="headerlink" href="#equation-a62c0dab-3d9d-4e0b-aa1a-272c565ec41c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a41e4d88-535f-4d2d-be81-11d2c113b358">
+<span class="eqno">(4.71)<a class="headerlink" href="#equation-a41e4d88-535f-4d2d-be81-11d2c113b358" title="Permalink to this equation">#</a></span>\[\begin{align}
 x_i &amp;= A_i \sin (\omega t) \\
 x_i^{\prime\prime} &amp;= -A_i \omega^2 \sin (\omega t)
 \end{align}\]</div>
 <p>We can plug these into the ODEs:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e54c6536-152f-451b-b59f-f9f29eeb55ef">
-<span class="eqno">(4.72)<a class="headerlink" href="#equation-e54c6536-152f-451b-b59f-f9f29eeb55ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5421e9f5-7a84-4351-9349-b34242f2ea43">
+<span class="eqno">(4.72)<a class="headerlink" href="#equation-5421e9f5-7a84-4351-9349-b34242f2ea43" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sin (\omega t) \left[ \left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 \right] &amp;= 0 \\
 \sin (\omega t) \left[ -\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 \right] &amp;= 0
 \end{align}\]</div>
 <p>or</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6eec5192-8b56-4cd3-bd1d-edd9a784df32">
-<span class="eqno">(4.73)<a class="headerlink" href="#equation-6eec5192-8b56-4cd3-bd1d-edd9a784df32" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4ade781e-cc73-4533-a355-bfe54ea0940a">
+<span class="eqno">(4.73)<a class="headerlink" href="#equation-4ade781e-cc73-4533-a355-bfe54ea0940a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \left( \frac{2k}{m_1} - \omega^2 \right) A_1 - \frac{k}{m_1} A_2 &amp;= 0 \\
 -\frac{k}{m_2} A_1 + \left( \frac{2k}{m_2} - \omega^2 \right) A_2 &amp;= 0
 \end{align}\]</div>
 <p>Let’s put some numbers in, and try to solve for the eigenvalues: <span class="math notranslate nohighlight">\(\omega^2\)</span>.
 Let <span class="math notranslate nohighlight">\(m_1 = m_2 = 40 \)</span> kg and <span class="math notranslate nohighlight">\(k = 200\)</span> N/m.</p>
 <p>Now, the equations become</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe138f20-cbab-4376-884f-efd1a6adece5">
-<span class="eqno">(4.74)<a class="headerlink" href="#equation-fe138f20-cbab-4376-884f-efd1a6adece5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e1c5c645-43cf-4b04-a2ea-b3ce98721188">
+<span class="eqno">(4.74)<a class="headerlink" href="#equation-e1c5c645-43cf-4b04-a2ea-b3ce98721188" title="Permalink to this equation">#</a></span>\[\begin{align}
 \left( 10 - \omega^2 \right) A_1 - 5 A_2 &amp;= 0 \\
 -5 A_1 + \left( 10 - \omega^2 \right) A_2 &amp;= 0
 \end{align}\]</div>
 <p>or <span class="math notranslate nohighlight">\(A \mathbf{y} = \mathbf{0}\)</span>, which we can represent as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d285e2c-a30f-4e53-9daa-cb4cd089587b">
-<span class="eqno">(4.75)<a class="headerlink" href="#equation-2d285e2c-a30f-4e53-9daa-cb4cd089587b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a4651623-f37d-43bc-be32-369466fc9f1a">
+<span class="eqno">(4.75)<a class="headerlink" href="#equation-a4651623-f37d-43bc-be32-369466fc9f1a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix} 10-\omega^2 &amp; -5 \\ -5 &amp; 10-\omega^2 \end{bmatrix}
 \begin{bmatrix} A_1 \\ A_2 \end{bmatrix} = 
 \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \end{equation}\]</div>
 <p>Here, <span class="math notranslate nohighlight">\(\omega^2\)</span> are the eigenvalues, and we can find them with <span class="math notranslate nohighlight">\(\det(A) = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7620fefd-8e79-4092-a30c-d371590501b9">
-<span class="eqno">(4.76)<a class="headerlink" href="#equation-7620fefd-8e79-4092-a30c-d371590501b9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-31a13726-0a1f-493d-b71e-7bff99b1ec7f">
+<span class="eqno">(4.76)<a class="headerlink" href="#equation-31a13726-0a1f-493d-b71e-7bff99b1ec7f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \det(B) &amp;= 0 \\
 \det (B^* - \omega^2 I) &amp;= 0
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>Bstar = np.array([[10, -5], [-5, 10]])
-omega_squared = np.sort(np.linalg.eigvals(Bstar))
-omega = np.sqrt(omega_squared)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">omega_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Bstar</span><span class="p">))</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omega_squared</span><span class="p">)</span>
 
-print(f&#39;ω_1 = {omega[0]: .2f} rad/s&#39;)
-print(f&#39;ω_2 = {omega[1]: .2f} rad/s&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ω_1 = </span><span class="si">{</span><span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1"> .2f</span><span class="si">}</span><span class="s1"> rad/s&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ω_2 = </span><span class="si">{</span><span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1"> .2f</span><span class="si">}</span><span class="s1"> rad/s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -934,48 +776,48 @@ print(f&#39;ω_2 = {omega[1]: .2f} rad/s&#39;)
 </div>
 </div>
 <p>We find there are two modes of oscillation, each associated with a different natural frequency. Unfortunately, we cannot calculate independent and unique values for the amplitudes, but if we insert the values of <span class="math notranslate nohighlight">\(\omega\)</span> into the above equations, we can find relations connecting the amplitudes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d94a2d00-3dcc-4258-b596-6fcdcfbf9f65">
-<span class="eqno">(4.77)<a class="headerlink" href="#equation-d94a2d00-3dcc-4258-b596-6fcdcfbf9f65" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca8a87f7-10e4-431b-a2b8-e8b3bc01b122">
+<span class="eqno">(4.77)<a class="headerlink" href="#equation-ca8a87f7-10e4-431b-a2b8-e8b3bc01b122" title="Permalink to this equation">#</a></span>\[\begin{align}
 \omega_1: \quad A_1 &amp;= A_2 \\
 \omega_2: \quad A_1 &amp;= -A_2
 \end{align}\]</div>
 <p>So, for the first mode, we have the two masses moving in sync with the same amplitude. In the second mode, they move with opposite (but equal) amplitude. With the two different frequencies, they also have two different periods:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(1, 5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
-time = np.linspace(0, 3)
-axes[0].plot(np.sin(omega[0]*time), time)
-axes[0].plot(0, 0, &#39;s&#39;)
-axes[0].invert_yaxis()
-axes[0].axis(&#39;off&#39;)
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">time</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
-axes[1].plot(np.sin(omega[0]*time), time)
-axes[1].plot(0, 0, &#39;s&#39;)
-axes[1].invert_yaxis()
-axes[1].axis(&#39;off&#39;)
-axes[1].text(-2.7,-0.2, &#39;First mode&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">time</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;First mode&#39;</span><span class="p">)</span>
 
-axes[2].axis(&#39;off&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
-axes[3].plot(-np.sin(omega[1]*time), time)
-axes[3].plot(0, 0, &#39;s&#39;)
-axes[3].invert_yaxis()
-axes[3].axis(&#39;off&#39;)
-axes[3].text(0.4, -0.2, &#39;Second mode&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">time</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;Second mode&#39;</span><span class="p">)</span>
 
-axes[4].plot(np.sin(omega[1]*time), time)
-axes[4].plot(0, 0, &#39;s&#39;)
-axes[4].invert_yaxis()
-axes[4].axis(&#39;off&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">time</span><span class="p">),</span> <span class="n">time</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eigenvalue_14_0.png" src="../../_images/eigenvalue_14_0.png" />
+<img alt="../../_images/df0d276c359f0e92bd80f4c481fa9257c9c0a59db9f5fcd96cbe8402733a177f.png" src="../../_images/df0d276c359f0e92bd80f4c481fa9257c9c0a59db9f5fcd96cbe8402733a177f.png" />
 </div>
 </div>
 <p>We can confirm that the system would actually behave in this way by setting up the system of ODEs and integrating based on initial conditions matching the amplitudes of the two modes.</p>
@@ -983,83 +825,83 @@ plt.show()
 <p>Then, we can solve by converting the system of two 2nd-order ODEs into a system of four 1st-order ODEs:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def masses(t, x):
-    &#39;&#39;&#39;calculates derivatives associated with the system&#39;&#39;&#39;
-    m1 = 40
-    m2 = 40
-    k = 200
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">masses</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;calculates derivatives associated with the system&#39;&#39;&#39;</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">200</span>
     
-    return [
-        x[1],
-        (k/m1) * (-2*x[0] + x[2]),
-        x[3],
-        (k/m2) * (x[0] - 2*x[2]),
-        ]
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">m1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="n">m2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+        <span class="p">]</span>
 
-fig, axes = plt.subplots(2, 1, sharex=True)
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-# integration for the system in the first mode
-sol1 = solve_ivp(masses, [0, 3], [1, 0, 1, 0], max_step=0.1)
+<span class="c1"># integration for the system in the first mode</span>
+<span class="n">sol1</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-axes[0].plot(sol1.t, sol1.y[0,:])
-axes[0].grid(True)
-axes[0].set_ylabel(&#39;displacement (m)&#39;)
-axes[0].set_title(&#39;First mode&#39;)
-axes[1].plot(sol1.t, sol1.y[2,:])
-axes[1].invert_yaxis()
-axes[1].grid(True)
-axes[1].set_xlabel(&#39;time (s)&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol1</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;displacement (m)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;First mode&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol1</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-fig, axes = plt.subplots(2, 1, sharex=True)
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-# integration for the system in second mode
-sol2 = solve_ivp(masses, [0, 3], [1, 0, -1, 0], max_step=0.1)
+<span class="c1"># integration for the system in second mode</span>
+<span class="n">sol2</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-axes[0].plot(sol2.t, sol2.y[0,:])
-axes[0].grid(True)
-axes[0].set_ylabel(&#39;displacement (m)&#39;)
-axes[0].set_title(&#39;Second mode&#39;)
-axes[1].plot(sol2.t, sol2.y[2,:])
-axes[1].grid(True)
-axes[1].set_xlabel(&#39;time (s)&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol2</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;displacement (m)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Second mode&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol2</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol2</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eigenvalue_16_0.png" src="../../_images/eigenvalue_16_0.png" />
-<img alt="../../_images/eigenvalue_16_1.png" src="../../_images/eigenvalue_16_1.png" />
+<img alt="../../_images/22f542f3a0912fd394a46b1e389ad66e32420bb075920ce1b08a14a1978972b4.png" src="../../_images/22f542f3a0912fd394a46b1e389ad66e32420bb075920ce1b08a14a1978972b4.png" />
+<img alt="../../_images/9cbf2a65097be760ac27a042a583c661357130297923268874408d1070dfb76b.png" src="../../_images/9cbf2a65097be760ac27a042a583c661357130297923268874408d1070dfb76b.png" />
 </div>
 </div>
 <p>This shows that we get either of the pure modes of motion with the appropriate initial conditions.</p>
 <p>What about if the initial conditions <em>don’t</em> match either set of amplitude patterns?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fig, axes = plt.subplots(2, 1, sharex=True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-# integration for the system in the first mode
-sol1 = solve_ivp(masses, [0, 3], [0.25, 0, 0.75, 0], max_step=0.1)
+<span class="c1"># integration for the system in the first mode</span>
+<span class="n">sol1</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
-axes[0].plot(sol1.t, sol1.y[0,:])
-axes[0].grid(True)
-axes[0].set_ylabel(&#39;displacement (m)&#39;)
-axes[1].plot(sol1.t, sol1.y[2,:])
-axes[1].invert_yaxis()
-axes[1].grid(True)
-axes[1].set_xlabel(&#39;time (s)&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol1</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;displacement (m)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol1</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol1</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">,:])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/eigenvalue_18_0.png" src="../../_images/eigenvalue_18_0.png" />
+<img alt="../../_images/06825c58cec64b5b83718abd70f1a3305fb2ebcdf571324226d87d782f6494b1.png" src="../../_images/06825c58cec64b5b83718abd70f1a3305fb2ebcdf571324226d87d782f6494b1.png" />
 </div>
 </div>
 <p>In this case, the resulting motion will be a complicated superposition of the two modes.</p>
@@ -1078,7 +920,7 @@ plt.show()
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./content/bvps"
         },
         predefinedOutput: true
@@ -1086,53 +928,105 @@ plt.show()
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="finite-difference.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4.2. </span>Finite difference method</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="finite-difference.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.2. </span>Finite difference method</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../pdes/partial-differential-equations.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../pdes/partial-differential-equations.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Partial Differential Equations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kyle Niemeyer<br/>
-  
-    <div class="extra_footer">
-      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
-
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-beam-buckling">4.3.1. Example: beam buckling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-beam-buckling-with-different-boundary-conditions">4.3.2. Example: beam buckling with different boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-eigenvalues-numerically">4.3.3. Getting eigenvalues numerically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-mass-spring-system">4.3.4. Example: mass-spring system</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kyle Niemeyer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

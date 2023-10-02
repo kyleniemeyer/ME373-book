@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>2.4. Stability and Stiffness &#8212; Mechanical Engineering Methods</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,57 +62,88 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/numerical-methods/stability';</script>
     <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/numerical-methods/stability.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="3. Second-order Ordinary Differential Equations" href="../second-order/second-order.html" />
     <link rel="prev" title="2.3. Numerical Solutions of 1st-order ODEs" href="initial-value-methods.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mechanical Engineering Methods</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,628 +152,416 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Ordinary Differential Equations
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../first-order.html">
-   1. Solutions to 1st-order ODEs
-  </a>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="numerical-methods.html">
-   2. Numerical Methods
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="integrals.html">
-     2.1. Numerical integrals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="error.html">
-     2.2. Error
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="initial-value-methods.html">
-     2.3. Numerical Solutions of 1st-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     2.4. Stability and Stiffness
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../second-order/second-order.html">
-   3. Second-order Ordinary Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/analytical.html">
-     3.1. Analytical Solutions to 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/initial-value-problems.html">
-     3.2. Initial-Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/numerical-methods.html">
-     3.3. Numerical methods for 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/fourier-series.html">
-     3.4. Fourier Series
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/power-series.html">
-     3.5. Power Series Solutions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../bvps/boundary-value-problems.html">
-   4. Boundary Value Problems
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/shooting-method.html">
-     4.1. Shooting Method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/finite-difference.html">
-     4.2. Finite difference method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/eigenvalue.html">
-     4.3. Eigenvalue problems
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../first-order.html">1. Solutions to 1st-order ODEs</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="numerical-methods.html">2. Numerical Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="integrals.html">2.1. Numerical integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">2.2. Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initial-value-methods.html">2.3. Numerical Solutions of 1st-order ODEs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.4. Stability and Stiffness</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Partial Differential Equations
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../pdes/partial-differential-equations.html">
-   5. Partial Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/elliptic.html">
-     5.1. Elliptic PDEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/parabolic.html">
-     5.2. Parabolic PDEs
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../second-order/second-order.html">3. Second-order Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/analytical.html">3.1. Analytical Solutions to 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/initial-value-problems.html">3.2. Initial-Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/numerical-methods.html">3.3. Numerical methods for 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/fourier-series.html">3.4. Fourier Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/power-series.html">3.5. Power Series Solutions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sample Quizzes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
-   Sample Quiz 2 problems: IVPs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
-   Sample Quiz 3 problems: BVPs
-  </a>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../bvps/boundary-value-problems.html">4. Boundary Value Problems</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/shooting-method.html">4.1. Shooting Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/finite-difference.html">4.2. Finite difference method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/eigenvalue.html">4.3. Eigenvalue problems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Partial Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
-   GitHub repository
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributing.html">
-   Contributing to Jupyter Book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pdes/partial-differential-equations.html">5. Partial Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/elliptic.html">5.1. Elliptic PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/parabolic.html">5.2. Parabolic PDEs</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample Quizzes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz2-IVPs.html">Sample Quiz 2 problems: IVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz3-BVPs.html">Sample Quiz 3 problems: BVPs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zbibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/numerical-methods/stability.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/numerical-methods/stability.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/numerical-methods/stability.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/numerical-methods/stability.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/numerical-methods/stability.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/numerical-methods/stability.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/content/numerical-methods/stability.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-euler-method">
-   2.4.1. Backward Euler method
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-euler-example">
-     2.4.1.1. Backward Euler example
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stability-analysis">
-   2.4.2. Stability analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">
-     2.4.2.1. Stability analysis of Forward Euler
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">
-     2.4.2.2. Stability analysis of Backward Euler
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Stability and Stiffness</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-euler-method">
-   2.4.1. Backward Euler method
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-euler-example">
-     2.4.1.1. Backward Euler example
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stability-analysis">
-   2.4.2. Stability analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">
-     2.4.2.1. Stability analysis of Forward Euler
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">
-     2.4.2.2. Stability analysis of Backward Euler
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stability and Stiffness</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler-method">2.4.1. Backward Euler method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler-example">2.4.1.1. Backward Euler example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis">2.4.2. Stability analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">2.4.2.1. Stability analysis of Forward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">2.4.2.2. Stability analysis of Backward Euler</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="stability-and-stiffness">
 <h1><span class="section-number">2.4. </span>Stability and Stiffness<a class="headerlink" href="#stability-and-stiffness" title="Permalink to this headline">#</a></h1>
 <p>In the past when you’ve talked about <strong>stability</strong>, it has likely been regarding the stability of a <em>system</em>. Stable systems are those will well-behaved exact solutions, meaning they do not grow unbounded.
 In engineering we mostly focus (or want!) stable systems, although there are some interesting unstable systems such as those involving resonance, nonlinear dynamics, or chaos—generally we want to know when that happens so we can prevent it.</p>
 <p>We can also define the stability of a <em>numerical scheme</em>, which is when the numerical solution exhibits unphysical behavior. In other words, it blows up.</p>
 <p>For example, let’s consider the relatively simple 1st-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5072a263-6222-45ab-880b-452fe0261a35">
-<span class="eqno">(2.19)<a class="headerlink" href="#equation-5072a263-6222-45ab-880b-452fe0261a35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5a1558d9-9d40-450b-9679-81325bb9d46f">
+<span class="eqno">(2.19)<a class="headerlink" href="#equation-5a1558d9-9d40-450b-9679-81325bb9d46f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = -3 y
 \end{equation}\]</div>
 <p>with the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>. As we will see, this ODE can cause explicit numerical schemes to become unstable, and thus it is a <strong>stiff</strong> ODE. (Note that we can easily obtain the exact solution for this problem, which is <span class="math notranslate nohighlight">\(y(t) = e^{-3 t}\)</span>.)</p>
 <p>Let’s try solving this with the Forward Euler method, integrating over <span class="math notranslate nohighlight">\(0 \leq t \leq 10\)</span>, for a range of time-step size values: <span class="math notranslate nohighlight">\(\Delta t = 0.1, 0.25, 0.5, 0.75\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries for numerical functions and plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
-import matplotlib_inline.backend_inline
-matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
-plt.rcParams[&#39;figure.dpi&#39;]= 300
-plt.rcParams[&#39;savefig.dpi&#39;] = 300
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these lines are only for helping improve the display</span>
+<span class="kn">import</span> <span class="nn">matplotlib_inline.backend_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span><span class="o">=</span> <span class="mi">300</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># dydt to integrate
-f = lambda t,y: -3*y
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dydt to integrate</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">y</span>
 
-# we&#39;ll create a simple function to do forward Euler
-def forward_euler(t_end, y0, dt):
-    &#39;&#39;&#39;Simple function to perform Forward Euler iteration&#39;&#39;&#39;
-    time = np.arange(0, t_end+0.0001, dt)
-    y = np.zeros_like(time)
-    y[0] = y0
-    for idx, t in enumerate(time[:-1]):
-        y[idx+1] = y[idx] + dt * f(t, y[idx])
-    return time, y
+<span class="c1"># we&#39;ll create a simple function to do forward Euler</span>
+<span class="k">def</span> <span class="nf">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Simple function to perform Forward Euler iteration&#39;&#39;&#39;</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_end</span><span class="o">+</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">y</span>
 
-# 4 rows, 1 column
-fig, axes = plt.subplots(4, 1)
+<span class="c1"># 4 rows, 1 column</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-# initial condition
-y0 = 1
-t_end = 20
+<span class="c1"># initial condition</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mi">20</span>
 
-dt = 0.1
-time, y = forward_euler(t_end, y0, dt)
-axes[0].plot(time, y)
-axes[0].grid(True)
-axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.25
-time, y = forward_euler(t_end, y0, dt)
-axes[1].plot(time, y)
-axes[1].grid(True)
-axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.5
-time, y = forward_euler(t_end, y0, dt)
-axes[2].plot(time, y)
-axes[2].grid(True)
-axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.75
-time, y = forward_euler(t_end, y0, dt)
-axes[3].plot(time, y)
-axes[3].grid(True)
-axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/stability_3_0.png" src="../../_images/stability_3_0.png" />
+<img alt="../../_images/26c546fbffd355d34d9c5f77008e324dc6bcd6bd3a802a527dcf081a7dafd3df.png" src="../../_images/26c546fbffd355d34d9c5f77008e324dc6bcd6bd3a802a527dcf081a7dafd3df.png" />
 </div>
 </div>
 <p>At the smaller step sizes, <span class="math notranslate nohighlight">\(\Delta t = 0.1\)</span> and <span class="math notranslate nohighlight">\(\Delta t = 0.25\)</span>, we see that the solution is well-behaved. But, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.5, we see some instability that goes away with time. Then, when we increase <span class="math notranslate nohighlight">\(\Delta t\)</span> to 0.75, the solution eventually blows up, leading to error <strong>much</strong> larger than what we should expect based on the method’s order of accuracy (first) and the step size value.</p>
 <p>Compare this behavior to that for the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6db7f27f-84a8-4a44-b0fa-140db399ed9d">
-<span class="eqno">(2.20)<a class="headerlink" href="#equation-6db7f27f-84a8-4a44-b0fa-140db399ed9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4962768d-a0b3-44b6-b3c5-b1b2e59ecc73">
+<span class="eqno">(2.20)<a class="headerlink" href="#equation-4962768d-a0b3-44b6-b3c5-b1b2e59ecc73" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = e^{-t}
 \end{equation}\]</div>
 <p>which is <strong>non-stiff</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># dydt to integrate
-f = lambda t,y: np.exp(-t)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dydt to integrate</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
 
-# 4 rows, 1 column
-fig, axes = plt.subplots(4, 1)
+<span class="c1"># 4 rows, 1 column</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-# initial condition
-y0 = 1
-t_end = 10
+<span class="c1"># initial condition</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t_end</span> <span class="o">=</span> <span class="mi">10</span>
 
-dt = 0.1
-time, y = forward_euler(t_end, y0, dt)
-axes[0].plot(time, y)
-axes[0].grid(True)
-axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.25
-time, y = forward_euler(t_end, y0, dt)
-axes[1].plot(time, y)
-axes[1].grid(True)
-axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.5
-time, y = forward_euler(t_end, y0, dt)
-axes[2].plot(time, y)
-axes[2].grid(True)
-axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.75
-time, y = forward_euler(t_end, y0, dt)
-axes[3].plot(time, y)
-axes[3].grid(True)
-axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/stability_5_0.png" src="../../_images/stability_5_0.png" />
+<img alt="../../_images/9426436e0efffe602b990b3c6eafb7fd30142a702e59bc5e66460d574ec93a80.png" src="../../_images/9426436e0efffe602b990b3c6eafb7fd30142a702e59bc5e66460d574ec93a80.png" />
 </div>
 </div>
 <p>In this case, we see that the solution remains well-behaved even for larger time-step sizes, and the error matches the expected order based on the method and step-size value.</p>
@@ -748,13 +577,13 @@ plt.show()
 <section id="backward-euler-method">
 <h2><span class="section-number">2.4.1. </span>Backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">#</a></h2>
 <p>The Backward Euler method is very similar to the Forward Euler method, except in one way: it uses the slope at the <em>next</em> time step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8560bb3d-36c7-454d-80c1-3510cb8aaaeb">
-<span class="eqno">(2.21)<a class="headerlink" href="#equation-8560bb3d-36c7-454d-80c1-3510cb8aaaeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28e4c012-83f8-47db-b210-3fb22ab6eef4">
+<span class="eqno">(2.21)<a class="headerlink" href="#equation-28e4c012-83f8-47db-b210-3fb22ab6eef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(\frac{dy}{dx}\right)_{i+1} \approx \frac{y_{i+1} - y_i}{\Delta x}
 \end{equation}\]</div>
 <p>Then, the resulting recursion formula is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b90884e1-fd58-487b-93a6-65d4b0a69b19">
-<span class="eqno">(2.22)<a class="headerlink" href="#equation-b90884e1-fd58-487b-93a6-65d4b0a69b19" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-472e96bd-3d2e-44cc-9b11-69a7b863fb78">
+<span class="eqno">(2.22)<a class="headerlink" href="#equation-472e96bd-3d2e-44cc-9b11-69a7b863fb78" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \Delta x \left(\frac{dy}{dx}\right)_{i+1}, \text{ or} \\
 y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
 \end{equation}\]</div>
@@ -763,13 +592,13 @@ y_{i+1} = y_i + \Delta x \, f(x_{i+1}, y_{i+1})
 <section id="backward-euler-example">
 <h3><span class="section-number">2.4.1.1. </span>Backward Euler example<a class="headerlink" href="#backward-euler-example" title="Permalink to this headline">#</a></h3>
 <p>For example, consider the problem</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38c7a2d0-67da-4cad-8870-69babf459731">
-<span class="eqno">(2.23)<a class="headerlink" href="#equation-38c7a2d0-67da-4cad-8870-69babf459731" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-640612fa-8e60-4c50-a259-1b4804fa6382">
+<span class="eqno">(2.23)<a class="headerlink" href="#equation-640612fa-8e60-4c50-a259-1b4804fa6382" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \frac{dy}{dx} = f(x,y) = 8 e^{-x} (1+x) - 2y
 \end{equation}\]</div>
 <p>To actually solve this problem with the Backward Euler method, we need to incorporate the derivative function <span class="math notranslate nohighlight">\(f(x,y)\)</span> into the recursion formula and solve for <span class="math notranslate nohighlight">\(y_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92e5f43b-9d31-47fd-8649-311fc7ffc303">
-<span class="eqno">(2.24)<a class="headerlink" href="#equation-92e5f43b-9d31-47fd-8649-311fc7ffc303" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c95ce45f-4965-4364-be63-95f7fcebce31">
+<span class="eqno">(2.24)<a class="headerlink" href="#equation-c95ce45f-4965-4364-be63-95f7fcebce31" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta x \left[ 8 e^{-x_{i+1}} (1 + x_{i+1}) - 2 y_{i+1} \right] \\
 y_{i+1} &amp;= y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x - 2 \Delta x \, y_{i+1} \\
@@ -779,38 +608,38 @@ y_{i+1} &amp;= \frac{ y_i + 8 e^{-x_{i+1}} (1 + x_{i+1}) \Delta x }{ 1 + 2 \Delt
 <p>Now we have a useable recursion formula that we can use to solve this problem. Let’s use the initial condition <span class="math notranslate nohighlight">\(y(0) = 1\)</span>, the domain <span class="math notranslate nohighlight">\(0 \leq x \leq 7\)</span>, and <span class="math notranslate nohighlight">\(\Delta x = 0.2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.2</span>
 
-x_vals = np.arange(0, 7.01, dx)
-y_vals = np.zeros_like(x_vals)
-y_vals[0] = 1
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.01</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
+<span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
-# Backward Euler loop
-for idx, x in enumerate(x_vals[:-1]):
-    y_vals[idx+1] = (
-        y_vals[idx] + 
-        8*np.exp(-x_vals[idx+1])*(1 + x_vals[idx+1])*dx
-        ) / (1 + 2*dx)
+<span class="c1"># Backward Euler loop</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y_vals</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">y_vals</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">+</span> 
+        <span class="mi">8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x_vals</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x_vals</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">dx</span>
+        <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
 
-x_exact = np.linspace(0, 7)
-y_exact = np.exp(-2*x_exact)*(8*x_exact*np.exp(x_exact) + 1)
+<span class="n">x_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">y_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x_exact</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x_exact</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x_exact</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-plt.plot(x_exact, y_exact, label=&#39;Exact solution&#39;)
-plt.plot(x_vals, y_vals, &#39;o--&#39;, label=&#39;Backward Euler solution&#39;)
-plt.legend()
-plt.grid(True)
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_exact</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="s1">&#39;o--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Backward Euler solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/stability_8_0.png" src="../../_images/stability_8_0.png" />
+<img alt="../../_images/19ab034a7a8f5cd6a369975346797658c668301681b0d3102ca0f4cfc28bb65b.png" src="../../_images/19ab034a7a8f5cd6a369975346797658c668301681b0d3102ca0f4cfc28bb65b.png" />
 </div>
 </div>
 <p>This matches nearly what we saw with the Forward Euler method before—Backward Euler is also a <strong>first-order</strong> method, so the global error should be proportional to <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
 <p>Let’s now return to the stiff ODE <span class="math notranslate nohighlight">\(y^{\prime} = -3 y\)</span>, and see how the Backward Euler method does. First, we need to obtain our useable recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-71a494c4-2a9b-42b2-b317-a137d92833ff">
-<span class="eqno">(2.25)<a class="headerlink" href="#equation-71a494c4-2a9b-42b2-b317-a137d92833ff" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b8860194-a3a9-45c5-a9c7-6ea887ec81bc">
+<span class="eqno">(2.25)<a class="headerlink" href="#equation-b8860194-a3a9-45c5-a9c7-6ea887ec81bc" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta t \, f(t_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta t \, \left( -3 y_{i+1} \right) \\
 y_{i+1} + 3 y_{i+1} \Delta t &amp;= y_i \\
@@ -818,59 +647,59 @@ y_{i+1} &amp;= \frac{y_i}{1 + 3 \Delta t}
 \end{align}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 4 rows, 1 column
-fig, axes = plt.subplots(4, 1)
-y0 = 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4 rows, 1 column</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
 
-dt = 0.1
-time = np.arange(0, 10.001, dt)
-y = np.zeros_like(time)
-y[0] = y0
-for idx, t in enumerate(time[:-1]):
-    y[idx+1] = y[idx] / (1 + 3*dt)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.001</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
 
-axes[0].plot(time, y)
-axes[0].grid(True)
-axes[0].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.25
-time = np.arange(0, 10.001, dt)
-y = np.zeros_like(time)
-y[0] = y0
-for idx, t in enumerate(time[:-1]):
-    y[idx+1] = y[idx] / (1 + 3*dt)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.001</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
 
-axes[1].plot(time, y)
-axes[1].grid(True)
-axes[1].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.5
-time = np.arange(0, 10.001, dt)
-y = np.zeros_like(time)
-y[0] = y0
-for idx, t in enumerate(time[:-1]):
-    y[idx+1] = y[idx] / (1 + 3*dt)
-axes[2].plot(time, y)
-axes[2].grid(True)
-axes[2].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.001</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-dt = 0.75
-time = np.arange(0, 10.001, dt)
-y = np.zeros_like(time)
-y[0] = y0
-for idx, t in enumerate(time[:-1]):
-    y[idx+1] = y[idx] / (1 + 3*dt)
-axes[3].plot(time, y)
-axes[3].grid(True)
-axes[3].set_title(f&#39;dt = {dt: 0.2f}&#39;)
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.001</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1"> 0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-plt.tight_layout()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/stability_10_0.png" src="../../_images/stability_10_0.png" />
+<img alt="../../_images/4755f148c302c2b7ff2480c96aea058209aa6022290ce0cf30ca25aadb003f75.png" src="../../_images/4755f148c302c2b7ff2480c96aea058209aa6022290ce0cf30ca25aadb003f75.png" />
 </div>
 </div>
 <p>In this case, we see that the solution remains well-behaved for all the step sizes, not showing any of the instability we saw with the Forward Euler method. This is because the Backward Euler method is <strong>unconditionally stable</strong>.</p>
@@ -881,8 +710,8 @@ plt.show()
 <section id="stability-analysis-of-forward-euler">
 <h3><span class="section-number">2.4.2.1. </span>Stability analysis of Forward Euler<a class="headerlink" href="#stability-analysis-of-forward-euler" title="Permalink to this headline">#</a></h3>
 <p>We can perform a stability analysis of the stiff problem to identify when the Forward Euler method becomes unstable. Let’s apply the method to the ODE at hand:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03e00501-b6de-4338-864b-ab3f24c242cf">
-<span class="eqno">(2.26)<a class="headerlink" href="#equation-03e00501-b6de-4338-864b-ab3f24c242cf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4219f71f-9029-4847-a387-3c7ef1fd6603">
+<span class="eqno">(2.26)<a class="headerlink" href="#equation-4219f71f-9029-4847-a387-3c7ef1fd6603" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dt} &amp;= -3 y \\
 y_{i+1} &amp;= y_i + \Delta t f(t_i, y_i) \\
 y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
@@ -891,8 +720,8 @@ y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the <strong>amplification factor</strong>. This defines whether the solution grows or decays each step—for a stable physical system, we expect the solution to get smaller or remain contant with each step.</p>
 <p>Therefore, for the method to remain stable, we must have <span class="math notranslate nohighlight">\(\sigma | \leq 1\)</span>. We can use this stability criterion to find conditions on <span class="math notranslate nohighlight">\(\Delta t\)</span> for stability:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d74572bf-dada-45b4-af98-e5258f87790b">
-<span class="eqno">(2.27)<a class="headerlink" href="#equation-d74572bf-dada-45b4-af98-e5258f87790b" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="amsmath math notranslate nohighlight" id="equation-e7fae4f9-3084-4caa-b869-f6431faf7baf">
+<span class="eqno">(2.27)<a class="headerlink" href="#equation-e7fae4f9-3084-4caa-b869-f6431faf7baf" title="Permalink to this equation">#</a></span>\[\begin{gather}
 | \sigma | = | 1 - 3 \Delta t | \leq 1 \\
 -1 \leq 1 - 3 \Delta t \leq 1 \\
 -1 \leq 1 - 3 \Delta t \quad \text{or} \quad 1 - 3 \Delta t \leq 1 \\
@@ -907,8 +736,8 @@ y_{i+1} &amp;= y_i + \Delta t (-3 y_i) \\
 <section id="stability-analysis-of-backward-euler">
 <h3><span class="section-number">2.4.2.2. </span>Stability analysis of Backward Euler<a class="headerlink" href="#stability-analysis-of-backward-euler" title="Permalink to this headline">#</a></h3>
 <p>We can also perform a stability analysis on the Backward Euler method to show that its stability does not depend on the step size:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b2b842ff-9c9d-4db3-84be-d85b501588fd">
-<span class="eqno">(2.28)<a class="headerlink" href="#equation-b2b842ff-9c9d-4db3-84be-d85b501588fd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-255a69e0-133f-4ba6-b090-05b0477a0d36">
+<span class="eqno">(2.28)<a class="headerlink" href="#equation-255a69e0-133f-4ba6-b090-05b0477a0d36" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{dy}{dt} &amp;= -3 y \\
 y_{i+1} &amp;= y_i + \Delta t f(t_{i+1}, y_{i+1}) \\
 y_{i+1} &amp;= y_i + \Delta t (-3 y_{i+1}) \\
@@ -916,8 +745,8 @@ y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
 \sigma &amp;= \frac{y_{i+1}}{y_i} = \frac{1}{1 + 3 \Delta t}
 \end{align}\]</div>
 <p>For stability, we need <span class="math notranslate nohighlight">\(| \sigma | \leq 1\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e19dad6-3640-4a5f-b560-562dc70095ce">
-<span class="eqno">(2.29)<a class="headerlink" href="#equation-9e19dad6-3640-4a5f-b560-562dc70095ce" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-104ae3fc-5f1e-44b3-918e-4d0c640678a9">
+<span class="eqno">(2.29)<a class="headerlink" href="#equation-104ae3fc-5f1e-44b3-918e-4d0c640678a9" title="Permalink to this equation">#</a></span>\[\begin{align}
 | \sigma | &amp;= \left| \frac{1}{1 + 3 \Delta t} \right| \leq 1 \\
 \rightarrow \Delta t &amp;&gt; 0
 \end{align}\]</div>
@@ -938,7 +767,7 @@ y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./content/numerical-methods"
         },
         predefinedOutput: true
@@ -946,53 +775,110 @@ y_{i+1} (1 + 3 \Delta t) &amp;= y_i \\
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="initial-value-methods.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2.3. </span>Numerical Solutions of 1st-order ODEs</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="initial-value-methods.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Numerical Solutions of 1st-order ODEs</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../second-order/second-order.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../second-order/second-order.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">3. </span>Second-order Ordinary Differential Equations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kyle Niemeyer<br/>
-  
-    <div class="extra_footer">
-      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
-
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler-method">2.4.1. Backward Euler method</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler-example">2.4.1.1. Backward Euler example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis">2.4.2. Stability analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis-of-forward-euler">2.4.2.1. Stability analysis of Forward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-analysis-of-backward-euler">2.4.2.2. Stability analysis of Backward Euler</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kyle Niemeyer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

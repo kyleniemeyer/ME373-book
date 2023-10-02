@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>4.2. Finite difference method &#8212; Mechanical Engineering Methods</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,57 +62,88 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/bvps/finite-difference';</script>
     <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/bvps/finite-difference.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="4.3. Eigenvalue problems" href="eigenvalue.html" />
     <link rel="prev" title="4.1. Shooting Method" href="shooting-method.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mechanical Engineering Methods</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,559 +152,309 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Ordinary Differential Equations
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../first-order.html">
-   1. Solutions to 1st-order ODEs
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
-   2. Numerical Methods
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/integrals.html">
-     2.1. Numerical integrals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/error.html">
-     2.2. Error
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
-     2.3. Numerical Solutions of 1st-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/stability.html">
-     2.4. Stability and Stiffness
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../second-order/second-order.html">
-   3. Second-order Ordinary Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/analytical.html">
-     3.1. Analytical Solutions to 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/initial-value-problems.html">
-     3.2. Initial-Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/numerical-methods.html">
-     3.3. Numerical methods for 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/fourier-series.html">
-     3.4. Fourier Series
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/power-series.html">
-     3.5. Power Series Solutions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="boundary-value-problems.html">
-   4. Boundary Value Problems
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="shooting-method.html">
-     4.1. Shooting Method
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     4.2. Finite difference method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="eigenvalue.html">
-     4.3. Eigenvalue problems
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../first-order.html">1. Solutions to 1st-order ODEs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/numerical-methods.html">2. Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/integrals.html">2.1. Numerical integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/error.html">2.2. Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/initial-value-methods.html">2.3. Numerical Solutions of 1st-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/stability.html">2.4. Stability and Stiffness</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Partial Differential Equations
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../pdes/partial-differential-equations.html">
-   5. Partial Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/elliptic.html">
-     5.1. Elliptic PDEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/parabolic.html">
-     5.2. Parabolic PDEs
-    </a>
-   </li>
-  </ul>
- </li>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../second-order/second-order.html">3. Second-order Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/analytical.html">3.1. Analytical Solutions to 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/initial-value-problems.html">3.2. Initial-Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/numerical-methods.html">3.3. Numerical methods for 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/fourier-series.html">3.4. Fourier Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/power-series.html">3.5. Power Series Solutions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sample Quizzes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz2-IVPs.html">
-   Sample Quiz 2 problems: IVPs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../quizzes/quiz3-BVPs.html">
-   Sample Quiz 3 problems: BVPs
-  </a>
- </li>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="boundary-value-problems.html">4. Boundary Value Problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="shooting-method.html">4.1. Shooting Method</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. Finite difference method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigenvalue.html">4.3. Eigenvalue problems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Partial Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
-   GitHub repository
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributing.html">
-   Contributing to Jupyter Book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pdes/partial-differential-equations.html">5. Partial Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/elliptic.html">5.1. Elliptic PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/parabolic.html">5.2. Parabolic PDEs</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample Quizzes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz2-IVPs.html">Sample Quiz 2 problems: IVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quizzes/quiz3-BVPs.html">Sample Quiz 3 problems: BVPs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zbibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kyleniemeyer/ME373-book/master?urlpath=tree/book/content/bvps/finite-difference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/bvps/finite-difference.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/bvps/finite-difference.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/bvps/finite-difference.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/bvps/finite-difference.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/bvps/finite-difference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/content/bvps/finite-difference.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finite-differences">
-   4.2.1. Finite differences
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#second-order-finite-differences">
-   4.2.2. Second-order finite differences
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-odes-with-finite-differences">
-   4.2.3. Solving ODEs with finite differences
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-implementation">
-     4.2.3.1. General implementation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#boundary-conditions">
-   4.2.4. Boundary conditions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-central-differences-for-derivative-bcs">
-     4.2.4.1. Using central differences for derivative BCs
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-nonlinear-bvp">
-   4.2.5. Example: nonlinear BVP
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-through-a-fin">
-   4.2.6. Example: heat transfer through a fin
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#heat-transfer-with-radiation">
-     4.2.6.1. Heat transfer with radiation
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Finite difference method</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#finite-differences">
-   4.2.1. Finite differences
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#second-order-finite-differences">
-   4.2.2. Second-order finite differences
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-odes-with-finite-differences">
-   4.2.3. Solving ODEs with finite differences
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#general-implementation">
-     4.2.3.1. General implementation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#boundary-conditions">
-   4.2.4. Boundary conditions
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-central-differences-for-derivative-bcs">
-     4.2.4.1. Using central differences for derivative BCs
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-nonlinear-bvp">
-   4.2.5. Example: nonlinear BVP
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-heat-transfer-through-a-fin">
-   4.2.6. Example: heat transfer through a fin
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#heat-transfer-with-radiation">
-     4.2.6.1. Heat transfer with radiation
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Finite difference method</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">4.2.1. Finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-finite-differences">4.2.2. Second-order finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-odes-with-finite-differences">4.2.3. Solving ODEs with finite differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation">4.2.3.1. General implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">4.2.4. Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-central-differences-for-derivative-bcs">4.2.4.1. Using central differences for derivative BCs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-nonlinear-bvp">4.2.5. Example: nonlinear BVP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-through-a-fin">4.2.6. Example: heat transfer through a fin</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-transfer-with-radiation">4.2.6.1. Heat transfer with radiation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-method">
 <h1><span class="section-number">4.2. </span>Finite difference method<a class="headerlink" href="#finite-difference-method" title="Permalink to this headline">#</a></h1>
 <section id="finite-differences">
 <h2><span class="section-number">4.2.1. </span>Finite differences<a class="headerlink" href="#finite-differences" title="Permalink to this headline">#</a></h2>
 <p>Another method of solving boundary-value problems (and also partial differential equations, as we’ll see later) involves <strong>finite differences</strong>, which are numerical approximations to exact derivatives.</p>
 <p>Recall that the exact derivative of a function <span class="math notranslate nohighlight">\(f(x)\)</span> at some point <span class="math notranslate nohighlight">\(x\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96429ba1-c0fd-4183-bccf-442933d64ffe">
-<span class="eqno">(4.13)<a class="headerlink" href="#equation-96429ba1-c0fd-4183-bccf-442933d64ffe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc2066f8-325d-47ef-9318-c64301ef9d6d">
+<span class="eqno">(4.13)<a class="headerlink" href="#equation-fc2066f8-325d-47ef-9318-c64301ef9d6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) = \frac{df}{dx}(x) = \lim_{\Delta x \rightarrow 0} \frac{f(x+\Delta x) - f(x)}{\Delta x}
 \end{equation}\]</div>
 <p>So, we can <em>approximate</em> this derivative using a finite difference (rather than an infinitesimal difference as in the exact derivative):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dbd3233b-4b69-4c61-9e63-dfa545e7ec92">
-<span class="eqno">(4.14)<a class="headerlink" href="#equation-dbd3233b-4b69-4c61-9e63-dfa545e7ec92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-587a9160-f836-4b79-a662-2b2c3ae1e9f3">
+<span class="eqno">(4.14)<a class="headerlink" href="#equation-587a9160-f836-4b79-a662-2b2c3ae1e9f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) \approx \frac{f(x+\Delta x) - f(x)}{\Delta x}
 \end{equation}\]</div>
 <p>which involves some error. This is a <strong>forward difference</strong> for approximating the first derivative.
 We can also approximate the first derivative using a <strong>backward difference</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-165cca82-1335-4497-aecd-ecf4c152d7a9">
-<span class="eqno">(4.15)<a class="headerlink" href="#equation-165cca82-1335-4497-aecd-ecf4c152d7a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8dd20915-8e41-4837-9645-2adf8ba1f3ae">
+<span class="eqno">(4.15)<a class="headerlink" href="#equation-8dd20915-8e41-4837-9645-2adf8ba1f3ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f^{\prime}(x) \approx \frac{f(x) - f(x - \Delta x)}{\Delta x}
 \end{equation}\]</div>
 <p>To understand the error involved in these differences, we can use Taylor’s theorem to obtain Taylor series expansions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4981710f-260b-4fe2-870b-e243cba3928f">
-<span class="eqno">(4.16)<a class="headerlink" href="#equation-4981710f-260b-4fe2-870b-e243cba3928f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-18514da7-7e3e-4e84-94b7-910aeeeeb382">
+<span class="eqno">(4.16)<a class="headerlink" href="#equation-18514da7-7e3e-4e84-94b7-910aeeeeb382" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
 \rightarrow \frac{f(x + \Delta x) - f(x)}{\Delta x} &amp;= f^{\prime}(x) + \mathcal{O}\left( \Delta x \right) \\
 f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \cdots \\
@@ -672,20 +463,20 @@ f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!
 <p>where the <span class="math notranslate nohighlight">\(\mathcal{O}()\)</span> notation stands for “order of magnitude of”. So, we can see that each of these approximations is <em>first-order accurate</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># import libraries for numerical functions and plotting
-import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import libraries for numerical functions and plotting</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># these lines are only for helping improve the display
-import matplotlib_inline.backend_inline
-matplotlib_inline.backend_inline.set_matplotlib_formats(&#39;pdf&#39;, &#39;png&#39;)
-plt.rcParams[&#39;figure.dpi&#39;]= 300
-plt.rcParams[&#39;savefig.dpi&#39;] = 300
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these lines are only for helping improve the display</span>
+<span class="kn">import</span> <span class="nn">matplotlib_inline.backend_inline</span>
+<span class="n">matplotlib_inline</span><span class="o">.</span><span class="n">backend_inline</span><span class="o">.</span><span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span><span class="o">=</span> <span class="mi">300</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 </pre></div>
 </div>
 </div>
@@ -694,21 +485,21 @@ plt.rcParams[&#39;savefig.dpi&#39;] = 300
 <section id="second-order-finite-differences">
 <h2><span class="section-number">4.2.2. </span>Second-order finite differences<a class="headerlink" href="#second-order-finite-differences" title="Permalink to this headline">#</a></h2>
 <p>We can obtain higher-order approximations for the first derivative, and an approximations for the second derivative, by combining these Taylor series expansions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c26a718c-169a-460d-ac1c-22ac3d47584f">
-<span class="eqno">(4.17)<a class="headerlink" href="#equation-c26a718c-169a-460d-ac1c-22ac3d47584f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ed6abfc6-c41d-45aa-b9b8-242d641266d1">
+<span class="eqno">(4.17)<a class="headerlink" href="#equation-ed6abfc6-c41d-45aa-b9b8-242d641266d1" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) &amp;= f(x) + \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f(x - \Delta x) &amp;= f(x) - \Delta x \, f^{\prime}(x) + \Delta x^2 \frac{1}{2!} f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right)
 \end{align}\]</div>
 <p>Subtracting the Taylor series for <span class="math notranslate nohighlight">\(f(x+\Delta x)\)</span> by that for <span class="math notranslate nohighlight">\(f(x-\Delta x)\)</span> gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a558c420-fd39-40e6-9a9c-53cbd31856e6">
-<span class="eqno">(4.18)<a class="headerlink" href="#equation-a558c420-fd39-40e6-9a9c-53cbd31856e6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9b610f74-2b85-4f58-8f72-46bf37f700c8">
+<span class="eqno">(4.18)<a class="headerlink" href="#equation-9b610f74-2b85-4f58-8f72-46bf37f700c8" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) - f(x - \Delta x) &amp;= 2 \Delta x \, f^{\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f^{\prime}(x) &amp;= \frac{f(x + \Delta x) - f(x - \Delta x)}{2 \Delta x} + \mathcal{O}\left( \Delta x^2 \right)
 \end{align}\]</div>
 <p>which is a <em>second-order accurate</em> approximation for the first derivative.</p>
 <p>Adding the Taylor series for <span class="math notranslate nohighlight">\(f(x+\Delta x)\)</span> to that for <span class="math notranslate nohighlight">\(f(x-\Delta x)\)</span> gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dad3de69-38df-4b5f-a825-e14b840e57d8">
-<span class="eqno">(4.19)<a class="headerlink" href="#equation-dad3de69-38df-4b5f-a825-e14b840e57d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fb46dfda-9cb5-440c-a5f2-649514cd28db">
+<span class="eqno">(4.19)<a class="headerlink" href="#equation-fb46dfda-9cb5-440c-a5f2-649514cd28db" title="Permalink to this equation">#</a></span>\[\begin{align}
 f(x + \Delta x) + f(x - \Delta x) &amp;= 2 f(x) + \Delta x^2 f^{\prime\prime}(x) + \mathcal{O}\left( \Delta x^3 \right) \\
 f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\Delta x^2} + \mathcal{O}\left( \Delta x^2 \right)
 \end{align}\]</div>
@@ -718,8 +509,8 @@ f^{\prime\prime}(x) &amp;= \frac{f(x + \Delta x) - 2 f(x) + f(x - \Delta x)}{\De
 <h2><span class="section-number">4.2.3. </span>Solving ODEs with finite differences<a class="headerlink" href="#solving-odes-with-finite-differences" title="Permalink to this headline">#</a></h2>
 <p>We can use finite differences to solve ODEs by substituting them for exact derivatives, and then applying the equation at discrete locations in the domain. This gives us a system of simultaneous equations to solve.</p>
 <p>For example, let’s consider the ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0662693b-343e-494c-8592-99e2f82a6131">
-<span class="eqno">(4.20)<a class="headerlink" href="#equation-0662693b-343e-494c-8592-99e2f82a6131" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-25a3694e-d8b9-4abb-881d-3ebc37fda82a">
+<span class="eqno">(4.20)<a class="headerlink" href="#equation-25a3694e-d8b9-4abb-881d-3ebc37fda82a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + x y^{\prime} - x y = 2 x \;,
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0) = 1\)</span> and <span class="math notranslate nohighlight">\(y(2) = 8\)</span>.</p>
@@ -729,22 +520,22 @@ y^{\prime\prime} + x y^{\prime} - x y = 2 x \;,
 <p>To do this, we’ll follow a few steps:</p>
 <p>1.) Replace exact derivatives in the original ODE with finite differences, and apply the equation at a particular location <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>.</p>
 <p>For our example, this gives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cfbb6279-1bf5-4f5b-bece-3052e5878d23">
-<span class="eqno">(4.21)<a class="headerlink" href="#equation-cfbb6279-1bf5-4f5b-bece-3052e5878d23" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02be61e5-fc7b-4de9-9bc4-4089bbd016e9">
+<span class="eqno">(4.21)<a class="headerlink" href="#equation-02be61e5-fc7b-4de9-9bc4-4089bbd016e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{y_{i+1} - 2y_i + y_{i-1}}{\Delta x^2} + x_i \left( \frac{y_{i+1} - y_{i-1}}{2 \Delta x}\right) - x_i y_i = 2 x_i
 \end{equation}\]</div>
 <p>which applies at location <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>.</p>
 <p>2.) Next, rearrange the equation into a <em>recursion formula</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ba64203-7382-46bc-b152-8cae6996645d">
-<span class="eqno">(4.22)<a class="headerlink" href="#equation-9ba64203-7382-46bc-b152-8cae6996645d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1013e394-f5f7-43ed-a750-0c1ce1ab396f">
+<span class="eqno">(4.22)<a class="headerlink" href="#equation-1013e394-f5f7-43ed-a750-0c1ce1ab396f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i-1} \left(1 - x_i \frac{\Delta x}{2}\right) + y_i \left( -2 -\Delta x^2 x_i \right) + y_{i+1} \left(1 + x_i \frac{\Delta x}{2}\right) = 2 x_i \Delta x^2
 \end{equation}\]</div>
 <p>We can use this equation to get an equation for each of the interior points in the domain.</p>
 <p>For the first and last points—the boundary points—we already have equations, given by the boundary conditions.</p>
 <p>3.) Set up system of linear equations</p>
 <p>Applying the recursion formula to the interior points, and the boundary conditions for the boundary points, we can get a system of simultaneous linear equations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89cb2ed7-91ff-4e32-bd3a-cc717cb25445">
-<span class="eqno">(4.23)<a class="headerlink" href="#equation-89cb2ed7-91ff-4e32-bd3a-cc717cb25445" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9fc1ddda-16f1-4a28-ba1d-0d28f44c7438">
+<span class="eqno">(4.23)<a class="headerlink" href="#equation-9fc1ddda-16f1-4a28-ba1d-0d28f44c7438" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_1 &amp;= 1 \\
 y_1 (0.875) + y_2 (-2.125) + y_3 (1.125) &amp;= 0.25 \\
 y_2 (0.75) + y_3 (-2.25) + y_4 (1.25) &amp;= 0.5 \\
@@ -752,8 +543,8 @@ y_3 (0.625) + y_4 (-2.375) + y_5 (1.375) &amp;= 0.75 \\
 y_5 &amp;= 8
 \end{align}\]</div>
 <p>This is a system of five equations and five unknowns, which we can solve! But, solving using substitution would be painful, so let’s represent this system of equations using a matrix and vectors:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-be89c7d3-51ed-432e-b608-aa5f6da91325">
-<span class="eqno">(4.24)<a class="headerlink" href="#equation-be89c7d3-51ed-432e-b608-aa5f6da91325" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dfd0a5f3-1546-4e5e-9094-22dae9f580e7">
+<span class="eqno">(4.24)<a class="headerlink" href="#equation-dfd0a5f3-1546-4e5e-9094-22dae9f580e7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0.875 &amp; -2.125 &amp; 1.125 &amp; 0 &amp; 0 \\
@@ -769,26 +560,26 @@ y_5 &amp;= 8
 <p>The final step is just to solve. We can do this in Matlab with <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">\</span> <span class="pre">b</span></code>. (This is equivalent to <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">inv(A)*b</span></code>, but faster.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = np.array([
-    [1.0, 0, 0, 0, 0],
-    [0.875, -2.125, 1.125, 0, 0],
-    [0, 0.75, -2.25, 1.25, 0],
-    [0, 0, 0.625, -2.375, 1.375],
-    [0, 0, 0, 0, 1]
-    ])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.875</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.125</span><span class="p">,</span> <span class="mf">1.125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.375</span><span class="p">,</span> <span class="mf">1.375</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">])</span>
 
-b = np.array([1.0, 0.25, 0.5, 0.75, 8.0])
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">])</span>
 
-x = np.linspace(0, 2, 5)
-y = np.linalg.solve(A, b)
-plt.plot(x, y, &#39;o-&#39;)
-plt.grid()
-plt.show()
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/finite-difference_5_0.png" src="../../_images/finite-difference_5_0.png" />
+<img alt="../../_images/92daf9262d8f3dd62d2b5920ea0502f426996eaad117e725250fe2699e2ccba9.png" src="../../_images/92daf9262d8f3dd62d2b5920ea0502f426996eaad117e725250fe2699e2ccba9.png" />
 </div>
 </div>
 <section id="general-implementation">
@@ -796,63 +587,63 @@ plt.show()
 <p>Of course, all of this will be easier if we implement in Python in a general way. We’ll use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to populate the coefficient matrix <span class="math notranslate nohighlight">\(A\)</span> and right-hand-side vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.5
-x_vals = np.arange(0, 2.01, dx)
-A = np.zeros((len(x_vals), len(x_vals)))
-b = np.zeros_like(x_vals)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
 
-for idx, x in enumerate(x_vals):
-    if idx == 0:
-        A[0,0] = 1
-        b[0] = 1
-    elif idx == len(x_vals) - 1:
-        A[-1,-1] = 1
-        b[-1] = 8
-    else:
-        A[idx, idx-1] = 1 - x*dx/2
-        A[idx, idx] = -2 - x*dx**2
-        A[idx, idx+1] = 1 + x*dx/2
-        b[idx] = 2 * x * dx**2
-y_vals = np.linalg.solve(A, b)
-plt.plot(x_vals, y_vals, &#39;o-&#39;)
-plt.grid()
-plt.show()
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/finite-difference_7_0.png" src="../../_images/finite-difference_7_0.png" />
+<img alt="../../_images/92daf9262d8f3dd62d2b5920ea0502f426996eaad117e725250fe2699e2ccba9.png" src="../../_images/92daf9262d8f3dd62d2b5920ea0502f426996eaad117e725250fe2699e2ccba9.png" />
 </div>
 </div>
 <p>This looks good, but we can get a more-accurate solution by reducing our step size <span class="math notranslate nohighlight">\(\Delta x\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.001
-x_vals = np.arange(0, 2.01, dx)
-A = np.zeros((len(x_vals), len(x_vals)))
-b = np.zeros_like(x_vals)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.01</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
 
-for idx, x in enumerate(x_vals):
-    if idx == 0:
-        A[0,0] = 1
-        b[0] = 1
-    elif idx == len(x_vals) - 1:
-        A[-1,-1] = 1
-        b[-1] = 8
-    else:
-        A[idx, idx-1] = 1 - x*dx/2
-        A[idx, idx] = -2 - x*dx**2
-        A[idx, idx+1] = 1 + x*dx/2
-        b[idx] = 2 * x * dx**2
-y_vals = np.linalg.solve(A, b)
-plt.plot(x_vals, y_vals)
-plt.grid()
-plt.show()
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/finite-difference_9_0.png" src="../../_images/finite-difference_9_0.png" />
+<img alt="../../_images/b09158f3498c3bb5d565bab3e2adb6fe04d3bed0f58b29c645aabaee264758f9.png" src="../../_images/b09158f3498c3bb5d565bab3e2adb6fe04d3bed0f58b29c645aabaee264758f9.png" />
 </div>
 </div>
 </section>
@@ -868,8 +659,8 @@ plt.show()
 </ul>
 <p>Whichever type of boundary condition we are dealing with, the goal will be to construct an equation representing the boundary condition to incorporate in our system of equations.</p>
 <p>If we have a fixed value boundary condition, such as <span class="math notranslate nohighlight">\(y(0) = a\)</span>, then this equation is straightforward:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe2ae411-4cae-4383-a013-96abc7f7c0dd">
-<span class="eqno">(4.25)<a class="headerlink" href="#equation-fe2ae411-4cae-4383-a013-96abc7f7c0dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3c5cc1a3-1581-48f5-9434-e1ab6038d7dc">
+<span class="eqno">(4.25)<a class="headerlink" href="#equation-3c5cc1a3-1581-48f5-9434-e1ab6038d7dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_1 = a
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_1\)</span> is the first point in the grid of points, corresponding to <span class="math notranslate nohighlight">\(x_1 = 0\)</span>. (We saw this in the example above.) In Python, we can implement this equation with</p>
@@ -878,8 +669,8 @@ y_1 = a
 </pre></div>
 </div>
 <p>If we have a fixed derivative boundary condition, such as <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>, then we need to use a finite difference to represent the derivative. When the boundary condition is at the starting location, <span class="math notranslate nohighlight">\(x=0\)</span>, the easiest way to do this is with a <strong>forward difference</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-64668703-70d3-4f3b-897b-5935c9ce58e3">
-<span class="eqno">(4.26)<a class="headerlink" href="#equation-64668703-70d3-4f3b-897b-5935c9ce58e3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14fc186a-7a62-42a7-a30b-6979e9843dc8">
+<span class="eqno">(4.26)<a class="headerlink" href="#equation-14fc186a-7a62-42a7-a30b-6979e9843dc8" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(0) \approx \frac{y_2 - y_1}{\Delta x} &amp;= 0 \\
 -y_1 + y_2 &amp;= 0
 \end{align}\]</div>
@@ -890,8 +681,8 @@ y^{\prime}(0) \approx \frac{y_2 - y_1}{\Delta x} &amp;= 0 \\
 </pre></div>
 </div>
 <p>When we have this sort of derivative boundary condition at the right side of the domain, at <span class="math notranslate nohighlight">\(x=L\)</span>, then we can use a <strong>backward difference</strong> to represent the derivative:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b63f8dd-d90b-466d-92bb-3f0ed22f3fbb">
-<span class="eqno">(4.27)<a class="headerlink" href="#equation-4b63f8dd-d90b-466d-92bb-3f0ed22f3fbb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f84aaf3d-e32f-4548-99b4-32b5f22cc07e">
+<span class="eqno">(4.27)<a class="headerlink" href="#equation-f84aaf3d-e32f-4548-99b4-32b5f22cc07e" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(L) \approx \frac{y_n - y_{n_1}}{\Delta x} &amp;= 0 \\
 -y_{n-1} + y_n &amp;= 0
 \end{align}\]</div>
@@ -902,8 +693,8 @@ y^{\prime}(L) \approx \frac{y_n - y_{n_1}}{\Delta x} &amp;= 0 \\
 </pre></div>
 </div>
 <p>If we have a linear combination of a fixed value and fixed derivative, like <span class="math notranslate nohighlight">\(a \, y(0) + b \, y^{\prime}(0) = c\)</span>, then we can combine the above approaches using a forward difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-100188fb-d44e-400e-8631-70b4f4e3b3fe">
-<span class="eqno">(4.28)<a class="headerlink" href="#equation-100188fb-d44e-400e-8631-70b4f4e3b3fe" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6c1f2f60-e2f6-471f-928f-80ccd68ba79a">
+<span class="eqno">(4.28)<a class="headerlink" href="#equation-6c1f2f60-e2f6-471f-928f-80ccd68ba79a" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y(0) + b y^{\prime}(0) \approx a y_1 + b \frac{y_2 - y_1}{\Delta x} &amp;= c \\
 (a \Delta x - b) y_1 + b y_2 &amp;= c \Delta x
 \end{align}\]</div>
@@ -917,21 +708,21 @@ a y(0) + b y^{\prime}(0) \approx a y_1 + b \frac{y_2 - y_1}{\Delta x} &amp;= c \
 <h3><span class="section-number">4.2.4.1. </span>Using central differences for derivative BCs<a class="headerlink" href="#using-central-differences-for-derivative-bcs" title="Permalink to this headline">#</a></h3>
 <p>When a boundary condition involves a derivative, we can use a <em>central difference</em> to approximate the first derivative; this is more accurate than a forward or backward difference.</p>
 <p>Consider the formula for a central difference at <span class="math notranslate nohighlight">\(x=0\)</span>, applied for the boundary condition <span class="math notranslate nohighlight">\(y^{\prime}(0) = 0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab98ae8e-fd02-4d7c-99b2-2de9a0c70ea1">
-<span class="eqno">(4.29)<a class="headerlink" href="#equation-ab98ae8e-fd02-4d7c-99b2-2de9a0c70ea1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8b35b8b4-853b-4a4a-a36e-12f35854ee36">
+<span class="eqno">(4.29)<a class="headerlink" href="#equation-8b35b8b4-853b-4a4a-a36e-12f35854ee36" title="Permalink to this equation">#</a></span>\[\begin{align}
 y^{\prime}(0) \approx \frac{y_2 - y_0}{2 \Delta x} &amp;= 0 \\
 y_0 &amp;= y_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_0\)</span> is an imaginary, or ghost, node <em>outside</em> the domain. We can’t actually keep this point in our implementation, because it isn’t a real point.</p>
 <p>We still need an equation <em>for</em> the point at the boundary, <span class="math notranslate nohighlight">\(y_1\)</span>. To get this, we’ll apply the regular recursion formula, normally used at interior points:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9b18a4f-3cd7-4355-bf53-c546843ea894">
-<span class="eqno">(4.30)<a class="headerlink" href="#equation-a9b18a4f-3cd7-4355-bf53-c546843ea894" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-42d1d4c9-216c-4fb4-974c-f4d82ff9d50e">
+<span class="eqno">(4.30)<a class="headerlink" href="#equation-42d1d4c9-216c-4fb4-974c-f4d82ff9d50e" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y_{i-1} + b y_i + c y_{i+1} = f(x_i) \\
 a y_0 + b y_1 + c y_2 = f(x_1) \;,
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(f(x)\)</span> depend on the problem. Normally we wouldn’t use this at the boundary node, <span class="math notranslate nohighlight">\(y_1\)</span>, because it references a point outside the domain to the left—but we have an equation for that! From above, based on the boundary condition, we have <span class="math notranslate nohighlight">\(y_0 = y_2\)</span>. If we incorporate that into the recursion formula, we can eliminate the ghost node <span class="math notranslate nohighlight">\(y_0\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5276d1e-d5fd-4a76-b666-dc20c75e783c">
-<span class="eqno">(4.31)<a class="headerlink" href="#equation-f5276d1e-d5fd-4a76-b666-dc20c75e783c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c166c0eb-e17b-4dc5-a2a0-1c904e962980">
+<span class="eqno">(4.31)<a class="headerlink" href="#equation-c166c0eb-e17b-4dc5-a2a0-1c904e962980" title="Permalink to this equation">#</a></span>\[\begin{align}
 a y_2 + b y_1 + c y_2 &amp;= f(x_1) \\
 b y_1 + (a + c) y_2 &amp;= f(x_1) \,
 \end{align}\]</div>
@@ -948,23 +739,23 @@ In Python, this looks like</p>
 <h2><span class="section-number">4.2.5. </span>Example: nonlinear BVP<a class="headerlink" href="#example-nonlinear-bvp" title="Permalink to this headline">#</a></h2>
 <p>So far we’ve seen how to handle a linear boundary value problem, but what if we have a <strong>nonlinear</strong> BVP? This is going to be trickier, because our work so far relies on using linear algebra to solve the system of (linear) equations.</p>
 <p>For example, consider the 2nd-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-557ff407-5af9-4ac7-a08c-5bda2790a526">
-<span class="eqno">(4.32)<a class="headerlink" href="#equation-557ff407-5af9-4ac7-a08c-5bda2790a526" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c17593da-f83a-4bbb-86a7-86c5fabef323">
+<span class="eqno">(4.32)<a class="headerlink" href="#equation-c17593da-f83a-4bbb-86a7-86c5fabef323" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} = 3y + x^2 + 100 y^2
 \end{equation}\]</div>
 <p>with the boundary conditions <span class="math notranslate nohighlight">\(y(0) = y(1) = 0\)</span>. This is nonlinear, due to the <span class="math notranslate nohighlight">\(y^3\)</span> term on the right-hand side.</p>
 <p>To solve this, let’s first convert it into a discrete form, by replacing the second derivative with a finite difference and any <span class="math notranslate nohighlight">\(x\)</span>/<span class="math notranslate nohighlight">\(y\)</span> present with <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>. We’ll also move any constants (i.e., terms that don’t contain <span class="math notranslate nohighlight">\(y_i\)</span>) and the nonlinear term to the right-hand side:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60e92fbc-c78c-4ee8-be90-2c9efb391095">
-<span class="eqno">(4.33)<a class="headerlink" href="#equation-60e92fbc-c78c-4ee8-be90-2c9efb391095" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-717f0274-f72c-43ea-b95a-351e5a62b0a2">
+<span class="eqno">(4.33)<a class="headerlink" href="#equation-717f0274-f72c-43ea-b95a-351e5a62b0a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{y_{i-1} - 2y_i + y_{i+1}}{\Delta x^2} - 3y_i = x_i^2 + 100 y_i^2
 \end{equation}\]</div>
 <p>where the boundary conditions are now <span class="math notranslate nohighlight">\(y_1 = 0\)</span> and <span class="math notranslate nohighlight">\(y_n = 0\)</span>, with <span class="math notranslate nohighlight">\(n\)</span> as the number of grid points. We can rearrange and simplify into our recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab0b9ce9-608c-403e-a379-b55d4ba9806f">
-<span class="eqno">(4.34)<a class="headerlink" href="#equation-ab0b9ce9-608c-403e-a379-b55d4ba9806f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6ce9f048-88dc-4e01-82c5-78d8638491c6">
+<span class="eqno">(4.34)<a class="headerlink" href="#equation-6ce9f048-88dc-4e01-82c5-78d8638491c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 100 \Delta x^2 y_i^2
 \end{equation}\]</div>
 <p>The question is: how do we solve this now? The nonlinear term involving <span class="math notranslate nohighlight">\(y_i^3\)</span> on the right-hand side complicates things, but we know how to set up and solve this <em>without</em> the nonlinear term. We can use an approach known as <strong>successive iteration</strong>:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Solve the ODE without the nonlinear term to get an initial “guess” to the solution for <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
 <li><p>Then, incorporate that guess solution in the nonlinear term on the right-hand side, treating it as a constant. We can call this <span class="math notranslate nohighlight">\(y_{\text{old}}\)</span>. Then, solve the full system for a new <span class="math notranslate nohighlight">\(y\)</span> solution.</p></li>
 <li><p>Check whether the new <span class="math notranslate nohighlight">\(y\)</span> matches <span class="math notranslate nohighlight">\(y_{\text{old}}\)</span> with some tolerance. For example, check whether <span class="math notranslate nohighlight">\(\max\left(\left| y - y_{\text{old}} \right| \right) &lt; \)</span> some tolerance, such as <span class="math notranslate nohighlight">\(10^{-6}\)</span>. If this is true, then we can consider the solution <em>converged</em>. If it is not true, then set <span class="math notranslate nohighlight">\(y_{\text{old}} = y\)</span>, and repeat the process starting at step 2.</p></li>
@@ -972,54 +763,54 @@ y_{i-1} + y_i \left( -2 - 3 \Delta x^2 \right) + y_{i+1} = x_i^2 \Delta x^2 + 10
 <p>Let’s implement that process in Python:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.01
-x_vals = np.arange(0, 1.001, dx)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.001</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
 
-A = np.zeros((len(x_vals), len(x_vals)))
-b = np.zeros(len(x_vals))
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))</span>
 
-# First, solve the problem without the nonlinear term:
-for idx, x in enumerate(x_vals):
-    if idx == 0:
-        # x = 0 boundary condition
-        A[0,0] = 1
-        b[0] = 0
-    elif idx == len(x_vals) - 1:
-        # x = L boundary condition
-        A[-1,-1] = 1
-        b[-1] = 0
-    else:
-        # interior nodes, use recursion formula
-        A[idx, idx-1] = 1
-        A[idx,idx] = -2 - 3*dx**2
-        A[idx, idx+1] = 1
-        b[idx] = x**2 * dx**2
+<span class="c1"># First, solve the problem without the nonlinear term:</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># x = 0 boundary condition</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># x = L boundary condition</span>
+        <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># interior nodes, use recursion formula</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
 
-# get solution without nonlinear term
-y_vals = np.linalg.solve(A, b)
+<span class="c1"># get solution without nonlinear term</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-plt.plot(x_vals, y_vals, &#39;--&#39;, label=&#39;Initial solution&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Initial solution&#39;</span><span class="p">)</span>
 
-# Now, set up iterative process to solve while 
-# incorporating nonlinear terms
-iters = 1
-y_old = np.zeros_like(x_vals)
+<span class="c1"># Now, set up iterative process to solve while </span>
+<span class="c1"># incorporating nonlinear terms</span>
+<span class="n">iters</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y_old</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
 
-while np.max(np.abs(y_vals - y_old)) &gt; 1e-6:
-    y_old[:] = y_vals[:]
-    # A matrix is not changed, but the b vector does
-    for idx, x in enumerate(x_vals):
-        if idx &gt; 0 and idx &lt; len(x_vals)-1:
-            b[idx] = x**2 * dx**2 + 100*(dx**2)*y_old[idx]**2
+<span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_vals</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+    <span class="n">y_old</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">y_vals</span><span class="p">[:]</span>
+    <span class="c1"># A matrix is not changed, but the b vector does</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y_old</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
     
-    y_vals = np.linalg.solve(A, b)
-    iters += 1
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">iters</span> <span class="o">+=</span> <span class="mi">1</span>
 
-print(f&#39;Number of iterations: {iters}&#39;)
-plt.plot(x_vals, y_vals, label=&#39;Final solution&#39;)
-plt.legend()
-plt.grid()
-plt.show()
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of iterations: </span><span class="si">{</span><span class="n">iters</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Final solution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1027,53 +818,53 @@ plt.show()
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of iterations: 16
 </pre></div>
 </div>
-<img alt="../../_images/finite-difference_12_1.png" src="../../_images/finite-difference_12_1.png" />
+<img alt="../../_images/91787b72b884d45cda4200d422c3fb8a0a7b4a320b6d05d7a86a0c243b7558fe.png" src="../../_images/91787b72b884d45cda4200d422c3fb8a0a7b4a320b6d05d7a86a0c243b7558fe.png" />
 </div>
 </div>
 <p>Another option is just to set our “guess” for the <span class="math notranslate nohighlight">\(y\)</span> solution to be zero, rather than solve the problem in two steps:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>dx = 0.01
-x_vals = np.arange(0, 1.001, dx)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.001</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
 
-A = np.zeros((len(x_vals), len(x_vals)))
-b = np.zeros_like(x_vals)
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
 
-# Set up the coefficient matrix, which does not change
-for idx, x in enumerate(x_vals):
-    if idx == 0:
-        # x = 0 boundary condition
-        A[0,0] = 1
-        b[0] = 0
-    elif idx == len(x_vals) - 1:
-        # x = L boundary condition
-        A[-1,-1] = 1
-        b[-1] = 0
-    else:
-        # interior nodes, use recursion formula
-        A[idx, idx-1] = 1
-        A[idx,idx] = -2 - 3*dx**2
-        A[idx, idx+1] = 1
-        b[idx] = x**2 * dx**2
+<span class="c1"># Set up the coefficient matrix, which does not change</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># x = 0 boundary condition</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># x = L boundary condition</span>
+        <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># interior nodes, use recursion formula</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
 
-# just use zeros as our initial guess for the solution
-y_vals = np.zeros_like(x_vals)
+<span class="c1"># just use zeros as our initial guess for the solution</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
              
-# Successive iteration
-iters = 1
-# setting this to some random values, just to enter the while loop
-y_old = 100 * np.random.rand(len(x_vals))
-while np.max(np.abs(y_vals - y_old)) &gt; 1e-6:
-    y_old[:] = y_vals[:]
-    # A matrix is not changed, but the b vector does
-    for idx, x in enumerate(x_vals):
-        if idx &gt; 0 and idx &lt; len(x_vals)-1:
-            b[idx] = x**2 * dx**2 + 100*(dx**2)*y_old[idx]**2
+<span class="c1"># Successive iteration</span>
+<span class="n">iters</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># setting this to some random values, just to enter the while loop</span>
+<span class="n">y_old</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">))</span>
+<span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_vals</span> <span class="o">-</span> <span class="n">y_old</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+    <span class="n">y_old</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">y_vals</span><span class="p">[:]</span>
+    <span class="c1"># A matrix is not changed, but the b vector does</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">b</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">y_old</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
     
-    y_vals = np.linalg.solve(A, b)
-    iters += 1
+    <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">iters</span> <span class="o">+=</span> <span class="mi">1</span>
 
-print(f&#39;Number of iterations: {iters}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of iterations: </span><span class="si">{</span><span class="n">iters</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1096,8 +887,8 @@ print(f&#39;Number of iterations: {iters}&#39;)
 </figure>
 <p>In this situation, we have the temperature of the body <span class="math notranslate nohighlight">\(T_b\)</span>, the temperature of the ambient fluid <span class="math notranslate nohighlight">\(T_{\infty}\)</span>; the length <span class="math notranslate nohighlight">\(L\)</span>, width <span class="math notranslate nohighlight">\(w\)</span>, and thickness <span class="math notranslate nohighlight">\(t\)</span> of the fin; the thermal conductivity of the fin material <span class="math notranslate nohighlight">\(k\)</span>; and convection heat transfer coefficient <span class="math notranslate nohighlight">\(h\)</span>.</p>
 <p>The boundary conditions can be defined in different ways, but generally we can say that the temperature of the fin at the wall is the same as the body temperature, and that the fin is insulated at the tip. This gives us</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d0549f9-9795-4b44-a633-a09b50c8d597">
-<span class="eqno">(4.35)<a class="headerlink" href="#equation-7d0549f9-9795-4b44-a633-a09b50c8d597" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-06bd5522-6fbf-475b-887f-b263d60f203f">
+<span class="eqno">(4.35)<a class="headerlink" href="#equation-06bd5522-6fbf-475b-887f-b263d60f203f" title="Permalink to this equation">#</a></span>\[\begin{align}
 T(x=0) &amp;= T_b \\
 q(x=L) = 0 \rightarrow \frac{dT}{dx} (x=0) &amp;= 0
 \end{align}\]</div>
@@ -1109,16 +900,16 @@ q(x=L) = 0 \rightarrow \frac{dT}{dx} (x=0) &amp;= 0
 </figcaption>
 </figure>
 <p>Given a particular volumetric slice of the fin, we can define the heat transfer rates of conduction through the fin and convection from the fin to the air:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b571f390-c24a-466a-8921-ee36ecb82561">
-<span class="eqno">(4.36)<a class="headerlink" href="#equation-b571f390-c24a-466a-8921-ee36ecb82561" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b4202305-527c-4021-9c1a-369c8e723a09">
+<span class="eqno">(4.36)<a class="headerlink" href="#equation-b4202305-527c-4021-9c1a-369c8e723a09" title="Permalink to this equation">#</a></span>\[\begin{align}
 q_{\text{conv}} &amp;= h P \left( T - T_{\infty} \right) dx \\
 q_{\text{cond}, x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} \\
 q_{\text{cond}, x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} \;,
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(P\)</span> is the perimeter (so that <span class="math notranslate nohighlight">\(P \, dx\)</span> is the heat transfer area to the fluid) and <span class="math notranslate nohighlight">\(A_c\)</span> is the cross-sectional area.</p>
 <p>Performing a balance through the control volume:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1f25a182-ef72-4584-b42d-765de951b31d">
-<span class="eqno">(4.37)<a class="headerlink" href="#equation-1f25a182-ef72-4584-b42d-765de951b31d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f6ca2663-a6e5-438d-b449-8db1665198b0">
+<span class="eqno">(4.37)<a class="headerlink" href="#equation-f6ca2663-a6e5-438d-b449-8db1665198b0" title="Permalink to this equation">#</a></span>\[\begin{align}
 q_{\text{cond}, x+\Delta x} &amp;= q_{\text{cond}, x} - q_{\text{conv}} \\
 -k A_c \left(\frac{dT}{dx}\right)_{x+\Delta x} &amp;= -k A_c \left(\frac{dT}{dx}\right)_{x} - h P \left( T - T_{\infty} \right) dx \\
 -k A_c \frac{\left.\frac{dT}{dx}\right|_{x+\Delta x} - \left.\frac{dT}{dx}\right|_{x}}{dx} &amp;= -h P ( T - T_{\infty} ) \\
@@ -1127,43 +918,43 @@ q_{\text{cond}, x+\Delta x} &amp;= q_{\text{cond}, x} - q_{\text{conv}} \\
 \frac{d^2 T}{dx^2} &amp;= m^2 (T - T_{\infty})
 \end{align}\]</div>
 <p>then we have as a governing equation</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a0c0942-8efd-4c75-a497-8f616018bea5">
-<span class="eqno">(4.38)<a class="headerlink" href="#equation-8a0c0942-8efd-4c75-a497-8f616018bea5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cc6c7388-9302-4997-9967-5c2201241e97">
+<span class="eqno">(4.38)<a class="headerlink" href="#equation-cc6c7388-9302-4997-9967-5c2201241e97" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) = 0 \;,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m^2 = (h P)/(k A_c)\)</span>.</p>
 <p>We can obtain an exact solution for this ODE. For convenience, let’s define a new variable, <span class="math notranslate nohighlight">\(\theta\)</span>, which is a normalized temperature:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3106a863-0732-4706-b57d-f7e8e4638cdf">
-<span class="eqno">(4.39)<a class="headerlink" href="#equation-3106a863-0732-4706-b57d-f7e8e4638cdf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bcfcddb0-f6a1-4abc-9e00-a2084033b4c0">
+<span class="eqno">(4.39)<a class="headerlink" href="#equation-bcfcddb0-f6a1-4abc-9e00-a2084033b4c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \theta \equiv T - T_{\infty}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\theta^{\prime} = T^{\prime}\)</span> and <span class="math notranslate nohighlight">\(\theta^{\prime\prime} = T^{\prime\prime}\)</span>.
 This gives us a new governing equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebe88f93-56bb-463b-85c4-55ed44bdd320">
-<span class="eqno">(4.40)<a class="headerlink" href="#equation-ebe88f93-56bb-463b-85c4-55ed44bdd320" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-86c331bd-9ed9-4ff2-a7f1-581860e2303b">
+<span class="eqno">(4.40)<a class="headerlink" href="#equation-86c331bd-9ed9-4ff2-a7f1-581860e2303b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \theta^{\prime\prime} - m^2 \theta = 0 \;.
 \end{equation}\]</div>
 <p>This is a 2nd-order homogeneous ODE, which looks a lot like <span class="math notranslate nohighlight">\(y^{\prime\prime} + a y = 0\)</span>. The exact solution is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06e57a87-941c-4762-9b96-7b902ce4c6ea">
-<span class="eqno">(4.41)<a class="headerlink" href="#equation-06e57a87-941c-4762-9b96-7b902ce4c6ea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-146e728d-efcd-4898-b78e-e548311862ed">
+<span class="eqno">(4.41)<a class="headerlink" href="#equation-146e728d-efcd-4898-b78e-e548311862ed" title="Permalink to this equation">#</a></span>\[\begin{align}
 \theta(x) &amp;= c_1 e^{-m x} + c_2 e^{m x} \\
 T(x) &amp;= T_{\infty} + c_1 e^{-m x} + c_2 e^{m x}
 \end{align}\]</div>
 <p>We’ll use this to look at the accuracy of a numerical solution, but we will not be able to find an exact solution for more complicated versions of this problem.</p>
 <p>We can also solve this numerically using the finite difference method. Let’s replace the derivative with a finite difference:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e18eeb2e-a90f-439d-b9dc-6c25989ccbea">
-<span class="eqno">(4.42)<a class="headerlink" href="#equation-e18eeb2e-a90f-439d-b9dc-6c25989ccbea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7767e89a-c75f-4553-911e-71020ad2c288">
+<span class="eqno">(4.42)<a class="headerlink" href="#equation-7767e89a-c75f-4553-911e-71020ad2c288" title="Permalink to this equation">#</a></span>\[\begin{align}
 \frac{d^2 T}{dx^2} - m^2 (T - T_{\infty}) &amp;= 0 \\
 \frac{T_{i-1} - 2T_i + T_{i+1}}{\Delta x^2} - m^2 \left( T_i - T_{\infty} \right) &amp;= 0
 \end{align}\]</div>
 <p>which we can rearrange into a recursion formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-134459ab-bde2-4edf-b91d-974497759bc6">
-<span class="eqno">(4.43)<a class="headerlink" href="#equation-134459ab-bde2-4edf-b91d-974497759bc6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd8a7d01-e85d-4d84-93d5-30e189948f3c">
+<span class="eqno">(4.43)<a class="headerlink" href="#equation-fd8a7d01-e85d-4d84-93d5-30e189948f3c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T_{i-1} + T_i \left( -2 - \Delta x^2 m^2 \right) + T_{i+1} = -m^2 \Delta x^2 \, T_{\infty}
 \end{equation}\]</div>
 <p>This gives us an equation for all the interior nodes; we can use the above boundary conditions to get equations for the boundary nodes. For the boundary condition at <span class="math notranslate nohighlight">\(x=L\)</span>, <span class="math notranslate nohighlight">\(T^{\prime}(x=L) = 0\)</span>, let’s use a <em>backward difference</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bd88061-1788-41ff-8731-b3d31c560cb2">
-<span class="eqno">(4.44)<a class="headerlink" href="#equation-7bd88061-1788-41ff-8731-b3d31c560cb2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-606c13b0-bd3d-4bb3-ad93-8105773b0fac">
+<span class="eqno">(4.44)<a class="headerlink" href="#equation-606c13b0-bd3d-4bb3-ad93-8105773b0fac" title="Permalink to this equation">#</a></span>\[\begin{align}
 T_1 &amp;= T_b \\
 \frac{T_n - T_{n-1}}{\Delta x} = 0 \rightarrow - T_{n-1} + T_n &amp;= 0
 \end{align}\]</div>
@@ -1171,8 +962,8 @@ T_1 &amp;= T_b \\
 <section id="heat-transfer-with-radiation">
 <h3><span class="section-number">4.2.6.1. </span>Heat transfer with radiation<a class="headerlink" href="#heat-transfer-with-radiation" title="Permalink to this headline">#</a></h3>
 <p>Let’s now consider a more-complicated case, where we also have radiation heat transfer occuring along the length of the fin. Now, our governing ODE is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb1ec836-8e73-45f0-8eea-eaec3a141aea">
-<span class="eqno">(4.45)<a class="headerlink" href="#equation-bb1ec836-8e73-45f0-8eea-eaec3a141aea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53345afb-134e-490f-bb97-553de3b85f9d">
+<span class="eqno">(4.45)<a class="headerlink" href="#equation-53345afb-134e-490f-bb97-553de3b85f9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^2 T}{dx^2} - \frac{h P}{k A_c} \left(T - T_{\infty}\right) - \frac{\sigma \epsilon P}{h A_c} \left(T^4 - T_{\infty}^4 \right) = 0
 \end{equation}\]</div>
 <p>This is a bit trickier to solve because of the nonlinear term involving <span class="math notranslate nohighlight">\(T^4\)</span>. But, we can handle it via the iterative solution method discussed above.</p>
@@ -1192,7 +983,7 @@ T_1 &amp;= T_b \\
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./content/bvps"
         },
         predefinedOutput: true
@@ -1200,53 +991,116 @@ T_1 &amp;= T_b \\
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="shooting-method.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4.1. </span>Shooting Method</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="shooting-method.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.1. </span>Shooting Method</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="eigenvalue.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="eigenvalue.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">4.3. </span>Eigenvalue problems</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kyle Niemeyer<br/>
-  
-    <div class="extra_footer">
-      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
-
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences">4.2.1. Finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-finite-differences">4.2.2. Second-order finite differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-odes-with-finite-differences">4.2.3. Solving ODEs with finite differences</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-implementation">4.2.3.1. General implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">4.2.4. Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-central-differences-for-derivative-bcs">4.2.4.1. Using central differences for derivative BCs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-nonlinear-bvp">4.2.5. Example: nonlinear BVP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-heat-transfer-through-a-fin">4.2.6. Example: heat transfer through a fin</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-transfer-with-radiation">4.2.6.1. Heat transfer with radiation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kyle Niemeyer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

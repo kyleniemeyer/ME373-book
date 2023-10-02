@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Sample Quiz 2 problems: IVPs &#8212; Mechanical Engineering Methods</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,57 +62,88 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/quizzes/quiz2-IVPs';</script>
     <link rel="canonical" href="https://kyleniemeyer.github.io/ME373-book/content/quizzes/quiz2-IVPs.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Sample Quiz 3 problems: BVPs" href="quiz3-BVPs.html" />
     <link rel="prev" title="5.2. Parabolic PDEs" href="../pdes/parabolic.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Mechanical Engineering Methods</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Mechanical Engineering Methods</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,507 +152,293 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Ordinary Differential Equations
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Ordinary Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../first-order.html">
-   1. Solutions to 1st-order ODEs
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../numerical-methods/numerical-methods.html">
-   2. Numerical Methods
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/integrals.html">
-     2.1. Numerical integrals
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/error.html">
-     2.2. Error
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/initial-value-methods.html">
-     2.3. Numerical Solutions of 1st-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../numerical-methods/stability.html">
-     2.4. Stability and Stiffness
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../second-order/second-order.html">
-   3. Second-order Ordinary Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/analytical.html">
-     3.1. Analytical Solutions to 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/initial-value-problems.html">
-     3.2. Initial-Value Problems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/numerical-methods.html">
-     3.3. Numerical methods for 2nd-order ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/fourier-series.html">
-     3.4. Fourier Series
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../second-order/power-series.html">
-     3.5. Power Series Solutions
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../bvps/boundary-value-problems.html">
-   4. Boundary Value Problems
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/shooting-method.html">
-     4.1. Shooting Method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/finite-difference.html">
-     4.2. Finite difference method
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../bvps/eigenvalue.html">
-     4.3. Eigenvalue problems
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../first-order.html">1. Solutions to 1st-order ODEs</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numerical-methods/numerical-methods.html">2. Numerical Methods</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/integrals.html">2.1. Numerical integrals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/error.html">2.2. Error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/initial-value-methods.html">2.3. Numerical Solutions of 1st-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numerical-methods/stability.html">2.4. Stability and Stiffness</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Partial Differential Equations
- </span>
-</p>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../second-order/second-order.html">3. Second-order Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/analytical.html">3.1. Analytical Solutions to 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/initial-value-problems.html">3.2. Initial-Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/numerical-methods.html">3.3. Numerical methods for 2nd-order ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/fourier-series.html">3.4. Fourier Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../second-order/power-series.html">3.5. Power Series Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../bvps/boundary-value-problems.html">4. Boundary Value Problems</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/shooting-method.html">4.1. Shooting Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/finite-difference.html">4.2. Finite difference method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bvps/eigenvalue.html">4.3. Eigenvalue problems</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Partial Differential Equations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../pdes/partial-differential-equations.html">
-   5. Partial Differential Equations
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/elliptic.html">
-     5.1. Elliptic PDEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../pdes/parabolic.html">
-     5.2. Parabolic PDEs
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pdes/partial-differential-equations.html">5. Partial Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/elliptic.html">5.1. Elliptic PDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pdes/parabolic.html">5.2. Parabolic PDEs</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sample Quizzes
- </span>
-</p>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample Quizzes</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Sample Quiz 2 problems: IVPs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="quiz3-BVPs.html">
-   Sample Quiz 3 problems: BVPs
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sample Quiz 2 problems: IVPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quiz3-BVPs.html">Sample Quiz 3 problems: BVPs</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  About
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">
-   GitHub repository
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributing.html">
-   Contributing to Jupyter Book
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../zbibliography.html">
-   Bibliography
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kyleniemeyer/ME373-book">GitHub repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Jupyter Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zbibliography.html">Bibliography</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/quizzes/quiz2-IVPs.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/quizzes/quiz2-IVPs.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/quizzes/quiz2-IVPs.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/issues/new?title=Issue%20on%20page%20%2Fcontent/quizzes/quiz2-IVPs.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/kyleniemeyer/ME373-book/edit/master/book/content/quizzes/quiz2-IVPs.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/content/quizzes/quiz2-IVPs.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-1-stability-analysis">
-   Problem 1: Stability analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-2-second-order-backward-euler">
-   Problem 2: Second-order Backward Euler
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-3-fourier-series">
-   Problem 3: Fourier series
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-4-second-order-analytical">
-   Problem 4: Second-order analytical
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Sample Quiz 2 problems: IVPs</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-1-stability-analysis">
-   Problem 1: Stability analysis
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-2-second-order-backward-euler">
-   Problem 2: Second-order Backward Euler
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-3-fourier-series">
-   Problem 3: Fourier series
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problem-4-second-order-analytical">
-   Problem 4: Second-order analytical
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     Solution
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sample Quiz 2 problems: IVPs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-1-stability-analysis">Problem 1: Stability analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-2-second-order-backward-euler">Problem 2: Second-order Backward Euler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-3-fourier-series">Problem 3: Fourier series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-4-second-order-analytical">Problem 4: Second-order analytical</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Solution</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="sample-quiz-2-problems-ivps">
 <h1>Sample Quiz 2 problems: IVPs<a class="headerlink" href="#sample-quiz-2-problems-ivps" title="Permalink to this headline">#</a></h1>
 <section id="problem-1-stability-analysis">
 <h2>Problem 1: Stability analysis<a class="headerlink" href="#problem-1-stability-analysis" title="Permalink to this headline">#</a></h2>
 <p>Given the first-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53e49296-ba75-426a-9d5f-912975f4cecc">
-<span class="eqno">(1)<a class="headerlink" href="#equation-53e49296-ba75-426a-9d5f-912975f4cecc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ec847b24-7cd4-4200-8d59-facbfc50dc5d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ec847b24-7cd4-4200-8d59-facbfc50dc5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{dy}{dt} = -8y \;,
 \end{equation}\]</div>
 <p>a.) Perform a linear stability analysis to find the amplification factor (<span class="math notranslate nohighlight">\(\sigma\)</span>) for the <strong>midpoint method</strong> (also known as the modified Euler method) applied to this ODE.</p>
@@ -622,34 +449,34 @@ title="Print to PDF"
 <section id="solution">
 <h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h3>
 <p>a.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d232ca5-1f81-41ee-acdb-86d22baac39c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-1d232ca5-1f81-41ee-acdb-86d22baac39c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6bd94a75-7ce2-48ff-bfdb-f9aebc4b3dce">
+<span class="eqno">(2)<a class="headerlink" href="#equation-6bd94a75-7ce2-48ff-bfdb-f9aebc4b3dce" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1/2} &amp;= y_i + \frac{\Delta t}{2} \, f(t_i, y_i) \\
 y_{i+1} &amp;= y_i + \Delta t \, f(t_i + \frac{\Delta t}{2}, y_{i+1/2})
 \end{align}\]</div>
 <p>For this ODE:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32f59afe-7e4d-47a0-8f79-acc8531a4709">
-<span class="eqno">(3)<a class="headerlink" href="#equation-32f59afe-7e4d-47a0-8f79-acc8531a4709" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8482acde-8fa2-4362-8b9d-d537bb738437">
+<span class="eqno">(3)<a class="headerlink" href="#equation-8482acde-8fa2-4362-8b9d-d537bb738437" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1/2} &amp;= y_i + \frac{\Delta t}{2} \, (-8 y_i) = y_i - 4 \Delta t \, y_i \\
 y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right) \right] \\
 &amp;= y_i - 8 \Delta t \, y_i + 32 \Delta t^2 \, y_i \\
 &amp;= y_i (1 - 8 \Delta t + 32 \Delta t^2)
 \end{align}\]</div>
 <p>So,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3cd746c2-73a7-4bb3-8a84-448e38a0cfb9">
-<span class="eqno">(4)<a class="headerlink" href="#equation-3cd746c2-73a7-4bb3-8a84-448e38a0cfb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06d47dc0-4cf0-4339-8051-198dc11bf7ce">
+<span class="eqno">(4)<a class="headerlink" href="#equation-06d47dc0-4cf0-4339-8051-198dc11bf7ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = \frac{y_{i+1}}{y_i} = 1 - 8 \Delta t + 32 \Delta t^2
 \end{equation}\]</div>
 <p>b.) For stability, <span class="math notranslate nohighlight">\(|\sigma| \leq 1\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\Delta t = 0.2\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41325860-e166-45e1-89f5-98a3706e3fa7">
-<span class="eqno">(5)<a class="headerlink" href="#equation-41325860-e166-45e1-89f5-98a3706e3fa7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-18a41029-c0da-4987-b11d-13bcc642b4e0">
+<span class="eqno">(5)<a class="headerlink" href="#equation-18a41029-c0da-4987-b11d-13bcc642b4e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = 1 - 8(0.2) + 32 (0.2)^2 = 0.68
 \end{equation}\]</div>
 <p>so <strong>stable</strong>.</p>
 <p><span class="math notranslate nohighlight">\(\Delta t = 0.4\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56a61c4a-fa4e-433f-aeef-ca4302bd57c1">
-<span class="eqno">(6)<a class="headerlink" href="#equation-56a61c4a-fa4e-433f-aeef-ca4302bd57c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8b93c9d8-870f-4ac9-b8c8-6bc77c2710be">
+<span class="eqno">(6)<a class="headerlink" href="#equation-8b93c9d8-870f-4ac9-b8c8-6bc77c2710be" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \sigma = 1 - 8(0.4) + 32 (0.4)^2 = 2.92
 \end{equation}\]</div>
 <p>so <strong>unstable</strong>.</p>
@@ -665,8 +492,8 @@ y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right
 <section id="problem-2-second-order-backward-euler">
 <h2>Problem 2: Second-order Backward Euler<a class="headerlink" href="#problem-2-second-order-backward-euler" title="Permalink to this headline">#</a></h2>
 <p>Given the second-order ODE</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a19469ab-115e-4bba-a589-62063d07f1a9">
-<span class="eqno">(7)<a class="headerlink" href="#equation-a19469ab-115e-4bba-a589-62063d07f1a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b78b6b09-ca0c-4ec5-b619-10519c9ae79a">
+<span class="eqno">(7)<a class="headerlink" href="#equation-b78b6b09-ca0c-4ec5-b619-10519c9ae79a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 2 y^{\prime\prime} + y^{\prime} + 4y = 3x
 \end{equation}\]</div>
 <p>a.) Find the recursion formulas (i.e., <span class="math notranslate nohighlight">\(y_{i+1} = \ldots\)</span>) for numerically solving this ODE using the backward Euler method. Clearly define/state any variable or function you use.</p>
@@ -675,37 +502,37 @@ y_{i+1} &amp;= y_i + \Delta t \, \left[ -8 \left( y_i - 4 \Delta t \, y_i \right
 <section id="id1">
 <h3>Solution<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>a.) System of Backward Euler recursion formulas, for <span class="math notranslate nohighlight">\(y(x)\)</span> and <span class="math notranslate nohighlight">\(u(x) = y^{\prime}\)</span>, where <span class="math notranslate nohighlight">\(f(x,y,u) = dy/dx\)</span> and <span class="math notranslate nohighlight">\(g(x,y,u) = du/dx = y^{\prime\prime}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38a93918-b0c0-4e5c-86ed-29b55e38782e">
-<span class="eqno">(8)<a class="headerlink" href="#equation-38a93918-b0c0-4e5c-86ed-29b55e38782e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8382f791-64c7-4648-9d82-9fad2b9ac950">
+<span class="eqno">(8)<a class="headerlink" href="#equation-8382f791-64c7-4648-9d82-9fad2b9ac950" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= y_i + \Delta x \, f(x_{i+1}, y_{i+1}, u_{i+1}) = y_i + \Delta x \, u_{i+1} \\
 u_{i+1} &amp;= u_i + \Delta x \, g(x_{i+1}, y_{i+1}, u_{i+1}) = u_i + \Delta x \, \left( \frac{3}{2}x_{i+1} - \frac{1}{2} u_{i+1} - 2 y_{i+1} \right)
 \end{align}\]</div>
 <p>This form is implicit and cannot be used directly, so we need to solve the system of equations.</p>
 <p><em>There are two ways to approach this, that give an equivalent solution</em></p>
 <p><strong>Option 1:</strong> Use substitution and elimination to solve:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b47ed5c4-e579-42cb-8a8b-84d94e8fb12a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-b47ed5c4-e579-42cb-8a8b-84d94e8fb12a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3b6bf8ea-0012-4d9a-b633-8c899f9490b9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-3b6bf8ea-0012-4d9a-b633-8c899f9490b9" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \left( y_i + \Delta x \, u_{i+1} \right) \\
 &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - \frac{1}{2} \Delta x \, u_{i+1} - 2 \Delta x \, y_i - 2 \Delta x^2 \, u_{i+1} \\
 u_{i+1} \left( 1 + 2 \Delta x^2 + \frac{1}{2} \Delta x \right) &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i
 \end{align}\]</div>
 <p>Thus,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63741fd8-8d08-4656-b59c-9a11831c9bfc">
-<span class="eqno">(10)<a class="headerlink" href="#equation-63741fd8-8d08-4656-b59c-9a11831c9bfc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7f2882aa-c9d0-4a8b-aaae-04475603de42">
+<span class="eqno">(10)<a class="headerlink" href="#equation-7f2882aa-c9d0-4a8b-aaae-04475603de42" title="Permalink to this equation">#</a></span>\[\begin{align}
 u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + 2 \Delta x^2 + \frac{1}{2} \Delta x} \\
 y_{i+1} &amp;= y_i + \Delta x \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + 2 \Delta x^2 + \frac{1}{2} \Delta x}
 \end{align}\]</div>
 <p><strong>Option 2:</strong> Or, use Cramer’s rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-487e3869-78cd-4769-b68d-66b785e7a1a0">
-<span class="eqno">(11)<a class="headerlink" href="#equation-487e3869-78cd-4769-b68d-66b785e7a1a0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c938c39c-23f7-4714-8842-1591e53ae0a4">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c938c39c-23f7-4714-8842-1591e53ae0a4" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} - \Delta x u_{i+1} &amp;= y_i \\
 2 \Delta x \, y_{i+1} + \left( 1 + \frac{1}{2} \Delta x \right) u_{i+1} &amp;= u_i + \frac{3}{2} \Delta x \, x_{i+1} \\
 \rightarrow \begin{bmatrix} 1 &amp; -\Delta x \\ 2 \Delta x &amp; \left( 1 + \frac{1}{2} \Delta x \right)\end{bmatrix} \begin{bmatrix} y_{i+1} \\ u_{i+1} \end{bmatrix} &amp;= 
 \begin{bmatrix} y_i \\ u_i + \frac{3}{2} \Delta x \, x_{i+1} \end{bmatrix}
 \end{align}\]</div>
 <p>Then,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a154d028-26eb-410b-97d2-3dca40289b92">
-<span class="eqno">(12)<a class="headerlink" href="#equation-a154d028-26eb-410b-97d2-3dca40289b92" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-93977d13-152a-4738-92a3-dee3677d9640">
+<span class="eqno">(12)<a class="headerlink" href="#equation-93977d13-152a-4738-92a3-dee3677d9640" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{i+1} &amp;= \frac{y_i \left(1 + \frac{\Delta x}{2} \right) + \Delta x \left( u_i + \frac{3}{2} \Delta x \, x_{i+1} \right)}{1 + \frac{\Delta x}{2} + 2 \Delta x^2} \\
 u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{1 + \frac{\Delta x}{2} + 2 \Delta x^2}
 \end{align}\]</div>
@@ -722,27 +549,27 @@ u_{i+1} &amp;= \frac{u_i + \frac{3}{2} \Delta x \, x_{i+1} - 2 \Delta x \, y_i}{
 <p>a.) What is the period and fundamental frequency of the input forcing function?</p>
 <p>b.) Is the periodic function <span class="math notranslate nohighlight">\(R(t)\)</span> odd, even, or neither?</p>
 <p>c.) Find the coefficients <span class="math notranslate nohighlight">\(a_0\)</span> and <span class="math notranslate nohighlight">\(a_n\)</span> of the Fourier series representation of <span class="math notranslate nohighlight">\(R(t)\)</span>. (For purposes of time, you do not need to find <span class="math notranslate nohighlight">\(b_n\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a527b823-f747-40ad-861b-53bdf46fc090">
-<span class="eqno">(13)<a class="headerlink" href="#equation-a527b823-f747-40ad-861b-53bdf46fc090" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-506faf31-46bf-4d90-ad8c-158794286be3">
+<span class="eqno">(13)<a class="headerlink" href="#equation-506faf31-46bf-4d90-ad8c-158794286be3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos(n \omega t) + \sum_{n=1}^{\infty} b_n \sin(n \omega t) 
 \end{equation}\]</div>
 <section id="id2">
 <h3>Solution<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>a.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6db8dbe1-2652-4c6d-847b-20ee423752b5">
-<span class="eqno">(14)<a class="headerlink" href="#equation-6db8dbe1-2652-4c6d-847b-20ee423752b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-35474ba7-be50-4ed9-bd17-3aa0841f678b">
+<span class="eqno">(14)<a class="headerlink" href="#equation-35474ba7-be50-4ed9-bd17-3aa0841f678b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T = 4\pi \quad \omega = \frac{2\pi}{T} = \frac{1}{2}
 \end{equation}\]</div>
 <p>b.) Neither.</p>
 <p>c.)</p>
-<div class="amsmath math notranslate nohighlight" id="equation-edd1a051-9e8f-4cd9-b128-dd51d234449a">
-<span class="eqno">(15)<a class="headerlink" href="#equation-edd1a051-9e8f-4cd9-b128-dd51d234449a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f6c14fc6-e061-4aeb-8b27-4b93cff1e7b5">
+<span class="eqno">(15)<a class="headerlink" href="#equation-f6c14fc6-e061-4aeb-8b27-4b93cff1e7b5" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_0 &amp;= \frac{1}{T} \int_0^T f(t) dt = \frac{1}{4\pi} \left[ \int_0^{\pi} 0 dt + \int_{\pi}^{2\pi} 3 dt + \int_{2\pi}^{3\pi} 2 dt + \int_{3\pi}^{4\pi} 1 dt  \right] \\
 &amp;= \frac{1}{4\pi} \left[ 3 \pi + 2 \pi + 1 \pi \right] \\
 a_0 &amp;= \frac{3}{2}
 \end{align}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-c965e611-bd3d-4288-819f-84aa66b156dc">
-<span class="eqno">(16)<a class="headerlink" href="#equation-c965e611-bd3d-4288-819f-84aa66b156dc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-33016703-01fa-4b9f-bbc6-3b381e8ef4e8">
+<span class="eqno">(16)<a class="headerlink" href="#equation-33016703-01fa-4b9f-bbc6-3b381e8ef4e8" title="Permalink to this equation">#</a></span>\[\begin{align}
 a_n &amp;= \frac{2}{T} \int_0^T f(t) \cos(n \omega t) dt \\
 &amp;= \frac{2}{4\pi} \left[ \int_0^{\pi} 0 \cos \left(\frac{n t}{2}\right) dt + \int_{\pi}^{2\pi} 3 \cos \left(\frac{n t}{2}\right) dt + \int_{2\pi}^{3\pi} 2 \cos \left(\frac{n t}{2}\right) dt + \int_{3\pi}^{4\pi} 1 \cos \left(\frac{n t}{2}\right) dt  \right] \\
 &amp;\cdots \\
@@ -753,8 +580,8 @@ a_n &amp;= \frac{1}{n\pi} \left[ \sin\left(\frac{3 n \pi}{2}\right) - 3 \sin\lef
 <section id="problem-4-second-order-analytical">
 <h2>Problem 4: Second-order analytical<a class="headerlink" href="#problem-4-second-order-analytical" title="Permalink to this headline">#</a></h2>
 <p>The displacement <span class="math notranslate nohighlight">\(y(t)\)</span> of a harmonically forced mass-spring system is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-715569d3-d926-4a47-9292-409acfd4defc">
-<span class="eqno">(17)<a class="headerlink" href="#equation-715569d3-d926-4a47-9292-409acfd4defc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59f0ef9f-7200-49d8-a270-6b5477e34a78">
+<span class="eqno">(17)<a class="headerlink" href="#equation-59f0ef9f-7200-49d8-a270-6b5477e34a78" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y^{\prime\prime} + 8y^{\prime} + 16y = 6 e^{-4t}
 \end{equation}\]</div>
 <p>a.) For initial conditions <span class="math notranslate nohighlight">\(y(0)=0\)</span> and <span class="math notranslate nohighlight">\(y^{\prime}(0) = 2\)</span>, find the response of the system <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
@@ -762,40 +589,40 @@ y^{\prime\prime} + 8y^{\prime} + 16y = 6 e^{-4t}
 <section id="id3">
 <h3>Solution<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>a.) First, get the homogeneous solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0cebf518-5804-4880-8c17-a7c900dbee2d">
-<span class="eqno">(18)<a class="headerlink" href="#equation-0cebf518-5804-4880-8c17-a7c900dbee2d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-82b3520d-5251-4d28-a220-4270a4acd867">
+<span class="eqno">(18)<a class="headerlink" href="#equation-82b3520d-5251-4d28-a220-4270a4acd867" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_H^{\prime\prime} + 8y_H^{\prime} + 16y_H &amp;= 0 \\
 \rightarrow \lambda^2 + 8 \lambda + 16 &amp;= 0 = (\lambda + 4)^2 \\
 \lambda &amp;= 4 \text{ (repeated)} \\
 \text{so } y_H &amp;= c_1 e^{-4t} + c_2 t e^{-4t}
 \end{align}\]</div>
 <p>Next, use the method of undetermined coefficients to get the inhomogeneous solution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5370c577-215e-4efe-ab92-10ca46e3fac3">
-<span class="eqno">(19)<a class="headerlink" href="#equation-5370c577-215e-4efe-ab92-10ca46e3fac3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-88a5b012-c1bc-413f-ac70-e14715b8ccbb">
+<span class="eqno">(19)<a class="headerlink" href="#equation-88a5b012-c1bc-413f-ac70-e14715b8ccbb" title="Permalink to this equation">#</a></span>\[\begin{align}
 y_{IH} &amp;= K t^2 e^{-4t} \\
 y_{IH}^{\prime} &amp;= K e^{-4t} \left( 2t - 4t^2 \right) \\
 y_{IH}^{\prime\prime} &amp;= K e^{-4t} \left( -8t + 2 - 8t + 16t^2 \right) \\
 \rightarrow K &amp;= 3 
 \end{align}\]</div>
 <p>Then, the general solution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de0bb8ac-5e0c-411a-bdd7-b65496b7be63">
-<span class="eqno">(20)<a class="headerlink" href="#equation-de0bb8ac-5e0c-411a-bdd7-b65496b7be63" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-829c3a03-8ceb-42fe-b54c-4522f4a25298">
+<span class="eqno">(20)<a class="headerlink" href="#equation-829c3a03-8ceb-42fe-b54c-4522f4a25298" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = c_1 e^{-4t} + c_2 t e^{-4t} + 3 t^2 e^{-4t}
 \end{equation}\]</div>
 <p>Applying the initial conditions:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-870b0a99-eb95-4274-ba56-d002be160170">
-<span class="eqno">(21)<a class="headerlink" href="#equation-870b0a99-eb95-4274-ba56-d002be160170" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-226bd253-bf0c-4d40-9418-48e7113e32fc">
+<span class="eqno">(21)<a class="headerlink" href="#equation-226bd253-bf0c-4d40-9418-48e7113e32fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y(t) = 2 t e^{-4t} + 3 t^2 e^{-4t}
 \end{equation}\]</div>
 <p>b.) If <span class="math notranslate nohighlight">\(z_1 = y\)</span> and <span class="math notranslate nohighlight">\(z_2 = y^{\prime}\)</span>, then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92e50b10-7de3-4eb2-8cb5-8d7ec413cb73">
-<span class="eqno">(22)<a class="headerlink" href="#equation-92e50b10-7de3-4eb2-8cb5-8d7ec413cb73" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7d08be76-0c5a-4800-bbff-c670987627d3">
+<span class="eqno">(22)<a class="headerlink" href="#equation-7d08be76-0c5a-4800-bbff-c670987627d3" title="Permalink to this equation">#</a></span>\[\begin{align}
 z_1^{\prime} &amp;= z_2 \\
 z_2^{\prime} &amp;= y^{\prime\prime} = 6e^{-4t} - 8z_2 - 16z_1 = f(t, z_1, z_2)
 \end{align}\]</div>
 <p>Then, the recursion formulas are:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22f5c762-7971-462c-937b-02aa756741bd">
-<span class="eqno">(23)<a class="headerlink" href="#equation-22f5c762-7971-462c-937b-02aa756741bd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-36be9d57-db8c-4397-8432-ecef8ef9efdd">
+<span class="eqno">(23)<a class="headerlink" href="#equation-36be9d57-db8c-4397-8432-ecef8ef9efdd" title="Permalink to this equation">#</a></span>\[\begin{align}
 z_{1, i+1} &amp;= z_{1,i} + \Delta t \, z_{2,i} \\
 z_{2, i+1} &amp;= z_{2, i} + \Delta t \left( 6 e^{-4t} - 8 z_{2,i} - 16 z_{1,i} \right)
 \end{align}\]</div>
@@ -816,7 +643,7 @@ z_{2, i+1} &amp;= z_{2, i} + \Delta t \left( 6 e^{-4t} - 8 z_{2,i} - 16 z_{1,i} 
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./content/quizzes"
         },
         predefinedOutput: true
@@ -824,53 +651,117 @@ z_{2, i+1} &amp;= z_{2, i} + \Delta t \left( 6 e^{-4t} - 8 z_{2,i} - 16 z_{1,i} 
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../pdes/parabolic.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">5.2. </span>Parabolic PDEs</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../pdes/parabolic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Parabolic PDEs</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="quiz3-BVPs.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="quiz3-BVPs.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Sample Quiz 3 problems: BVPs</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kyle Niemeyer<br/>
-  
-    <div class="extra_footer">
-      <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
-
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-1-stability-analysis">Problem 1: Stability analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-2-second-order-backward-euler">Problem 2: Second-order Backward Euler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-3-fourier-series">Problem 3: Fourier series</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-4-second-order-analytical">Problem 4: Second-order analytical</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Solution</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kyle Niemeyer
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/kyleniemeyer/ME373-book">Mechanical Engineering Methods notes</a> by <span property="cc:attributionName">Kyle Niemeyer</span> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
